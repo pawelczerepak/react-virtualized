@@ -28,7 +28,7 @@ describe('AutoSizer', () => {
     paddingRight = 0,
     paddingTop = 0,
     style = undefined,
-    width = 200,
+    width = 200
   } = {}) {
     const wrapperStyle = {
       boxSizing: 'border-box',
@@ -37,7 +37,7 @@ describe('AutoSizer', () => {
       paddingLeft,
       paddingRight,
       paddingTop,
-      width,
+      width
     };
 
     mockOffsetSize(width, height);
@@ -70,11 +70,11 @@ describe('AutoSizer', () => {
   function mockOffsetSize(width, height) {
     Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
       configurable: true,
-      value: height,
+      value: height
     });
     Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
       configurable: true,
-      value: width,
+      value: width
     });
   }
 
@@ -97,9 +97,9 @@ describe('AutoSizer', () => {
           paddingBottom: 10,
           paddingLeft: 4,
           paddingRight: 4,
-          paddingTop: 15,
-        }),
-      ),
+          paddingTop: 15
+        })
+      )
     );
     expect(rendered.textContent).toContain('height:75');
     expect(rendered.textContent).toContain('width:192');
@@ -134,9 +134,9 @@ describe('AutoSizer', () => {
       render(
         getMarkup({
           height: 100,
-          width: 200,
-        }),
-      ),
+          width: 200
+        })
+      )
     );
     expect(rendered.textContent).toContain('height:100');
     expect(rendered.textContent).toContain('width:200');
@@ -158,9 +158,9 @@ describe('AutoSizer', () => {
             ChildComponent,
             height: 100,
             onResize,
-            width: 200,
-          }),
-        ),
+            width: 200
+          })
+        )
       );
       ChildComponent.mockClear(); // TODO Improve initial check in version 10; see AutoSizer render()
       expect(onResize).toHaveBeenCalledTimes(1);
@@ -182,9 +182,9 @@ describe('AutoSizer', () => {
             disableWidth: true,
             height: 100,
             onResize,
-            width: 200,
-          }),
-        ),
+            width: 200
+          })
+        )
       );
       ChildComponent.mockClear(); // TODO Improve initial check in version 10; see AutoSizer render()
       expect(onResize).toHaveBeenCalledTimes(1);
@@ -209,9 +209,9 @@ describe('AutoSizer', () => {
             disableHeight: true,
             height: 100,
             onResize,
-            width: 200,
-          }),
-        ),
+            width: 200
+          })
+        )
       );
       ChildComponent.mockClear(); // TODO Improve initial check in version 10; see AutoSizer render()
       expect(onResize).toHaveBeenCalledTimes(1);

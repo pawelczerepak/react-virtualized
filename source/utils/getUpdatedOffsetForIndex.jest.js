@@ -5,13 +5,13 @@ describe('getUpdatedOffsetForIndex', () => {
   function testHelper(
     targetIndex,
     currentOffset,
-    cellMetadata = getCellMetadata(),
+    cellMetadata = getCellMetadata()
   ) {
     return getUpdatedOffsetForIndex({
       cellOffset: cellMetadata[targetIndex].offset,
       cellSize: cellMetadata[targetIndex].size,
       containerSize: 50,
-      currentOffset,
+      currentOffset
     });
   }
 
@@ -42,8 +42,8 @@ describe('getUpdatedOffsetForIndex', () => {
         cellOffset: 50,
         cellSize: 10,
         containerSize: 50,
-        currentOffset: 0,
-      }),
+        currentOffset: 0
+      })
     ).toEqual(10);
     expect(
       getUpdatedOffsetForIndex({
@@ -51,8 +51,8 @@ describe('getUpdatedOffsetForIndex', () => {
         cellOffset: 50,
         cellSize: 10,
         containerSize: 50,
-        currentOffset: 0,
-      }),
+        currentOffset: 0
+      })
     ).toEqual(50);
     expect(
       getUpdatedOffsetForIndex({
@@ -60,8 +60,8 @@ describe('getUpdatedOffsetForIndex', () => {
         cellOffset: 50,
         cellSize: 10,
         containerSize: 50,
-        currentOffset: 100,
-      }),
+        currentOffset: 100
+      })
     ).toEqual(50);
     expect(
       getUpdatedOffsetForIndex({
@@ -69,8 +69,8 @@ describe('getUpdatedOffsetForIndex', () => {
         cellOffset: 50,
         cellSize: 10,
         containerSize: 50,
-        currentOffset: 100,
-      }),
+        currentOffset: 100
+      })
     ).toEqual(10);
     expect(
       getUpdatedOffsetForIndex({
@@ -78,8 +78,8 @@ describe('getUpdatedOffsetForIndex', () => {
         cellOffset: 50,
         cellSize: 10,
         containerSize: 50,
-        currentOffset: 100,
-      }),
+        currentOffset: 100
+      })
     ).toEqual(30);
   });
 });

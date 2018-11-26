@@ -11,7 +11,7 @@ export default class DynamicWidthMultiGrid extends React.PureComponent {
     getClassName: PropTypes.func.isRequired,
     getContent: PropTypes.func.isRequired,
     list: PropTypes.instanceOf(Immutable.List).isRequired,
-    width: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired
   };
 
   constructor(props, context) {
@@ -20,7 +20,7 @@ export default class DynamicWidthMultiGrid extends React.PureComponent {
     this._cache = new CellMeasurerCache({
       defaultHeight: 30,
       defaultWidth: 150,
-      fixedHeight: true,
+      fixedHeight: true
     });
 
     this._cellRenderer = this._cellRenderer.bind(this);
@@ -70,7 +70,7 @@ export default class DynamicWidthMultiGrid extends React.PureComponent {
           className={classNames}
           style={{
             ...style,
-            whiteSpace: 'nowrap',
+            whiteSpace: 'nowrap'
           }}>
           {content}
         </div>

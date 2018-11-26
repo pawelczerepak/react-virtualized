@@ -1,85 +1,10 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
-
-var _createClass = (function() {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-  return function(Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-})();
-
-var _react = require('react');
-
-var React = _interopRequireWildcard(_react);
-
-var _reactDom = require('react-dom');
-
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  } else {
-    var newObj = {};
-    if (obj != null) {
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key))
-          newObj[key] = obj[key];
-      }
-    }
-    newObj.default = obj;
-    return newObj;
-  }
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (!self) {
-    throw new ReferenceError(
-      "this hasn't been initialised - super() hasn't been called",
-    );
-  }
-  return call && (typeof call === 'object' || typeof call === 'function')
-    ? call
-    : self;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== 'function' && superClass !== null) {
-    throw new TypeError(
-      'Super expression must either be null or a function, not ' +
-        typeof superClass,
-    );
-  }
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true,
-    },
-  });
-  if (superClass)
-    Object.setPrototypeOf
-      ? Object.setPrototypeOf(subClass, superClass)
-      : (subClass.__proto__ = superClass);
-}
+import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
+import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
+import _createClass from 'babel-runtime/helpers/createClass';
+import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
+import _inherits from 'babel-runtime/helpers/inherits';
+import * as React from 'react';
+import {findDOMNode} from 'react-dom';
 
 /**
  * Wraps a cell and measures its rendered content.
@@ -109,10 +34,10 @@ var CellMeasurer = (function(_React$PureComponent) {
         this,
         (_ref =
           CellMeasurer.__proto__ ||
-          Object.getPrototypeOf(CellMeasurer)).call.apply(
+          _Object$getPrototypeOf(CellMeasurer)).call.apply(
           _ref,
-          [this].concat(args),
-        ),
+          [this].concat(args)
+        )
       )),
       _this)),
       (_this._measure = function() {
@@ -141,7 +66,7 @@ var CellMeasurer = (function(_React$PureComponent) {
           if (parent && typeof parent.recomputeGridSize === 'function') {
             parent.recomputeGridSize({
               columnIndex: columnIndex,
-              rowIndex: rowIndex,
+              rowIndex: rowIndex
             });
           }
         }
@@ -156,13 +81,13 @@ var CellMeasurer = (function(_React$PureComponent) {
       key: 'componentDidMount',
       value: function componentDidMount() {
         this._maybeMeasureCell();
-      },
+      }
     },
     {
       key: 'componentDidUpdate',
       value: function componentDidUpdate() {
         this._maybeMeasureCell();
-      },
+      }
     },
     {
       key: 'render',
@@ -172,14 +97,14 @@ var CellMeasurer = (function(_React$PureComponent) {
         return typeof children === 'function'
           ? children({measure: this._measure})
           : children;
-      },
+      }
     },
     {
       key: '_getCellMeasurements',
       value: function _getCellMeasurements() {
         var cache = this.props.cache;
 
-        var node = (0, _reactDom.findDOMNode)(this);
+        var node = findDOMNode(this);
 
         // TODO Check for a bad combination of fixedWidth and missing numeric width or vice versa with height
 
@@ -223,7 +148,7 @@ var CellMeasurer = (function(_React$PureComponent) {
         } else {
           return {height: 0, width: 0};
         }
-      },
+      }
     },
     {
       key: '_maybeMeasureCell',
@@ -254,12 +179,12 @@ var CellMeasurer = (function(_React$PureComponent) {
           ) {
             parent.invalidateCellSizeAfterRender({
               columnIndex: columnIndex,
-              rowIndex: rowIndex,
+              rowIndex: rowIndex
             });
           }
         }
-      },
-    },
+      }
+    }
   ]);
 
   return CellMeasurer;
@@ -268,7 +193,31 @@ var CellMeasurer = (function(_React$PureComponent) {
 // Used for DEV mode warning check
 
 CellMeasurer.__internalCellMeasurerFlag = false;
-exports.default = CellMeasurer;
+CellMeasurer.propTypes =
+  process.env.NODE_ENV === 'production'
+    ? null
+    : {
+        cache: function cache() {
+          return (typeof bpfrpt_proptype_CellMeasureCache === 'function'
+            ? bpfrpt_proptype_CellMeasureCache.isRequired
+              ? bpfrpt_proptype_CellMeasureCache.isRequired
+              : bpfrpt_proptype_CellMeasureCache
+            : PropTypes.shape(bpfrpt_proptype_CellMeasureCache).isRequired
+          ).apply(this, arguments);
+        },
+        children: PropTypes.oneOfType([PropTypes.func, PropTypes.node])
+          .isRequired,
+        columnIndex: PropTypes.number,
+        index: PropTypes.number,
+        parent: PropTypes.shape({
+          invalidateCellSizeAfterRender: PropTypes.func,
+          recomputeGridSize: PropTypes.func
+        }).isRequired,
+        rowIndex: PropTypes.number
+      };
+export default CellMeasurer;
 if (process.env.NODE_ENV !== 'production') {
   CellMeasurer.__internalCellMeasurerFlag = true;
 }
+import {bpfrpt_proptype_CellMeasureCache} from './types';
+import PropTypes from 'prop-types';

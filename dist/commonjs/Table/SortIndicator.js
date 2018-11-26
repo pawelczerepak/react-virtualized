@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 exports.default = SortIndicator;
 
@@ -53,8 +53,8 @@ function SortIndicator(_ref) {
       'ReactVirtualized__Table__sortableHeaderIcon--ASC':
         sortDirection === _SortDirection2.default.ASC,
       'ReactVirtualized__Table__sortableHeaderIcon--DESC':
-        sortDirection === _SortDirection2.default.DESC,
-    },
+        sortDirection === _SortDirection2.default.DESC
+    }
   );
 
   return React.createElement(
@@ -63,13 +63,16 @@ function SortIndicator(_ref) {
     sortDirection === _SortDirection2.default.ASC
       ? React.createElement('path', {d: 'M7 14l5-5 5 5z'})
       : React.createElement('path', {d: 'M7 10l5 5 5-5z'}),
-    React.createElement('path', {d: 'M0 0h24v24H0z', fill: 'none'}),
+    React.createElement('path', {d: 'M0 0h24v24H0z', fill: 'none'})
   );
 }
 
-SortIndicator.propTypes = {
-  sortDirection: _propTypes2.default.oneOf([
-    _SortDirection2.default.ASC,
-    _SortDirection2.default.DESC,
-  ]),
-};
+SortIndicator.propTypes =
+  process.env.NODE_ENV !== 'production'
+    ? {
+        sortDirection: _propTypes2.default.oneOf([
+          _SortDirection2.default.ASC,
+          _SortDirection2.default.DESC
+        ])
+      }
+    : {};

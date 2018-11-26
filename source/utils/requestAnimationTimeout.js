@@ -3,7 +3,7 @@
 import {caf, raf} from './animationFrame';
 
 export type AnimationTimeoutId = {
-  id: number,
+  id: number
 };
 
 export const cancelAnimationTimeout = (frame: AnimationTimeoutId) =>
@@ -17,7 +17,7 @@ export const cancelAnimationTimeout = (frame: AnimationTimeoutId) =>
  */
 export const requestAnimationTimeout = (
   callback: Function,
-  delay: number,
+  delay: number
 ): AnimationTimeoutId => {
   let start;
   // wait for end of processing current event handler, because event handler may be long
@@ -34,7 +34,7 @@ export const requestAnimationTimeout = (
   };
 
   const frame: AnimationTimeoutId = {
-    id: raf(timeout),
+    id: raf(timeout)
   };
 
   return frame;

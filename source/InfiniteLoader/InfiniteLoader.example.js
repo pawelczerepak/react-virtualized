@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {
   ContentBox,
   ContentBoxHeader,
-  ContentBoxParagraph,
+  ContentBoxParagraph
 } from '../demo/ContentBox';
 import Immutable from 'immutable';
 import AutoSizer from '../AutoSizer';
@@ -17,7 +17,7 @@ const STATUS_LOADED = 2;
 
 export default class InfiniteLoaderExample extends React.PureComponent {
   static contextTypes = {
-    list: PropTypes.instanceOf(Immutable.List).isRequired,
+    list: PropTypes.instanceOf(Immutable.List).isRequired
   };
 
   constructor(props) {
@@ -26,7 +26,7 @@ export default class InfiniteLoaderExample extends React.PureComponent {
     this.state = {
       loadedRowCount: 0,
       loadedRowsMap: {},
-      loadingRowCount: 0,
+      loadingRowCount: 0
     };
 
     this._timeoutIdMap = {};
@@ -102,7 +102,7 @@ export default class InfiniteLoaderExample extends React.PureComponent {
     this.setState({
       loadedRowCount: 0,
       loadedRowsMap: {},
-      loadingRowCount: 0,
+      loadingRowCount: 0
     });
   }
 
@@ -120,7 +120,7 @@ export default class InfiniteLoaderExample extends React.PureComponent {
     }
 
     this.setState({
-      loadingRowCount: loadingRowCount + increment,
+      loadingRowCount: loadingRowCount + increment
     });
 
     const timeoutId = setTimeout(() => {
@@ -134,7 +134,7 @@ export default class InfiniteLoaderExample extends React.PureComponent {
 
       this.setState({
         loadingRowCount: loadingRowCount - increment,
-        loadedRowCount: loadedRowCount + increment,
+        loadedRowCount: loadedRowCount + increment
       });
 
       promiseResolver();

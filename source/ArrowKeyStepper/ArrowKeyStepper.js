@@ -13,7 +13,7 @@ import {polyfill} from 'react-lifecycles-compat';
 type ChildrenParams = {
   onSectionRendered: (params: RenderedSection) => void,
   scrollToColumn: number,
-  scrollToRow: number,
+  scrollToRow: number
 };
 
 type Props = {
@@ -26,7 +26,7 @@ type Props = {
   onScrollToChange?: (params: ScrollIndices) => void,
   rowCount: number,
   scrollToColumn: number,
-  scrollToRow: number,
+  scrollToRow: number
 };
 
 type State = ScrollIndices;
@@ -37,12 +37,12 @@ class ArrowKeyStepper extends React.PureComponent<Props, State> {
     isControlled: false,
     mode: 'edges',
     scrollToColumn: 0,
-    scrollToRow: 0,
+    scrollToRow: 0
   };
 
   state = {
     scrollToColumn: 0,
-    scrollToRow: 0,
+    scrollToRow: 0
   };
 
   _columnStartIndex = 0;
@@ -52,7 +52,7 @@ class ArrowKeyStepper extends React.PureComponent<Props, State> {
 
   static getDerivedStateFromProps(
     nextProps: Props,
-    prevState: State,
+    prevState: State
   ): $Shape<State> {
     if (nextProps.isControlled) {
       return null;
@@ -64,7 +64,7 @@ class ArrowKeyStepper extends React.PureComponent<Props, State> {
     ) {
       return {
         scrollToColumn: nextProps.scrollToColumn,
-        scrollToRow: nextProps.scrollToRow,
+        scrollToRow: nextProps.scrollToRow
       };
     }
 
@@ -74,7 +74,7 @@ class ArrowKeyStepper extends React.PureComponent<Props, State> {
   setScrollIndexes({scrollToColumn, scrollToRow}: ScrollIndices) {
     this.setState({
       scrollToRow,
-      scrollToColumn,
+      scrollToColumn
     });
   }
 
@@ -87,7 +87,7 @@ class ArrowKeyStepper extends React.PureComponent<Props, State> {
         {children({
           onSectionRendered: this._onSectionRendered,
           scrollToColumn,
-          scrollToRow,
+          scrollToRow
         })}
       </div>
     );
@@ -102,7 +102,7 @@ class ArrowKeyStepper extends React.PureComponent<Props, State> {
 
     const {
       scrollToColumn: scrollToColumnPrevious,
-      scrollToRow: scrollToRowPrevious,
+      scrollToRow: scrollToRowPrevious
     } = this._getScrollState();
 
     let {scrollToColumn, scrollToRow} = this._getScrollState();
@@ -150,7 +150,7 @@ class ArrowKeyStepper extends React.PureComponent<Props, State> {
     columnStartIndex,
     columnStopIndex,
     rowStartIndex,
-    rowStopIndex,
+    rowStopIndex
   }: RenderedSection) => {
     this._columnStartIndex = columnStartIndex;
     this._columnStopIndex = columnStopIndex;

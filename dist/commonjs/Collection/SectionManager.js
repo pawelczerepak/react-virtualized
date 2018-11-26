@@ -1,45 +1,36 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 
-var _createClass = (function() {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-  return function(Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-})(); /**
- * Window Sections are used to group nearby cells.
- * This enables us to more quickly determine which cells to display in a given region of the Window.
- *
- */
+var _keys = require('babel-runtime/core-js/object/keys');
+
+var _keys2 = _interopRequireDefault(_keys);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
 
 var _Section = require('./Section');
 
 var _Section2 = _interopRequireDefault(_Section);
 
+var _types = require('./types');
+
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
-}
-
-var SECTION_SIZE = 100;
+var SECTION_SIZE = 100; /**
+ * Window Sections are used to group nearby cells.
+ * This enables us to more quickly determine which cells to display in a given region of the Window.
+ *
+ */
 
 /**
  * Contains 0 to many Sections.
@@ -52,8 +43,7 @@ var SectionManager = (function() {
       arguments.length > 0 && arguments[0] !== undefined
         ? arguments[0]
         : SECTION_SIZE;
-
-    _classCallCheck(this, SectionManager);
+    (0, _classCallCheck3.default)(this, SectionManager);
 
     this._sectionSize = sectionSize;
 
@@ -66,7 +56,7 @@ var SectionManager = (function() {
    * A region may encompass 1 or more Sections.
    */
 
-  _createClass(SectionManager, [
+  (0, _createClass3.default)(SectionManager, [
     {
       key: 'getCellIndices',
       value: function getCellIndices(_ref) {
@@ -82,14 +72,14 @@ var SectionManager = (function() {
             return section.getCellIndices().forEach(function(index) {
               indices[index] = index;
             });
-          },
+          }
         );
 
         // Object keys are strings; this function returns numbers
-        return Object.keys(indices).map(function(index) {
+        return (0, _keys2.default)(indices).map(function(index) {
           return indices[index];
         });
-      },
+      }
 
       /** Get size and position information for the cell specified. */
     },
@@ -99,7 +89,7 @@ var SectionManager = (function() {
         var index = _ref2.index;
 
         return this._cellMetadata[index];
-      },
+      }
 
       /** Get all Sections overlapping the specified region. */
     },
@@ -135,7 +125,7 @@ var SectionManager = (function() {
                 height: this._sectionSize,
                 width: this._sectionSize,
                 x: sectionX * this._sectionSize,
-                y: sectionY * this._sectionSize,
+                y: sectionY * this._sectionSize
               });
             }
 
@@ -144,15 +134,15 @@ var SectionManager = (function() {
         }
 
         return sections;
-      },
+      }
 
       /** Total number of Sections based on the currently registered cells. */
     },
     {
       key: 'getTotalSectionCount',
       value: function getTotalSectionCount() {
-        return Object.keys(this._sections).length;
-      },
+        return (0, _keys2.default)(this._sections).length;
+      }
 
       /** Intended for debugger/test purposes only */
     },
@@ -161,10 +151,10 @@ var SectionManager = (function() {
       value: function toString() {
         var _this = this;
 
-        return Object.keys(this._sections).map(function(index) {
+        return (0, _keys2.default)(this._sections).map(function(index) {
           return _this._sections[index].toString();
         });
-      },
+      }
 
       /** Adds a cell to the appropriate Sections and registers it metadata for later retrievable. */
     },
@@ -179,10 +169,9 @@ var SectionManager = (function() {
         this.getSections(cellMetadatum).forEach(function(section) {
           return section.addCellIndex({index: index});
         });
-      },
-    },
+      }
+    }
   ]);
-
   return SectionManager;
 })();
 

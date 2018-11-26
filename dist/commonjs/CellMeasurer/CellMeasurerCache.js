@@ -1,30 +1,22 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
+exports.DEFAULT_WIDTH = exports.DEFAULT_HEIGHT = undefined;
 
-var _createClass = (function() {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-  return function(Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-})();
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _types = require('./types');
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
 }
 
 var DEFAULT_HEIGHT = (exports.DEFAULT_HEIGHT = 30);
@@ -43,9 +35,7 @@ var CellMeasurerCache = (function() {
 
     var params =
       arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    _classCallCheck(this, CellMeasurerCache);
-
+    (0, _classCallCheck3.default)(this, CellMeasurerCache);
     this._cellHeightCache = {};
     this._cellWidthCache = {};
     this._columnWidthCache = {};
@@ -89,11 +79,11 @@ var CellMeasurerCache = (function() {
 
     this._defaultHeight = Math.max(
       this._minHeight,
-      typeof defaultHeight === 'number' ? defaultHeight : DEFAULT_HEIGHT,
+      typeof defaultHeight === 'number' ? defaultHeight : DEFAULT_HEIGHT
     );
     this._defaultWidth = Math.max(
       this._minWidth,
-      typeof defaultWidth === 'number' ? defaultWidth : DEFAULT_WIDTH,
+      typeof defaultWidth === 'number' ? defaultWidth : DEFAULT_WIDTH
     );
 
     if (process.env.NODE_ENV !== 'production') {
@@ -101,27 +91,27 @@ var CellMeasurerCache = (function() {
         console.warn(
           "CellMeasurerCache should only measure a cell's width or height. " +
             'You have configured CellMeasurerCache to measure both. ' +
-            'This will result in poor performance.',
+            'This will result in poor performance.'
         );
       }
 
       if (this._hasFixedHeight === false && this._defaultHeight === 0) {
         console.warn(
           'Fixed height CellMeasurerCache should specify a :defaultHeight greater than 0. ' +
-            'Failing to do so will lead to unnecessary layout and poor performance.',
+            'Failing to do so will lead to unnecessary layout and poor performance.'
         );
       }
 
       if (this._hasFixedWidth === false && this._defaultWidth === 0) {
         console.warn(
           'Fixed width CellMeasurerCache should specify a :defaultWidth greater than 0. ' +
-            'Failing to do so will lead to unnecessary layout and poor performance.',
+            'Failing to do so will lead to unnecessary layout and poor performance.'
         );
       }
     }
   }
 
-  _createClass(CellMeasurerCache, [
+  (0, _createClass3.default)(CellMeasurerCache, [
     {
       key: 'clear',
       value: function clear(rowIndex) {
@@ -134,7 +124,7 @@ var CellMeasurerCache = (function() {
         delete this._cellWidthCache[key];
 
         this._updateCachedColumnAndRowSizes(rowIndex, columnIndex);
-      },
+      }
     },
     {
       key: 'clearAll',
@@ -145,19 +135,19 @@ var CellMeasurerCache = (function() {
         this._rowHeightCache = {};
         this._rowCount = 0;
         this._columnCount = 0;
-      },
+      }
     },
     {
       key: 'hasFixedHeight',
       value: function hasFixedHeight() {
         return this._hasFixedHeight;
-      },
+      }
     },
     {
       key: 'hasFixedWidth',
       value: function hasFixedWidth() {
         return this._hasFixedWidth;
-      },
+      }
     },
     {
       key: 'getHeight',
@@ -174,7 +164,7 @@ var CellMeasurerCache = (function() {
             ? Math.max(this._minHeight, this._cellHeightCache[_key])
             : this._defaultHeight;
         }
-      },
+      }
     },
     {
       key: 'getWidth',
@@ -191,7 +181,7 @@ var CellMeasurerCache = (function() {
             ? Math.max(this._minWidth, this._cellWidthCache[_key2])
             : this._defaultWidth;
         }
-      },
+      }
     },
     {
       key: 'has',
@@ -202,7 +192,7 @@ var CellMeasurerCache = (function() {
         var key = this._keyMapper(rowIndex, columnIndex);
 
         return this._cellHeightCache.hasOwnProperty(key);
-      },
+      }
     },
     {
       key: 'set',
@@ -221,7 +211,7 @@ var CellMeasurerCache = (function() {
         this._cellWidthCache[key] = width;
 
         this._updateCachedColumnAndRowSizes(rowIndex, columnIndex);
-      },
+      }
     },
     {
       key: '_updateCachedColumnAndRowSizes',
@@ -246,22 +236,21 @@ var CellMeasurerCache = (function() {
           var rowKey = this._keyMapper(rowIndex, 0);
           this._rowHeightCache[rowKey] = rowHeight;
         }
-      },
+      }
     },
     {
       key: 'defaultHeight',
       get: function get() {
         return this._defaultHeight;
-      },
+      }
     },
     {
       key: 'defaultWidth',
       get: function get() {
         return this._defaultWidth;
-      },
-    },
+      }
+    }
   ]);
-
   return CellMeasurerCache;
 })();
 

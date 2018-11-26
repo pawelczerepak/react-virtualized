@@ -28,7 +28,7 @@ export default class ColumnSizer extends React.PureComponent {
     columnCount: PropTypes.number.isRequired,
 
     /** Width of Grid or Table child */
-    width: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired
   };
 
   constructor(props, context) {
@@ -58,7 +58,7 @@ export default class ColumnSizer extends React.PureComponent {
       columnMaxWidth,
       columnMinWidth,
       columnCount,
-      width,
+      width
     } = this.props;
 
     const safeColumnMinWidth = columnMinWidth || 1;
@@ -78,14 +78,14 @@ export default class ColumnSizer extends React.PureComponent {
       adjustedWidth,
       columnWidth,
       getColumnWidth: () => columnWidth,
-      registerChild: this._registerChild,
+      registerChild: this._registerChild
     });
   }
 
   _registerChild(child) {
     if (child && typeof child.recomputeGridSize !== 'function') {
       throw Error(
-        'Unexpected child type registered; only Grid/MultiGrid children are supported.',
+        'Unexpected child type registered; only Grid/MultiGrid children are supported.'
       );
     }
 

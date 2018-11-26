@@ -21,7 +21,7 @@ export default function initCellMetadata({cellCount, size}) {
 
     cellMetadata[i] = {
       size,
-      offset,
+      offset
     };
 
     offset += size;

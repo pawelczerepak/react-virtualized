@@ -3,7 +3,7 @@ import * as React from 'react';
 import {
   ContentBox,
   ContentBoxHeader,
-  ContentBoxParagraph,
+  ContentBoxParagraph
 } from '../demo/ContentBox';
 import AutoSizer from '../AutoSizer';
 import Grid from '../Grid';
@@ -28,7 +28,7 @@ export default class GridExample extends React.PureComponent {
       overscanColumnCount: 0,
       overscanRowCount: 5,
       rowHeight: 40,
-      rowCount: 100,
+      rowCount: 100
     };
 
     this._renderBodyCell = this._renderBodyCell.bind(this);
@@ -44,7 +44,7 @@ export default class GridExample extends React.PureComponent {
       overscanColumnCount,
       overscanRowCount,
       rowHeight,
-      rowCount,
+      rowCount
     } = this.state;
 
     return (
@@ -75,7 +75,7 @@ export default class GridExample extends React.PureComponent {
             scrollHeight,
             scrollLeft,
             scrollTop,
-            scrollWidth,
+            scrollWidth
           }) => {
             const x = scrollLeft / (scrollWidth - clientWidth);
             const y = scrollTop / (scrollHeight - clientHeight);
@@ -83,19 +83,19 @@ export default class GridExample extends React.PureComponent {
             const leftBackgroundColor = mixColors(
               LEFT_COLOR_FROM,
               LEFT_COLOR_TO,
-              y,
+              y
             );
             const leftColor = '#ffffff';
             const topBackgroundColor = mixColors(
               TOP_COLOR_FROM,
               TOP_COLOR_TO,
-              x,
+              x
             );
             const topColor = '#ffffff';
             const middleBackgroundColor = mixColors(
               leftBackgroundColor,
               topBackgroundColor,
-              0.5,
+              0.5
             );
             const middleColor = '#ffffff';
 
@@ -110,7 +110,7 @@ export default class GridExample extends React.PureComponent {
                     color: leftColor,
                     backgroundColor: `rgb(${topBackgroundColor.r},${
                       topBackgroundColor.g
-                    },${topBackgroundColor.b})`,
+                    },${topBackgroundColor.b})`
                   }}>
                   <Grid
                     cellRenderer={this._renderLeftHeaderCell}
@@ -132,7 +132,7 @@ export default class GridExample extends React.PureComponent {
                     color: leftColor,
                     backgroundColor: `rgb(${leftBackgroundColor.r},${
                       leftBackgroundColor.g
-                    },${leftBackgroundColor.b})`,
+                    },${leftBackgroundColor.b})`
                   }}>
                   <Grid
                     overscanColumnCount={overscanColumnCount}
@@ -159,7 +159,7 @@ export default class GridExample extends React.PureComponent {
                             },${topBackgroundColor.b})`,
                             color: topColor,
                             height: rowHeight,
-                            width: width - scrollbarSize(),
+                            width: width - scrollbarSize()
                           }}>
                           <Grid
                             className={styles.HeaderGrid}
@@ -181,7 +181,7 @@ export default class GridExample extends React.PureComponent {
                             },${middleBackgroundColor.b})`,
                             color: middleColor,
                             height,
-                            width,
+                            width
                           }}>
                           <Grid
                             className={styles.BodyGrid}
@@ -254,7 +254,7 @@ function hexToRgb(hex) {
     ? {
         r: parseInt(result[1], 16),
         g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16),
+        b: parseInt(result[3], 16)
       }
     : null;
 }

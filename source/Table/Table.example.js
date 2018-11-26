@@ -5,7 +5,7 @@ import * as React from 'react';
 import {
   ContentBox,
   ContentBoxHeader,
-  ContentBoxParagraph,
+  ContentBoxParagraph
 } from '../demo/ContentBox';
 import {LabeledInput, InputRow} from '../demo/LabeledInput';
 import AutoSizer from '../AutoSizer';
@@ -17,7 +17,7 @@ import styles from './Table.example.css';
 
 export default class TableExample extends React.PureComponent {
   static contextTypes = {
-    list: PropTypes.instanceOf(Immutable.List).isRequired,
+    list: PropTypes.instanceOf(Immutable.List).isRequired
   };
 
   constructor(props, context) {
@@ -39,7 +39,7 @@ export default class TableExample extends React.PureComponent {
       sortBy,
       sortDirection,
       sortedList,
-      useDynamicRowHeight: false,
+      useDynamicRowHeight: false
     };
 
     this._getRowHeight = this._getRowHeight.bind(this);
@@ -64,7 +64,7 @@ export default class TableExample extends React.PureComponent {
       sortBy,
       sortDirection,
       sortedList,
-      useDynamicRowHeight,
+      useDynamicRowHeight
     } = this.state;
 
     const rowGetter = ({index}) => this._getDatum(sortedList, index);
@@ -154,7 +154,7 @@ export default class TableExample extends React.PureComponent {
             name="rowHeight"
             onChange={event =>
               this.setState({
-                rowHeight: parseInt(event.target.value, 10) || 1,
+                rowHeight: parseInt(event.target.value, 10) || 1
               })
             }
             value={rowHeight}
@@ -164,7 +164,7 @@ export default class TableExample extends React.PureComponent {
             name="headerHeight"
             onChange={event =>
               this.setState({
-                headerHeight: parseInt(event.target.value, 10) || 1,
+                headerHeight: parseInt(event.target.value, 10) || 1
               })
             }
             value={headerHeight}
@@ -174,7 +174,7 @@ export default class TableExample extends React.PureComponent {
             name="overscanRowCount"
             onChange={event =>
               this.setState({
-                overscanRowCount: parseInt(event.target.value, 10) || 0,
+                overscanRowCount: parseInt(event.target.value, 10) || 0
               })
             }
             value={overscanRowCount}
@@ -273,7 +273,7 @@ export default class TableExample extends React.PureComponent {
     const {rowCount} = this.state;
     let scrollToIndex = Math.min(
       rowCount - 1,
-      parseInt(event.target.value, 10),
+      parseInt(event.target.value, 10)
     );
 
     if (isNaN(scrollToIndex)) {
@@ -303,13 +303,13 @@ export default class TableExample extends React.PureComponent {
     return list
       .sortBy(item => item[sortBy])
       .update(
-        list => (sortDirection === SortDirection.DESC ? list.reverse() : list),
+        list => (sortDirection === SortDirection.DESC ? list.reverse() : list)
       );
   }
 
   _updateUseDynamicRowHeight(value) {
     this.setState({
-      useDynamicRowHeight: value,
+      useDynamicRowHeight: value
     });
   }
 }

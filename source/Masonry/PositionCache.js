@@ -19,7 +19,7 @@ export default class PositionCache {
   estimateTotalHeight(
     cellCount: number,
     columnCount: number,
-    defaultCellHeight: number,
+    defaultCellHeight: number
   ): number {
     const unmeasuredCellCount = cellCount - this.count;
     return (
@@ -32,12 +32,12 @@ export default class PositionCache {
   range(
     scrollTop: number,
     clientHeight: number,
-    renderCallback: RenderCallback,
+    renderCallback: RenderCallback
   ): void {
     this._intervalTree.queryInterval(
       scrollTop,
       scrollTop + clientHeight,
-      ([top, _, index]) => renderCallback(index, this._leftMap[index], top),
+      ([top, _, index]) => renderCallback(index, this._leftMap[index], top)
     );
   }
 

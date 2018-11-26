@@ -1,16 +1,9 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
-exports.default = defaultCellRangeRenderer;
-
 /**
  * Default implementation of cellRangeRenderer used by Grid.
  * This renderer supports cell-caching while the user is scrolling.
  */
 
-function defaultCellRangeRenderer(_ref) {
+export default function defaultCellRangeRenderer(_ref) {
   var cellCache = _ref.cellCache,
     cellRenderer = _ref.cellRenderer,
     columnSizeAndPositionManager = _ref.columnSizeAndPositionManager,
@@ -51,7 +44,7 @@ function defaultCellRangeRenderer(_ref) {
       columnIndex++
     ) {
       var columnDatum = columnSizeAndPositionManager.getSizeAndPositionOfCell(
-        columnIndex,
+        columnIndex
       );
       var isVisible =
         columnIndex >= visibleColumnIndices.start &&
@@ -79,7 +72,7 @@ function defaultCellRangeRenderer(_ref) {
             left: 0,
             position: 'absolute',
             top: 0,
-            width: 'auto',
+            width: 'auto'
           };
         } else {
           style = {
@@ -87,7 +80,7 @@ function defaultCellRangeRenderer(_ref) {
             left: columnDatum.offset + horizontalOffsetAdjustment,
             position: 'absolute',
             top: rowDatum.offset + verticalOffsetAdjustment,
-            width: columnDatum.size,
+            width: columnDatum.size
           };
 
           styleCache[key] = style;
@@ -101,7 +94,7 @@ function defaultCellRangeRenderer(_ref) {
         key: key,
         parent: parent,
         rowIndex: rowIndex,
-        style: style,
+        style: style
       };
 
       var renderedCell = void 0;
@@ -166,9 +159,10 @@ function warnAboutMissingStyle(parent, renderedCell) {
         parent.__warnedAboutMissingStyle = true;
 
         console.warn(
-          'Rendered cell should include style property for positioning.',
+          'Rendered cell should include style property for positioning.'
         );
       }
     }
   }
 }
+import {bpfrpt_proptype_CellRangeRendererParams} from './types';

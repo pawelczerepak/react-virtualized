@@ -1,9 +1,13 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
+exports.SCROLL_DIRECTION_VERTICAL = exports.SCROLL_DIRECTION_HORIZONTAL = exports.SCROLL_DIRECTION_FORWARD = exports.SCROLL_DIRECTION_BACKWARD = undefined;
 exports.default = defaultOverscanIndicesGetter;
+
+var _types = require('./types');
+
 var SCROLL_DIRECTION_BACKWARD = (exports.SCROLL_DIRECTION_BACKWARD = -1);
 
 var SCROLL_DIRECTION_FORWARD = (exports.SCROLL_DIRECTION_FORWARD = 1);
@@ -28,15 +32,12 @@ function defaultOverscanIndicesGetter(_ref) {
   if (scrollDirection === SCROLL_DIRECTION_FORWARD) {
     return {
       overscanStartIndex: Math.max(0, startIndex),
-      overscanStopIndex: Math.min(
-        cellCount - 1,
-        stopIndex + overscanCellsCount,
-      ),
+      overscanStopIndex: Math.min(cellCount - 1, stopIndex + overscanCellsCount)
     };
   } else {
     return {
       overscanStartIndex: Math.max(0, startIndex - overscanCellsCount),
-      overscanStopIndex: Math.min(cellCount - 1, stopIndex),
+      overscanStopIndex: Math.min(cellCount - 1, stopIndex)
     };
   }
 }

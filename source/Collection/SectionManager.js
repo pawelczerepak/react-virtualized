@@ -10,7 +10,7 @@ const SECTION_SIZE = 100;
 
 type RegisterCellParams = {
   cellMetadatum: SizeAndPositionInfo,
-  index: number,
+  index: number
 };
 
 /**
@@ -36,7 +36,7 @@ export default class SectionManager {
     this.getSections({height, width, x, y}).forEach(section =>
       section.getCellIndices().forEach(index => {
         indices[index] = index;
-      }),
+      })
     );
 
     // Object keys are strings; this function returns numbers
@@ -66,7 +66,7 @@ export default class SectionManager {
             height: this._sectionSize,
             width: this._sectionSize,
             x: sectionX * this._sectionSize,
-            y: sectionY * this._sectionSize,
+            y: sectionY * this._sectionSize
           });
         }
 
@@ -85,7 +85,7 @@ export default class SectionManager {
   /** Intended for debugger/test purposes only */
   toString() {
     return Object.keys(this._sections).map(index =>
-      this._sections[index].toString(),
+      this._sections[index].toString()
     );
   }
 
@@ -94,7 +94,7 @@ export default class SectionManager {
     this._cellMetadata[index] = cellMetadatum;
 
     this.getSections(cellMetadatum).forEach(section =>
-      section.addCellIndex({index}),
+      section.addCellIndex({index})
     );
   }
 }

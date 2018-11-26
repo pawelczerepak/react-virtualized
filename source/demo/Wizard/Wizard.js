@@ -9,7 +9,7 @@ require('codemirror/mode/jsx/jsx');
 
 const codeMirrorOptions = {
   mode: 'jsx',
-  theme: 'dracula',
+  theme: 'dracula'
 };
 
 // @TODO Clean up this class; it's pretty hacky.
@@ -28,7 +28,7 @@ export default class Wizard extends React.Component {
       doNotVirtualizeColumns: false,
       hasMultipleColumns: true,
       hasMultipleRows: true,
-      nonCheckerboardPattern: false,
+      nonCheckerboardPattern: false
     };
   }
 
@@ -49,7 +49,7 @@ export default class Wizard extends React.Component {
       doNotVirtualizeColumns,
       hasMultipleColumns,
       hasMultipleRows,
-      nonCheckerboardPattern,
+      nonCheckerboardPattern
     } = state;
 
     return (
@@ -185,7 +185,7 @@ export default class Wizard extends React.Component {
       doNotVirtualizeColumns,
       hasMultipleColumns,
       hasMultipleRows,
-      nonCheckerboardPattern,
+      nonCheckerboardPattern
     } = this.state;
 
     return {
@@ -207,7 +207,7 @@ export default class Wizard extends React.Component {
       hasMultipleColumns,
       hasMultipleRows,
       nonCheckerboardPattern:
-        nonCheckerboardPattern && hasMultipleColumns && hasMultipleRows,
+        nonCheckerboardPattern && hasMultipleColumns && hasMultipleRows
     };
   }
 }
@@ -216,7 +216,7 @@ function Option({checked, disabled = false, label, onChange}) {
   return (
     <div
       className={cn(styles.Option, {
-        [styles.OptionDisabled]: disabled,
+        [styles.OptionDisabled]: disabled
       })}>
       <label className={styles.Label}>
         <input

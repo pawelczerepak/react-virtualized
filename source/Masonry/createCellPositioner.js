@@ -5,20 +5,20 @@ type createCellPositionerParams = {
   cellMeasurerCache: CellMeasurerCache,
   columnCount: number,
   columnWidth: number,
-  spacer?: number,
+  spacer?: number
 };
 
 type resetParams = {
   columnCount: number,
   columnWidth: number,
-  spacer?: number,
+  spacer?: number
 };
 
 export default function createCellPositioner({
   cellMeasurerCache,
   columnCount,
   columnWidth,
-  spacer = 0,
+  spacer = 0
 }: createCellPositionerParams): Positioner {
   let columnHeights;
 
@@ -41,7 +41,7 @@ export default function createCellPositioner({
 
     return {
       left,
-      top,
+      top
     };
   }
 

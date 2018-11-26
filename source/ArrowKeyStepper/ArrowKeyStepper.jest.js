@@ -28,20 +28,20 @@ describe('ArrowKeyStepper', () => {
             />
           );
         }}
-      </ArrowKeyStepper>,
+      </ArrowKeyStepper>
     );
     const node = findDOMNode(component);
 
     return {
       component,
       node,
-      onSectionRendered: onSectionRenderedCallback,
+      onSectionRendered: onSectionRenderedCallback
     };
   }
 
   function assertCurrentScrollTo(node, scrollToColumn, scrollToRow) {
     expect(node.textContent).toEqual(
-      renderTextContent(scrollToColumn, scrollToRow),
+      renderTextContent(scrollToColumn, scrollToRow)
     );
   }
 
@@ -66,7 +66,7 @@ describe('ArrowKeyStepper', () => {
   it('should not scroll past the row and column boundaries provided', () => {
     const {node} = renderHelper({
       columnCount: 2,
-      rowCount: 2,
+      rowCount: 2
     });
     Simulate.keyDown(node, {key: 'ArrowDown'});
     Simulate.keyDown(node, {key: 'ArrowDown'});
@@ -90,7 +90,7 @@ describe('ArrowKeyStepper', () => {
     const {node} = renderHelper({
       mode: 'cells',
       scrollToColumn: 2,
-      scrollToRow: 4,
+      scrollToRow: 4
     });
     assertCurrentScrollTo(node, 2, 4);
     Simulate.keyDown(node, {key: 'ArrowDown'});
@@ -103,14 +103,14 @@ describe('ArrowKeyStepper', () => {
     const {node} = renderHelper({
       mode: 'cells',
       scrollToColumn: 2,
-      scrollToRow: 4,
+      scrollToRow: 4
     });
     Simulate.keyDown(node, {key: 'ArrowDown'});
     assertCurrentScrollTo(node, 2, 5);
     renderHelper({
       mode: 'cells',
       scrollToColumn: 1,
-      scrollToRow: 1,
+      scrollToRow: 1
     });
     Simulate.keyDown(node, {key: 'ArrowRight'});
     assertCurrentScrollTo(node, 2, 1);
@@ -122,13 +122,13 @@ describe('ArrowKeyStepper', () => {
     const {component, node} = renderHelper({
       mode: 'cells',
       scrollToColumn: 2,
-      scrollToRow: 4,
+      scrollToRow: 4
     });
     Simulate.keyDown(node, {key: 'ArrowDown'});
     assertCurrentScrollTo(node, 2, 5);
     component.setScrollIndexes({
       scrollToColumn: 1,
-      scrollToRow: 1,
+      scrollToRow: 1
     });
     Simulate.keyDown(node, {key: 'ArrowRight'});
     assertCurrentScrollTo(node, 2, 1);
@@ -138,7 +138,7 @@ describe('ArrowKeyStepper', () => {
 
   it('should not update :scrollToColumn or :scrollToRow when :disabled', () => {
     const {node} = renderHelper({
-      disabled: true,
+      disabled: true
     });
     assertCurrentScrollTo(node, 0, 0);
     Simulate.keyDown(node, {key: 'ArrowDown'});
@@ -152,7 +152,7 @@ describe('ArrowKeyStepper', () => {
       const onScrollToChange = jest.fn();
       const {node} = renderHelper({
         isControlled: true,
-        onScrollToChange,
+        onScrollToChange
       });
 
       expect(onScrollToChange.mock.calls).toHaveLength(0);
@@ -175,7 +175,7 @@ describe('ArrowKeyStepper', () => {
     const {node} = renderHelper({
       onScrollToChange,
       scrollToColumn: 0,
-      scrollToRow: 0,
+      scrollToRow: 0
     });
 
     renderHelper({
@@ -183,7 +183,7 @@ describe('ArrowKeyStepper', () => {
       onScrollToChange,
       node,
       scrollToColumn: 0,
-      scrollToRow: 1,
+      scrollToRow: 1
     });
     expect(numCalls).toEqual(0);
   });
@@ -196,7 +196,7 @@ describe('ArrowKeyStepper', () => {
         columnStartIndex: 0,
         columnStopIndex: 4,
         rowStartIndex: 4,
-        rowStopIndex: 6,
+        rowStopIndex: 6
       });
       Simulate.keyDown(node, {key: 'ArrowDown'});
       assertCurrentScrollTo(node, 0, 7);
@@ -206,7 +206,7 @@ describe('ArrowKeyStepper', () => {
         columnStartIndex: 5,
         columnStopIndex: 10,
         rowStartIndex: 2,
-        rowStopIndex: 4,
+        rowStopIndex: 4
       });
       Simulate.keyDown(node, {key: 'ArrowUp'});
       assertCurrentScrollTo(node, 0, 1);
@@ -216,7 +216,7 @@ describe('ArrowKeyStepper', () => {
         columnStartIndex: 4,
         columnStopIndex: 8,
         rowStartIndex: 5,
-        rowStopIndex: 10,
+        rowStopIndex: 10
       });
       Simulate.keyDown(node, {key: 'ArrowRight'});
       assertCurrentScrollTo(node, 9, 1);
@@ -226,7 +226,7 @@ describe('ArrowKeyStepper', () => {
         columnStartIndex: 2,
         columnStopIndex: 4,
         rowStartIndex: 2,
-        rowStopIndex: 4,
+        rowStopIndex: 4
       });
       Simulate.keyDown(node, {key: 'ArrowLeft'});
       assertCurrentScrollTo(node, 1, 1);
@@ -238,7 +238,7 @@ describe('ArrowKeyStepper', () => {
       const {node, onSectionRendered} = renderHelper({
         mode: 'cells',
         scrollToColumn: 5,
-        scrollToRow: 5,
+        scrollToRow: 5
       });
 
       onSectionRendered({
@@ -246,7 +246,7 @@ describe('ArrowKeyStepper', () => {
         columnStartIndex: 10,
         columnStopIndex: 10,
         rowStartIndex: 15,
-        rowStopIndex: 15,
+        rowStopIndex: 15
       });
       Simulate.keyDown(node, {key: 'ArrowUp'});
       assertCurrentScrollTo(node, 5, 4);
@@ -258,7 +258,7 @@ describe('ArrowKeyStepper', () => {
         columnStartIndex: 10,
         columnStopIndex: 10,
         rowStartIndex: 15,
-        rowStopIndex: 15,
+        rowStopIndex: 15
       });
       Simulate.keyDown(node, {key: 'ArrowRight'});
       assertCurrentScrollTo(node, 6, 5);

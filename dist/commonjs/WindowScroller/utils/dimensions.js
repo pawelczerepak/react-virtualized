@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 exports.getDimensions = getDimensions;
 exports.getPositionOffset = getPositionOffset;
@@ -26,7 +26,7 @@ function getDimensions(scrollElement, props) {
   if (!scrollElement) {
     return {
       height: props.serverHeight,
-      width: props.serverWidth,
+      width: props.serverWidth
     };
   } else if (isWindow(scrollElement)) {
     var _window = window,
@@ -35,7 +35,7 @@ function getDimensions(scrollElement, props) {
 
     return {
       height: typeof innerHeight === 'number' ? innerHeight : 0,
-      width: typeof innerWidth === 'number' ? innerWidth : 0,
+      width: typeof innerWidth === 'number' ? innerWidth : 0
     };
   } else {
     return getBoundingBox(scrollElement);
@@ -55,7 +55,7 @@ function getPositionOffset(element, container) {
     var containerRect = getBoundingBox(containerElement);
     return {
       top: elementRect.top - containerRect.top,
-      left: elementRect.left - containerRect.left,
+      left: elementRect.left - containerRect.left
     };
   } else {
     var scrollOffset = getScrollOffset(container);
@@ -63,7 +63,7 @@ function getPositionOffset(element, container) {
     var _containerRect = getBoundingBox(container);
     return {
       top: _elementRect.top + scrollOffset.top - _containerRect.top,
-      left: _elementRect.left + scrollOffset.left - _containerRect.left,
+      left: _elementRect.left + scrollOffset.left - _containerRect.left
     };
   }
 }
@@ -82,12 +82,12 @@ function getScrollOffset(element) {
       left:
         'scrollX' in window
           ? window.scrollX
-          : document.documentElement.scrollLeft,
+          : document.documentElement.scrollLeft
     };
   } else {
     return {
       top: element.scrollTop,
-      left: element.scrollLeft,
+      left: element.scrollLeft
     };
   }
 }

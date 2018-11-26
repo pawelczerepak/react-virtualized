@@ -11,7 +11,7 @@ export default function SortIndicator({sortDirection}) {
     'ReactVirtualized__Table__sortableHeaderIcon--ASC':
       sortDirection === SortDirection.ASC,
     'ReactVirtualized__Table__sortableHeaderIcon--DESC':
-      sortDirection === SortDirection.DESC,
+      sortDirection === SortDirection.DESC
   });
 
   return (
@@ -27,5 +27,5 @@ export default function SortIndicator({sortDirection}) {
 }
 
 SortIndicator.propTypes = {
-  sortDirection: PropTypes.oneOf([SortDirection.ASC, SortDirection.DESC]),
+  sortDirection: PropTypes.oneOf([SortDirection.ASC, SortDirection.DESC])
 };

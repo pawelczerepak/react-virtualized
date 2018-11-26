@@ -21,5 +21,5 @@ export {
   Column,
   SortDirection,
   SortIndicator,
-  Table,
+  Table
 };

@@ -1,28 +1,24 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 
-var _extends =
-  Object.assign ||
-  function(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-    return target;
-  };
+var _extends2 = require('babel-runtime/helpers/extends');
+
+var _extends3 = _interopRequireDefault(_extends2);
 
 exports.default = defaultRowRenderer;
 
 var _react = require('react');
 
 var React = _interopRequireWildcard(_react);
+
+var _types = require('./types');
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireWildcard(obj) {
   if (obj && obj.__esModule) {
@@ -38,6 +34,10 @@ function _interopRequireWildcard(obj) {
     newObj.default = obj;
     return newObj;
   }
+}
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
 }
 
 /**
@@ -97,12 +97,18 @@ function defaultRowRenderer(_ref) {
 
   return React.createElement(
     'div',
-    _extends({}, a11yProps, {
+    (0, _extends3.default)({}, a11yProps, {
       className: className,
       key: key,
       role: 'row',
-      style: style,
+      style: style
     }),
-    columns,
+    columns
   );
 }
+defaultRowRenderer.propTypes =
+  process.env.NODE_ENV === 'production'
+    ? null
+    : _types.bpfrpt_proptype_RowRendererParams === _propTypes2.default.any
+      ? {}
+      : _types.bpfrpt_proptype_RowRendererParams;

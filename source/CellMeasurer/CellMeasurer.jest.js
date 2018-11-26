@@ -6,7 +6,7 @@ import {render} from '../TestUtils';
 import CellMeasurer from './CellMeasurer';
 import CellMeasurerCache, {
   DEFAULT_HEIGHT,
-  DEFAULT_WIDTH,
+  DEFAULT_WIDTH
 } from './CellMeasurerCache';
 
 // Accounts for the fact that JSDom doesn't support measurements.
@@ -16,17 +16,17 @@ function mockClientWidthAndHeight({height, width}) {
 
   Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
     configurable: true,
-    get: heightFn,
+    get: heightFn
   });
 
   Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
     configurable: true,
-    get: widthFn,
+    get: widthFn
   });
 
   return {
     heightFn,
-    widthFn,
+    widthFn
   };
 }
 
@@ -34,17 +34,17 @@ function createParent({cache, invalidateCellSizeAfterRender = jest.fn()} = {}) {
   return {
     invalidateCellSizeAfterRender,
     props: {
-      deferredMeasurementCache: cache,
-    },
+      deferredMeasurementCache: cache
+    }
   };
 }
 
 function renderHelper({
   cache = new CellMeasurerCache({
-    fixedWidth: true,
+    fixedWidth: true
   }),
   children = <div />,
-  parent,
+  parent
 } = {}) {
   render(
     <CellMeasurer
@@ -54,7 +54,7 @@ function renderHelper({
       rowIndex={0}
       style={{}}>
       {children}
-    </CellMeasurer>,
+    </CellMeasurer>
   );
 }
 
@@ -65,7 +65,7 @@ describe('CellMeasurer', () => {
 
     const {heightFn, widthFn} = mockClientWidthAndHeight({
       height: 20,
-      width: 100,
+      width: 100
     });
 
     expect(heightFn).toHaveBeenCalledTimes(0);
@@ -90,7 +90,7 @@ describe('CellMeasurer', () => {
 
     const {heightFn, widthFn} = mockClientWidthAndHeight({
       height: 20,
-      width: 100,
+      width: 100
     });
 
     expect(cache.has(0, 0)).toBe(true);
@@ -117,7 +117,7 @@ describe('CellMeasurer', () => {
 
     const {heightFn, widthFn} = mockClientWidthAndHeight({
       height: 20,
-      width: 100,
+      width: 100
     });
 
     renderHelper({cache, parent});
@@ -141,7 +141,7 @@ describe('CellMeasurer', () => {
 
     const {heightFn, widthFn} = mockClientWidthAndHeight({
       height: 20,
-      width: 100,
+      width: 100
     });
 
     renderHelper({cache, parent});
@@ -154,7 +154,7 @@ describe('CellMeasurer', () => {
 
   it('componentDidUpdate() should pass a :measure param to a function child', () => {
     const cache = new CellMeasurerCache({
-      fixedWidth: true,
+      fixedWidth: true
     });
 
     const children = jest.fn().mockReturnValue(<div />);
@@ -174,7 +174,7 @@ describe('CellMeasurer', () => {
     mockClientWidthAndHeight({height: 20, width: 100});
 
     const cache = new CellMeasurerCache({
-      fixedWidth: true,
+      fixedWidth: true
     });
 
     renderHelper({cache}); // No parent Grid
@@ -187,7 +187,7 @@ describe('CellMeasurer', () => {
   // See issue #593
   it('should explicitly set width/height style to "auto" before re-measuring', () => {
     const cache = new CellMeasurerCache({
-      fixedWidth: true,
+      fixedWidth: true
     });
     const parent = createParent({cache});
     const child = jest
@@ -207,8 +207,8 @@ describe('CellMeasurer', () => {
           rowIndex={0}
           style={{}}>
           {child}
-        </CellMeasurer>,
-      ),
+        </CellMeasurer>
+      )
     );
 
     const styleHeights = [30];
@@ -216,12 +216,12 @@ describe('CellMeasurer', () => {
     Object.defineProperties(node.style, {
       height: {
         get: () => styleHeights[styleHeights.length - 1],
-        set: value => styleHeights.push(value),
+        set: value => styleHeights.push(value)
       },
       width: {
         get: () => styleWidths[styleWidths.length - 1],
-        set: value => styleWidths.push(value),
-      },
+        set: value => styleWidths.push(value)
+      }
     });
 
     const {height, width} = measurer._getCellMeasurements(node);
@@ -234,7 +234,7 @@ describe('CellMeasurer', () => {
   // See issue #660
   it('should reset width/height style values after measuring with style "auto"', () => {
     const cache = new CellMeasurerCache({
-      fixedHeight: true,
+      fixedHeight: true
     });
     const parent = createParent({cache});
     const child = jest
@@ -250,8 +250,8 @@ describe('CellMeasurer', () => {
           rowIndex={0}
           style={{}}>
           {child}
-        </CellMeasurer>,
-      ),
+        </CellMeasurer>
+      )
     );
 
     node.style.width = 200;

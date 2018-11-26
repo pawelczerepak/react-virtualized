@@ -9,12 +9,12 @@ describe('calculateSizeAndPositionData', () => {
         x: index * 50,
         y: 0,
         width: 50,
-        height: 50,
+        height: 50
       };
     }
     const {sectionManager} = calculateSizeAndPositionData({
       cellCount: 3,
-      cellSizeAndPositionGetter,
+      cellSizeAndPositionGetter
     });
     expect(cellSizeAndPositionGetterCalls).toEqual([0, 1, 2]);
     expect(sectionManager.getTotalSectionCount()).toEqual(2);
@@ -24,8 +24,8 @@ describe('calculateSizeAndPositionData', () => {
     expect(() =>
       calculateSizeAndPositionData({
         cellCount: 3,
-        cellSizeAndPositionGetter: () => {},
-      }),
+        cellSizeAndPositionGetter: () => {}
+      })
     ).toThrow();
   });
 });

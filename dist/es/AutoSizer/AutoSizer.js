@@ -1,105 +1,11 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
-
-var _extends =
-  Object.assign ||
-  function(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-    return target;
-  };
-
-var _createClass = (function() {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-  return function(Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-})();
-
-var _react = require('react');
-
-var React = _interopRequireWildcard(_react);
-
-var _detectElementResize = require('../vendor/detectElementResize');
-
-var _detectElementResize2 = _interopRequireDefault(_detectElementResize);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {default: obj};
-}
-
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  } else {
-    var newObj = {};
-    if (obj != null) {
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key))
-          newObj[key] = obj[key];
-      }
-    }
-    newObj.default = obj;
-    return newObj;
-  }
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (!self) {
-    throw new ReferenceError(
-      "this hasn't been initialised - super() hasn't been called",
-    );
-  }
-  return call && (typeof call === 'object' || typeof call === 'function')
-    ? call
-    : self;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== 'function' && superClass !== null) {
-    throw new TypeError(
-      'Super expression must either be null or a function, not ' +
-        typeof superClass,
-    );
-  }
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true,
-    },
-  });
-  if (superClass)
-    Object.setPrototypeOf
-      ? Object.setPrototypeOf(subClass, superClass)
-      : (subClass.__proto__ = superClass);
-}
+import _extends from 'babel-runtime/helpers/extends';
+import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
+import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
+import _createClass from 'babel-runtime/helpers/createClass';
+import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
+import _inherits from 'babel-runtime/helpers/inherits';
+import * as React from 'react';
+import createDetectElementResize from '../vendor/detectElementResize';
 
 var AutoSizer = (function(_React$PureComponent) {
   _inherits(AutoSizer, _React$PureComponent);
@@ -123,15 +29,15 @@ var AutoSizer = (function(_React$PureComponent) {
       (_ret = ((_temp = ((_this = _possibleConstructorReturn(
         this,
         (_ref =
-          AutoSizer.__proto__ || Object.getPrototypeOf(AutoSizer)).call.apply(
+          AutoSizer.__proto__ || _Object$getPrototypeOf(AutoSizer)).call.apply(
           _ref,
-          [this].concat(args),
-        ),
+          [this].concat(args)
+        )
       )),
       _this)),
       (_this.state = {
         height: _this.props.defaultHeight || 0,
-        width: _this.props.defaultWidth || 0,
+        width: _this.props.defaultWidth || 0
       }),
       (_this._onResize = function() {
         var _this$props = _this.props,
@@ -162,7 +68,7 @@ var AutoSizer = (function(_React$PureComponent) {
           ) {
             _this.setState({
               height: _height - paddingTop - paddingBottom,
-              width: _width - paddingLeft - paddingRight,
+              width: _width - paddingLeft - paddingRight
             });
 
             onResize({height: _height, width: _width});
@@ -198,15 +104,15 @@ var AutoSizer = (function(_React$PureComponent) {
 
           // Defer requiring resize handler in order to support server-side rendering.
           // See issue #41
-          this._detectElementResize = (0, _detectElementResize2.default)(nonce);
+          this._detectElementResize = createDetectElementResize(nonce);
           this._detectElementResize.addResizeListener(
             this._parentNode,
-            this._onResize,
+            this._onResize
           );
 
           this._onResize();
         }
-      },
+      }
     },
     {
       key: 'componentWillUnmount',
@@ -214,10 +120,10 @@ var AutoSizer = (function(_React$PureComponent) {
         if (this._detectElementResize && this._parentNode) {
           this._detectElementResize.removeResizeListener(
             this._parentNode,
-            this._onResize,
+            this._onResize
           );
         }
-      },
+      }
     },
     {
       key: 'render',
@@ -267,12 +173,12 @@ var AutoSizer = (function(_React$PureComponent) {
           {
             className: className,
             ref: this._setRef,
-            style: _extends({}, outerStyle, style),
+            style: _extends({}, outerStyle, style)
           },
-          children(childParams),
+          children(childParams)
         );
-      },
-    },
+      }
+    }
   ]);
 
   return AutoSizer;
@@ -282,6 +188,38 @@ AutoSizer.defaultProps = {
   onResize: function onResize() {},
   disableHeight: false,
   disableWidth: false,
-  style: {},
+  style: {}
 };
-exports.default = AutoSizer;
+AutoSizer.propTypes =
+  process.env.NODE_ENV === 'production'
+    ? null
+    : {
+        /** Function responsible for rendering children.*/
+        children: PropTypes.func.isRequired,
+
+        /** Optional custom CSS class name to attach to root AutoSizer element.  */
+        className: PropTypes.string,
+
+        /** Default height to use for initial render; useful for SSR */
+        defaultHeight: PropTypes.number,
+
+        /** Default width to use for initial render; useful for SSR */
+        defaultWidth: PropTypes.number,
+
+        /** Disable dynamic :height property */
+        disableHeight: PropTypes.bool.isRequired,
+
+        /** Disable dynamic :width property */
+        disableWidth: PropTypes.bool.isRequired,
+
+        /** Nonce of the inlined stylesheet for Content Security Policy */
+        nonce: PropTypes.string,
+
+        /** Callback to be invoked on-resize */
+        onResize: PropTypes.func.isRequired,
+
+        /** Optional inline style */
+        style: PropTypes.object
+      };
+export default AutoSizer;
+import PropTypes from 'prop-types';

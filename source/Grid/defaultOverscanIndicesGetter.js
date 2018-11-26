@@ -18,20 +18,17 @@ export default function defaultOverscanIndicesGetter({
   overscanCellsCount,
   scrollDirection,
   startIndex,
-  stopIndex,
+  stopIndex
 }: OverscanIndicesGetterParams): OverscanIndices {
   if (scrollDirection === SCROLL_DIRECTION_FORWARD) {
     return {
       overscanStartIndex: Math.max(0, startIndex),
-      overscanStopIndex: Math.min(
-        cellCount - 1,
-        stopIndex + overscanCellsCount,
-      ),
+      overscanStopIndex: Math.min(cellCount - 1, stopIndex + overscanCellsCount)
     };
   } else {
     return {
       overscanStartIndex: Math.max(0, startIndex - overscanCellsCount),
-      overscanStopIndex: Math.min(cellCount - 1, stopIndex),
+      overscanStopIndex: Math.min(cellCount - 1, stopIndex)
     };
   }
 }

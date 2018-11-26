@@ -7,7 +7,7 @@ type Children = (params: {measure: () => void}) => React.Element<*>;
 
 type Cell = {
   columnIndex: number,
-  rowIndex: number,
+  rowIndex: number
 };
 
 type Props = {
@@ -17,9 +17,9 @@ type Props = {
   index?: number,
   parent: {
     invalidateCellSizeAfterRender?: (cell: Cell) => void,
-    recomputeGridSize?: (cell: Cell) => void,
+    recomputeGridSize?: (cell: Cell) => void
   },
-  rowIndex?: number,
+  rowIndex?: number
 };
 
 /**
@@ -100,7 +100,7 @@ export default class CellMeasurer extends React.PureComponent<Props> {
       cache,
       columnIndex = 0,
       parent,
-      rowIndex = this.props.index || 0,
+      rowIndex = this.props.index || 0
     } = this.props;
 
     if (!cache.has(rowIndex, columnIndex)) {
@@ -115,7 +115,7 @@ export default class CellMeasurer extends React.PureComponent<Props> {
       ) {
         parent.invalidateCellSizeAfterRender({
           columnIndex,
-          rowIndex,
+          rowIndex
         });
       }
     }
@@ -126,7 +126,7 @@ export default class CellMeasurer extends React.PureComponent<Props> {
       cache,
       columnIndex = 0,
       parent,
-      rowIndex = this.props.index || 0,
+      rowIndex = this.props.index || 0
     } = this.props;
 
     const {height, width} = this._getCellMeasurements();
@@ -140,7 +140,7 @@ export default class CellMeasurer extends React.PureComponent<Props> {
       if (parent && typeof parent.recomputeGridSize === 'function') {
         parent.recomputeGridSize({
           columnIndex,
-          rowIndex,
+          rowIndex
         });
       }
     }

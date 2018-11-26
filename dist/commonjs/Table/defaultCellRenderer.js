@@ -1,9 +1,11 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 exports.default = defaultCellRenderer;
+
+var _types = require('./types');
 
 /**
  * Default cell renderer that displays an attribute as a simple string

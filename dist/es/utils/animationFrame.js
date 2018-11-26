@@ -1,9 +1,3 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
-
 // Properly handle server-side rendering.
 var win = void 0;
 
@@ -37,5 +31,5 @@ var cancel =
     win.clearTimeout(id);
   };
 
-var raf = (exports.raf = request);
-var caf = (exports.caf = cancel);
+export var raf = request;
+export var caf = cancel;

@@ -1,8 +1,3 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
 /**
  * Binary Search Bounds
  * https://github.com/mikolalysenko/binary-search-bounds
@@ -47,14 +42,14 @@ function dispatchBsearchGE(a, y, c, l, h) {
       l === void 0 ? 0 : l | 0,
       h === void 0 ? a.length - 1 : h | 0,
       y,
-      c,
+      c
     );
   } else {
     return _GEA(
       a,
       c === void 0 ? 0 : c | 0,
       l === void 0 ? a.length - 1 : l | 0,
-      y,
+      y
     );
   }
 }
@@ -94,14 +89,14 @@ function dispatchBsearchGT(a, y, c, l, h) {
       l === void 0 ? 0 : l | 0,
       h === void 0 ? a.length - 1 : h | 0,
       y,
-      c,
+      c
     );
   } else {
     return _GTA(
       a,
       c === void 0 ? 0 : c | 0,
       l === void 0 ? a.length - 1 : l | 0,
-      y,
+      y
     );
   }
 }
@@ -141,14 +136,14 @@ function dispatchBsearchLT(a, y, c, l, h) {
       l === void 0 ? 0 : l | 0,
       h === void 0 ? a.length - 1 : h | 0,
       y,
-      c,
+      c
     );
   } else {
     return _LTA(
       a,
       c === void 0 ? 0 : c | 0,
       l === void 0 ? a.length - 1 : l | 0,
-      y,
+      y
     );
   }
 }
@@ -188,14 +183,14 @@ function dispatchBsearchLE(a, y, c, l, h) {
       l === void 0 ? 0 : l | 0,
       h === void 0 ? a.length - 1 : h | 0,
       y,
-      c,
+      c
     );
   } else {
     return _LEA(
       a,
       c === void 0 ? 0 : c | 0,
       l === void 0 ? a.length - 1 : l | 0,
-      y,
+      y
     );
   }
 }
@@ -238,22 +233,22 @@ function dispatchBsearchEQ(a, y, c, l, h) {
       l === void 0 ? 0 : l | 0,
       h === void 0 ? a.length - 1 : h | 0,
       y,
-      c,
+      c
     );
   } else {
     return _EQA(
       a,
       c === void 0 ? 0 : c | 0,
       l === void 0 ? a.length - 1 : l | 0,
-      y,
+      y
     );
   }
 }
 
-exports.default = {
+export default {
   ge: dispatchBsearchGE,
   gt: dispatchBsearchGT,
   lt: dispatchBsearchLT,
   le: dispatchBsearchLE,
-  eq: dispatchBsearchEQ,
+  eq: dispatchBsearchEQ
 };

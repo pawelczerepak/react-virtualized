@@ -1,15 +1,17 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 exports.default = updateScrollIndexHelper;
 
 var _ScalingCellSizeAndPositionManager = require('./ScalingCellSizeAndPositionManager.js');
 
 var _ScalingCellSizeAndPositionManager2 = _interopRequireDefault(
-  _ScalingCellSizeAndPositionManager,
+  _ScalingCellSizeAndPositionManager
 );
+
+var _types = require('../types');
 
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};

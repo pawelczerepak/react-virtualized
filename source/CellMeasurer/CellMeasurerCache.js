@@ -16,15 +16,15 @@ type CellMeasurerCacheParams = {
   fixedWidth?: boolean,
   minHeight?: number,
   minWidth?: number,
-  keyMapper?: KeyMapper,
+  keyMapper?: KeyMapper
 };
 
 type Cache = {
-  [key: any]: number,
+  [key: any]: number
 };
 
 type IndexParam = {
-  index: number,
+  index: number
 };
 
 /**
@@ -53,7 +53,7 @@ export default class CellMeasurerCache implements CellMeasureCache {
       fixedWidth,
       keyMapper,
       minHeight,
-      minWidth,
+      minWidth
     } = params;
 
     this._hasFixedHeight = fixedHeight === true;
@@ -64,11 +64,11 @@ export default class CellMeasurerCache implements CellMeasureCache {
 
     this._defaultHeight = Math.max(
       this._minHeight,
-      typeof defaultHeight === 'number' ? defaultHeight : DEFAULT_HEIGHT,
+      typeof defaultHeight === 'number' ? defaultHeight : DEFAULT_HEIGHT
     );
     this._defaultWidth = Math.max(
       this._minWidth,
-      typeof defaultWidth === 'number' ? defaultWidth : DEFAULT_WIDTH,
+      typeof defaultWidth === 'number' ? defaultWidth : DEFAULT_WIDTH
     );
 
     if (process.env.NODE_ENV !== 'production') {
@@ -76,21 +76,21 @@ export default class CellMeasurerCache implements CellMeasureCache {
         console.warn(
           "CellMeasurerCache should only measure a cell's width or height. " +
             'You have configured CellMeasurerCache to measure both. ' +
-            'This will result in poor performance.',
+            'This will result in poor performance.'
         );
       }
 
       if (this._hasFixedHeight === false && this._defaultHeight === 0) {
         console.warn(
           'Fixed height CellMeasurerCache should specify a :defaultHeight greater than 0. ' +
-            'Failing to do so will lead to unnecessary layout and poor performance.',
+            'Failing to do so will lead to unnecessary layout and poor performance.'
         );
       }
 
       if (this._hasFixedWidth === false && this._defaultWidth === 0) {
         console.warn(
           'Fixed width CellMeasurerCache should specify a :defaultWidth greater than 0. ' +
-            'Failing to do so will lead to unnecessary layout and poor performance.',
+            'Failing to do so will lead to unnecessary layout and poor performance.'
         );
       }
     }
@@ -180,7 +180,7 @@ export default class CellMeasurerCache implements CellMeasureCache {
     rowIndex: number,
     columnIndex: number,
     width: number,
-    height: number,
+    height: number
   ): void {
     const key = this._keyMapper(rowIndex, columnIndex);
 

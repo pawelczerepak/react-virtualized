@@ -15,7 +15,7 @@ function assertVisibleCells(rendered, text) {
     Array.from(rendered.querySelectorAll('.cell'))
       .map(node => node.textContent)
       .sort()
-      .join(','),
+      .join(',')
   ).toEqual(text);
 }
 
@@ -25,7 +25,7 @@ function createCellMeasurerCache(props = {}) {
     defaultWidth: CELL_SIZE_MULTIPLIER,
     fixedWidth: true,
     keyMapper: index => index,
-    ...props,
+    ...props
   });
 }
 
@@ -33,7 +33,7 @@ function createCellPositioner(cache) {
   return createCellPositionerUtil({
     cellMeasurerCache: cache,
     columnCount: COLUMN_COUNT,
-    columnWidth: CELL_SIZE_MULTIPLIER,
+    columnWidth: CELL_SIZE_MULTIPLIER
   });
 }
 
@@ -55,18 +55,18 @@ function createCellRenderer(cache, renderCallback) {
               // Accounts for the fact that JSDom doesn't support measurements.
               Object.defineProperty(ref, 'offsetHeight', {
                 configurable: true,
-                value: height,
+                value: height
               });
               Object.defineProperty(ref, 'offsetWidth', {
                 configurable: true,
-                value: width,
+                value: width
               });
             }
           }}
           style={{
             ...style,
             minHeight: height,
-            minWidth: width,
+            minWidth: width
           }}>
           {renderCallback(index, {index, isScrolling, key, parent, style})}
         </div>
@@ -124,10 +124,10 @@ describe('Masonry', () => {
       const renderCallback = jest.fn().mockImplementation(index => index);
       const cellRenderer = createCellRenderer(
         cellMeasurerCache,
-        renderCallback,
+        renderCallback
       );
       const rendered = findDOMNode(
-        render(getMarkup({cellMeasurerCache, cellRenderer})),
+        render(getMarkup({cellMeasurerCache, cellRenderer}))
       );
       renderCallback.mockClear();
       // Scroll a little bit, but not so much to require re-measuring
@@ -141,10 +141,10 @@ describe('Masonry', () => {
       const renderCallback = jest.fn().mockImplementation(index => index);
       const cellRenderer = createCellRenderer(
         cellMeasurerCache,
-        renderCallback,
+        renderCallback
       );
       const rendered = findDOMNode(
-        render(getMarkup({cellRenderer, cellMeasurerCache})),
+        render(getMarkup({cellRenderer, cellMeasurerCache}))
       );
       expect(cellMeasurerCache.has(9)).toBe(false);
 
@@ -167,16 +167,16 @@ describe('Masonry', () => {
       };
       const cellRenderer = createCellRenderer(
         cellMeasurerCache,
-        renderCallback,
+        renderCallback
       );
 
       const rendered = findDOMNode(
         render(
           getMarkup({
             cellMeasurerCache,
-            cellRenderer,
-          }),
-        ),
+            cellRenderer
+          })
+        )
       );
 
       // Expected to have rendered twice:
@@ -200,9 +200,9 @@ describe('Masonry', () => {
       const rendered = findDOMNode(
         render(
           getMarkup({
-            overscanByPixels: 0,
-          }),
-        ),
+            overscanByPixels: 0
+          })
+        )
       );
       assertVisibleCells(rendered, '0,1,2,3,4,5');
       simulateScroll(rendered, 51);
@@ -217,9 +217,9 @@ describe('Masonry', () => {
       const rendered = findDOMNode(
         render(
           getMarkup({
-            overscanByPixels: 100,
-          }),
-        ),
+            overscanByPixels: 100
+          })
+        )
       );
       assertVisibleCells(rendered, '0,1,10,11,2,3,4,5,6,7,8,9');
       simulateScroll(rendered, 51);
@@ -240,9 +240,9 @@ describe('Masonry', () => {
           getMarkup({
             autoHeight: true,
             cellMeasurerCache,
-            cellPositioner,
-          }),
-        ),
+            cellPositioner
+          })
+        )
       );
       assertVisibleCells(rendered, '0,1,2,3,4,5,6,7,8');
       rendered = findDOMNode(
@@ -251,9 +251,9 @@ describe('Masonry', () => {
             autoHeight: true,
             cellMeasurerCache,
             cellPositioner,
-            scrollTop: 51,
-          }),
-        ),
+            scrollTop: 51
+          })
+        )
       );
       assertVisibleCells(rendered, '0,1,2,3,4,5,6,7,8');
       rendered = findDOMNode(
@@ -262,9 +262,9 @@ describe('Masonry', () => {
             autoHeight: true,
             cellMeasurerCache,
             cellPositioner,
-            scrollTop: 101,
-          }),
-        ),
+            scrollTop: 101
+          })
+        )
       );
       assertVisibleCells(rendered, '0,2,3,4,5,6,7,8,9');
       rendered = findDOMNode(
@@ -273,9 +273,9 @@ describe('Masonry', () => {
             autoHeight: true,
             cellMeasurerCache,
             cellPositioner,
-            scrollTop: 1001,
-          }),
-        ),
+            scrollTop: 1001
+          })
+        )
       );
       assertVisibleCells(rendered, '27,29,30,31,32,33,34,35,36');
     });
@@ -290,9 +290,9 @@ describe('Masonry', () => {
           getMarkup({
             cellMeasurerCache,
             cellPositioner,
-            rowDirection: 'rtl',
-          }),
-        ),
+            rowDirection: 'rtl'
+          })
+        )
       );
       Array.from(rendered.querySelectorAll('.cell')).map(node => {
         expect(node.style.right).toMatch(/px/);
@@ -312,22 +312,22 @@ describe('Masonry', () => {
         render(
           getMarkup({
             cellMeasurerCache,
-            cellPositioner,
-          }),
-        ),
+            cellPositioner
+          })
+        )
       );
       assertVisibleCells(rendered, '0,1,2,3,4,5,6,7,8');
 
       cellPositioner.mockImplementation(index => ({
         left: 0,
-        top: index * CELL_SIZE_MULTIPLIER,
+        top: index * CELL_SIZE_MULTIPLIER
       }));
 
       const component = render(
         getMarkup({
           cellMeasurerCache,
-          cellPositioner,
-        }),
+          cellPositioner
+        })
       );
       rendered = findDOMNode(component);
       assertVisibleCells(rendered, '0,1,2,3,4,5,6,7,8');
@@ -355,10 +355,10 @@ describe('Masonry', () => {
       const renderCallback = jest.fn().mockImplementation(index => index);
       const cellRenderer = createCellRenderer(
         cellMeasurerCache,
-        renderCallback,
+        renderCallback
       );
       const rendered = findDOMNode(
-        render(getMarkup({cellMeasurerCache, cellRenderer})),
+        render(getMarkup({cellMeasurerCache, cellRenderer}))
       );
       renderCallback.mockClear();
       simulateScroll(rendered, 51);
@@ -370,10 +370,10 @@ describe('Masonry', () => {
       const renderCallback = jest.fn().mockImplementation(index => index);
       const cellRenderer = createCellRenderer(
         cellMeasurerCache,
-        renderCallback,
+        renderCallback
       );
       const rendered = findDOMNode(
-        render(getMarkup({cellMeasurerCache, cellRenderer})),
+        render(getMarkup({cellMeasurerCache, cellRenderer}))
       );
       simulateScroll(rendered, 51);
       renderCallback.mockClear();
@@ -388,16 +388,16 @@ describe('Masonry', () => {
       const onCellsRendered = jest.fn();
       const rendered = findDOMNode(render(getMarkup({onCellsRendered})));
       expect(onCellsRendered.mock.calls).toEqual([
-        [{startIndex: 0, stopIndex: 8}],
+        [{startIndex: 0, stopIndex: 8}]
       ]);
       simulateScroll(rendered, 51);
       expect(onCellsRendered.mock.calls).toEqual([
-        [{startIndex: 0, stopIndex: 8}],
+        [{startIndex: 0, stopIndex: 8}]
       ]);
       simulateScroll(rendered, 101);
       expect(onCellsRendered.mock.calls).toEqual([
         [{startIndex: 0, stopIndex: 8}],
-        [{startIndex: 0, stopIndex: 9}],
+        [{startIndex: 0, stopIndex: 9}]
       ]);
     });
 
@@ -405,18 +405,18 @@ describe('Masonry', () => {
       const onScroll = jest.fn();
       const rendered = findDOMNode(render(getMarkup({onScroll})));
       expect(onScroll.mock.calls).toEqual([
-        [{clientHeight: 100, scrollHeight: 16900, scrollTop: 0}],
+        [{clientHeight: 100, scrollHeight: 16900, scrollTop: 0}]
       ]);
       simulateScroll(rendered, 51);
       expect(onScroll.mock.calls).toEqual([
         [{clientHeight: 100, scrollHeight: 16900, scrollTop: 0}],
-        [{clientHeight: 100, scrollHeight: 16900, scrollTop: 51}],
+        [{clientHeight: 100, scrollHeight: 16900, scrollTop: 51}]
       ]);
       simulateScroll(rendered, 0);
       expect(onScroll.mock.calls).toEqual([
         [{clientHeight: 100, scrollHeight: 16900, scrollTop: 0}],
         [{clientHeight: 100, scrollHeight: 16900, scrollTop: 51}],
-        [{clientHeight: 100, scrollHeight: 16900, scrollTop: 0}],
+        [{clientHeight: 100, scrollHeight: 16900, scrollTop: 0}]
       ]);
     });
   });

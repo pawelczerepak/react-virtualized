@@ -1,6 +1,6 @@
 import CellMeasurerCache, {
   DEFAULT_HEIGHT,
-  DEFAULT_WIDTH,
+  DEFAULT_WIDTH
 } from './CellMeasurerCache';
 
 describe('CellMeasurerCache', () => {
@@ -11,7 +11,7 @@ describe('CellMeasurerCache', () => {
       fixedHeight: true,
       fixedWidth: true,
       minHeight: 30,
-      minWidth: 150,
+      minWidth: 150
     });
     cache.set(0, 0, 50, 10);
     expect(cache.getHeight(0, 0)).toBe(30);
@@ -23,7 +23,7 @@ describe('CellMeasurerCache', () => {
   it('should correctly report cache status', () => {
     const cache = new CellMeasurerCache({
       fixedHeight: true,
-      fixedWidth: true,
+      fixedWidth: true
     });
     expect(cache.has(0, 0)).toBe(false);
   });
@@ -31,7 +31,7 @@ describe('CellMeasurerCache', () => {
   it('should cache cells', () => {
     const cache = new CellMeasurerCache({
       fixedHeight: true,
-      fixedWidth: true,
+      fixedWidth: true
     });
     cache.set(0, 0, 100, 20);
     expect(cache.has(0, 0)).toBe(true);
@@ -44,7 +44,7 @@ describe('CellMeasurerCache', () => {
       defaultHeight: 20,
       defaultWidth: 100,
       minHeight: 15,
-      minWidth: 80,
+      minWidth: 80
     });
     expect(cache.getWidth(0, 0)).toBe(100);
     expect(cache.getHeight(0, 0)).toBe(20);
@@ -56,7 +56,7 @@ describe('CellMeasurerCache', () => {
   it('should clear a single cached cell', () => {
     const cache = new CellMeasurerCache({
       fixedHeight: true,
-      fixedWidth: true,
+      fixedWidth: true
     });
     cache.set(0, 0, 100, 20);
     cache.set(1, 0, 100, 20);
@@ -70,7 +70,7 @@ describe('CellMeasurerCache', () => {
   it('should clear a single cached row cell in column 0 when columnIndex param is absent', () => {
     const cache = new CellMeasurerCache({
       fixedHeight: true,
-      fixedWidth: true,
+      fixedWidth: true
     });
     cache.set(0, 0, 100, 20);
     cache.set(1, 0, 100, 20);
@@ -84,7 +84,7 @@ describe('CellMeasurerCache', () => {
   it('should clear all cached cells', () => {
     const cache = new CellMeasurerCache({
       fixedHeight: true,
-      fixedWidth: true,
+      fixedWidth: true
     });
     cache.set(0, 0, 100, 20);
     cache.set(1, 0, 100, 20);
@@ -98,7 +98,7 @@ describe('CellMeasurerCache', () => {
   it('should clear row and column counts when clearing all cells', () => {
     const cache = new CellMeasurerCache({
       fixedHeight: true,
-      fixedWidth: true,
+      fixedWidth: true
     });
     cache.set(0, 0, 100, 20);
     cache.set(1, 0, 100, 20);
@@ -118,7 +118,7 @@ describe('CellMeasurerCache', () => {
     const cache = new CellMeasurerCache({
       defaultHeight: 30,
       defaultWidth: 50,
-      keyMapper,
+      keyMapper
     });
     cache.set(0, 0, 100, 20);
     expect(cache.has(0, 0)).toBe(true);
@@ -142,7 +142,7 @@ describe('CellMeasurerCache', () => {
 
   it('should provide a Grid-compatible :columnWidth method', () => {
     const cache = new CellMeasurerCache({
-      fixedHeight: true,
+      fixedHeight: true
     });
     expect(cache.columnWidth({index: 0})).toBe(DEFAULT_WIDTH);
     cache.set(0, 0, 100, 50);
@@ -156,7 +156,7 @@ describe('CellMeasurerCache', () => {
 
   it('should provide a Grid-compatible :rowHeight method', () => {
     const cache = new CellMeasurerCache({
-      fixedWidth: true,
+      fixedWidth: true
     });
     expect(cache.rowHeight({index: 0})).toBe(DEFAULT_HEIGHT);
     cache.set(0, 0, 100, 50);
@@ -172,7 +172,7 @@ describe('CellMeasurerCache', () => {
     const cache = new CellMeasurerCache({
       defaultWidth: 25,
       fixedHeight: true,
-      fixedWidth: true,
+      fixedWidth: true
     });
     expect(cache.columnWidth({index: 0})).toBe(25);
   });
@@ -181,14 +181,14 @@ describe('CellMeasurerCache', () => {
     const cache = new CellMeasurerCache({
       defaultHeight: 25,
       fixedHeight: true,
-      fixedWidth: true,
+      fixedWidth: true
     });
     expect(cache.rowHeight({index: 0})).toBe(25);
   });
 
   it('should recalculate cached :columnWidth when cells are cleared', () => {
     const cache = new CellMeasurerCache({
-      fixedHeight: true,
+      fixedHeight: true
     });
     expect(cache.columnWidth({index: 0})).toBe(DEFAULT_WIDTH);
     cache.set(0, 0, 125, 50);
@@ -207,7 +207,7 @@ describe('CellMeasurerCache', () => {
 
   it('should recalculate cached :rowHeight when cells are cleared', () => {
     const cache = new CellMeasurerCache({
-      fixedWidth: true,
+      fixedWidth: true
     });
     expect(cache.rowHeight({index: 0})).toBe(DEFAULT_HEIGHT);
     cache.set(0, 0, 125, 50);
@@ -230,7 +230,7 @@ describe('CellMeasurerCache', () => {
 
       const cache = new CellMeasurerCache({
         fixedHeight: false,
-        fixedWidth: false,
+        fixedWidth: false
       });
 
       expect(cache.hasFixedHeight()).toBe(false);
@@ -238,7 +238,7 @@ describe('CellMeasurerCache', () => {
       expect(console.warn).toHaveBeenCalledWith(
         "CellMeasurerCache should only measure a cell's width or height. " +
           'You have configured CellMeasurerCache to measure both. ' +
-          'This will result in poor performance.',
+          'This will result in poor performance.'
       );
     });
 
@@ -247,13 +247,13 @@ describe('CellMeasurerCache', () => {
 
       const cache = new CellMeasurerCache({
         defaultWidth: 0,
-        fixedHeight: true,
+        fixedHeight: true
       });
 
       expect(cache.getWidth(0, 0)).toBe(0);
       expect(console.warn).toHaveBeenCalledWith(
         'Fixed width CellMeasurerCache should specify a :defaultWidth greater than 0. ' +
-          'Failing to do so will lead to unnecessary layout and poor performance.',
+          'Failing to do so will lead to unnecessary layout and poor performance.'
       );
     });
 
@@ -262,13 +262,13 @@ describe('CellMeasurerCache', () => {
 
       const cache = new CellMeasurerCache({
         defaultHeight: 0,
-        fixedWidth: true,
+        fixedWidth: true
       });
 
       expect(cache.getHeight(0, 0)).toBe(0);
       expect(console.warn).toHaveBeenCalledWith(
         'Fixed height CellMeasurerCache should specify a :defaultHeight greater than 0. ' +
-          'Failing to do so will lead to unnecessary layout and poor performance.',
+          'Failing to do so will lead to unnecessary layout and poor performance.'
       );
     });
   });

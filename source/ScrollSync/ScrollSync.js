@@ -11,7 +11,7 @@ export default class ScrollSync extends React.PureComponent {
      * This function should implement the following signature:
      * ({ onScroll, scrollLeft, scrollTop }) => PropTypes.element
      */
-    children: PropTypes.func.isRequired,
+    children: PropTypes.func.isRequired
   };
 
   constructor(props, context) {
@@ -23,7 +23,7 @@ export default class ScrollSync extends React.PureComponent {
       scrollHeight: 0,
       scrollLeft: 0,
       scrollTop: 0,
-      scrollWidth: 0,
+      scrollWidth: 0
     };
 
     this._onScroll = this._onScroll.bind(this);
@@ -37,7 +37,7 @@ export default class ScrollSync extends React.PureComponent {
       scrollHeight,
       scrollLeft,
       scrollTop,
-      scrollWidth,
+      scrollWidth
     } = this.state;
 
     return children({
@@ -47,7 +47,7 @@ export default class ScrollSync extends React.PureComponent {
       scrollHeight,
       scrollLeft,
       scrollTop,
-      scrollWidth,
+      scrollWidth
     });
   }
 
@@ -57,7 +57,7 @@ export default class ScrollSync extends React.PureComponent {
     scrollHeight,
     scrollLeft,
     scrollTop,
-    scrollWidth,
+    scrollWidth
   }) {
     this.setState({
       clientHeight,
@@ -65,7 +65,7 @@ export default class ScrollSync extends React.PureComponent {
       scrollHeight,
       scrollLeft,
       scrollTop,
-      scrollWidth,
+      scrollWidth
     });
   }
 }

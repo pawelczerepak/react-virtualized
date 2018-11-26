@@ -1,7 +1,7 @@
 import InfiniteLoader, {
   forceUpdateReactVirtualizedComponent,
   isRangeVisible,
-  scanForUnloadedRanges,
+  scanForUnloadedRanges
 } from './InfiniteLoader';
 import * as React from 'react';
 import List from '../List';
@@ -44,7 +44,7 @@ describe('InfiniteLoader', () => {
     rowCount = 100,
     scrollToIndex,
     threshold = 10,
-    width = 200,
+    width = 200
   } = {}) {
     return (
       <InfiniteLoader
@@ -90,7 +90,7 @@ describe('InfiniteLoader', () => {
       11,
       12,
       13,
-      14,
+      14
     ]);
   });
 
@@ -144,8 +144,8 @@ describe('InfiniteLoader', () => {
       render(
         getMarkup({
           minimumBatchSize: 10,
-          threshold: 0,
-        }),
+          threshold: 0
+        })
       );
       expect(loadMoreRowsCalls.length).toEqual(1);
       expect(loadMoreRowsCalls).toEqual([{startIndex: 0, stopIndex: 9}]);
@@ -156,8 +156,8 @@ describe('InfiniteLoader', () => {
         getMarkup({
           minimumBatchSize: 10,
           scrollToIndex: 20,
-          threshold: 0,
-        }),
+          threshold: 0
+        })
       );
       loadMoreRowsCalls.splice(0);
       render(
@@ -165,8 +165,8 @@ describe('InfiniteLoader', () => {
           isRowLoaded: ({index}) => index >= 20,
           minimumBatchSize: 10,
           scrollToIndex: 15,
-          threshold: 0,
-        }),
+          threshold: 0
+        })
       );
       expect(loadMoreRowsCalls.length).toEqual(1);
       expect(loadMoreRowsCalls).toEqual([{startIndex: 10, stopIndex: 19}]);
@@ -176,8 +176,8 @@ describe('InfiniteLoader', () => {
       render(
         getMarkup({
           minimumBatchSize: 10,
-          threshold: 10,
-        }),
+          threshold: 10
+        })
       );
       expect(loadMoreRowsCalls.length).toEqual(1);
       expect(loadMoreRowsCalls).toEqual([{startIndex: 0, stopIndex: 14}]);
@@ -200,14 +200,14 @@ describe('InfiniteLoader', () => {
         getMarkup({
           isRowLoaded,
           minimumBatchSize: 10,
-          threshold: 0,
-        }),
+          threshold: 0
+        })
       );
       // Simulate a new range of rows being loaded
       innerOnRowsRendered({startIndex: 5, stopIndex: 10});
       expect(loadMoreRowsCalls).toEqual([
         {startIndex: 0, stopIndex: 9},
-        {startIndex: 10, stopIndex: 19},
+        {startIndex: 10, stopIndex: 19}
       ]);
     });
 
@@ -216,14 +216,14 @@ describe('InfiniteLoader', () => {
         getMarkup({
           minimumBatchSize: 10,
           rowCount: 25,
-          threshold: 0,
-        }),
+          threshold: 0
+        })
       );
       // Simulate a new range of rows being loaded
       innerOnRowsRendered({startIndex: 18, stopIndex: 22});
       expect(loadMoreRowsCalls).toEqual([
         {startIndex: 0, stopIndex: 9},
-        {startIndex: 15, stopIndex: 24},
+        {startIndex: 15, stopIndex: 24}
       ]);
     });
 
@@ -232,8 +232,8 @@ describe('InfiniteLoader', () => {
         getMarkup({
           minimumBatchSize: 10,
           scrollToIndex: 15,
-          threshold: 0,
-        }),
+          threshold: 0
+        })
       );
       loadMoreRowsCalls.splice(0);
       render(
@@ -241,8 +241,8 @@ describe('InfiniteLoader', () => {
           isRowLoaded: ({index}) => index >= 6,
           minimumBatchSize: 10,
           scrollToIndex: 2,
-          threshold: 0,
-        }),
+          threshold: 0
+        })
       );
       expect(loadMoreRowsCalls.length).toEqual(1);
       expect(loadMoreRowsCalls).toEqual([{startIndex: 0, stopIndex: 5}]);
@@ -255,8 +255,8 @@ describe('InfiniteLoader', () => {
       getMarkup({
         isRowLoaded: () => false,
         minimumBatchSize: 20,
-        threshold: 0,
-      }),
+        threshold: 0
+      })
     );
     expect(loadMoreRowsCalls).toEqual([{startIndex: 0, stopIndex: 19}]);
     innerOnRowsRendered({startIndex: 0, stopIndex: 15});
@@ -271,8 +271,8 @@ describe('InfiniteLoader', () => {
       getMarkup({
         isRowLoaded: () => false,
         minimumBatchSize: 20,
-        threshold: 0,
-      }),
+        threshold: 0
+      })
     );
     expect(loadMoreRowsCalls).toEqual([{startIndex: 0, stopIndex: 19}]);
     innerOnRowsRendered({startIndex: 0, stopIndex: 15});
@@ -288,8 +288,8 @@ describe('InfiniteLoader', () => {
       getMarkup({
         isRowLoaded: () => false,
         minimumBatchSize: 1,
-        threshold: 0,
-      }),
+        threshold: 0
+      })
     );
 
     // Simulate a new range of rows being loaded
@@ -298,7 +298,7 @@ describe('InfiniteLoader', () => {
     component.resetLoadMoreRowsCache(true);
     expect(loadMoreRowsCalls[loadMoreRowsCalls.length - 1]).toEqual({
       startIndex: 0,
-      stopIndex: 10,
+      stopIndex: 10
     });
 
     // Simulate a new range of rows being loaded
@@ -306,14 +306,14 @@ describe('InfiniteLoader', () => {
     innerOnRowsRendered({startIndex: 20, stopIndex: 30});
     expect(loadMoreRowsCalls[loadMoreRowsCalls.length - 1]).toEqual({
       startIndex: 20,
-      stopIndex: 30,
+      stopIndex: 30
     });
 
     loadMoreRowsCalls.splice(0);
     component.resetLoadMoreRowsCache(true);
     expect(loadMoreRowsCalls[loadMoreRowsCalls.length - 1]).toEqual({
       startIndex: 20,
-      stopIndex: 30,
+      stopIndex: 30
     });
   });
 });
@@ -328,8 +328,8 @@ describe('scanForUnloadedRanges', () => {
       scanForUnloadedRanges({
         isRowLoaded: createIsRowLoaded([true, true, true]),
         startIndex: 0,
-        stopIndex: 2,
-      }),
+        stopIndex: 2
+      })
     ).toEqual([]);
   });
 
@@ -338,8 +338,8 @@ describe('scanForUnloadedRanges', () => {
       scanForUnloadedRanges({
         isRowLoaded: createIsRowLoaded([true, false, true]),
         startIndex: 0,
-        stopIndex: 2,
-      }),
+        stopIndex: 2
+      })
     ).toEqual([{startIndex: 1, stopIndex: 1}]);
   });
 
@@ -348,8 +348,8 @@ describe('scanForUnloadedRanges', () => {
       scanForUnloadedRanges({
         isRowLoaded: createIsRowLoaded([false, false, true]),
         startIndex: 0,
-        stopIndex: 2,
-      }),
+        stopIndex: 2
+      })
     ).toEqual([{startIndex: 0, stopIndex: 1}]);
   });
 
@@ -363,15 +363,15 @@ describe('scanForUnloadedRanges', () => {
           true,
           false,
           true,
-          false,
+          false
         ]),
         startIndex: 0,
-        stopIndex: 6,
-      }),
+        stopIndex: 6
+      })
     ).toEqual([
       {startIndex: 1, stopIndex: 2},
       {startIndex: 4, stopIndex: 4},
-      {startIndex: 6, stopIndex: 6},
+      {startIndex: 6, stopIndex: 6}
     ]);
   });
 });
@@ -383,8 +383,8 @@ describe('isRangeVisible', () => {
         lastRenderedStartIndex: 10,
         lastRenderedStopIndex: 20,
         startIndex: 20,
-        stopIndex: 30,
-      }),
+        stopIndex: 30
+      })
     ).toEqual(true);
   });
 
@@ -394,8 +394,8 @@ describe('isRangeVisible', () => {
         lastRenderedStartIndex: 10,
         lastRenderedStopIndex: 20,
         startIndex: 0,
-        stopIndex: 10,
-      }),
+        stopIndex: 10
+      })
     ).toEqual(true);
   });
 
@@ -405,8 +405,8 @@ describe('isRangeVisible', () => {
         lastRenderedStartIndex: 10,
         lastRenderedStopIndex: 20,
         startIndex: 12,
-        stopIndex: 14,
-      }),
+        stopIndex: 14
+      })
     ).toEqual(true);
   });
 
@@ -416,8 +416,8 @@ describe('isRangeVisible', () => {
         lastRenderedStartIndex: 10,
         lastRenderedStopIndex: 20,
         startIndex: 0,
-        stopIndex: 9,
-      }),
+        stopIndex: 9
+      })
     ).toEqual(false);
 
     expect(
@@ -425,8 +425,8 @@ describe('isRangeVisible', () => {
         lastRenderedStartIndex: 10,
         lastRenderedStopIndex: 20,
         startIndex: 21,
-        stopIndex: 30,
-      }),
+        stopIndex: 30
+      })
     ).toEqual(false);
   });
 });

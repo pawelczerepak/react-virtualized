@@ -8,7 +8,7 @@ import defaultCellRangeRenderer from './defaultCellRangeRenderer';
 import {CellMeasurer, CellMeasurerCache} from '../CellMeasurer';
 import {
   SCROLL_DIRECTION_BACKWARD,
-  SCROLL_DIRECTION_FORWARD,
+  SCROLL_DIRECTION_FORWARD
 } from './defaultOverscanIndicesGetter';
 import {getMaxElementSize} from './utils/maxElementSize.js';
 
@@ -99,9 +99,9 @@ describe('Grid', () => {
             overscanColumnCount: 0,
             overscanRowCount: 0,
             rowCount: 3,
-            cellRenderer,
-          }),
-        ),
+            cellRenderer
+          })
+        )
       );
       expect(rendered.querySelectorAll('.cell').length).toEqual(4); // [1,1], [1,2], [2,1], and [2,2]
       expect(rendered.textContent).not.toContain('column:0');
@@ -111,19 +111,19 @@ describe('Grid', () => {
     it('should scroll to the last existing point when rows are removed', () => {
       const grid = render(
         getMarkup({
-          rowCount: 15,
-        }),
+          rowCount: 15
+        })
       );
 
       simulateScroll({
         grid,
-        scrollTop: 200,
+        scrollTop: 200
       });
 
       const updatedGrid = render(
         getMarkup({
-          rowCount: 10,
-        }),
+          rowCount: 10
+        })
       );
 
       expect(updatedGrid.state.scrollTop).toEqual(100);
@@ -132,19 +132,19 @@ describe('Grid', () => {
     it('should scroll to the last existing point when columns are removed', () => {
       const grid = render(
         getMarkup({
-          columnCount: 12,
-        }),
+          columnCount: 12
+        })
       );
 
       simulateScroll({
         grid,
-        scrollLeft: 400,
+        scrollLeft: 400
       });
 
       const updatedGrid = render(
         getMarkup({
-          columnCount: 8,
-        }),
+          columnCount: 8
+        })
       );
 
       expect(updatedGrid.state.scrollLeft).toEqual(200);
@@ -153,13 +153,13 @@ describe('Grid', () => {
     it('should not scroll unseen rows are removed', () => {
       render(
         getMarkup({
-          rowCount: 15,
-        }),
+          rowCount: 15
+        })
       );
       const updatedGrid = render(
         getMarkup({
-          rowCount: 10,
-        }),
+          rowCount: 10
+        })
       );
 
       expect(updatedGrid.state.scrollTop).toEqual(0);
@@ -168,13 +168,13 @@ describe('Grid', () => {
     it('should not scroll when unseen columns are removed', () => {
       render(
         getMarkup({
-          columnCount: 12,
-        }),
+          columnCount: 12
+        })
       );
       const updatedGrid = render(
         getMarkup({
-          columnCount: 8,
-        }),
+          columnCount: 8
+        })
       );
 
       expect(updatedGrid.state.scrollLeft).toEqual(0);
@@ -188,9 +188,9 @@ describe('Grid', () => {
           getMarkup({
             columnCount: 4,
             getScrollbarSize: getScrollbarSize20,
-            rowCount: 5,
-          }),
-        ),
+            rowCount: 5
+          })
+        )
       );
       expect(rendered.style.overflowX).toEqual('hidden');
     });
@@ -201,9 +201,9 @@ describe('Grid', () => {
           getMarkup({
             columnCount: 4,
             getScrollbarSize: getScrollbarSize20,
-            width: 200 + getScrollbarSize20(),
-          }),
-        ),
+            width: 200 + getScrollbarSize20()
+          })
+        )
       );
       expect(rendered.style.overflowX).toEqual('hidden');
     });
@@ -215,9 +215,9 @@ describe('Grid', () => {
             columnCount: 4,
             getScrollbarSize: getScrollbarSize20,
             width: 200 - 1,
-            rowCount: 5,
-          }),
-        ),
+            rowCount: 5
+          })
+        )
       );
       expect(rendered.style.overflowX).not.toEqual('hidden');
     });
@@ -228,9 +228,9 @@ describe('Grid', () => {
           getMarkup({
             columnCount: 4,
             getScrollbarSize: getScrollbarSize20,
-            width: 200 + getScrollbarSize20() - 1,
-          }),
-        ),
+            width: 200 + getScrollbarSize20() - 1
+          })
+        )
       );
       expect(rendered.style.overflowX).not.toEqual('hidden');
     });
@@ -241,9 +241,9 @@ describe('Grid', () => {
           getMarkup({
             getScrollbarSize: getScrollbarSize20,
             rowCount: 5,
-            columnCount: 4,
-          }),
-        ),
+            columnCount: 4
+          })
+        )
       );
       expect(rendered.style.overflowY).toEqual('hidden');
     });
@@ -254,9 +254,9 @@ describe('Grid', () => {
           getMarkup({
             getScrollbarSize: getScrollbarSize20,
             rowCount: 5,
-            height: 100 + getScrollbarSize20(),
-          }),
-        ),
+            height: 100 + getScrollbarSize20()
+          })
+        )
       );
       expect(rendered.style.overflowY).toEqual('hidden');
     });
@@ -268,9 +268,9 @@ describe('Grid', () => {
             getScrollbarSize: getScrollbarSize20,
             rowCount: 5,
             height: 100 - 1,
-            columnCount: 4,
-          }),
-        ),
+            columnCount: 4
+          })
+        )
       );
       expect(rendered.style.overflowY).not.toEqual('hidden');
     });
@@ -281,9 +281,9 @@ describe('Grid', () => {
           getMarkup({
             getScrollbarSize: getScrollbarSize20,
             rowCount: 5,
-            height: 100 + getScrollbarSize20() - 1,
-          }),
-        ),
+            height: 100 + getScrollbarSize20() - 1
+          })
+        )
       );
       expect(rendered.style.overflowY).not.toEqual('hidden');
     });
@@ -298,11 +298,11 @@ describe('Grid', () => {
             rowCount: 1,
             style: {
               overflowY: 'visible',
-              overflowX: 'visible',
+              overflowX: 'visible'
             },
-            width: 1,
-          }),
-        ),
+            width: 1
+          })
+        )
       );
       expect(rendered.style.overflowY).toEqual('visible');
       expect(rendered.style.overflowX).toEqual('visible');
@@ -360,8 +360,8 @@ describe('Grid', () => {
           columnCount: NUM_COLUMNS + 1,
           rowCount: NUM_ROWS + 1,
           scrollToColumn: NUM_COLUMNS,
-          scrollToRow: NUM_ROWS,
-        }),
+          scrollToRow: NUM_ROWS
+        })
       );
       expect(grid.state.scrollLeft).toEqual(2350);
       expect(grid.state.scrollTop).toEqual(1920);
@@ -373,16 +373,16 @@ describe('Grid', () => {
           columnCount: NUM_COLUMNS,
           rowCount: NUM_ROWS,
           scrollToColumn: NUM_COLUMNS,
-          scrollToRow: NUM_ROWS,
-        }),
+          scrollToRow: NUM_ROWS
+        })
       );
       grid = render(
         getMarkup({
           columnCount: NUM_COLUMNS + 1,
           rowCount: NUM_ROWS + 1,
           scrollToColumn: NUM_COLUMNS,
-          scrollToRow: NUM_ROWS,
-        }),
+          scrollToRow: NUM_ROWS
+        })
       );
       expect(grid.state.scrollLeft).toEqual(2350);
       expect(grid.state.scrollTop).toEqual(1920);
@@ -393,8 +393,8 @@ describe('Grid', () => {
         getMarkup({
           scrollToAlignment: 'start',
           scrollToColumn: 24,
-          scrollToRow: 49,
-        }),
+          scrollToRow: 49
+        })
       );
       // 50 columns * 50 item width = 2,500 total item width
       // 100 rows * 20 item height = 2,000 total item height
@@ -409,15 +409,15 @@ describe('Grid', () => {
       render(
         getMarkup({
           scrollToColumn: 99,
-          scrollToRow: 99,
-        }),
+          scrollToRow: 99
+        })
       );
       const grid = render(
         getMarkup({
           scrollToAlignment: 'end',
           scrollToColumn: 24,
-          scrollToRow: 49,
-        }),
+          scrollToRow: 49
+        })
       );
       // 50 columns * 50 item width = 2,500 total item width
       // 100 rows * 20 item height = 2,000 total item height
@@ -432,15 +432,15 @@ describe('Grid', () => {
       render(
         getMarkup({
           scrollToColumn: 99,
-          scrollToRow: 99,
-        }),
+          scrollToRow: 99
+        })
       );
       const grid = render(
         getMarkup({
           scrollToAlignment: 'center',
           scrollToColumn: 24,
-          scrollToRow: 49,
-        }),
+          scrollToRow: 49
+        })
       );
       // 50 columns * 50 item width = 2,500 total item width
       // Viewport width is 200
@@ -460,20 +460,20 @@ describe('Grid', () => {
           render(
             getMarkup({
               height: 0,
-              scrollToColumn: 24,
-            }),
-          ),
-        ).scrollLeft || 0,
+              scrollToColumn: 24
+            })
+          )
+        ).scrollLeft || 0
       ).toEqual(0);
       expect(
         findDOMNode(
           render(
             getMarkup({
               height: 100,
-              scrollToColumn: 24,
-            }),
-          ),
-        ).scrollLeft,
+              scrollToColumn: 24
+            })
+          )
+        ).scrollLeft
       ).toEqual(1050);
     });
 
@@ -485,20 +485,20 @@ describe('Grid', () => {
           render(
             getMarkup({
               scrollToRow: 49,
-              width: 0,
-            }),
-          ),
-        ).scrollTop || 0,
+              width: 0
+            })
+          )
+        ).scrollTop || 0
       ).toEqual(0);
       expect(
         findDOMNode(
           render(
             getMarkup({
               scrollToRow: 49,
-              width: 100,
-            }),
-          ),
-        ).scrollTop,
+              width: 100
+            })
+          )
+        ).scrollTop
       ).toEqual(900);
     });
 
@@ -510,8 +510,8 @@ describe('Grid', () => {
         getMarkup({
           columnCount: 0,
           rowCount: 150,
-          scrollToRow: 100,
-        }),
+          scrollToRow: 100
+        })
       );
       expect(
         findDOMNode(
@@ -519,10 +519,10 @@ describe('Grid', () => {
             getMarkup({
               columnCount: 150,
               rowCount: 150,
-              scrollToRow: 100,
-            }),
-          ),
-        ).scrollTop,
+              scrollToRow: 100
+            })
+          )
+        ).scrollTop
       ).toEqual(expectedScrollTop);
     });
 
@@ -532,7 +532,7 @@ describe('Grid', () => {
       expect(grid.state.scrollTop).toEqual(0);
       grid.scrollToCell({
         columnIndex: 24,
-        rowIndex: 49,
+        rowIndex: 49
       });
       // 50 columns * 50 item width = 2,500 total item width
       // 4 columns can be visible at a time and :scrollLeft is initially 0,
@@ -545,14 +545,14 @@ describe('Grid', () => {
 
       // Change column without affecting row
       grid.scrollToCell({
-        columnIndex: 49,
+        columnIndex: 49
       });
       expect(grid.state.scrollLeft).toEqual(2300);
       expect(grid.state.scrollTop).toEqual(900);
 
       // Change row without affecting column
       grid.scrollToCell({
-        rowIndex: 99,
+        rowIndex: 99
       });
       expect(grid.state.scrollLeft).toEqual(2300);
       expect(grid.state.scrollTop).toEqual(1900);
@@ -565,21 +565,21 @@ describe('Grid', () => {
 
       grid.scrollToPosition({
         scrollLeft: 50,
-        scrollTop: 100,
+        scrollTop: 100
       });
       expect(grid.state.scrollLeft).toEqual(50);
       expect(grid.state.scrollTop).toEqual(100);
 
       // Change column without affecting row
       grid.scrollToPosition({
-        scrollLeft: 25,
+        scrollLeft: 25
       });
       expect(grid.state.scrollLeft).toEqual(25);
       expect(grid.state.scrollTop).toEqual(100);
 
       // Change row without affecting column
       grid.scrollToPosition({
-        scrollTop: 50,
+        scrollTop: 50
       });
       expect(grid.state.scrollLeft).toEqual(25);
       expect(grid.state.scrollTop).toEqual(50);
@@ -592,7 +592,7 @@ describe('Grid', () => {
 
       grid.handleScrollEvent({
         scrollLeft: 50,
-        scrollTop: 100,
+        scrollTop: 100
       });
       expect(grid.state.isScrolling).toEqual(true);
       expect(grid.state.scrollLeft).toEqual(50);
@@ -603,7 +603,7 @@ describe('Grid', () => {
       const grid = render(getMarkup());
       const {scrollLeft, scrollTop} = grid.getOffsetForCell({
         columnIndex: 24,
-        rowIndex: 49,
+        rowIndex: 49
       });
       // 50 columns * 50 item width = 2,500 total item width
       // 4 columns can be visible at a time and :scrollLeft is initially 0,
@@ -639,7 +639,7 @@ describe('Grid', () => {
         height: 100,
         rowCount: 100,
         rowHeight: ({index}) => (index === 99 ? rowHeight : 20),
-        scrollToRow: 99,
+        scrollToRow: 99
       };
 
       const grid = render(getMarkup(props));
@@ -649,7 +649,7 @@ describe('Grid', () => {
 
       rowHeight = 40;
       grid.recomputeGridSize({
-        rowIndex: 99,
+        rowIndex: 99
       });
 
       expect(node.scrollTop).toBe(1920);
@@ -664,7 +664,7 @@ describe('Grid', () => {
         rowHeight: 20,
         scrollToColumn: 50,
         scrollToRow: 50,
-        width: 100,
+        width: 100
       };
       const grid = render(getMarkup(props));
 
@@ -673,7 +673,7 @@ describe('Grid', () => {
       simulateScroll({grid, scrollLeft: 2250});
       expect(grid.state.scrollLeft).toEqual(2250);
       expect(grid.state.scrollDirectionHorizontal).toEqual(
-        SCROLL_DIRECTION_BACKWARD,
+        SCROLL_DIRECTION_BACKWARD
       );
 
       grid.recomputeGridSize({columnIndex: 30});
@@ -689,7 +689,7 @@ describe('Grid', () => {
         rowHeight: 20,
         scrollToColumn: 50,
         scrollToRow: 50,
-        width: 100,
+        width: 100
       };
       const grid = render(getMarkup(props));
 
@@ -698,7 +698,7 @@ describe('Grid', () => {
       simulateScroll({grid, scrollTop: 720});
       expect(grid.state.scrollTop).toEqual(720);
       expect(grid.state.scrollDirectionVertical).toEqual(
-        SCROLL_DIRECTION_BACKWARD,
+        SCROLL_DIRECTION_BACKWARD
       );
 
       grid.recomputeGridSize({rowIndex: 20});
@@ -714,7 +714,7 @@ describe('Grid', () => {
         rowHeight: 20,
         scrollToColumn: 50,
         scrollToRow: 50,
-        width: 100,
+        width: 100
       };
       const grid = render(getMarkup(props));
       expect(grid.state.scrollLeft).toEqual(2450);
@@ -722,8 +722,8 @@ describe('Grid', () => {
       render(
         getMarkup({
           ...props,
-          columnCount: 0,
-        }),
+          columnCount: 0
+        })
       );
       expect(grid.state.scrollLeft).toEqual(0);
       expect(grid.state.scrollTop).toEqual(0);
@@ -733,8 +733,8 @@ describe('Grid', () => {
       render(
         getMarkup({
           ...props,
-          rowCount: 0,
-        }),
+          rowCount: 0
+        })
       );
       expect(grid.state.scrollLeft).toEqual(0);
       expect(grid.state.scrollTop).toEqual(0);
@@ -754,8 +754,8 @@ describe('Grid', () => {
           rowHeight: 20,
           scrollToColumn: 50,
           scrollToRow: 50,
-          width: 100,
-        }),
+          width: 100
+        })
       );
 
       expect(grid.state.scrollLeft).toEqual(2450 + getScrollbarSize20());
@@ -769,7 +769,7 @@ describe('Grid', () => {
       expect(grid.textContent).toContain('column:25');
       // Making columns taller pushes name off/beyond the scrolled area
       grid = findDOMNode(
-        render(getMarkup({scrollToColumn: 25, columnWidth: 20})),
+        render(getMarkup({scrollToColumn: 25, columnWidth: 20}))
       );
       expect(grid.textContent).toContain('column:25');
     });
@@ -816,7 +816,7 @@ describe('Grid', () => {
       let grid = findDOMNode(render(getMarkup({scrollToColumn: 250})));
       grid = findDOMNode(render(getMarkup()));
       grid = findDOMNode(
-        render(getMarkup({scrollToColumn: 250, columnCount: 10})),
+        render(getMarkup({scrollToColumn: 250, columnCount: 10}))
       );
       expect(grid.textContent).toContain('column:9');
     });
@@ -835,9 +835,9 @@ describe('Grid', () => {
         render(
           getMarkup({
             noContentRenderer: () => <div>No data</div>,
-            columnCount: 0,
-          }),
-        ),
+            columnCount: 0
+          })
+        )
       );
       expect(list.textContent).toEqual('No data');
     });
@@ -847,9 +847,9 @@ describe('Grid', () => {
         render(
           getMarkup({
             noContentRenderer: () => <div>No data</div>,
-            rowCount: 0,
-          }),
-        ),
+            rowCount: 0
+          })
+        )
       );
       expect(list.textContent).toEqual('No data');
     });
@@ -863,9 +863,9 @@ describe('Grid', () => {
       let list = findDOMNode(
         render(
           getMarkup({
-            noContentRenderer,
-          }),
-        ),
+            noContentRenderer
+          })
+        )
       );
       expect(list.textContent).not.toEqual('No data');
 
@@ -873,18 +873,18 @@ describe('Grid', () => {
         render(
           getMarkup({
             noContentRenderer,
-            rowCount: 0,
-          }),
-        ),
+            rowCount: 0
+          })
+        )
       );
       expect(list.textContent).toEqual('No data');
 
       list = findDOMNode(
         render(
           getMarkup({
-            noContentRenderer,
-          }),
-        ),
+            noContentRenderer
+          })
+        )
       );
       expect(list.textContent).not.toEqual('No data');
 
@@ -892,9 +892,9 @@ describe('Grid', () => {
         render(
           getMarkup({
             columnCount: 0,
-            noContentRenderer,
-          }),
-        ),
+            noContentRenderer
+          })
+        )
       );
       expect(list.textContent).toEqual('No data');
     });
@@ -903,9 +903,9 @@ describe('Grid', () => {
       let list = findDOMNode(
         render(
           getMarkup({
-            columnCount: 0,
-          }),
-        ),
+            columnCount: 0
+          })
+        )
       );
       expect(list.textContent).toEqual('');
     });
@@ -914,9 +914,9 @@ describe('Grid', () => {
       let list = findDOMNode(
         render(
           getMarkup({
-            rowCount: 0,
-          }),
-        ),
+            rowCount: 0
+          })
+        )
       );
       expect(list.textContent).toEqual('');
     });
@@ -926,18 +926,18 @@ describe('Grid', () => {
         render(
           getMarkup({
             height: 0,
-            noContentRenderer: () => <div>No data</div>,
-          }),
-        ),
+            noContentRenderer: () => <div>No data</div>
+          })
+        )
       );
       expect(list.textContent).toEqual('');
       list = findDOMNode(
         render(
           getMarkup({
             noContentRenderer: () => <div>No data</div>,
-            width: 0,
-          }),
-        ),
+            width: 0
+          })
+        )
       );
       expect(list.textContent).toEqual('');
     });
@@ -953,9 +953,9 @@ describe('Grid', () => {
               columnStartIndex,
               columnStopIndex,
               rowStartIndex,
-              rowStopIndex,
-            } = params),
-        }),
+              rowStopIndex
+            } = params)
+        })
       );
       expect(columnStartIndex).toEqual(0);
       expect(columnStopIndex).toEqual(3);
@@ -1005,8 +1005,8 @@ describe('Grid', () => {
       render(
         getMarkup({
           height: 50,
-          onSectionRendered,
-        }),
+          onSectionRendered
+        })
       );
       expect(numCalls).toEqual(2);
       expect(columnStartIndex).toEqual(0);
@@ -1017,8 +1017,8 @@ describe('Grid', () => {
         getMarkup({
           height: 50,
           onSectionRendered,
-          width: 100,
-        }),
+          width: 100
+        })
       );
       expect(numCalls).toEqual(3);
       expect(columnStartIndex).toEqual(0);
@@ -1032,8 +1032,8 @@ describe('Grid', () => {
       render(
         getMarkup({
           height: 0,
-          onSectionRendered: () => numCalls++,
-        }),
+          onSectionRendered: () => numCalls++
+        })
       );
       expect(numCalls).toEqual(0);
     });
@@ -1050,12 +1050,12 @@ describe('Grid', () => {
                 columnStartIndex,
                 columnStopIndex,
                 rowStartIndex,
-                rowStopIndex,
+                rowStopIndex
               } = params),
             scrollLeft: 250,
-            scrollTop: 100,
-          }),
-        ),
+            scrollTop: 100
+          })
+        )
       );
       expect(rowStartIndex).toEqual(5);
       expect(rowStopIndex).toEqual(9);
@@ -1073,9 +1073,9 @@ describe('Grid', () => {
               columnStartIndex,
               columnStopIndex,
               rowStartIndex,
-              rowStopIndex,
-            } = params),
-        }),
+              rowStopIndex
+            } = params)
+        })
       );
       expect(rowStartIndex).toEqual(0);
       expect(rowStopIndex).toEqual(4);
@@ -1089,11 +1089,11 @@ describe('Grid', () => {
               columnStartIndex,
               columnStopIndex,
               rowStartIndex,
-              rowStopIndex,
+              rowStopIndex
             } = params),
           scrollLeft: 250,
-          scrollTop: 100,
-        }),
+          scrollTop: 100
+        })
       );
       expect(rowStartIndex).toEqual(5);
       expect(rowStopIndex).toEqual(9);
@@ -1129,7 +1129,7 @@ describe('Grid', () => {
       const rendered = findDOMNode(render(getMarkup({containerStyle})));
       expect(
         rendered.querySelector('.ReactVirtualized__Grid__innerScrollContainer')
-          .style.backgroundColor,
+          .style.backgroundColor
       ).toEqual('red');
     });
   });
@@ -1141,8 +1141,8 @@ describe('Grid', () => {
         getMarkup({
           onScroll: params => onScrollCalls.push(params),
           scrollLeft: 50,
-          scrollTop: 100,
-        }),
+          scrollTop: 100
+        })
       );
       expect(onScrollCalls).toEqual([
         {
@@ -1151,8 +1151,8 @@ describe('Grid', () => {
           scrollHeight: 2000,
           scrollLeft: 50,
           scrollTop: 100,
-          scrollWidth: 2500,
-        },
+          scrollWidth: 2500
+        }
       ]);
     });
 
@@ -1160,13 +1160,13 @@ describe('Grid', () => {
       const onScrollCalls = [];
       const grid = render(
         getMarkup({
-          onScroll: params => onScrollCalls.push(params),
-        }),
+          onScroll: params => onScrollCalls.push(params)
+        })
       );
       simulateScroll({
         grid,
         scrollLeft: 100,
-        scrollTop: 0,
+        scrollTop: 0
       });
       expect(onScrollCalls.length).toEqual(2);
       expect(onScrollCalls[1]).toEqual({
@@ -1175,7 +1175,7 @@ describe('Grid', () => {
         scrollHeight: 2000,
         scrollLeft: 100,
         scrollTop: 0,
-        scrollWidth: 2500,
+        scrollWidth: 2500
       });
     });
 
@@ -1183,13 +1183,13 @@ describe('Grid', () => {
       const onScrollCalls = [];
       const grid = render(
         getMarkup({
-          onScroll: params => onScrollCalls.push(params),
-        }),
+          onScroll: params => onScrollCalls.push(params)
+        })
       );
       simulateScroll({
         grid,
         scrollLeft: 0,
-        scrollTop: 100,
+        scrollTop: 100
       });
       expect(onScrollCalls.length).toEqual(2);
       expect(onScrollCalls[1]).toEqual({
@@ -1198,7 +1198,7 @@ describe('Grid', () => {
         scrollHeight: 2000,
         scrollLeft: 0,
         scrollTop: 100,
-        scrollWidth: 2500,
+        scrollWidth: 2500
       });
     });
 
@@ -1211,13 +1211,13 @@ describe('Grid', () => {
           onScroll: params => onScrollCalls.push(params),
           scrollLeft: 0,
           scrollTop: 10,
-          width: 200,
-        }),
+          width: 200
+        })
       );
       simulateScroll({
         grid,
         scrollLeft: 0,
-        scrollTop: 0,
+        scrollTop: 0
       });
       expect(onScrollCalls.length).toEqual(2);
       expect(onScrollCalls[1]).toEqual({
@@ -1226,7 +1226,7 @@ describe('Grid', () => {
         scrollHeight: 2000,
         scrollLeft: 0,
         scrollTop: 0,
-        scrollWidth: 50,
+        scrollWidth: 50
       });
     });
 
@@ -1239,13 +1239,13 @@ describe('Grid', () => {
           onScroll: params => onScrollCalls.push(params),
           scrollLeft: 0,
           scrollTop: 10,
-          height: 200,
-        }),
+          height: 200
+        })
       );
       simulateScroll({
         grid,
         scrollLeft: 0,
-        scrollTop: 0,
+        scrollTop: 0
       });
       expect(onScrollCalls.length).toEqual(2);
       expect(onScrollCalls[1]).toEqual({
@@ -1254,7 +1254,7 @@ describe('Grid', () => {
         scrollHeight: 50,
         scrollLeft: 0,
         scrollTop: 0,
-        scrollWidth: 2500,
+        scrollWidth: 2500
       });
     });
 
@@ -1266,8 +1266,8 @@ describe('Grid', () => {
         getMarkup({
           onScroll: params => onScrollCalls.push(params),
           scrollToColumn: 24,
-          scrollToRow: 49,
-        }),
+          scrollToRow: 49
+        })
       );
       expect(onScrollCalls).toEqual([
         {
@@ -1276,8 +1276,8 @@ describe('Grid', () => {
           scrollHeight: 2000,
           scrollLeft: 1050,
           scrollTop: 900,
-          scrollWidth: 2500,
-        },
+          scrollWidth: 2500
+        }
       ]);
     });
   });
@@ -1313,7 +1313,7 @@ describe('Grid', () => {
         rowOverscanStartIndex: () => rowOverscanStartIndex,
         rowOverscanStopIndex: () => rowOverscanStopIndex,
         rowStartIndex: () => rowStartIndex,
-        rowStopIndex: () => rowStopIndex,
+        rowStopIndex: () => rowStopIndex
       };
     }
 
@@ -1321,14 +1321,14 @@ describe('Grid', () => {
       const helper = createHelper();
       render(
         getMarkup({
-          onSectionRendered: helper.onSectionRendered,
-        }),
+          onSectionRendered: helper.onSectionRendered
+        })
       );
       expect(helper.columnOverscanStartIndex()).toEqual(
-        helper.columnStartIndex(),
+        helper.columnStartIndex()
       );
       expect(helper.columnOverscanStopIndex()).toEqual(
-        helper.columnStopIndex(),
+        helper.columnStopIndex()
       );
       expect(helper.rowOverscanStartIndex()).toEqual(helper.rowStartIndex());
       expect(helper.rowOverscanStopIndex()).toEqual(helper.rowStopIndex());
@@ -1342,8 +1342,8 @@ describe('Grid', () => {
           overscanColumnCount: 2,
           overscanRowCount: 5,
           scrollToColumn: 25,
-          scrollToRow: 50,
-        }),
+          scrollToRow: 50
+        })
       );
       expect(helper.columnOverscanStartIndex()).toEqual(22);
       expect(helper.columnOverscanStopIndex()).toEqual(27);
@@ -1363,8 +1363,8 @@ describe('Grid', () => {
           columnCount: 6,
           overscanColumnCount: 10,
           overscanRowCount: 10,
-          rowCount: 5,
-        }),
+          rowCount: 5
+        })
       );
       expect(helper.columnOverscanStartIndex()).toEqual(0);
       expect(helper.columnOverscanStopIndex()).toEqual(5);
@@ -1384,40 +1384,40 @@ describe('Grid', () => {
       simulateScroll({
         grid,
         scrollLeft: 50,
-        scrollTop: 50,
+        scrollTop: 50
       });
 
       expect(grid.state.scrollDirectionHorizontal).toEqual(
-        SCROLL_DIRECTION_FORWARD,
+        SCROLL_DIRECTION_FORWARD
       );
       expect(grid.state.scrollDirectionVertical).toEqual(
-        SCROLL_DIRECTION_FORWARD,
+        SCROLL_DIRECTION_FORWARD
       );
 
       simulateScroll({
         grid,
         scrollLeft: 0,
-        scrollTop: 0,
+        scrollTop: 0
       });
 
       expect(grid.state.scrollDirectionHorizontal).toEqual(
-        SCROLL_DIRECTION_BACKWARD,
+        SCROLL_DIRECTION_BACKWARD
       );
       expect(grid.state.scrollDirectionVertical).toEqual(
-        SCROLL_DIRECTION_BACKWARD,
+        SCROLL_DIRECTION_BACKWARD
       );
 
       simulateScroll({
         grid,
         scrollLeft: 100,
-        scrollTop: 100,
+        scrollTop: 100
       });
 
       expect(grid.state.scrollDirectionHorizontal).toEqual(
-        SCROLL_DIRECTION_FORWARD,
+        SCROLL_DIRECTION_FORWARD
       );
       expect(grid.state.scrollDirectionVertical).toEqual(
-        SCROLL_DIRECTION_FORWARD,
+        SCROLL_DIRECTION_FORWARD
       );
     });
 
@@ -1425,43 +1425,43 @@ describe('Grid', () => {
       let grid = render(
         getMarkup({
           scrollLeft: 50,
-          scrollTop: 50,
-        }),
+          scrollTop: 50
+        })
       );
 
       expect(grid.state.scrollDirectionHorizontal).toEqual(
-        SCROLL_DIRECTION_FORWARD,
+        SCROLL_DIRECTION_FORWARD
       );
       expect(grid.state.scrollDirectionVertical).toEqual(
-        SCROLL_DIRECTION_FORWARD,
+        SCROLL_DIRECTION_FORWARD
       );
 
       grid = render(
         getMarkup({
           scrollLeft: 0,
-          scrollTop: 0,
-        }),
+          scrollTop: 0
+        })
       );
 
       expect(grid.state.scrollDirectionHorizontal).toEqual(
-        SCROLL_DIRECTION_BACKWARD,
+        SCROLL_DIRECTION_BACKWARD
       );
       expect(grid.state.scrollDirectionVertical).toEqual(
-        SCROLL_DIRECTION_BACKWARD,
+        SCROLL_DIRECTION_BACKWARD
       );
 
       grid = render(
         getMarkup({
           scrollLeft: 100,
-          scrollTop: 100,
-        }),
+          scrollTop: 100
+        })
       );
 
       expect(grid.state.scrollDirectionHorizontal).toEqual(
-        SCROLL_DIRECTION_FORWARD,
+        SCROLL_DIRECTION_FORWARD
       );
       expect(grid.state.scrollDirectionVertical).toEqual(
-        SCROLL_DIRECTION_FORWARD,
+        SCROLL_DIRECTION_FORWARD
       );
     });
 
@@ -1473,53 +1473,53 @@ describe('Grid', () => {
       simulateScroll({
         grid,
         scrollLeft: 0,
-        scrollTop: 5,
+        scrollTop: 5
       });
 
       expect(grid.state.scrollDirectionHorizontal).toEqual(
-        SCROLL_DIRECTION_FORWARD,
+        SCROLL_DIRECTION_FORWARD
       );
       expect(grid.state.scrollDirectionVertical).toEqual(
-        SCROLL_DIRECTION_FORWARD,
+        SCROLL_DIRECTION_FORWARD
       );
 
       simulateScroll({
         grid,
         scrollLeft: 5,
-        scrollTop: 5,
+        scrollTop: 5
       });
 
       expect(grid.state.scrollDirectionHorizontal).toEqual(
-        SCROLL_DIRECTION_FORWARD,
+        SCROLL_DIRECTION_FORWARD
       );
       expect(grid.state.scrollDirectionVertical).toEqual(
-        SCROLL_DIRECTION_FORWARD,
+        SCROLL_DIRECTION_FORWARD
       );
 
       simulateScroll({
         grid,
         scrollLeft: 5,
-        scrollTop: 0,
+        scrollTop: 0
       });
 
       expect(grid.state.scrollDirectionHorizontal).toEqual(
-        SCROLL_DIRECTION_FORWARD,
+        SCROLL_DIRECTION_FORWARD
       );
       expect(grid.state.scrollDirectionVertical).toEqual(
-        SCROLL_DIRECTION_BACKWARD,
+        SCROLL_DIRECTION_BACKWARD
       );
 
       simulateScroll({
         grid,
         scrollLeft: 0,
-        scrollTop: 0,
+        scrollTop: 0
       });
 
       expect(grid.state.scrollDirectionHorizontal).toEqual(
-        SCROLL_DIRECTION_BACKWARD,
+        SCROLL_DIRECTION_BACKWARD
       );
       expect(grid.state.scrollDirectionVertical).toEqual(
-        SCROLL_DIRECTION_BACKWARD,
+        SCROLL_DIRECTION_BACKWARD
       );
     });
 
@@ -1540,8 +1540,8 @@ describe('Grid', () => {
         getMarkup({
           onSectionRendered,
           overscanColumnCount: 2,
-          overscanRowCount: 5,
-        }),
+          overscanRowCount: 5
+        })
       );
 
       // Wait until the onSectionRendered handler / debouncer has processed
@@ -1552,7 +1552,7 @@ describe('Grid', () => {
       simulateScroll({
         grid,
         scrollLeft: 200,
-        scrollTop: 200,
+        scrollTop: 200
       });
 
       await onSectionRenderedPromise;
@@ -1575,7 +1575,7 @@ describe('Grid', () => {
       simulateScroll({
         grid,
         scrollLeft: 100,
-        scrollTop: 100,
+        scrollTop: 100
       });
 
       await onSectionRenderedPromise;
@@ -1606,9 +1606,9 @@ describe('Grid', () => {
               cellRangeRendererCalled++;
 
               return [<div key="0">Fake content</div>];
-            },
-          }),
-        ),
+            }
+          })
+        )
       );
       expect(cellRangeRendererCalled).toEqual(1);
       expect(cellRangeRendererParams.columnStartIndex).toEqual(0);
@@ -1626,8 +1626,8 @@ describe('Grid', () => {
           columnWidth: 100,
           estimatedColumnSize: 150,
           estimatedRowSize: 15,
-          rowHeight: 20,
-        }),
+          rowHeight: 20
+        })
       );
       expect(Grid._getEstimatedColumnSize(grid.props)).toEqual(100);
       expect(Grid._getEstimatedRowSize(grid.props)).toEqual(20);
@@ -1639,8 +1639,8 @@ describe('Grid', () => {
           columnWidth: () => 100,
           estimatedColumnSize: 150,
           estimatedRowSize: 15,
-          rowHeight: () => 20,
-        }),
+          rowHeight: () => 20
+        })
       );
       expect(Grid._getEstimatedColumnSize(grid.props)).toEqual(150);
       expect(Grid._getEstimatedRowSize(grid.props)).toEqual(15);
@@ -1655,8 +1655,8 @@ describe('Grid', () => {
     }
     const grid = render(
       getMarkup({
-        cellRenderer,
-      }),
+        cellRenderer
+      })
     );
     expect(cellRendererCalls[0]).toEqual(false);
     cellRendererCalls.splice(0);
@@ -1678,8 +1678,8 @@ describe('Grid', () => {
     render(
       getMarkup({
         cellRenderer,
-        isScrolling: true,
-      }),
+        isScrolling: true
+      })
     );
     expect(cellRenderer).toHaveBeenCalled();
     expect(cellRenderer.mock.calls[0][0].isScrolling).toBe(true);
@@ -1688,8 +1688,8 @@ describe('Grid', () => {
       getMarkup({
         cellRenderer,
         isScrolling: false,
-        width: DEFAULT_WIDTH + 1,
-      }),
+        width: DEFAULT_WIDTH + 1
+      })
     );
     expect(cellRenderer).toHaveBeenCalled();
     expect(cellRenderer.mock.calls[0][0].isScrolling).toBe(false);
@@ -1707,12 +1707,12 @@ describe('Grid', () => {
         height: DEFAULT_ROW_HEIGHT,
         overscanColumnCount: 1,
         overscanRowCount: 1,
-        width: DEFAULT_COLUMN_WIDTH,
-      }),
+        width: DEFAULT_COLUMN_WIDTH
+      })
     );
     cellRendererCalls.forEach(props => {
       expect(props.isVisible).toEqual(
-        props.columnIndex === 0 && props.rowIndex === 0,
+        props.columnIndex === 0 && props.rowIndex === 0
       ); // Only the first cell is visible
     });
   });
@@ -1730,18 +1730,18 @@ describe('Grid', () => {
         height: 40,
         rowHeight: 20,
         scrollToRow: 0,
-        width: 100,
+        width: 100
       };
 
       render(
         getMarkup({
           ...props,
-          scrollToRow: 0,
-        }),
+          scrollToRow: 0
+        })
       );
       expect(cellRendererCalls).toEqual([
         {columnIndex: 0, rowIndex: 0},
-        {columnIndex: 0, rowIndex: 1},
+        {columnIndex: 0, rowIndex: 1}
       ]);
 
       cellRendererCalls.splice(0);
@@ -1749,12 +1749,12 @@ describe('Grid', () => {
       render(
         getMarkup({
           ...props,
-          scrollToRow: 1,
-        }),
+          scrollToRow: 1
+        })
       );
       expect(cellRendererCalls).toEqual([
         {columnIndex: 0, rowIndex: 0},
-        {columnIndex: 0, rowIndex: 1},
+        {columnIndex: 0, rowIndex: 1}
       ]);
     });
 
@@ -1771,18 +1771,18 @@ describe('Grid', () => {
         rowHeight: 20,
         rowCount: 100000,
         scrollToRow: 0,
-        width: 100,
+        width: 100
       };
 
       render(
         getMarkup({
           ...props,
-          scrollToRow: 0,
-        }),
+          scrollToRow: 0
+        })
       );
       expect(cellRendererCalls).toEqual([
         {columnIndex: 0, rowIndex: 0},
-        {columnIndex: 0, rowIndex: 1},
+        {columnIndex: 0, rowIndex: 1}
       ]);
 
       cellRendererCalls.splice(0);
@@ -1790,12 +1790,12 @@ describe('Grid', () => {
       render(
         getMarkup({
           ...props,
-          scrollToRow: 1,
-        }),
+          scrollToRow: 1
+        })
       );
       expect(cellRendererCalls).toEqual([
         {columnIndex: 0, rowIndex: 0},
-        {columnIndex: 0, rowIndex: 1},
+        {columnIndex: 0, rowIndex: 1}
       ]);
     });
 
@@ -1810,18 +1810,18 @@ describe('Grid', () => {
         columnWidth: 100,
         height: 40,
         rowHeight: 20,
-        width: 100,
+        width: 100
       };
 
       const grid = render(
         getMarkup({
           ...props,
-          scrollToRow: 0,
-        }),
+          scrollToRow: 0
+        })
       );
       expect(cellRendererCalls).toEqual([
         {columnIndex: 0, rowIndex: 0},
-        {columnIndex: 0, rowIndex: 1},
+        {columnIndex: 0, rowIndex: 1}
       ]);
 
       simulateScroll({grid, scrollTop: 1});
@@ -1834,8 +1834,8 @@ describe('Grid', () => {
       render(
         getMarkup({
           ...props,
-          scrollToRow: 3,
-        }),
+          scrollToRow: 3
+        })
       );
       expect(cellRendererCalls).toEqual([{columnIndex: 0, rowIndex: 3}]);
     });
@@ -1852,20 +1852,20 @@ describe('Grid', () => {
         height: 40,
         rowHeight: 20,
         scrollToRow: 0,
-        width: 100,
+        width: 100
       };
 
       const grid = render(getMarkup(props));
       expect(cellRendererCalls).toEqual([
         {columnIndex: 0, rowIndex: 0},
-        {columnIndex: 0, rowIndex: 1},
+        {columnIndex: 0, rowIndex: 1}
       ]);
 
       simulateScroll({grid, scrollTop: 1});
 
       // Allow scrolling timeout to complete so that cell cache is reset
       await new Promise(resolve =>
-        setTimeout(resolve, DEFAULT_SCROLLING_RESET_TIME_INTERVAL * 2),
+        setTimeout(resolve, DEFAULT_SCROLLING_RESET_TIME_INTERVAL * 2)
       );
 
       cellRendererCalls.splice(0);
@@ -1873,8 +1873,8 @@ describe('Grid', () => {
       render(
         getMarkup({
           ...props,
-          scrollToRow: 1,
-        }),
+          scrollToRow: 1
+        })
       );
       expect(cellRendererCalls.length).not.toEqual(0);
 
@@ -1892,7 +1892,7 @@ describe('Grid', () => {
         cellRenderer,
         columnCount: 1,
         isScrolling: true,
-        rowCount: 1,
+        rowCount: 1
       };
 
       render(getMarkup(props));
@@ -1906,8 +1906,8 @@ describe('Grid', () => {
       render(
         getMarkup({
           ...props,
-          isScrolling: false,
-        }),
+          isScrolling: false
+        })
       );
 
       expect(cellRenderer.mock.calls[0][0].style).toBe(scrollingStyle);
@@ -1918,8 +1918,8 @@ describe('Grid', () => {
       render(
         getMarkup({
           ...props,
-          isScrolling: true,
-        }),
+          isScrolling: true
+        })
       );
 
       expect(cellRenderer.mock.calls[0][0].style).not.toBe(scrollingStyle);
@@ -1938,13 +1938,13 @@ describe('Grid', () => {
         height: 40,
         rowHeight: 20,
         scrollTop: 0,
-        width: 100,
+        width: 100
       };
 
       const grid = render(getMarkup(props));
       expect(cellRendererCalls).toEqual([
         {columnIndex: 0, rowIndex: 0},
-        {columnIndex: 0, rowIndex: 1},
+        {columnIndex: 0, rowIndex: 1}
       ]);
 
       simulateScroll({grid, scrollTop: 1});
@@ -1969,14 +1969,14 @@ describe('Grid', () => {
         rowHeight: 20,
         scrollTop: 0,
         width: 100,
-        isScrollingOptOut: true,
+        isScrollingOptOut: true
       };
 
       render(getMarkup(props));
       render(getMarkup(props));
       expect(cellRendererCalls).toEqual([
         {columnIndex: 0, rowIndex: 0},
-        {columnIndex: 0, rowIndex: 1},
+        {columnIndex: 0, rowIndex: 1}
       ]);
 
       cellRendererCalls.splice(0);
@@ -1984,8 +1984,8 @@ describe('Grid', () => {
       render(
         getMarkup({
           ...props,
-          isScrolling: false,
-        }),
+          isScrolling: false
+        })
       );
 
       // Visible cells are cached
@@ -1994,8 +1994,8 @@ describe('Grid', () => {
       render(
         getMarkup({
           ...props,
-          isScrolling: true,
-        }),
+          isScrolling: true
+        })
       );
 
       // Only cleared non-visible cells
@@ -2013,7 +2013,7 @@ describe('Grid', () => {
       }
       const props = {
         scrollingResetTimeInterval,
-        cellRangeRenderer,
+        cellRangeRenderer
       };
 
       const grid = render(getMarkup(props));
@@ -2025,7 +2025,7 @@ describe('Grid', () => {
         simulateScroll({grid, scrollTop: i});
         // small wait for maybe early _debounceScrollEndedCallback
         await new Promise(resolve =>
-          setTimeout(resolve, scrollingResetTimeInterval / 2),
+          setTimeout(resolve, scrollingResetTimeInterval / 2)
         );
         expect(cellRangeRendererCalls).toEqual(1);
       }
@@ -2033,7 +2033,7 @@ describe('Grid', () => {
       cellRangeRendererCalls = 0;
       // wait for real _debounceScrollEndedCallback
       await new Promise(resolve =>
-        setTimeout(resolve, scrollingResetTimeInterval * 1.5),
+        setTimeout(resolve, scrollingResetTimeInterval * 1.5)
       );
       expect(cellRangeRendererCalls).toEqual(1);
     });
@@ -2048,7 +2048,7 @@ describe('Grid', () => {
       }
       const props = {
         cellRenderer,
-        scrollingResetTimeInterval,
+        scrollingResetTimeInterval
       };
 
       const grid = render(getMarkup(props));
@@ -2057,28 +2057,28 @@ describe('Grid', () => {
       simulateScroll({grid, scrollTop: 1});
 
       await new Promise(resolve =>
-        setTimeout(resolve, DEFAULT_SCROLLING_RESET_TIME_INTERVAL),
+        setTimeout(resolve, DEFAULT_SCROLLING_RESET_TIME_INTERVAL)
       );
 
       cellRendererCalls.splice(0);
       render(
         getMarkup({
           ...props,
-          className: 'foo',
-        }),
+          className: 'foo'
+        })
       );
       expect(cellRendererCalls.length).toEqual(0);
 
       await new Promise(resolve =>
-        setTimeout(resolve, DEFAULT_SCROLLING_RESET_TIME_INTERVAL * 2),
+        setTimeout(resolve, DEFAULT_SCROLLING_RESET_TIME_INTERVAL * 2)
       );
 
       cellRendererCalls.splice(0);
       render(
         getMarkup({
           ...props,
-          className: 'bar',
-        }),
+          className: 'bar'
+        })
       );
       expect(cellRendererCalls.length).not.toEqual(0);
 
@@ -2097,21 +2097,21 @@ describe('Grid', () => {
           height: 0,
           rowCount: 10,
           rowHeight: () => 20,
-          width: 0,
-        }),
+          width: 0
+        })
       );
       expect(
-        grid.state.instanceProps.columnSizeAndPositionManager.getTotalSize(),
+        grid.state.instanceProps.columnSizeAndPositionManager.getTotalSize()
       ).toEqual(1500);
       expect(
-        grid.state.instanceProps.rowSizeAndPositionManager.getTotalSize(),
+        grid.state.instanceProps.rowSizeAndPositionManager.getTotalSize()
       ).toEqual(150);
       grid.measureAllCells();
       expect(
-        grid.state.instanceProps.columnSizeAndPositionManager.getTotalSize(),
+        grid.state.instanceProps.columnSizeAndPositionManager.getTotalSize()
       ).toEqual(1000);
       expect(
-        grid.state.instanceProps.rowSizeAndPositionManager.getTotalSize(),
+        grid.state.instanceProps.rowSizeAndPositionManager.getTotalSize()
       ).toEqual(200);
     });
   });
@@ -2134,7 +2134,7 @@ describe('Grid', () => {
         height: 50,
         rowHeight,
         rowCount: 50,
-        width: 100,
+        width: 100
       };
       const component = render(getMarkup(props));
 
@@ -2154,7 +2154,7 @@ describe('Grid', () => {
 
       component.recomputeGridSize({
         columnIndex: 4,
-        rowIndex: 2,
+        rowIndex: 2
       });
 
       // Only the rows required to fill the current viewport will be rendered
@@ -2168,23 +2168,23 @@ describe('Grid', () => {
   describe('autoContainerWidth', () => {
     it('should set the innerScrollContainer width to auto to better support single-column HOCs', () => {
       const props = {
-        autoContainerWidth: true,
+        autoContainerWidth: true
       };
       const rendered = findDOMNode(render(getMarkup(props)));
       expect(
         rendered.querySelector('.ReactVirtualized__Grid__innerScrollContainer')
-          .style.width,
+          .style.width
       ).toEqual('auto');
     });
 
     it('should set the innerScrollContainer width to :totalColumnsWidth unless :autoContainerWidth', () => {
       const props = {
-        autoContainerWidth: false,
+        autoContainerWidth: false
       };
       const rendered = findDOMNode(render(getMarkup(props)));
       expect(
         rendered.querySelector('.ReactVirtualized__Grid__innerScrollContainer')
-          .style.width,
+          .style.width
       ).toEqual('2500px'); // 50 columns x 50px
     });
   });
@@ -2192,7 +2192,7 @@ describe('Grid', () => {
   describe('autoHeight', () => {
     it('should set the container height to auto to adjust to innerScrollContainer height', () => {
       const props = {
-        autoHeight: true,
+        autoHeight: true
       };
       const rendered = findDOMNode(render(getMarkup(props)));
       expect(rendered.style.height).toEqual('auto');
@@ -2201,7 +2201,7 @@ describe('Grid', () => {
     it('should have container height still affecting number of rows rendered', () => {
       const props = {
         height: 500,
-        autoHeight: true,
+        autoHeight: true
       };
       const rendered = findDOMNode(render(getMarkup(props)));
       expect(rendered.querySelectorAll('.gridItem').length).toEqual(100); // 25 rows x 4 columns
@@ -2209,16 +2209,16 @@ describe('Grid', () => {
 
     it('should have innerScrollContainer height to be equal number of rows * rowHeight', () => {
       const props = {
-        autoHeight: true,
+        autoHeight: true
       };
       const grid = render(getMarkup(props));
       const rendered = findDOMNode(grid);
       expect(
         rendered.querySelector('.ReactVirtualized__Grid__innerScrollContainer')
-          .style.height,
+          .style.height
       ).toEqual('2000px'); // 100 rows * 20px rowHeight
       expect(
-        grid.state.instanceProps.rowSizeAndPositionManager.getTotalSize(),
+        grid.state.instanceProps.rowSizeAndPositionManager.getTotalSize()
       ).toEqual(2000);
     });
   });
@@ -2226,7 +2226,7 @@ describe('Grid', () => {
   describe('autoWidth', () => {
     it('should set the container width to auto to adjust to innerScrollContainer width', () => {
       const props = {
-        autoWidth: true,
+        autoWidth: true
       };
       const rendered = findDOMNode(render(getMarkup(props)));
       expect(rendered.style.width).toEqual('auto');
@@ -2235,7 +2235,7 @@ describe('Grid', () => {
     it('should have container width still affecting number of columns rendered', () => {
       const props = {
         width: 500,
-        autoWidth: true,
+        autoWidth: true
       };
       const rendered = findDOMNode(render(getMarkup(props)));
       expect(rendered.querySelectorAll('.gridItem').length).toEqual(50); // 5 rows x 10 columns
@@ -2243,16 +2243,16 @@ describe('Grid', () => {
 
     it('should have innerScrollContainer width to be equal number of columns * columnWidth', () => {
       const props = {
-        autoWidth: true,
+        autoWidth: true
       };
       const grid = render(getMarkup(props));
       const rendered = findDOMNode(grid);
       expect(
         rendered.querySelector('.ReactVirtualized__Grid__innerScrollContainer')
-          .style.width,
+          .style.width
       ).toEqual('2500px'); // 50 columns * 50px columnWidth
       expect(
-        grid.state.instanceProps.columnSizeAndPositionManager.getTotalSize(),
+        grid.state.instanceProps.columnSizeAndPositionManager.getTotalSize()
       ).toEqual(2500);
     });
   });
@@ -2267,9 +2267,9 @@ describe('Grid', () => {
       const rendered = findDOMNode(
         render(
           getMarkup({
-            tabIndex: -1,
-          }),
-        ),
+            tabIndex: -1
+          })
+        )
       );
       expect(rendered.tabIndex).toEqual(-1);
     });
@@ -2338,7 +2338,7 @@ describe('Grid', () => {
         height: 40,
         rowHeight: 20,
         scrollTop: 0,
-        width: 100,
+        width: 100
       };
 
       const grid = render(getMarkup(props));
@@ -2354,7 +2354,7 @@ describe('Grid', () => {
         overscanColumnCount: 0,
         overscanRowCount: 0,
         rowHeight: 50,
-        width: 100,
+        width: 100
       };
 
       const grid = render(getMarkup(props));
@@ -2367,7 +2367,7 @@ describe('Grid', () => {
 
       // Allow scrolling timeout to complete so that cell cache is reset
       await new Promise(resolve =>
-        setTimeout(resolve, DEFAULT_SCROLLING_RESET_TIME_INTERVAL * 2),
+        setTimeout(resolve, DEFAULT_SCROLLING_RESET_TIME_INTERVAL * 2)
       );
 
       expect(Object.keys(grid._styleCache).length).toBe(4);
@@ -2382,7 +2382,7 @@ describe('Grid', () => {
         overscanColumnCount: 0,
         overscanRowCount: 0,
         rowHeight: 50,
-        width: 100,
+        width: 100
       };
 
       const grid = render(getMarkup(props));
@@ -2392,8 +2392,8 @@ describe('Grid', () => {
       render(
         getMarkup({
           ...props,
-          scrollTop: 50,
-        }),
+          scrollTop: 50
+        })
       );
 
       expect(Object.keys(grid._styleCache).length).toBe(6);
@@ -2417,7 +2417,7 @@ describe('Grid', () => {
         overscanColumnCount: 0,
         overscanRowCount: 0,
         rowHeight: 100,
-        width: 100,
+        width: 100
       };
 
       render(getMarkup(props));
@@ -2429,8 +2429,8 @@ describe('Grid', () => {
         getMarkup({
           ...props,
           columnWidth: 50,
-          width: 50,
-        }),
+          width: 50
+        })
       );
 
       expect(cellRendererCalls.length).toEqual(2);
@@ -2453,13 +2453,13 @@ describe('Grid', () => {
         rowHeight: 100,
         columnWidth: 100,
         rowCount: getMaxElementSize() * 2 / 100, // lots of offset
-        scrollTop: 2000,
-      }),
+        scrollTop: 2000
+      })
     );
 
     simulateScroll({
       grid,
-      scrollTop: 2100,
+      scrollTop: 2100
     });
 
     // cellRendererCalls[0] is the element at rowIndex 0
@@ -2473,7 +2473,7 @@ describe('Grid', () => {
 
   it('should only cache styles when a :deferredMeasurementCache is provided if the cell has already been measured', () => {
     const cache = new CellMeasurerCache({
-      fixedWidth: true,
+      fixedWidth: true
     });
     cache.set(0, 0, 100, 100);
     cache.set(1, 1, 100, 100);
@@ -2482,8 +2482,8 @@ describe('Grid', () => {
       getMarkup({
         columnCount: 2,
         deferredMeasurementCache: cache,
-        rowCount: 2,
-      }),
+        rowCount: 2
+      })
     );
 
     const keys = Object.keys(grid._styleCache);
@@ -2501,12 +2501,12 @@ describe('Grid', () => {
 
       render(
         getMarkup({
-          cellRenderer,
-        }),
+          cellRenderer
+        })
       );
 
       expect(console.warn).toHaveBeenCalledWith(
-        'Rendered cell should include style property for positioning.',
+        'Rendered cell should include style property for positioning.'
       );
       expect(console.warn).toHaveBeenCalledTimes(1);
     });
@@ -2515,7 +2515,7 @@ describe('Grid', () => {
       spyOn(console, 'warn');
 
       const cache = new CellMeasurerCache({
-        fixedWidth: true,
+        fixedWidth: true
       });
 
       const cellRenderer = jest.fn();
@@ -2536,12 +2536,12 @@ describe('Grid', () => {
           cellRenderer,
           columnCount: 1,
           deferredMeasurementCache: cache,
-          rowCount: 1,
-        }),
+          rowCount: 1
+        })
       );
 
       expect(console.warn).toHaveBeenCalledWith(
-        'Rendered cell should include style property for positioning.',
+        'Rendered cell should include style property for positioning.'
       );
       expect(console.warn).toHaveBeenCalledTimes(1);
     });
@@ -2550,7 +2550,7 @@ describe('Grid', () => {
   describe('deferredMeasurementCache', () => {
     it('invalidateCellSizeAfterRender should invalidate cache and refresh displayed cells after mount', () => {
       const cache = new CellMeasurerCache({
-        fixedWidth: true,
+        fixedWidth: true
       });
 
       let invalidateCellSizeAfterRender = true;
@@ -2563,7 +2563,7 @@ describe('Grid', () => {
 
           params.parent.invalidateCellSizeAfterRender({
             columnIndex: 1,
-            rowIndex: 0,
+            rowIndex: 0
           });
         }
         return <div key={params.key} style={params.style} />;
@@ -2573,7 +2573,7 @@ describe('Grid', () => {
         cellRenderer,
         columnCount: 2,
         deferredMeasurementCache: cache,
-        rowCount: 2,
+        rowCount: 2
       };
 
       render(getMarkup(props));
@@ -2584,7 +2584,7 @@ describe('Grid', () => {
 
     it('should invalidate cache and refresh displayed cells after update', () => {
       const cache = new CellMeasurerCache({
-        fixedWidth: true,
+        fixedWidth: true
       });
 
       const cellRenderer = jest.fn();
@@ -2596,7 +2596,7 @@ describe('Grid', () => {
         cellRenderer,
         columnCount: 2,
         deferredMeasurementCache: cache,
-        rowCount: 2,
+        rowCount: 2
       };
 
       const grid = render(getMarkup(props));
@@ -2612,7 +2612,7 @@ describe('Grid', () => {
           invalidateCellSizeAfterRender = false;
           params.parent.invalidateCellSizeAfterRender({
             columnIndex: 1,
-            rowIndex: 0,
+            rowIndex: 0
           });
         }
         return <div key={params.key} style={params.style} />;
@@ -2627,7 +2627,7 @@ describe('Grid', () => {
 
     it('should not cache cells until they have been measured by CellMeasurer', () => {
       const cache = new CellMeasurerCache({
-        fixedWidth: true,
+        fixedWidth: true
       });
 
       // Fake measure cell 0,0 but not cell 0,1
@@ -2642,7 +2642,7 @@ describe('Grid', () => {
         cellRenderer,
         columnCount: 2,
         deferredMeasurementCache: cache,
-        rowCount: 1,
+        rowCount: 1
       };
 
       // Trigger 2 renders
@@ -2671,8 +2671,8 @@ describe('Grid', () => {
           columnCount: 1,
           getScrollbarSize: getScrollbarSize20,
           onScrollbarPresenceChange,
-          rowCount: 1,
-        }),
+          rowCount: 1
+        })
       );
       expect(onScrollbarPresenceChange).not.toHaveBeenCalled();
     });
@@ -2685,8 +2685,8 @@ describe('Grid', () => {
           columnCount: 100,
           getScrollbarSize: getScrollbarSize20,
           onScrollbarPresenceChange,
-          rowCount: 100,
-        }),
+          rowCount: 100
+        })
       );
       expect(onScrollbarPresenceChange).toHaveBeenCalled();
 
@@ -2703,8 +2703,8 @@ describe('Grid', () => {
           columnCount: 1,
           getScrollbarSize: getScrollbarSize20,
           onScrollbarPresenceChange,
-          rowCount: 1,
-        }),
+          rowCount: 1
+        })
       );
       expect(onScrollbarPresenceChange).not.toHaveBeenCalled();
 
@@ -2713,8 +2713,8 @@ describe('Grid', () => {
           columnCount: 100,
           getScrollbarSize: getScrollbarSize20,
           onScrollbarPresenceChange,
-          rowCount: 100,
-        }),
+          rowCount: 100
+        })
       );
       expect(onScrollbarPresenceChange).toHaveBeenCalled();
 
@@ -2731,8 +2731,8 @@ describe('Grid', () => {
           columnCount: 1,
           getScrollbarSize: getScrollbarSize20,
           onScrollbarPresenceChange,
-          rowCount: 1,
-        }),
+          rowCount: 1
+        })
       );
       expect(onScrollbarPresenceChange).not.toHaveBeenCalled();
       render(
@@ -2740,8 +2740,8 @@ describe('Grid', () => {
           columnCount: 2,
           getScrollbarSize: getScrollbarSize20,
           onScrollbarPresenceChange,
-          rowCount: 2,
-        }),
+          rowCount: 2
+        })
       );
       expect(onScrollbarPresenceChange).not.toHaveBeenCalled();
     });

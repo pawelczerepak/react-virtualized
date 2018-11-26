@@ -8,7 +8,7 @@ import type {CellDataGetterParams} from './types';
  */
 export default function defaultCellDataGetter({
   dataKey,
-  rowData,
+  rowData
 }: CellDataGetterParams) {
   if (typeof rowData.get === 'function') {
     return rowData.get(dataKey);

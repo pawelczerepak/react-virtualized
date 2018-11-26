@@ -44,12 +44,12 @@ export default class Collection extends React.PureComponent {
     /**
      * Optionally override the size of the sections a Collection's cells are split into.
      */
-    sectionSize: PropTypes.number,
+    sectionSize: PropTypes.number
   };
 
   static defaultProps = {
     'aria-label': 'grid',
-    cellGroupRenderer: defaultCellGroupRenderer,
+    cellGroupRenderer: defaultCellGroupRenderer
   };
 
   constructor(props, context) {
@@ -100,7 +100,7 @@ export default class Collection extends React.PureComponent {
     const data = calculateSizeAndPositionData({
       cellCount,
       cellSizeAndPositionGetter,
-      sectionSize,
+      sectionSize
     });
 
     this._cellMetadata = data.cellMetadata;
@@ -125,7 +125,7 @@ export default class Collection extends React.PureComponent {
     height,
     scrollLeft,
     scrollTop,
-    width,
+    width
   }): ScrollPosition {
     const {cellCount} = this.props;
 
@@ -138,7 +138,7 @@ export default class Collection extends React.PureComponent {
         cellSize: cellMetadata.width,
         containerSize: width,
         currentOffset: scrollLeft,
-        targetIndex: cellIndex,
+        targetIndex: cellIndex
       });
 
       scrollTop = getUpdatedOffsetForIndex({
@@ -147,20 +147,20 @@ export default class Collection extends React.PureComponent {
         cellSize: cellMetadata.height,
         containerSize: height,
         currentOffset: scrollTop,
-        targetIndex: cellIndex,
+        targetIndex: cellIndex
       });
     }
 
     return {
       scrollLeft,
-      scrollTop,
+      scrollTop
     };
   }
 
   getTotalSize(): SizeInfo {
     return {
       height: this._height,
-      width: this._width,
+      width: this._width
     };
   }
 
@@ -172,7 +172,7 @@ export default class Collection extends React.PureComponent {
       height,
       width,
       x,
-      y,
+      y
     });
 
     return cellGroupRenderer({
@@ -181,7 +181,7 @@ export default class Collection extends React.PureComponent {
       cellSizeAndPositionGetter: ({index}) =>
         this._sectionManager.getCellMetadata({index}),
       indices: this._lastRenderedCellIndices,
-      isScrolling,
+      isScrolling
     });
   }
 
@@ -201,7 +201,7 @@ function defaultCellGroupRenderer({
   cellRenderer,
   cellSizeAndPositionGetter,
   indices,
-  isScrolling,
+  isScrolling
 }) {
   return indices
     .map(index => {
@@ -216,8 +216,8 @@ function defaultCellGroupRenderer({
           left: cellMetadata.x,
           position: 'absolute',
           top: cellMetadata.y,
-          width: cellMetadata.width,
-        },
+          width: cellMetadata.width
+        }
       };
 
       // Avoid re-creating cells while scrolling.

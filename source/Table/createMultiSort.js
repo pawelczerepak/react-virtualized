@@ -5,14 +5,14 @@ type SortDirection = 'ASC' | 'DESC';
 type SortParams = {
   defaultSortDirection: SortDirection,
   event: MouseEvent,
-  sortBy: string,
+  sortBy: string
 };
 
 type SortDirectionMap = {[string]: SortDirection};
 
 type MultiSortOptions = {
   defaultSortBy: ?Array<string>,
-  defaultSortDirection: ?SortDirectionMap,
+  defaultSortDirection: ?SortDirectionMap
 };
 
 type MultiSortReturn = {
@@ -31,12 +31,12 @@ type MultiSortReturn = {
   /**
    * Specifies the direction a specific field is being sorted in.
    */
-  sortDirection: SortDirectionMap,
+  sortDirection: SortDirectionMap
 };
 
 export default function createMultiSort(
   sortCallback: Function,
-  {defaultSortBy, defaultSortDirection = {}}: MultiSortOptions = {},
+  {defaultSortBy, defaultSortDirection = {}}: MultiSortOptions = {}
 ): MultiSortReturn {
   if (!sortCallback) {
     throw Error(`Required parameter "sortCallback" not specified`);
@@ -54,7 +54,7 @@ export default function createMultiSort(
   function sort({
     defaultSortDirection,
     event,
-    sortBy: dataKey,
+    sortBy: dataKey
   }: SortParams): void {
     if (event.shiftKey) {
       // Shift + click appends a column to existing criteria
@@ -96,13 +96,13 @@ export default function createMultiSort(
     // Notify application code
     sortCallback({
       sortBy,
-      sortDirection,
+      sortDirection
     });
   }
 
   return {
     sort,
     sortBy,
-    sortDirection,
+    sortDirection
   };
 }

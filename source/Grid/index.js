@@ -8,15 +8,15 @@ export type {
   OverscanIndicesGetter,
   RenderedSection,
   CellRendererParams,
-  Scroll,
+  Scroll
 } from './types';
 
 export {default} from './Grid';
 export {default as Grid} from './Grid';
 export {
-  default as accessibilityOverscanIndicesGetter,
+  default as accessibilityOverscanIndicesGetter
 } from './accessibilityOverscanIndicesGetter';
 export {default as defaultCellRangeRenderer} from './defaultCellRangeRenderer';
 export {
-  default as defaultOverscanIndicesGetter,
+  default as defaultOverscanIndicesGetter
 } from './defaultOverscanIndicesGetter';

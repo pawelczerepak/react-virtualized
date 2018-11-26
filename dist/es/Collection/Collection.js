@@ -1,131 +1,15 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
-
-var _extends =
-  Object.assign ||
-  function(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-    return target;
-  };
-
-var _createClass = (function() {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-  return function(Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-})();
-
-var _propTypes = require('prop-types');
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _react = require('react');
-
-var React = _interopRequireWildcard(_react);
-
-var _CollectionView = require('./CollectionView');
-
-var _CollectionView2 = _interopRequireDefault(_CollectionView);
-
-var _calculateSizeAndPositionData2 = require('./utils/calculateSizeAndPositionData');
-
-var _calculateSizeAndPositionData3 = _interopRequireDefault(
-  _calculateSizeAndPositionData2,
-);
-
-var _getUpdatedOffsetForIndex = require('../utils/getUpdatedOffsetForIndex');
-
-var _getUpdatedOffsetForIndex2 = _interopRequireDefault(
-  _getUpdatedOffsetForIndex,
-);
-
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  } else {
-    var newObj = {};
-    if (obj != null) {
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key))
-          newObj[key] = obj[key];
-      }
-    }
-    newObj.default = obj;
-    return newObj;
-  }
-}
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {default: obj};
-}
-
-function _objectWithoutProperties(obj, keys) {
-  var target = {};
-  for (var i in obj) {
-    if (keys.indexOf(i) >= 0) continue;
-    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
-    target[i] = obj[i];
-  }
-  return target;
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (!self) {
-    throw new ReferenceError(
-      "this hasn't been initialised - super() hasn't been called",
-    );
-  }
-  return call && (typeof call === 'object' || typeof call === 'function')
-    ? call
-    : self;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== 'function' && superClass !== null) {
-    throw new TypeError(
-      'Super expression must either be null or a function, not ' +
-        typeof superClass,
-    );
-  }
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true,
-    },
-  });
-  if (superClass)
-    Object.setPrototypeOf
-      ? Object.setPrototypeOf(subClass, superClass)
-      : (subClass.__proto__ = superClass);
-}
+import _extends from 'babel-runtime/helpers/extends';
+import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
+import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
+import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
+import _createClass from 'babel-runtime/helpers/createClass';
+import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
+import _inherits from 'babel-runtime/helpers/inherits';
+import PropTypes from 'prop-types';
+import * as React from 'react';
+import CollectionView from './CollectionView';
+import _calculateSizeAndPositionData from './utils/calculateSizeAndPositionData';
+import getUpdatedOffsetForIndex from '../utils/getUpdatedOffsetForIndex';
 
 /**
  * Renders scattered or non-linear data.
@@ -139,11 +23,11 @@ var Collection = (function(_React$PureComponent) {
 
     var _this = _possibleConstructorReturn(
       this,
-      (Collection.__proto__ || Object.getPrototypeOf(Collection)).call(
+      (Collection.__proto__ || _Object$getPrototypeOf(Collection)).call(
         this,
         props,
-        context,
-      ),
+        context
+      )
     );
 
     _this._cellMetadata = [];
@@ -164,7 +48,7 @@ var Collection = (function(_React$PureComponent) {
         if (this._collectionView !== undefined) {
           this._collectionView.forceUpdate();
         }
-      },
+      }
 
       /** See Collection#recomputeCellSizesAndPositions */
     },
@@ -173,7 +57,7 @@ var Collection = (function(_React$PureComponent) {
       value: function recomputeCellSizesAndPositions() {
         this._cellCache = [];
         this._collectionView.recomputeCellSizesAndPositions();
-      },
+      }
 
       /** React lifecycle methods */
     },
@@ -183,17 +67,17 @@ var Collection = (function(_React$PureComponent) {
         var props = _objectWithoutProperties(this.props, []);
 
         return React.createElement(
-          _CollectionView2.default,
+          CollectionView,
           _extends(
             {
               cellLayoutManager: this,
               isScrollingChange: this._isScrollingChange,
-              ref: this._setCollectionViewRef,
+              ref: this._setCollectionViewRef
             },
-            props,
-          ),
+            props
+          )
         );
-      },
+      }
 
       /** CellLayoutManager interface */
     },
@@ -205,17 +89,17 @@ var Collection = (function(_React$PureComponent) {
           cellSizeAndPositionGetter = _props.cellSizeAndPositionGetter,
           sectionSize = _props.sectionSize;
 
-        var data = (0, _calculateSizeAndPositionData3.default)({
+        var data = _calculateSizeAndPositionData({
           cellCount: cellCount,
           cellSizeAndPositionGetter: cellSizeAndPositionGetter,
-          sectionSize: sectionSize,
+          sectionSize: sectionSize
         });
 
         this._cellMetadata = data.cellMetadata;
         this._sectionManager = data.sectionManager;
         this._height = data.height;
         this._width = data.width;
-      },
+      }
 
       /**
        * Returns the most recently rendered set of cell indices.
@@ -225,7 +109,7 @@ var Collection = (function(_React$PureComponent) {
       key: 'getLastRenderedIndices',
       value: function getLastRenderedIndices() {
         return this._lastRenderedCellIndices;
-      },
+      }
 
       /**
        * Calculates the minimum amount of change from the current scroll position to ensure the specified cell is (fully) visible.
@@ -245,39 +129,39 @@ var Collection = (function(_React$PureComponent) {
         if (cellIndex >= 0 && cellIndex < cellCount) {
           var cellMetadata = this._cellMetadata[cellIndex];
 
-          scrollLeft = (0, _getUpdatedOffsetForIndex2.default)({
+          scrollLeft = getUpdatedOffsetForIndex({
             align: align,
             cellOffset: cellMetadata.x,
             cellSize: cellMetadata.width,
             containerSize: width,
             currentOffset: scrollLeft,
-            targetIndex: cellIndex,
+            targetIndex: cellIndex
           });
 
-          scrollTop = (0, _getUpdatedOffsetForIndex2.default)({
+          scrollTop = getUpdatedOffsetForIndex({
             align: align,
             cellOffset: cellMetadata.y,
             cellSize: cellMetadata.height,
             containerSize: height,
             currentOffset: scrollTop,
-            targetIndex: cellIndex,
+            targetIndex: cellIndex
           });
         }
 
         return {
           scrollLeft: scrollLeft,
-          scrollTop: scrollTop,
+          scrollTop: scrollTop
         };
-      },
+      }
     },
     {
       key: 'getTotalSize',
       value: function getTotalSize() {
         return {
           height: this._height,
-          width: this._width,
+          width: this._width
         };
-      },
+      }
     },
     {
       key: 'cellRenderers',
@@ -299,7 +183,7 @@ var Collection = (function(_React$PureComponent) {
           height: height,
           width: width,
           x: x,
-          y: y,
+          y: y
         });
 
         return cellGroupRenderer({
@@ -310,9 +194,9 @@ var Collection = (function(_React$PureComponent) {
             return _this2._sectionManager.getCellMetadata({index: index});
           },
           indices: this._lastRenderedCellIndices,
-          isScrolling: isScrolling,
+          isScrolling: isScrolling
         });
-      },
+      }
     },
     {
       key: '_isScrollingChange',
@@ -320,59 +204,62 @@ var Collection = (function(_React$PureComponent) {
         if (!isScrolling) {
           this._cellCache = [];
         }
-      },
+      }
     },
     {
       key: '_setCollectionViewRef',
       value: function _setCollectionViewRef(ref) {
         this._collectionView = ref;
-      },
-    },
+      }
+    }
   ]);
 
   return Collection;
 })(React.PureComponent);
 
-Collection.propTypes = {
-  'aria-label': _propTypes2.default.string,
-
-  /**
-   * Number of cells in Collection.
-   */
-  cellCount: _propTypes2.default.number.isRequired,
-
-  /**
-   * Responsible for rendering a group of cells given their indices.
-   * Should implement the following interface: ({
-   *   cellSizeAndPositionGetter:Function,
-   *   indices: Array<number>,
-   *   cellRenderer: Function
-   * }): Array<PropTypes.node>
-   */
-  cellGroupRenderer: _propTypes2.default.func.isRequired,
-
-  /**
-   * Responsible for rendering a cell given an row and column index.
-   * Should implement the following interface: ({ index: number, key: string, style: object }): PropTypes.element
-   */
-  cellRenderer: _propTypes2.default.func.isRequired,
-
-  /**
-   * Callback responsible for returning size and offset/position information for a given cell (index).
-   * ({ index: number }): { height: number, width: number, x: number, y: number }
-   */
-  cellSizeAndPositionGetter: _propTypes2.default.func.isRequired,
-
-  /**
-   * Optionally override the size of the sections a Collection's cells are split into.
-   */
-  sectionSize: _propTypes2.default.number,
-};
 Collection.defaultProps = {
   'aria-label': 'grid',
-  cellGroupRenderer: defaultCellGroupRenderer,
+  cellGroupRenderer: defaultCellGroupRenderer
 };
-exports.default = Collection;
+export default Collection;
+Collection.propTypes =
+  process.env.NODE_ENV !== 'production'
+    ? {
+        'aria-label': PropTypes.string,
+
+        /**
+         * Number of cells in Collection.
+         */
+        cellCount: PropTypes.number.isRequired,
+
+        /**
+         * Responsible for rendering a group of cells given their indices.
+         * Should implement the following interface: ({
+         *   cellSizeAndPositionGetter:Function,
+         *   indices: Array<number>,
+         *   cellRenderer: Function
+         * }): Array<PropTypes.node>
+         */
+        cellGroupRenderer: PropTypes.func.isRequired,
+
+        /**
+         * Responsible for rendering a cell given an row and column index.
+         * Should implement the following interface: ({ index: number, key: string, style: object }): PropTypes.element
+         */
+        cellRenderer: PropTypes.func.isRequired,
+
+        /**
+         * Callback responsible for returning size and offset/position information for a given cell (index).
+         * ({ index: number }): { height: number, width: number, x: number, y: number }
+         */
+        cellSizeAndPositionGetter: PropTypes.func.isRequired,
+
+        /**
+         * Optionally override the size of the sections a Collection's cells are split into.
+         */
+        sectionSize: PropTypes.number
+      }
+    : {};
 
 function defaultCellGroupRenderer(_ref4) {
   var cellCache = _ref4.cellCache,
@@ -394,8 +281,8 @@ function defaultCellGroupRenderer(_ref4) {
           left: cellMetadata.x,
           position: 'absolute',
           top: cellMetadata.y,
-          width: cellMetadata.width,
-        },
+          width: cellMetadata.width
+        }
       };
 
       // Avoid re-creating cells while scrolling.
@@ -416,3 +303,5 @@ function defaultCellGroupRenderer(_ref4) {
       return !!renderedCell;
     });
 }
+import {bpfrpt_proptype_ScrollPosition} from './types';
+import {bpfrpt_proptype_SizeInfo} from './types';

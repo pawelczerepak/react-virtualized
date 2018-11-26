@@ -9,7 +9,7 @@ import Grid from '../Grid';
 import {
   ContentBox,
   ContentBoxHeader,
-  ContentBoxParagraph,
+  ContentBoxParagraph
 } from '../demo/ContentBox';
 import {LabeledInput, InputRow} from '../demo/LabeledInput';
 
@@ -20,7 +20,7 @@ export default class ColumnSizerExample extends React.PureComponent {
     this.state = {
       columnMaxWidth: 100,
       columnMinWidth: 75,
-      columnCount: 10,
+      columnCount: 10
     };
 
     this._noColumnMaxWidthChange = this._noColumnMaxWidthChange.bind(this);
@@ -81,7 +81,7 @@ export default class ColumnSizerExample extends React.PureComponent {
                     className={styles.GridContainer}
                     style={{
                       height: 50,
-                      width: adjustedWidth,
+                      width: adjustedWidth
                     }}>
                     <Grid
                       ref={registerChild}

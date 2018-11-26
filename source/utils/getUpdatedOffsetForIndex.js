@@ -15,7 +15,7 @@ export default function getUpdatedOffsetForIndex({
   cellOffset,
   cellSize,
   containerSize,
-  currentOffset,
+  currentOffset
 }) {
   const maxOffset = cellOffset;
   const minOffset = maxOffset - containerSize + cellSize;

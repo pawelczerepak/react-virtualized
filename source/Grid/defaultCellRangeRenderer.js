@@ -24,7 +24,7 @@ export default function defaultCellRangeRenderer({
   styleCache,
   verticalOffsetAdjustment,
   visibleColumnIndices,
-  visibleRowIndices,
+  visibleRowIndices
 }: CellRangeRendererParams) {
   const renderedCells = [];
 
@@ -48,7 +48,7 @@ export default function defaultCellRangeRenderer({
       columnIndex++
     ) {
       let columnDatum = columnSizeAndPositionManager.getSizeAndPositionOfCell(
-        columnIndex,
+        columnIndex
       );
       let isVisible =
         columnIndex >= visibleColumnIndices.start &&
@@ -76,7 +76,7 @@ export default function defaultCellRangeRenderer({
             left: 0,
             position: 'absolute',
             top: 0,
-            width: 'auto',
+            width: 'auto'
           };
         } else {
           style = {
@@ -84,7 +84,7 @@ export default function defaultCellRangeRenderer({
             left: columnDatum.offset + horizontalOffsetAdjustment,
             position: 'absolute',
             top: rowDatum.offset + verticalOffsetAdjustment,
-            width: columnDatum.size,
+            width: columnDatum.size
           };
 
           styleCache[key] = style;
@@ -98,7 +98,7 @@ export default function defaultCellRangeRenderer({
         key,
         parent,
         rowIndex,
-        style,
+        style
       };
 
       let renderedCell;
@@ -163,7 +163,7 @@ function warnAboutMissingStyle(parent, renderedCell) {
         parent.__warnedAboutMissingStyle = true;
 
         console.warn(
-          'Rendered cell should include style property for positioning.',
+          'Rendered cell should include style property for positioning.'
         );
       }
     }

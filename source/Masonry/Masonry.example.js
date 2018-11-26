@@ -5,7 +5,7 @@ import * as React from 'react';
 import {
   ContentBox,
   ContentBoxHeader,
-  ContentBoxParagraph,
+  ContentBoxParagraph
 } from '../demo/ContentBox';
 import {LabeledInput, InputRow} from '../demo/LabeledInput';
 import {CellMeasurer, CellMeasurerCache} from '../CellMeasurer';
@@ -17,7 +17,7 @@ import styles from './Masonry.example.css';
 
 export default class GridExample extends React.PureComponent {
   static contextTypes = {
-    list: PropTypes.instanceOf(Immutable.List).isRequired,
+    list: PropTypes.instanceOf(Immutable.List).isRequired
   };
 
   constructor(props, context) {
@@ -28,7 +28,7 @@ export default class GridExample extends React.PureComponent {
     this._cache = new CellMeasurerCache({
       defaultHeight: 250,
       defaultWidth: 200,
-      fixedWidth: true,
+      fixedWidth: true
     });
 
     this.state = {
@@ -36,7 +36,7 @@ export default class GridExample extends React.PureComponent {
       height: 300,
       gutterSize: 10,
       overscanByPixels: 0,
-      windowScrollerEnabled: false,
+      windowScrollerEnabled: false
     };
 
     this._cellRenderer = this._cellRenderer.bind(this);
@@ -52,7 +52,7 @@ export default class GridExample extends React.PureComponent {
       height,
       gutterSize,
       overscanByPixels,
-      windowScrollerEnabled,
+      windowScrollerEnabled
     } = this.state;
 
     let child;
@@ -93,7 +93,7 @@ export default class GridExample extends React.PureComponent {
                 // It's easier to clear the cache when toggling modes to avoid a partially stale state.
                 this._cache.clearAll();
                 this.setState({
-                  windowScrollerEnabled: event.target.checked,
+                  windowScrollerEnabled: event.target.checked
                 });
               }}
             />
@@ -110,7 +110,7 @@ export default class GridExample extends React.PureComponent {
             name="height"
             onChange={event => {
               this.setState({
-                height: parseInt(event.target.value, 10) || 300,
+                height: parseInt(event.target.value, 10) || 300
               });
             }}
             value={height}
@@ -122,13 +122,13 @@ export default class GridExample extends React.PureComponent {
               this._cache.clearAll();
               this.setState(
                 {
-                  columnWidth: parseInt(event.target.value, 10) || 200,
+                  columnWidth: parseInt(event.target.value, 10) || 200
                 },
                 () => {
                   this._calculateColumnCount();
                   this._resetCellPositioner();
                   this._masonry.clearCellPositions();
-                },
+                }
               );
             }}
             value={columnWidth}
@@ -139,13 +139,13 @@ export default class GridExample extends React.PureComponent {
             onChange={event => {
               this.setState(
                 {
-                  gutterSize: parseInt(event.target.value, 10) || 10,
+                  gutterSize: parseInt(event.target.value, 10) || 10
                 },
                 () => {
                   this._calculateColumnCount();
                   this._resetCellPositioner();
                   this._masonry.recomputeCellPositions();
-                },
+                }
               );
             }}
             value={gutterSize}
@@ -155,7 +155,7 @@ export default class GridExample extends React.PureComponent {
             name="overscanByPixels"
             onChange={event => {
               this.setState({
-                overscanByPixels: parseInt(event.target.value, 10) || 0,
+                overscanByPixels: parseInt(event.target.value, 10) || 0
               });
             }}
             value={overscanByPixels}
@@ -185,7 +185,7 @@ export default class GridExample extends React.PureComponent {
           className={styles.Cell}
           style={{
             ...style,
-            width: columnWidth,
+            width: columnWidth
           }}>
           <div
             style={{
@@ -198,7 +198,7 @@ export default class GridExample extends React.PureComponent {
               color: 'white',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'center'
             }}>
             {index}
           </div>
@@ -216,7 +216,7 @@ export default class GridExample extends React.PureComponent {
         cellMeasurerCache: this._cache,
         columnCount: this._columnCount,
         columnWidth,
-        spacer: gutterSize,
+        spacer: gutterSize
       });
     }
   }
@@ -291,7 +291,7 @@ export default class GridExample extends React.PureComponent {
     this._cellPositioner.reset({
       columnCount: this._columnCount,
       columnWidth,
-      spacer: gutterSize,
+      spacer: gutterSize
     });
   }
 

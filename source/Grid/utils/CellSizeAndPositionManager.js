@@ -5,30 +5,30 @@ import type {Alignment, CellSizeGetter, VisibleCellRange} from '../types';
 type CellSizeAndPositionManagerParams = {
   cellCount: number,
   cellSizeGetter: CellSizeGetter,
-  estimatedCellSize: number,
+  estimatedCellSize: number
 };
 
 type ConfigureParams = {
   cellCount: number,
   estimatedCellSize: number,
-  cellSizeGetter: CellSizeGetter,
+  cellSizeGetter: CellSizeGetter
 };
 
 type GetUpdatedOffsetForIndex = {
   align: Alignment,
   containerSize: number,
   currentOffset: number,
-  targetIndex: number,
+  targetIndex: number
 };
 
 type GetVisibleCellRangeParams = {
   containerSize: number,
-  offset: number,
+  offset: number
 };
 
 type SizeAndPositionData = {
   offset: number,
-  size: number,
+  size: number
 };
 
 /**
@@ -53,7 +53,7 @@ export default class CellSizeAndPositionManager {
   constructor({
     cellCount,
     cellSizeGetter,
-    estimatedCellSize,
+    estimatedCellSize
   }: CellSizeAndPositionManagerParams) {
     this._cellSizeGetter = cellSizeGetter;
     this._cellCount = cellCount;
@@ -93,7 +93,7 @@ export default class CellSizeAndPositionManager {
   getSizeAndPositionOfCell(index: number): SizeAndPositionData {
     if (index < 0 || index >= this._cellCount) {
       throw Error(
-        `Requested index ${index} is outside of range 0..${this._cellCount}`,
+        `Requested index ${index} is outside of range 0..${this._cellCount}`
       );
     }
 
@@ -113,14 +113,14 @@ export default class CellSizeAndPositionManager {
         } else if (size === null) {
           this._cellSizeAndPositionData[i] = {
             offset,
-            size: 0,
+            size: 0
           };
 
           this._lastBatchedIndex = index;
         } else {
           this._cellSizeAndPositionData[i] = {
             offset,
-            size,
+            size
           };
 
           offset += size;
@@ -138,7 +138,7 @@ export default class CellSizeAndPositionManager {
       ? this._cellSizeAndPositionData[this._lastMeasuredIndex]
       : {
           offset: 0,
-          size: 0,
+          size: 0
         };
   }
 
@@ -173,7 +173,7 @@ export default class CellSizeAndPositionManager {
     align = 'auto',
     containerSize,
     currentOffset,
-    targetIndex,
+    targetIndex
   }: GetUpdatedOffsetForIndex): number {
     if (containerSize <= 0) {
       return 0;
@@ -230,7 +230,7 @@ export default class CellSizeAndPositionManager {
 
     return {
       start,
-      stop,
+      stop
     };
   }
 
@@ -278,7 +278,7 @@ export default class CellSizeAndPositionManager {
     return this._binarySearch(
       Math.min(index, this._cellCount - 1),
       Math.floor(index / 2),
-      offset,
+      offset
     );
   }
 

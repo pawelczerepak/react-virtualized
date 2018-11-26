@@ -6,7 +6,7 @@ describe('Section', () => {
       height,
       width,
       x,
-      y,
+      y
     });
   }
 
@@ -34,7 +34,7 @@ describe('Section', () => {
       height: 100,
       width: 200,
       x: 25,
-      y: 50,
+      y: 50
     });
 
     expect(section.toString()).toEqual('25,50 200x100');

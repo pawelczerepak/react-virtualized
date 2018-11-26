@@ -4,7 +4,7 @@ import * as React from 'react';
 import {
   ContentBox,
   ContentBoxHeader,
-  ContentBoxParagraph,
+  ContentBoxParagraph
 } from '../demo/ContentBox';
 import {LabeledInput, InputRow} from '../demo/LabeledInput';
 import AutoSizer from '../AutoSizer';
@@ -14,7 +14,7 @@ import styles from './Grid.example.css';
 
 export default class GridExample extends React.PureComponent {
   static contextTypes = {
-    list: PropTypes.instanceOf(Immutable.List).isRequired,
+    list: PropTypes.instanceOf(Immutable.List).isRequired
   };
 
   constructor(props, context) {
@@ -29,7 +29,7 @@ export default class GridExample extends React.PureComponent {
       rowCount: 1000,
       scrollToColumn: undefined,
       scrollToRow: undefined,
-      useDynamicRowHeight: false,
+      useDynamicRowHeight: false
     };
 
     this._cellRenderer = this._cellRenderer.bind(this);
@@ -55,7 +55,7 @@ export default class GridExample extends React.PureComponent {
       rowCount,
       scrollToColumn,
       scrollToRow,
-      useDynamicRowHeight,
+      useDynamicRowHeight
     } = this.state;
 
     return (
@@ -129,7 +129,7 @@ export default class GridExample extends React.PureComponent {
             name="rowHeight"
             onChange={event =>
               this.setState({
-                rowHeight: parseInt(event.target.value, 10) || 1,
+                rowHeight: parseInt(event.target.value, 10) || 1
               })
             }
             value={rowHeight}
@@ -139,7 +139,7 @@ export default class GridExample extends React.PureComponent {
             name="overscanColumnCount"
             onChange={event =>
               this.setState({
-                overscanColumnCount: parseInt(event.target.value, 10) || 0,
+                overscanColumnCount: parseInt(event.target.value, 10) || 0
               })
             }
             value={overscanColumnCount}
@@ -149,7 +149,7 @@ export default class GridExample extends React.PureComponent {
             name="overscanRowCount"
             onChange={event =>
               this.setState({
-                overscanRowCount: parseInt(event.target.value, 10) || 0,
+                overscanRowCount: parseInt(event.target.value, 10) || 0
               })
             }
             value={overscanRowCount}
@@ -237,7 +237,7 @@ export default class GridExample extends React.PureComponent {
     }
 
     const classNames = cn(rowClass, styles.cell, {
-      [styles.centeredCell]: columnIndex > 2,
+      [styles.centeredCell]: columnIndex > 2
     });
 
     return (
@@ -257,7 +257,7 @@ export default class GridExample extends React.PureComponent {
     // Since Grid caches and re-uses them, they aren't safe to modify.
     style = {
       ...style,
-      backgroundColor: datum.color,
+      backgroundColor: datum.color
     };
 
     return (
@@ -269,7 +269,7 @@ export default class GridExample extends React.PureComponent {
 
   _updateUseDynamicRowHeights(value) {
     this.setState({
-      useDynamicRowHeight: value,
+      useDynamicRowHeight: value
     });
   }
 
@@ -289,7 +289,7 @@ export default class GridExample extends React.PureComponent {
     const {columnCount} = this.state;
     let scrollToColumn = Math.min(
       columnCount - 1,
-      parseInt(event.target.value, 10),
+      parseInt(event.target.value, 10)
     );
 
     if (isNaN(scrollToColumn)) {

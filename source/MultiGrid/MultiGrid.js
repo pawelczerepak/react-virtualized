@@ -31,7 +31,7 @@ class MultiGrid extends React.PureComponent {
     styleTopLeftGrid: PropTypes.object.isRequired,
     styleTopRightGrid: PropTypes.object.isRequired,
     hideTopRightGridScrollbar: PropTypes.bool,
-    hideBottomLeftGridScrollbar: PropTypes.bool,
+    hideBottomLeftGridScrollbar: PropTypes.bool
   };
 
   static defaultProps = {
@@ -51,7 +51,7 @@ class MultiGrid extends React.PureComponent {
     styleTopLeftGrid: {},
     styleTopRightGrid: {},
     hideTopRightGridScrollbar: false,
-    hideBottomLeftGridScrollbar: false,
+    hideBottomLeftGridScrollbar: false
   };
 
   state = {
@@ -59,7 +59,7 @@ class MultiGrid extends React.PureComponent {
     scrollTop: 0,
     scrollbarSize: 0,
     showHorizontalScrollbar: false,
-    showVerticalScrollbar: false,
+    showVerticalScrollbar: false
   };
 
   _deferredInvalidateColumnIndex = null;
@@ -78,7 +78,7 @@ class MultiGrid extends React.PureComponent {
           ? new CellMeasurerCacheDecorator({
               cellMeasurerCache: deferredMeasurementCache,
               columnIndexOffset: 0,
-              rowIndexOffset: fixedRowCount,
+              rowIndexOffset: fixedRowCount
             })
           : deferredMeasurementCache;
 
@@ -87,7 +87,7 @@ class MultiGrid extends React.PureComponent {
           ? new CellMeasurerCacheDecorator({
               cellMeasurerCache: deferredMeasurementCache,
               columnIndexOffset: fixedColumnCount,
-              rowIndexOffset: fixedRowCount,
+              rowIndexOffset: fixedRowCount
             })
           : deferredMeasurementCache;
 
@@ -96,7 +96,7 @@ class MultiGrid extends React.PureComponent {
           ? new CellMeasurerCacheDecorator({
               cellMeasurerCache: deferredMeasurementCache,
               columnIndexOffset: fixedColumnCount,
-              rowIndexOffset: 0,
+              rowIndexOffset: 0
             })
           : deferredMeasurementCache;
     }
@@ -139,22 +139,22 @@ class MultiGrid extends React.PureComponent {
     this._bottomLeftGrid &&
       this._bottomLeftGrid.recomputeGridSize({
         columnIndex,
-        rowIndex: adjustedRowIndex,
+        rowIndex: adjustedRowIndex
       });
     this._bottomRightGrid &&
       this._bottomRightGrid.recomputeGridSize({
         columnIndex: adjustedColumnIndex,
-        rowIndex: adjustedRowIndex,
+        rowIndex: adjustedRowIndex
       });
     this._topLeftGrid &&
       this._topLeftGrid.recomputeGridSize({
         columnIndex,
-        rowIndex,
+        rowIndex
       });
     this._topRightGrid &&
       this._topRightGrid.recomputeGridSize({
         columnIndex: adjustedColumnIndex,
-        rowIndex,
+        rowIndex
       });
 
     const oldLeftGridWidth = this._leftGridWidth;
@@ -183,7 +183,7 @@ class MultiGrid extends React.PureComponent {
         scrollTop:
           nextProps.scrollTop != null && nextProps.scrollTop >= 0
             ? nextProps.scrollTop
-            : prevState.scrollTop,
+            : prevState.scrollTop
       };
     }
 
@@ -245,14 +245,14 @@ class MultiGrid extends React.PureComponent {
           {this._renderTopRightGrid({
             ...rest,
             onScroll,
-            scrollLeft,
+            scrollLeft
           })}
         </div>
         <div style={this._containerBottomStyle}>
           {this._renderBottomLeftGrid({
             ...rest,
             onScroll,
-            scrollTop,
+            scrollTop
           })}
           {this._renderBottomRightGrid({
             ...rest,
@@ -261,7 +261,7 @@ class MultiGrid extends React.PureComponent {
             scrollLeft,
             scrollToColumn,
             scrollToRow,
-            scrollTop,
+            scrollTop
           })}
         </div>
       </div>
@@ -285,7 +285,7 @@ class MultiGrid extends React.PureComponent {
           key={rest.key}
           style={{
             ...rest.style,
-            height: SCROLLBAR_SIZE_BUFFER,
+            height: SCROLLBAR_SIZE_BUFFER
           }}
         />
       );
@@ -293,7 +293,7 @@ class MultiGrid extends React.PureComponent {
       return cellRenderer({
         ...rest,
         parent: this,
-        rowIndex: rowIndex + fixedRowCount,
+        rowIndex: rowIndex + fixedRowCount
       });
     }
   };
@@ -305,7 +305,7 @@ class MultiGrid extends React.PureComponent {
       ...rest,
       columnIndex: columnIndex + fixedColumnCount,
       parent: this,
-      rowIndex: rowIndex + fixedRowCount,
+      rowIndex: rowIndex + fixedRowCount
     });
   };
 
@@ -318,7 +318,7 @@ class MultiGrid extends React.PureComponent {
           key={rest.key}
           style={{
             ...rest.style,
-            width: SCROLLBAR_SIZE_BUFFER,
+            width: SCROLLBAR_SIZE_BUFFER
           }}
         />
       );
@@ -326,7 +326,7 @@ class MultiGrid extends React.PureComponent {
       return cellRenderer({
         ...rest,
         columnIndex: columnIndex + fixedColumnCount,
-        parent: this,
+        parent: this
       });
     }
   };
@@ -414,7 +414,7 @@ class MultiGrid extends React.PureComponent {
 
       this.recomputeGridSize({
         columnIndex,
-        rowIndex,
+        rowIndex
       });
       this.forceUpdate();
     }
@@ -438,7 +438,7 @@ class MultiGrid extends React.PureComponent {
       styleBottomRightGrid,
       styleTopLeftGrid,
       styleTopRightGrid,
-      width,
+      width
     } = this.props;
 
     const sizeChange =
@@ -459,7 +459,7 @@ class MultiGrid extends React.PureComponent {
         height,
         overflow: 'visible', // Let :focus outline show through
         width,
-        ...style,
+        ...style
       };
     }
 
@@ -467,14 +467,14 @@ class MultiGrid extends React.PureComponent {
       this._containerTopStyle = {
         height: this._getTopGridHeight(this.props),
         position: 'relative',
-        width,
+        width
       };
 
       this._containerBottomStyle = {
         height: height - this._getTopGridHeight(this.props),
         overflow: 'visible', // Let :focus outline show through
         position: 'relative',
-        width,
+        width
       };
     }
 
@@ -487,7 +487,7 @@ class MultiGrid extends React.PureComponent {
         overflowX: 'hidden',
         overflowY: enableFixedColumnScroll ? 'auto' : 'hidden',
         position: 'absolute',
-        ...styleBottomLeftGrid,
+        ...styleBottomLeftGrid
       };
     }
 
@@ -499,7 +499,7 @@ class MultiGrid extends React.PureComponent {
       this._bottomRightGridStyle = {
         left: this._getLeftGridWidth(this.props),
         position: 'absolute',
-        ...styleBottomRightGrid,
+        ...styleBottomRightGrid
       };
     }
 
@@ -510,7 +510,7 @@ class MultiGrid extends React.PureComponent {
         overflowY: 'hidden',
         position: 'absolute',
         top: 0,
-        ...styleTopLeftGrid,
+        ...styleTopLeftGrid
       };
     }
 
@@ -525,7 +525,7 @@ class MultiGrid extends React.PureComponent {
         overflowY: 'hidden',
         position: 'absolute',
         top: 0,
-        ...styleTopRightGrid,
+        ...styleTopRightGrid
       };
     }
 
@@ -569,7 +569,7 @@ class MultiGrid extends React.PureComponent {
     const {scrollLeft, scrollTop} = scrollInfo;
     this.setState({
       scrollLeft,
-      scrollTop,
+      scrollTop
     });
     const onScroll = this.props.onScroll;
     if (onScroll) {
@@ -587,7 +587,7 @@ class MultiGrid extends React.PureComponent {
       this.setState({
         scrollbarSize: size,
         showHorizontalScrollbar: horizontal,
-        showVerticalScrollbar: vertical,
+        showVerticalScrollbar: vertical
       });
 
       const {onScrollbarPresenceChange} = this.props;
@@ -595,7 +595,7 @@ class MultiGrid extends React.PureComponent {
         onScrollbarPresenceChange({
           horizontal,
           size,
-          vertical,
+          vertical
         });
       }
     }
@@ -605,7 +605,7 @@ class MultiGrid extends React.PureComponent {
     const {scrollLeft} = scrollInfo;
     this._onScroll({
       scrollLeft,
-      scrollTop: this.state.scrollTop,
+      scrollTop: this.state.scrollTop
     });
   };
 
@@ -613,7 +613,7 @@ class MultiGrid extends React.PureComponent {
     const {scrollTop} = scrollInfo;
     this._onScroll({
       scrollTop,
-      scrollLeft: this.state.scrollLeft,
+      scrollLeft: this.state.scrollLeft
     });
   };
 
@@ -623,7 +623,7 @@ class MultiGrid extends React.PureComponent {
       fixedColumnCount,
       fixedRowCount,
       rowCount,
-      hideBottomLeftGridScrollbar,
+      hideBottomLeftGridScrollbar
     } = props;
     const {showVerticalScrollbar} = this.state;
 
@@ -665,7 +665,7 @@ class MultiGrid extends React.PureComponent {
             ...this._bottomLeftGridStyle,
             height,
             width,
-            overflowY: 'hidden',
+            overflowY: 'hidden'
           }}>
           {bottomLeftGrid}
         </div>
@@ -681,7 +681,7 @@ class MultiGrid extends React.PureComponent {
       fixedRowCount,
       rowCount,
       scrollToColumn,
-      scrollToRow,
+      scrollToRow
     } = props;
 
     return (
@@ -735,7 +735,7 @@ class MultiGrid extends React.PureComponent {
       fixedColumnCount,
       fixedRowCount,
       scrollLeft,
-      hideTopRightGridScrollbar,
+      hideTopRightGridScrollbar
     } = props;
     const {showHorizontalScrollbar, scrollbarSize} = this.state;
 
@@ -755,7 +755,7 @@ class MultiGrid extends React.PureComponent {
       gridHeight = height + additionalHeight;
       style = {
         ...this._topRightGridStyle,
-        left: 0,
+        left: 0
       };
     }
 
@@ -788,7 +788,7 @@ class MultiGrid extends React.PureComponent {
             ...this._topRightGridStyle,
             height,
             width,
-            overflowX: 'hidden',
+            overflowX: 'hidden'
           }}>
           {topRightGrid}
         </div>

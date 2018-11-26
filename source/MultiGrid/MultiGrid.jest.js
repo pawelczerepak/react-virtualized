@@ -41,9 +41,9 @@ describe('MultiGrid', () => {
         render(
           getMarkup({
             fixedColumnCount: 1,
-            fixedRowCount: 1,
-          }),
-        ),
+            fixedRowCount: 1
+          })
+        )
       );
       const grids = rendered.querySelectorAll('.ReactVirtualized__Grid');
       expect(grids.length).toEqual(4);
@@ -63,9 +63,9 @@ describe('MultiGrid', () => {
         render(
           getMarkup({
             fixedColumnCount: 1,
-            fixedRowCount: 0,
-          }),
-        ),
+            fixedRowCount: 0
+          })
+        )
       );
       const grids = rendered.querySelectorAll('.ReactVirtualized__Grid');
       expect(grids.length).toEqual(2);
@@ -81,9 +81,9 @@ describe('MultiGrid', () => {
         render(
           getMarkup({
             fixedColumnCount: 0,
-            fixedRowCount: 1,
-          }),
-        ),
+            fixedRowCount: 1
+          })
+        )
       );
       const grids = rendered.querySelectorAll('.ReactVirtualized__Grid');
       expect(grids.length).toEqual(2);
@@ -99,9 +99,9 @@ describe('MultiGrid', () => {
         render(
           getMarkup({
             fixedColumnCount: 0,
-            fixedRowCount: 0,
-          }),
-        ),
+            fixedRowCount: 0
+          })
+        )
       );
       const grids = rendered.querySelectorAll('.ReactVirtualized__Grid');
       expect(grids.length).toEqual(1);
@@ -115,34 +115,34 @@ describe('MultiGrid', () => {
         render(
           getMarkup({
             fixedColumnCount: 2,
-            fixedRowCount: 1,
-          }),
-        ),
+            fixedRowCount: 1
+          })
+        )
       );
       expect(
-        rendered.querySelectorAll('.ReactVirtualized__Grid').length,
+        rendered.querySelectorAll('.ReactVirtualized__Grid').length
       ).toEqual(4);
       rendered = findDOMNode(
         render(
           getMarkup({
             fixedColumnCount: 0,
-            fixedRowCount: 0,
-          }),
-        ),
+            fixedRowCount: 0
+          })
+        )
       );
       expect(
-        rendered.querySelectorAll('.ReactVirtualized__Grid').length,
+        rendered.querySelectorAll('.ReactVirtualized__Grid').length
       ).toEqual(1);
       rendered = findDOMNode(
         render(
           getMarkup({
             fixedColumnCount: 0,
-            fixedRowCount: 2,
-          }),
-        ),
+            fixedRowCount: 2
+          })
+        )
       );
       expect(
-        rendered.querySelectorAll('.ReactVirtualized__Grid').length,
+        rendered.querySelectorAll('.ReactVirtualized__Grid').length
       ).toEqual(2);
     });
 
@@ -153,9 +153,9 @@ describe('MultiGrid', () => {
             enableFixedColumnScroll: true,
             enableFixedRowScroll: true,
             fixedColumnCount: 1,
-            fixedRowCount: 1,
-          }),
-        ),
+            fixedRowCount: 1
+          })
+        )
       );
       const grids = rendered.querySelectorAll('.ReactVirtualized__Grid');
       expect(grids.length).toEqual(4);
@@ -185,9 +185,9 @@ describe('MultiGrid', () => {
             fixedRowCount: 1,
             hideTopRightGridScrollbar: true,
             hideBottomLeftGridScrollbar: true,
-            getScrollbarSize: getScrollbarSize20,
-          }),
-        ),
+            getScrollbarSize: getScrollbarSize20
+          })
+        )
       );
       let wrappers = rendered.querySelectorAll('.TopRightGrid_ScrollWrapper');
       expect(wrappers.length).toEqual(1);
@@ -197,21 +197,21 @@ describe('MultiGrid', () => {
       const [bottomLeftWrapper] = wrappers;
 
       expect(topRightWrapper.style.getPropertyValue('overflow-x')).toEqual(
-        'hidden',
+        'hidden'
       );
       expect(topRightWrapper.style.getPropertyValue('overflow-y')).toEqual(
-        'hidden',
+        'hidden'
       );
       expect(bottomLeftWrapper.style.getPropertyValue('overflow-x')).toEqual(
-        'hidden',
+        'hidden'
       );
       expect(bottomLeftWrapper.style.getPropertyValue('overflow-y')).toEqual(
-        'hidden',
+        'hidden'
       );
 
       expect(topRightWrapper.style.getPropertyValue('height')).toEqual('20px');
       expect(bottomLeftWrapper.style.getPropertyValue('height')).toEqual(
-        '280px',
+        '280px'
       );
       expect(topRightWrapper.style.getPropertyValue('width')).toEqual('350px');
       expect(bottomLeftWrapper.style.getPropertyValue('width')).toEqual('50px');
@@ -260,9 +260,9 @@ describe('MultiGrid', () => {
             columnWidth: variableColumnWidth,
             ref: ref => {
               multiGrid = ref;
-            },
-          }),
-        ),
+            }
+          })
+        )
       );
 
       let grids = rendered.querySelectorAll('.ReactVirtualized__Grid');
@@ -295,13 +295,13 @@ describe('MultiGrid', () => {
         topLeftAfter,
         topRightAfter,
         bottomLeftAfter,
-        bottomRightAfter,
+        bottomRightAfter
       ] = gridsAfter;
       expect(topLeftAfter.style.getPropertyValue('height')).toEqual('125px');
       expect(topRightAfter.style.getPropertyValue('height')).toEqual('125px');
       expect(bottomLeftAfter.style.getPropertyValue('height')).toEqual('175px');
       expect(bottomRightAfter.style.getPropertyValue('height')).toEqual(
-        '175px',
+        '175px'
       );
 
       expect(topLeftAfter.style.getPropertyValue('width')).toEqual('75px');
@@ -326,9 +326,9 @@ describe('MultiGrid', () => {
             columnWidth: 100,
             ref: ref => {
               multiGrid = ref;
-            },
-          }),
-        ),
+            }
+          })
+        )
       );
 
       let grids = rendered.querySelectorAll('.ReactVirtualized__Grid');
@@ -364,9 +364,9 @@ describe('MultiGrid', () => {
             columnWidth: getCoumnWidth,
             ref: ref => {
               multiGrid = ref;
-            },
-          }),
-        ),
+            }
+          })
+        )
       );
 
       let grids = rendered.querySelectorAll('.ReactVirtualized__Grid');
@@ -395,9 +395,9 @@ describe('MultiGrid', () => {
             columnWidth: 50,
             fixedColumnCount: 2,
             scrollToAlignment: 'start',
-            scrollToColumn: 19,
-          }),
-        ),
+            scrollToColumn: 19
+          })
+        )
       );
       // Bottom-right Grid is the last Grid
       const grid = rendered.querySelectorAll('.ReactVirtualized__Grid')[3];
@@ -412,9 +412,9 @@ describe('MultiGrid', () => {
             fixedRowCount: 1,
             rowHeight: 50,
             scrollToAlignment: 'start',
-            scrollToRow: 19,
-          }),
-        ),
+            scrollToRow: 19
+          })
+        )
       );
       // Bottom-right Grid is the last Grid
       const grid = rendered.querySelectorAll('.ReactVirtualized__Grid')[3];
@@ -434,8 +434,8 @@ describe('MultiGrid', () => {
           columnCount: 2,
           fixedColumnCount: 1,
           fixedRowCount: 1,
-          rowCount: 2,
-        }),
+          rowCount: 2
+        })
       );
 
       expect(cellRenderer.mock.calls).toHaveLength(4);
@@ -458,14 +458,14 @@ describe('MultiGrid', () => {
           columnCount: 2,
           fixedColumnCount: 1,
           fixedRowCount: 1,
-          rowCount: 2,
-        }),
+          rowCount: 2
+        })
       );
 
       cellRenderer.mockReset();
       rendered.invalidateCellSizeAfterRender({
         columnIndex: 0,
-        rowIndex: 0,
+        rowIndex: 0
       });
 
       rendered.forceUpdate();
@@ -487,8 +487,8 @@ describe('MultiGrid', () => {
           columnCount: 2,
           fixedColumnCount: 1,
           fixedRowCount: 1,
-          rowCount: 2,
-        }),
+          rowCount: 2
+        })
       );
 
       expect(savedParent).toBe(rendered);
@@ -500,9 +500,9 @@ describe('MultiGrid', () => {
       const rendered = findDOMNode(
         render(
           getMarkup({
-            style: {backgroundColor: 'black'},
-          }),
-        ),
+            style: {backgroundColor: 'black'}
+          })
+        )
       );
       expect(rendered.style.backgroundColor).toEqual('black');
     });
@@ -516,9 +516,9 @@ describe('MultiGrid', () => {
             styleBottomLeftGrid: {backgroundColor: 'green'},
             styleBottomRightGrid: {backgroundColor: 'red'},
             styleTopLeftGrid: {backgroundColor: 'blue'},
-            styleTopRightGrid: {backgroundColor: 'purple'},
-          }),
-        ),
+            styleTopRightGrid: {backgroundColor: 'purple'}
+          })
+        )
       );
       const grids = rendered.querySelectorAll('.ReactVirtualized__Grid');
       const topLeftGrid = grids[0];
@@ -538,9 +538,9 @@ describe('MultiGrid', () => {
           getMarkup({
             columnWidth: 50,
             fixedColumnCount: 2,
-            scrollLeft: 850,
-          }),
-        ),
+            scrollLeft: 850
+          })
+        )
       );
       const grids = rendered.querySelectorAll('.ReactVirtualized__Grid');
       const topRightGrid = grids[1];
@@ -555,9 +555,9 @@ describe('MultiGrid', () => {
           getMarkup({
             columnWidth: 50,
             fixedColumnCount: 2,
-            scrollTop: 500,
-          }),
-        ),
+            scrollTop: 500
+          })
+        )
       );
       const grids = rendered.querySelectorAll('.ReactVirtualized__Grid');
       const bottomLeftGrid = grids[2];
@@ -572,9 +572,9 @@ describe('MultiGrid', () => {
         render(
           getMarkup({
             scrollTop: 750,
-            scrollLeft: 900,
-          }),
-        ),
+            scrollLeft: 900
+          })
+        )
       );
       const grids = rendered.querySelectorAll('.ReactVirtualized__Grid');
       const topRightGrid = grids[1];
@@ -590,8 +590,8 @@ describe('MultiGrid', () => {
       render(getMarkup());
       const updated = render(
         getMarkup({
-          rowCount: 2,
-        }),
+          rowCount: 2
+        })
       );
       expect(updated.props.rowCount).toEqual(2);
     });
@@ -600,8 +600,8 @@ describe('MultiGrid', () => {
       render(getMarkup());
       const updated = render(
         getMarkup({
-          columnCount: 3,
-        }),
+          columnCount: 3
+        })
       );
       expect(updated.props.columnCount).toEqual(3);
     });
@@ -611,7 +611,7 @@ describe('MultiGrid', () => {
     function getDeferredMeasurementCache() {
       const deferredMeasurementCache = new CellMeasurerCache({
         fixedHeight: true,
-        fixedWidth: true,
+        fixedWidth: true
       });
 
       deferredMeasurementCache._columnIndices = {};
@@ -633,14 +633,14 @@ describe('MultiGrid', () => {
           columnCount: 3,
           fixedColumnCount: 1,
           fixedRowCount: 0,
-          rowCount: 1,
-        }),
+          rowCount: 1
+        })
       );
 
       expect(Object.keys(deferredMeasurementCache._columnIndices)).toEqual([
         '0',
         '1',
-        '2',
+        '2'
       ]);
     });
 
@@ -652,13 +652,13 @@ describe('MultiGrid', () => {
           columnCount: 2,
           fixedColumnCount: 0,
           fixedRowCount: 0,
-          rowCount: 1,
-        }),
+          rowCount: 1
+        })
       );
 
       expect(Object.keys(deferredMeasurementCache._columnIndices)).toEqual([
         '0',
-        '1',
+        '1'
       ]);
     });
 
@@ -670,14 +670,14 @@ describe('MultiGrid', () => {
           columnCount: 1,
           fixedColumnCount: 0,
           fixedRowCount: 1,
-          rowCount: 3,
-        }),
+          rowCount: 3
+        })
       );
 
       expect(Object.keys(deferredMeasurementCache._rowIndices)).toEqual([
         '0',
         '1',
-        '2',
+        '2'
       ]);
     });
 
@@ -689,13 +689,13 @@ describe('MultiGrid', () => {
           columnCount: 1,
           fixedColumnCount: 0,
           fixedRowCount: 0,
-          rowCount: 2,
-        }),
+          rowCount: 2
+        })
       );
 
       expect(Object.keys(deferredMeasurementCache._rowIndices)).toEqual([
         '0',
-        '1',
+        '1'
       ]);
     });
   });
@@ -713,8 +713,8 @@ describe('MultiGrid', () => {
           columnCount: 1,
           getScrollbarSize: getScrollbarSize20,
           onScrollbarPresenceChange,
-          rowCount: 1,
-        }),
+          rowCount: 1
+        })
       );
       expect(onScrollbarPresenceChange).not.toHaveBeenCalled();
     });
@@ -727,8 +727,8 @@ describe('MultiGrid', () => {
           columnCount: 100,
           getScrollbarSize: getScrollbarSize20,
           onScrollbarPresenceChange,
-          rowCount: 100,
-        }),
+          rowCount: 100
+        })
       );
       expect(onScrollbarPresenceChange).toHaveBeenCalled();
 
@@ -745,8 +745,8 @@ describe('MultiGrid', () => {
           columnCount: 1,
           getScrollbarSize: getScrollbarSize20,
           onScrollbarPresenceChange,
-          rowCount: 1,
-        }),
+          rowCount: 1
+        })
       );
       expect(onScrollbarPresenceChange).not.toHaveBeenCalled();
 
@@ -755,8 +755,8 @@ describe('MultiGrid', () => {
           columnCount: 100,
           getScrollbarSize: getScrollbarSize20,
           onScrollbarPresenceChange,
-          rowCount: 100,
-        }),
+          rowCount: 100
+        })
       );
       expect(onScrollbarPresenceChange).toHaveBeenCalled();
 
@@ -773,8 +773,8 @@ describe('MultiGrid', () => {
           columnCount: 1,
           getScrollbarSize: getScrollbarSize20,
           onScrollbarPresenceChange,
-          rowCount: 1,
-        }),
+          rowCount: 1
+        })
       );
       expect(onScrollbarPresenceChange).not.toHaveBeenCalled();
       render(
@@ -782,8 +782,8 @@ describe('MultiGrid', () => {
           columnCount: 2,
           getScrollbarSize: getScrollbarSize20,
           onScrollbarPresenceChange,
-          rowCount: 2,
-        }),
+          rowCount: 2
+        })
       );
       expect(onScrollbarPresenceChange).not.toHaveBeenCalled();
     });

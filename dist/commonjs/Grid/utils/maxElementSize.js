@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 var DEFAULT_MAX_ELEMENT_SIZE = 1500000;
 var CHROME_MAX_ELEMENT_SIZE = 1.67771e7;

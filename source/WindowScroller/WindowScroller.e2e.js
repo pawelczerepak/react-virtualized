@@ -7,7 +7,7 @@ const bootstrap = async () => {
   const scripts = [
     './node_modules/react/umd/react.development.js',
     './node_modules/react-dom/umd/react-dom.development.js',
-    './dist/umd/react-virtualized.js',
+    './dist/umd/react-virtualized.js'
   ];
 
   for (const path of scripts) {
@@ -41,11 +41,11 @@ const renderWindowScroller = ({scrollElement}) => {
       {
         scrollElement: scrollElement === 'container' ? container : window,
         onScroll: window.scrollFn,
-        onResize: window.resizeFn,
+        onResize: window.resizeFn
       },
-      () => createElement('div', {style: {width: 2000, height: 3000}}),
+      () => createElement('div', {style: {width: 2000, height: 3000}})
     ),
-    container,
+    container
   );
 };
 
@@ -75,7 +75,7 @@ test('save position after resize and then scroll in window', async () => {
 
   expect(scrollFn.mock.calls).toEqual([
     [{scrollLeft: 610 - 150, scrollTop: 830 - 150}],
-    [{scrollLeft: 620 - 150, scrollTop: 840 - 150}],
+    [{scrollLeft: 620 - 150, scrollTop: 840 - 150}]
   ]);
   expect(resizeFn.mock.calls).toEqual([[{width: 300, height: 500}]]);
 });
@@ -104,11 +104,11 @@ test('save position after resize and then scroll in container', async () => {
 
   expect(scrollFn.mock.calls).toEqual([
     [{scrollLeft: 610 - 50, scrollTop: 830 - 50}],
-    [{scrollLeft: 620 - 50, scrollTop: 840 - 50}],
+    [{scrollLeft: 620 - 50, scrollTop: 840 - 50}]
   ]);
   expect(resizeFn.mock.calls).toEqual([
     [{width: 500, height: 700}],
-    [{width: 400, height: 600}],
+    [{width: 400, height: 600}]
   ]);
 });
 
@@ -127,11 +127,11 @@ test('react on container resize without window changing', async () => {
     Object.assign(wrapper.style, {
       width: '1000px',
       height: '800px',
-      display: 'flex',
+      display: 'flex'
     });
     const container = document.createElement('div');
     Object.assign(container.style, {
-      flex: '1',
+      flex: '1'
     });
     wrapper.appendChild(container);
     document.body.style.margin = 0;
@@ -141,9 +141,9 @@ test('react on container resize without window changing', async () => {
       createElement(
         WindowScroller,
         {scrollElement: container, onResize: window.resizeFn},
-        () => null,
+        () => null
       ),
-      container,
+      container
     );
   });
 
@@ -160,6 +160,6 @@ test('react on container resize without window changing', async () => {
 
   expect(resizeFn.mock.calls).toEqual([
     [{width: 1000, height: 800}],
-    [{width: 500, height: 700}],
+    [{width: 500, height: 700}]
   ]);
 });

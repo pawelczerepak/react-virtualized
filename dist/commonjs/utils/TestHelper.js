@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 exports.getCellMetadata = getCellMetadata;
 
@@ -24,13 +24,13 @@ function getCellMetadata() {
     30, // 5: 50..70
     20, // 6: 70..100
     10, // 7: 80..110
-    30,
+    30 //  8: 110..110 (max)
   ];
   return (0, _initCellMetadata2.default)({
     cellCount: cellSizes.length,
     size: function size(_ref) {
       var index = _ref.index;
       return cellSizes[index];
-    },
+    }
   });
 }

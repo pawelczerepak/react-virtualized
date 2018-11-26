@@ -1,57 +1,10 @@
-'use strict';
+import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
+import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
+import _createClass from 'babel-runtime/helpers/createClass';
 
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
+import CellSizeAndPositionManager from './CellSizeAndPositionManager';
 
-var _createClass = (function() {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-  return function(Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-})();
-
-var _CellSizeAndPositionManager = require('./CellSizeAndPositionManager');
-
-var _CellSizeAndPositionManager2 = _interopRequireDefault(
-  _CellSizeAndPositionManager,
-);
-
-var _maxElementSize = require('./maxElementSize.js');
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {default: obj};
-}
-
-function _objectWithoutProperties(obj, keys) {
-  var target = {};
-  for (var i in obj) {
-    if (keys.indexOf(i) >= 0) continue;
-    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
-    target[i] = obj[i];
-  }
-  return target;
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
-}
-
-/**
- * Extends CellSizeAndPositionManager and adds scaling behavior for lists that are too large to fit within a browser's native limits.
- */
+import {getMaxElementSize} from './maxElementSize.js';
 
 /**
  * Browsers have scroll offset limitations (eg Chrome stops scrolling at ~33.5M pixels where as Edge tops out at ~1.5M pixels).
@@ -59,21 +12,22 @@ function _classCallCheck(instance, Constructor) {
  * This util picks a lower ceiling for max size and artificially adjusts positions within to make it transparent for users.
  */
 
+/**
+ * Extends CellSizeAndPositionManager and adds scaling behavior for lists that are too large to fit within a browser's native limits.
+ */
 var ScalingCellSizeAndPositionManager = (function() {
   function ScalingCellSizeAndPositionManager(_ref) {
     var _ref$maxScrollSize = _ref.maxScrollSize,
       maxScrollSize =
         _ref$maxScrollSize === undefined
-          ? (0, _maxElementSize.getMaxElementSize)()
+          ? getMaxElementSize()
           : _ref$maxScrollSize,
       params = _objectWithoutProperties(_ref, ['maxScrollSize']);
 
     _classCallCheck(this, ScalingCellSizeAndPositionManager);
 
     // Favor composition over inheritance to simplify IE10 support
-    this._cellSizeAndPositionManager = new _CellSizeAndPositionManager2.default(
-      params,
-    );
+    this._cellSizeAndPositionManager = new CellSizeAndPositionManager(params);
     this._maxScrollSize = maxScrollSize;
   }
 
@@ -84,31 +38,31 @@ var ScalingCellSizeAndPositionManager = (function() {
         return (
           this._cellSizeAndPositionManager.getTotalSize() > this._maxScrollSize
         );
-      },
+      }
     },
     {
       key: 'configure',
       value: function configure(params) {
         this._cellSizeAndPositionManager.configure(params);
-      },
+      }
     },
     {
       key: 'getCellCount',
       value: function getCellCount() {
         return this._cellSizeAndPositionManager.getCellCount();
-      },
+      }
     },
     {
       key: 'getEstimatedCellSize',
       value: function getEstimatedCellSize() {
         return this._cellSizeAndPositionManager.getEstimatedCellSize();
-      },
+      }
     },
     {
       key: 'getLastMeasuredIndex',
       value: function getLastMeasuredIndex() {
         return this._cellSizeAndPositionManager.getLastMeasuredIndex();
-      },
+      }
 
       /**
        * Number of pixels a cell at the given position (offset) should be shifted in order to fit within the scaled container.
@@ -126,23 +80,23 @@ var ScalingCellSizeAndPositionManager = (function() {
         var offsetPercentage = this._getOffsetPercentage({
           containerSize: containerSize,
           offset: offset,
-          totalSize: safeTotalSize,
+          totalSize: safeTotalSize
         });
 
         return Math.round(offsetPercentage * (safeTotalSize - totalSize));
-      },
+      }
     },
     {
       key: 'getSizeAndPositionOfCell',
       value: function getSizeAndPositionOfCell(index) {
         return this._cellSizeAndPositionManager.getSizeAndPositionOfCell(index);
-      },
+      }
     },
     {
       key: 'getSizeAndPositionOfLastMeasuredCell',
       value: function getSizeAndPositionOfLastMeasuredCell() {
         return this._cellSizeAndPositionManager.getSizeAndPositionOfLastMeasuredCell();
-      },
+      }
 
       /** See CellSizeAndPositionManager#getTotalSize */
     },
@@ -151,9 +105,9 @@ var ScalingCellSizeAndPositionManager = (function() {
       value: function getTotalSize() {
         return Math.min(
           this._maxScrollSize,
-          this._cellSizeAndPositionManager.getTotalSize(),
+          this._cellSizeAndPositionManager.getTotalSize()
         );
-      },
+      }
 
       /** See CellSizeAndPositionManager#getUpdatedOffsetForIndex */
     },
@@ -168,21 +122,21 @@ var ScalingCellSizeAndPositionManager = (function() {
 
         currentOffset = this._safeOffsetToOffset({
           containerSize: containerSize,
-          offset: currentOffset,
+          offset: currentOffset
         });
 
         var offset = this._cellSizeAndPositionManager.getUpdatedOffsetForIndex({
           align: align,
           containerSize: containerSize,
           currentOffset: currentOffset,
-          targetIndex: targetIndex,
+          targetIndex: targetIndex
         });
 
         return this._offsetToSafeOffset({
           containerSize: containerSize,
-          offset: offset,
+          offset: offset
         });
-      },
+      }
 
       /** See CellSizeAndPositionManager#getVisibleCellRange */
     },
@@ -194,20 +148,20 @@ var ScalingCellSizeAndPositionManager = (function() {
 
         offset = this._safeOffsetToOffset({
           containerSize: containerSize,
-          offset: offset,
+          offset: offset
         });
 
         return this._cellSizeAndPositionManager.getVisibleCellRange({
           containerSize: containerSize,
-          offset: offset,
+          offset: offset
         });
-      },
+      }
     },
     {
       key: 'resetCell',
       value: function resetCell(index) {
         this._cellSizeAndPositionManager.resetCell(index);
-      },
+      }
     },
     {
       key: '_getOffsetPercentage',
@@ -219,7 +173,7 @@ var ScalingCellSizeAndPositionManager = (function() {
         return totalSize <= containerSize
           ? 0
           : offset / (totalSize - containerSize);
-      },
+      }
     },
     {
       key: '_offsetToSafeOffset',
@@ -236,12 +190,12 @@ var ScalingCellSizeAndPositionManager = (function() {
           var offsetPercentage = this._getOffsetPercentage({
             containerSize: containerSize,
             offset: offset,
-            totalSize: totalSize,
+            totalSize: totalSize
           });
 
           return Math.round(offsetPercentage * (safeTotalSize - containerSize));
         }
-      },
+      }
     },
     {
       key: '_safeOffsetToOffset',
@@ -258,16 +212,19 @@ var ScalingCellSizeAndPositionManager = (function() {
           var offsetPercentage = this._getOffsetPercentage({
             containerSize: containerSize,
             offset: offset,
-            totalSize: safeTotalSize,
+            totalSize: safeTotalSize
           });
 
           return Math.round(offsetPercentage * (totalSize - containerSize));
         }
-      },
-    },
+      }
+    }
   ]);
 
   return ScalingCellSizeAndPositionManager;
 })();
 
-exports.default = ScalingCellSizeAndPositionManager;
+export default ScalingCellSizeAndPositionManager;
+import {bpfrpt_proptype_Alignment} from '../types';
+import {bpfrpt_proptype_CellSizeGetter} from '../types';
+import {bpfrpt_proptype_VisibleCellRange} from '../types';

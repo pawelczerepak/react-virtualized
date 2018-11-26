@@ -1,9 +1,11 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 exports.default = defaultCellRangeRenderer;
+
+var _types = require('./types');
 
 /**
  * Default implementation of cellRangeRenderer used by Grid.
@@ -51,7 +53,7 @@ function defaultCellRangeRenderer(_ref) {
       columnIndex++
     ) {
       var columnDatum = columnSizeAndPositionManager.getSizeAndPositionOfCell(
-        columnIndex,
+        columnIndex
       );
       var isVisible =
         columnIndex >= visibleColumnIndices.start &&
@@ -79,7 +81,7 @@ function defaultCellRangeRenderer(_ref) {
             left: 0,
             position: 'absolute',
             top: 0,
-            width: 'auto',
+            width: 'auto'
           };
         } else {
           style = {
@@ -87,7 +89,7 @@ function defaultCellRangeRenderer(_ref) {
             left: columnDatum.offset + horizontalOffsetAdjustment,
             position: 'absolute',
             top: rowDatum.offset + verticalOffsetAdjustment,
-            width: columnDatum.size,
+            width: columnDatum.size
           };
 
           styleCache[key] = style;
@@ -101,7 +103,7 @@ function defaultCellRangeRenderer(_ref) {
         key: key,
         parent: parent,
         rowIndex: rowIndex,
-        style: style,
+        style: style
       };
 
       var renderedCell = void 0;
@@ -166,7 +168,7 @@ function warnAboutMissingStyle(parent, renderedCell) {
         parent.__warnedAboutMissingStyle = true;
 
         console.warn(
-          'Rendered cell should include style property for positioning.',
+          'Rendered cell should include style property for positioning.'
         );
       }
     }

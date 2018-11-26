@@ -230,7 +230,7 @@ export default class Table extends React.PureComponent {
     tabIndex: PropTypes.number,
 
     /** Width of list */
-    width: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired
   };
 
   static defaultProps = {
@@ -248,14 +248,14 @@ export default class Table extends React.PureComponent {
     rowStyle: {},
     scrollToAlignment: 'auto',
     scrollToIndex: -1,
-    style: {},
+    style: {}
   };
 
   constructor(props) {
     super(props);
 
     this.state = {
-      scrollbarWidth: 0,
+      scrollbarWidth: 0
     };
 
     this._createColumn = this._createColumn.bind(this);
@@ -276,7 +276,7 @@ export default class Table extends React.PureComponent {
     if (this.Grid) {
       const {scrollTop} = this.Grid.getOffsetForCell({
         alignment,
-        rowIndex: index,
+        rowIndex: index
       });
 
       return scrollTop;
@@ -289,7 +289,7 @@ export default class Table extends React.PureComponent {
     if (this.Grid) {
       this.Grid.invalidateCellSizeAfterRender({
         rowIndex,
-        columnIndex,
+        columnIndex
       });
     }
   }
@@ -306,7 +306,7 @@ export default class Table extends React.PureComponent {
     if (this.Grid) {
       this.Grid.recomputeGridSize({
         rowIndex,
-        columnIndex,
+        columnIndex
       });
     }
   }
@@ -315,7 +315,7 @@ export default class Table extends React.PureComponent {
   recomputeRowHeights(index = 0) {
     if (this.Grid) {
       this.Grid.recomputeGridSize({
-        rowIndex: index,
+        rowIndex: index
       });
     }
   }
@@ -332,7 +332,7 @@ export default class Table extends React.PureComponent {
     if (this.Grid) {
       this.Grid.scrollToCell({
         columnIndex: 0,
-        rowIndex: index,
+        rowIndex: index
       });
     }
   }
@@ -361,7 +361,7 @@ export default class Table extends React.PureComponent {
       rowStyle,
       scrollToIndex,
       style,
-      width,
+      width
     } = this.props;
     const {scrollbarWidth} = this.state;
 
@@ -379,12 +379,12 @@ export default class Table extends React.PureComponent {
     React.Children.toArray(children).forEach((column, index) => {
       const flexStyles = this._getFlexStyleForColumn(
         column,
-        column.props.style,
+        column.props.style
       );
 
       this._cachedColumnStyles[index] = {
         ...flexStyles,
-        overflow: 'hidden',
+        overflow: 'hidden'
       };
     });
 
@@ -410,8 +410,8 @@ export default class Table extends React.PureComponent {
               overflow: 'hidden',
               paddingRight: scrollbarWidth,
               width: width,
-              ...rowStyleObject,
-            },
+              ...rowStyleObject
+            }
           })}
 
         <Grid
@@ -432,7 +432,7 @@ export default class Table extends React.PureComponent {
           scrollToRow={scrollToIndex}
           style={{
             ...gridStyle,
-            overflowX: 'hidden',
+            overflowX: 'hidden'
           }}
         />
       </div>
@@ -447,7 +447,7 @@ export default class Table extends React.PureComponent {
       className,
       columnData,
       dataKey,
-      id,
+      id
     } = column.props;
 
     const cellData = cellDataGetter({columnData, dataKey, rowData});
@@ -459,7 +459,7 @@ export default class Table extends React.PureComponent {
       isScrolling,
       parent,
       rowData,
-      rowIndex,
+      rowIndex
     });
 
     const onClick = event => {
@@ -495,7 +495,7 @@ export default class Table extends React.PureComponent {
       onHeaderClick,
       sort,
       sortBy,
-      sortDirection,
+      sortDirection
     } = this.props;
     const {
       columnData,
@@ -504,7 +504,7 @@ export default class Table extends React.PureComponent {
       disableSort,
       headerRenderer,
       id,
-      label,
+      label
     } = column.props;
     const sortEnabled = !disableSort && sort;
 
@@ -513,12 +513,12 @@ export default class Table extends React.PureComponent {
       headerClassName,
       column.props.headerClassName,
       {
-        ReactVirtualized__Table__sortableHeaderColumn: sortEnabled,
-      },
+        ReactVirtualized__Table__sortableHeaderColumn: sortEnabled
+      }
     );
     const style = this._getFlexStyleForColumn(column, {
       ...headerStyle,
-      ...column.props.headerStyle,
+      ...column.props.headerStyle
     });
 
     const renderedHeader = headerRenderer({
@@ -527,7 +527,7 @@ export default class Table extends React.PureComponent {
       disableSort,
       label,
       sortBy,
-      sortDirection,
+      sortDirection
     });
 
     let headerOnClick,
@@ -554,7 +554,7 @@ export default class Table extends React.PureComponent {
             defaultSortDirection,
             event,
             sortBy: dataKey,
-            sortDirection: newSortDirection,
+            sortDirection: newSortDirection
           });
         onHeaderClick && onHeaderClick({columnData, dataKey, event});
       };
@@ -608,7 +608,7 @@ export default class Table extends React.PureComponent {
       rowClassName,
       rowGetter,
       rowRenderer,
-      rowStyle,
+      rowStyle
     } = this.props;
 
     const {scrollbarWidth} = this.state;
@@ -628,8 +628,8 @@ export default class Table extends React.PureComponent {
           parent,
           rowData,
           rowIndex: index,
-          scrollbarWidth,
-        }),
+          scrollbarWidth
+        })
     );
 
     const className = cn('ReactVirtualized__Table__row', rowClass);
@@ -638,7 +638,7 @@ export default class Table extends React.PureComponent {
       height: this._getRowHeight(index),
       overflow: 'hidden',
       paddingRight: scrollbarWidth,
-      ...rowStyleObject,
+      ...rowStyleObject
     };
 
     return rowRenderer({
@@ -653,7 +653,7 @@ export default class Table extends React.PureComponent {
       onRowMouseOver,
       onRowMouseOut,
       rowData,
-      style: flattenedStyle,
+      style: flattenedStyle
     });
   }
 
@@ -669,7 +669,7 @@ export default class Table extends React.PureComponent {
       ...customStyle,
       flex: flexValue,
       msFlex: flexValue,
-      WebkitFlex: flexValue,
+      WebkitFlex: flexValue
     };
 
     if (column.props.maxWidth) {
@@ -708,7 +708,7 @@ export default class Table extends React.PureComponent {
     rowOverscanStartIndex,
     rowOverscanStopIndex,
     rowStartIndex,
-    rowStopIndex,
+    rowStopIndex
   }) {
     const {onRowsRendered} = this.props;
 
@@ -716,7 +716,7 @@ export default class Table extends React.PureComponent {
       overscanStartIndex: rowOverscanStartIndex,
       overscanStopIndex: rowOverscanStopIndex,
       startIndex: rowStartIndex,
-      stopIndex: rowStopIndex,
+      stopIndex: rowStopIndex
     });
   }
 

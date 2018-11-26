@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 exports.default = calculateSizeAndPositionData;
 
@@ -46,7 +46,7 @@ function calculateSizeAndPositionData(_ref) {
           ', width:' +
           cellMetadatum.width +
           ', height:' +
-          cellMetadatum.height,
+          cellMetadatum.height
       );
     }
 
@@ -56,7 +56,7 @@ function calculateSizeAndPositionData(_ref) {
     cellMetadata[index] = cellMetadatum;
     sectionManager.registerCell({
       cellMetadatum: cellMetadatum,
-      index: index,
+      index: index
     });
   }
 
@@ -64,6 +64,6 @@ function calculateSizeAndPositionData(_ref) {
     cellMetadata: cellMetadata,
     height: height,
     sectionManager: sectionManager,
-    width: width,
+    width: width
   };
 }

@@ -1,30 +1,21 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 
-var _createClass = (function() {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-  return function(Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-})();
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _types = require('../types');
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
 }
 
 /**
@@ -40,9 +31,7 @@ var CellSizeAndPositionManager = (function() {
     var cellCount = _ref.cellCount,
       cellSizeGetter = _ref.cellSizeGetter,
       estimatedCellSize = _ref.estimatedCellSize;
-
-    _classCallCheck(this, CellSizeAndPositionManager);
-
+    (0, _classCallCheck3.default)(this, CellSizeAndPositionManager);
     this._cellSizeAndPositionData = {};
     this._lastMeasuredIndex = -1;
     this._lastBatchedIndex = -1;
@@ -54,12 +43,12 @@ var CellSizeAndPositionManager = (function() {
 
   // Measurements for cells up to this index can be trusted; cells afterward should be estimated.
 
-  _createClass(CellSizeAndPositionManager, [
+  (0, _createClass3.default)(CellSizeAndPositionManager, [
     {
       key: 'areOffsetsAdjusted',
       value: function areOffsetsAdjusted() {
         return false;
-      },
+      }
     },
     {
       key: 'configure',
@@ -71,31 +60,31 @@ var CellSizeAndPositionManager = (function() {
         this._cellCount = cellCount;
         this._estimatedCellSize = estimatedCellSize;
         this._cellSizeGetter = cellSizeGetter;
-      },
+      }
     },
     {
       key: 'getCellCount',
       value: function getCellCount() {
         return this._cellCount;
-      },
+      }
     },
     {
       key: 'getEstimatedCellSize',
       value: function getEstimatedCellSize() {
         return this._estimatedCellSize;
-      },
+      }
     },
     {
       key: 'getLastMeasuredIndex',
       value: function getLastMeasuredIndex() {
         return this._lastMeasuredIndex;
-      },
+      }
     },
     {
       key: 'getOffsetAdjustment',
       value: function getOffsetAdjustment() {
         return 0;
-      },
+      }
 
       /**
        * This method returns the size and position for the cell at the specified index.
@@ -110,7 +99,7 @@ var CellSizeAndPositionManager = (function() {
             'Requested index ' +
               index +
               ' is outside of range 0..' +
-              this._cellCount,
+              this._cellCount
           );
         }
 
@@ -127,19 +116,19 @@ var CellSizeAndPositionManager = (function() {
             // null means we're using CellMeasurer and haven't yet measured a given index.
             if (_size === undefined || isNaN(_size)) {
               throw Error(
-                'Invalid size returned for cell ' + i + ' of value ' + _size,
+                'Invalid size returned for cell ' + i + ' of value ' + _size
               );
             } else if (_size === null) {
               this._cellSizeAndPositionData[i] = {
                 offset: _offset,
-                size: 0,
+                size: 0
               };
 
               this._lastBatchedIndex = index;
             } else {
               this._cellSizeAndPositionData[i] = {
                 offset: _offset,
-                size: _size,
+                size: _size
               };
 
               _offset += _size;
@@ -150,7 +139,7 @@ var CellSizeAndPositionManager = (function() {
         }
 
         return this._cellSizeAndPositionData[index];
-      },
+      }
     },
     {
       key: 'getSizeAndPositionOfLastMeasuredCell',
@@ -159,9 +148,9 @@ var CellSizeAndPositionManager = (function() {
           ? this._cellSizeAndPositionData[this._lastMeasuredIndex]
           : {
               offset: 0,
-              size: 0,
+              size: 0
             };
-      },
+      }
 
       /**
        * Total size of all cells being measured.
@@ -180,7 +169,7 @@ var CellSizeAndPositionManager = (function() {
         var totalSizeOfUnmeasuredCells =
           numUnmeasuredCells * this._estimatedCellSize;
         return totalSizeOfMeasuredCells + totalSizeOfUnmeasuredCells;
-      },
+      }
 
       /**
        * Determines a new offset that ensures a certain cell is visible, given the current offset.
@@ -226,7 +215,7 @@ var CellSizeAndPositionManager = (function() {
           default:
             idealOffset = Math.max(
               minOffset,
-              Math.min(maxOffset, currentOffset),
+              Math.min(maxOffset, currentOffset)
             );
             break;
         }
@@ -234,7 +223,7 @@ var CellSizeAndPositionManager = (function() {
         var totalSize = this.getTotalSize();
 
         return Math.max(0, Math.min(totalSize - containerSize, idealOffset));
-      },
+      }
     },
     {
       key: 'getVisibleCellRange',
@@ -264,9 +253,9 @@ var CellSizeAndPositionManager = (function() {
 
         return {
           start: start,
-          stop: stop,
+          stop: stop
         };
-      },
+      }
 
       /**
        * Clear all cached values for cells after the specified index.
@@ -278,7 +267,7 @@ var CellSizeAndPositionManager = (function() {
       key: 'resetCell',
       value: function resetCell(index) {
         this._lastMeasuredIndex = Math.min(this._lastMeasuredIndex, index - 1);
-      },
+      }
     },
     {
       key: '_binarySearch',
@@ -301,7 +290,7 @@ var CellSizeAndPositionManager = (function() {
         } else {
           return 0;
         }
-      },
+      }
     },
     {
       key: '_exponentialSearch',
@@ -319,9 +308,9 @@ var CellSizeAndPositionManager = (function() {
         return this._binarySearch(
           Math.min(index, this._cellCount - 1),
           Math.floor(index / 2),
-          offset,
+          offset
         );
-      },
+      }
 
       /**
        * Searches for the cell (index) nearest the specified offset.
@@ -353,10 +342,9 @@ var CellSizeAndPositionManager = (function() {
           // The overall complexity for this approach is O(log n).
           return this._exponentialSearch(lastMeasuredIndex, offset);
         }
-      },
-    },
+      }
+    }
   ]);
-
   return CellSizeAndPositionManager;
 })();
 

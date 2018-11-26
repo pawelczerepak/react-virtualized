@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 exports.default = createWrapper;
 
@@ -111,12 +111,12 @@ proto.insert = function(interval) {
     var l = _binarySearchBounds2.default.ge(
       this.leftPoints,
       interval,
-      compareBegin,
+      compareBegin
     );
     var r = _binarySearchBounds2.default.ge(
       this.rightPoints,
       interval,
-      compareEnd,
+      compareEnd
     );
     this.leftPoints.splice(l, 0, interval);
     this.rightPoints.splice(r, 0, interval);
@@ -201,7 +201,7 @@ proto.remove = function(interval) {
       var l = _binarySearchBounds2.default.ge(
         this.leftPoints,
         interval,
-        compareBegin,
+        compareBegin
       );
       l < this.leftPoints.length;
       ++l
@@ -216,7 +216,7 @@ proto.remove = function(interval) {
           var r = _binarySearchBounds2.default.ge(
             this.rightPoints,
             interval,
-            compareEnd,
+            compareEnd
           );
           r < this.rightPoints.length;
           ++r
@@ -362,7 +362,7 @@ function createIntervalTree(intervals) {
     createIntervalTree(leftIntervals),
     createIntervalTree(rightIntervals),
     leftPoints,
-    rightPoints,
+    rightPoints
   );
 }
 
@@ -382,7 +382,7 @@ tproto.insert = function(interval) {
       null,
       null,
       [interval],
-      [interval],
+      [interval]
     );
   }
 };
@@ -416,7 +416,7 @@ Object.defineProperty(tproto, 'count', {
       return this.root.count;
     }
     return 0;
-  },
+  }
 });
 
 Object.defineProperty(tproto, 'intervals', {
@@ -425,7 +425,7 @@ Object.defineProperty(tproto, 'intervals', {
       return this.root.intervals([]);
     }
     return [];
-  },
+  }
 });
 
 function createWrapper(intervals) {

@@ -1,31 +1,44 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 
-var _createClass = (function() {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-  return function(Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-})();
+var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
+
+var _possibleConstructorReturn3 = _interopRequireDefault(
+  _possibleConstructorReturn2
+);
+
+var _inherits2 = require('babel-runtime/helpers/inherits');
+
+var _inherits3 = _interopRequireDefault(_inherits2);
 
 var _react = require('react');
 
 var React = _interopRequireWildcard(_react);
 
 var _reactLifecyclesCompat = require('react-lifecycles-compat');
+
+var _Grid = require('../Grid');
+
+var _types = require('./types');
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireWildcard(obj) {
   if (obj && obj.__esModule) {
@@ -43,42 +56,8 @@ function _interopRequireWildcard(obj) {
   }
 }
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (!self) {
-    throw new ReferenceError(
-      "this hasn't been initialised - super() hasn't been called",
-    );
-  }
-  return call && (typeof call === 'object' || typeof call === 'function')
-    ? call
-    : self;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== 'function' && superClass !== null) {
-    throw new TypeError(
-      'Super expression must either be null or a function, not ' +
-        typeof superClass,
-    );
-  }
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true,
-    },
-  });
-  if (superClass)
-    Object.setPrototypeOf
-      ? Object.setPrototypeOf(subClass, superClass)
-      : (subClass.__proto__ = superClass);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
 }
 
 /**
@@ -86,14 +65,14 @@ function _inherits(subClass, superClass) {
  */
 
 var ArrowKeyStepper = (function(_React$PureComponent) {
-  _inherits(ArrowKeyStepper, _React$PureComponent);
+  (0, _inherits3.default)(ArrowKeyStepper, _React$PureComponent);
 
   function ArrowKeyStepper() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    _classCallCheck(this, ArrowKeyStepper);
+    (0, _classCallCheck3.default)(this, ArrowKeyStepper);
 
     for (
       var _len = arguments.length, args = Array(_len), _key = 0;
@@ -104,19 +83,19 @@ var ArrowKeyStepper = (function(_React$PureComponent) {
     }
 
     return (
-      (_ret = ((_temp = ((_this = _possibleConstructorReturn(
+      (_ret = ((_temp = ((_this = (0, _possibleConstructorReturn3.default)(
         this,
         (_ref =
           ArrowKeyStepper.__proto__ ||
-          Object.getPrototypeOf(ArrowKeyStepper)).call.apply(
+          (0, _getPrototypeOf2.default)(ArrowKeyStepper)).call.apply(
           _ref,
-          [this].concat(args),
-        ),
+          [this].concat(args)
+        )
       )),
       _this)),
       (_this.state = {
         scrollToColumn: 0,
-        scrollToRow: 0,
+        scrollToRow: 0
       }),
       (_this._columnStartIndex = 0),
       (_this._columnStopIndex = 0),
@@ -179,7 +158,7 @@ var ArrowKeyStepper = (function(_React$PureComponent) {
 
           _this._updateScrollState({
             scrollToColumn: scrollToColumn,
-            scrollToRow: scrollToRow,
+            scrollToRow: scrollToRow
           });
         }
       }),
@@ -195,11 +174,11 @@ var ArrowKeyStepper = (function(_React$PureComponent) {
         _this._rowStopIndex = rowStopIndex;
       }),
       _temp)),
-      _possibleConstructorReturn(_this, _ret)
+      (0, _possibleConstructorReturn3.default)(_this, _ret)
     );
   }
 
-  _createClass(
+  (0, _createClass3.default)(
     ArrowKeyStepper,
     [
       {
@@ -210,9 +189,9 @@ var ArrowKeyStepper = (function(_React$PureComponent) {
 
           this.setState({
             scrollToRow: scrollToRow,
-            scrollToColumn: scrollToColumn,
+            scrollToColumn: scrollToColumn
           });
-        },
+        }
       },
       {
         key: 'render',
@@ -231,16 +210,16 @@ var ArrowKeyStepper = (function(_React$PureComponent) {
             children({
               onSectionRendered: this._onSectionRendered,
               scrollToColumn: scrollToColumn,
-              scrollToRow: scrollToRow,
-            }),
+              scrollToRow: scrollToRow
+            })
           );
-        },
+        }
       },
       {
         key: '_getScrollState',
         value: function _getScrollState() {
           return this.props.isControlled ? this.props : this.state;
-        },
+        }
       },
       {
         key: '_updateScrollState',
@@ -254,18 +233,18 @@ var ArrowKeyStepper = (function(_React$PureComponent) {
           if (typeof onScrollToChange === 'function') {
             onScrollToChange({
               scrollToColumn: scrollToColumn,
-              scrollToRow: scrollToRow,
+              scrollToRow: scrollToRow
             });
           }
 
           if (!isControlled) {
             this.setState({
               scrollToColumn: scrollToColumn,
-              scrollToRow: scrollToRow,
+              scrollToRow: scrollToRow
             });
           }
-        },
-      },
+        }
+      }
     ],
     [
       {
@@ -281,16 +260,15 @@ var ArrowKeyStepper = (function(_React$PureComponent) {
           ) {
             return {
               scrollToColumn: nextProps.scrollToColumn,
-              scrollToRow: nextProps.scrollToRow,
+              scrollToRow: nextProps.scrollToRow
             };
           }
 
           return null;
-        },
-      },
-    ],
+        }
+      }
+    ]
   );
-
   return ArrowKeyStepper;
 })(React.PureComponent);
 
@@ -299,8 +277,23 @@ ArrowKeyStepper.defaultProps = {
   isControlled: false,
   mode: 'edges',
   scrollToColumn: 0,
-  scrollToRow: 0,
+  scrollToRow: 0
 };
+ArrowKeyStepper.propTypes =
+  process.env.NODE_ENV === 'production'
+    ? null
+    : {
+        children: _propTypes2.default.func.isRequired,
+        className: _propTypes2.default.string,
+        columnCount: _propTypes2.default.number.isRequired,
+        disabled: _propTypes2.default.bool.isRequired,
+        isControlled: _propTypes2.default.bool.isRequired,
+        mode: _propTypes2.default.oneOf(['cells', 'edges']).isRequired,
+        onScrollToChange: _propTypes2.default.func,
+        rowCount: _propTypes2.default.number.isRequired,
+        scrollToColumn: _propTypes2.default.number.isRequired,
+        scrollToRow: _propTypes2.default.number.isRequired
+      };
 
 (0, _reactLifecyclesCompat.polyfill)(ArrowKeyStepper);
 

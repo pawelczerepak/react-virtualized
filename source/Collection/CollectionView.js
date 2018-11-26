@@ -20,7 +20,7 @@ const IS_SCROLLING_TIMEOUT = 150;
  */
 const SCROLL_POSITION_CHANGE_REASONS = {
   OBSERVED: 'observed',
-  REQUESTED: 'requested',
+  REQUESTED: 'requested'
 };
 
 /**
@@ -125,7 +125,7 @@ class CollectionView extends React.PureComponent {
     /**
      * Width of Collection; this property determines the number of visible (vs virtualized) columns.
      */
-    width: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired
   };
 
   static defaultProps = {
@@ -137,13 +137,13 @@ class CollectionView extends React.PureComponent {
     scrollToAlignment: 'auto',
     scrollToCell: -1,
     style: {},
-    verticalOverscanSize: 0,
+    verticalOverscanSize: 0
   };
 
   state = {
     isScrolling: false,
     scrollLeft: 0,
-    scrollTop: 0,
+    scrollTop: 0
   };
 
   _calculateSizeAndPositionDataOnNextUpdate = false;
@@ -192,7 +192,7 @@ class CollectionView extends React.PureComponent {
     ) {
       return {
         scrollLeft: 0,
-        scrollTop: 0,
+        scrollTop: 0
       };
     } else if (
       nextProps.scrollLeft !== prevState.scrollLeft ||
@@ -206,7 +206,7 @@ class CollectionView extends React.PureComponent {
         scrollTop:
           nextProps.scrollTop != null
             ? nextProps.scrollTop
-            : prevState.scrollTop,
+            : prevState.scrollTop
       };
     }
 
@@ -235,7 +235,7 @@ class CollectionView extends React.PureComponent {
 
     const {
       height: totalHeight,
-      width: totalWidth,
+      width: totalWidth
     } = cellLayoutManager.getTotalSize();
 
     // Initialize onScroll callback.
@@ -243,7 +243,7 @@ class CollectionView extends React.PureComponent {
       scrollLeft: scrollLeft || 0,
       scrollTop: scrollTop || 0,
       totalHeight,
-      totalWidth,
+      totalWidth
     });
   }
 
@@ -307,7 +307,7 @@ class CollectionView extends React.PureComponent {
       noContentRenderer,
       style,
       verticalOverscanSize,
-      width,
+      width
     } = this.props;
 
     const {isScrolling, scrollLeft, scrollTop} = this.state;
@@ -327,7 +327,7 @@ class CollectionView extends React.PureComponent {
 
     const {
       height: totalHeight,
-      width: totalWidth,
+      width: totalWidth
     } = cellLayoutManager.getTotalSize();
 
     // Safely expand the rendered area by the specified overscan amount
@@ -335,11 +335,11 @@ class CollectionView extends React.PureComponent {
     const top = Math.max(0, scrollTop - verticalOverscanSize);
     const right = Math.min(
       totalWidth,
-      scrollLeft + width + horizontalOverscanSize,
+      scrollLeft + width + horizontalOverscanSize
     );
     const bottom = Math.min(
       totalHeight,
-      scrollTop + height + verticalOverscanSize,
+      scrollTop + height + verticalOverscanSize
     );
 
     const childrenToDisplay =
@@ -349,7 +349,7 @@ class CollectionView extends React.PureComponent {
             isScrolling,
             width: right - left,
             x: left,
-            y: top,
+            y: top
           })
         : [];
 
@@ -360,7 +360,7 @@ class CollectionView extends React.PureComponent {
       position: 'relative',
       WebkitOverflowScrolling: 'touch',
       width,
-      willChange: 'transform',
+      willChange: 'transform'
     };
 
     // Force browser to hide scrollbars when we know they aren't necessary.
@@ -391,7 +391,7 @@ class CollectionView extends React.PureComponent {
         role="grid"
         style={{
           ...collectionStyle,
-          ...style,
+          ...style
         }}
         tabIndex={0}>
         {cellCount > 0 && (
@@ -403,7 +403,7 @@ class CollectionView extends React.PureComponent {
               maxWidth: totalWidth,
               overflow: 'hidden',
               pointerEvents: isScrolling ? 'none' : '',
-              width: totalWidth,
+              width: totalWidth
             }}>
             {childrenToDisplay}
           </div>
@@ -432,7 +432,7 @@ class CollectionView extends React.PureComponent {
 
       this._disablePointerEventsTimeoutId = null;
       this.setState({
-        isScrolling: false,
+        isScrolling: false
       });
     }, IS_SCROLLING_TIMEOUT);
   }
@@ -443,8 +443,8 @@ class CollectionView extends React.PureComponent {
     this._onSectionRenderedMemoizer({
       callback: onSectionRendered,
       indices: {
-        indices: cellLayoutManager.getLastRenderedIndices(),
-      },
+        indices: cellLayoutManager.getLastRenderedIndices()
+      }
     });
   };
 
@@ -459,13 +459,13 @@ class CollectionView extends React.PureComponent {
           scrollHeight: totalHeight,
           scrollLeft,
           scrollTop,
-          scrollWidth: totalWidth,
+          scrollWidth: totalWidth
         });
       },
       indices: {
         scrollLeft,
-        scrollTop,
-      },
+        scrollTop
+      }
     });
   }
 
@@ -475,7 +475,7 @@ class CollectionView extends React.PureComponent {
 
   _setScrollPosition({scrollLeft, scrollTop}) {
     const newState = {
-      scrollPositionChangeReason: SCROLL_POSITION_CHANGE_REASONS.REQUESTED,
+      scrollPositionChangeReason: SCROLL_POSITION_CHANGE_REASONS.REQUESTED
     };
 
     if (scrollLeft >= 0) {
@@ -500,7 +500,7 @@ class CollectionView extends React.PureComponent {
       height,
       scrollToAlignment,
       scrollToCell,
-      width,
+      width
     } = this.props;
     const {scrollLeft, scrollTop} = this.state;
 
@@ -511,7 +511,7 @@ class CollectionView extends React.PureComponent {
         height,
         scrollLeft,
         scrollTop,
-        width,
+        width
       });
 
       if (
@@ -542,15 +542,15 @@ class CollectionView extends React.PureComponent {
     const scrollbarSize = this._scrollbarSize;
     const {
       height: totalHeight,
-      width: totalWidth,
+      width: totalWidth
     } = cellLayoutManager.getTotalSize();
     const scrollLeft = Math.max(
       0,
-      Math.min(totalWidth - width + scrollbarSize, event.target.scrollLeft),
+      Math.min(totalWidth - width + scrollbarSize, event.target.scrollLeft)
     );
     const scrollTop = Math.max(
       0,
-      Math.min(totalHeight - height + scrollbarSize, event.target.scrollTop),
+      Math.min(totalHeight - height + scrollbarSize, event.target.scrollTop)
     );
 
     // Certain devices (like Apple touchpad) rapid-fire duplicate events.
@@ -578,7 +578,7 @@ class CollectionView extends React.PureComponent {
         isScrolling: true,
         scrollLeft,
         scrollPositionChangeReason,
-        scrollTop,
+        scrollTop
       });
     }
 
@@ -586,7 +586,7 @@ class CollectionView extends React.PureComponent {
       scrollLeft,
       scrollTop,
       totalWidth,
-      totalHeight,
+      totalHeight
     });
   };
 }

@@ -24,7 +24,7 @@ test('should render Grid with dom server', () => {
       rowCount={1000}
       rowHeight={20}
       width={500}
-    />,
+    />
   );
 
   expect(rendered).toContain('0:0');
@@ -48,7 +48,7 @@ test('should support :scrollToColumn and :scrollToRow in server render', () => {
       rowHeight={20}
       scrollToRow={250}
       width={500}
-    />,
+    />
   );
 
   expect(rendered).toContain('250:250');

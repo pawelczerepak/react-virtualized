@@ -8,17 +8,17 @@ import WindowScroller, {IS_SCROLLING_TIMEOUT} from './WindowScroller';
 function mockGetBoundingClientRectForHeader({
   documentOffset = 0,
   height,
-  width,
+  width
 }) {
   // Mock the WindowScroller element and window separately
   // The only way to mock the former (before its created) is globally
   Element.prototype.getBoundingClientRect = jest.fn(() => ({
     top: height,
-    left: width,
+    left: width
   }));
   document.documentElement.getBoundingClientRect = jest.fn(() => ({
     top: documentOffset,
-    left: documentOffset,
+    left: documentOffset
   }));
 }
 
@@ -34,7 +34,7 @@ function getMarkup({headerElements, documentOffset, renderFn, ...props} = {}) {
   mockGetBoundingClientRectForHeader({
     documentOffset,
     height: headerElements ? headerElements.props.style.height : 0,
-    width: headerElements ? headerElements.props.style.width : 0,
+    width: headerElements ? headerElements.props.style.width : 0
   });
 
   if (headerElements) {
@@ -87,12 +87,12 @@ describe('WindowScroller', () => {
     scrollElement.scrollLeft = 150;
     scrollElement.getBoundingClientRect = () => ({
       top: 200,
-      left: 250,
+      left: 250
     });
     const child = document.createElement('div');
     child.getBoundingClientRect = () => ({
       top: 300,
-      left: 350,
+      left: 350
     });
     const renderFn = jest.fn();
     const component = render(getMarkup({scrollElement, renderFn}));
@@ -122,8 +122,8 @@ describe('WindowScroller', () => {
     // Simulate scrolled documentElement
     const component = render(
       getMarkup({
-        documentOffset: -100,
-      }),
+        documentOffset: -100
+      })
     );
     const rendered = findDOMNode(component);
     const {top, left} = rendered.getBoundingClientRect();
@@ -141,8 +141,8 @@ describe('WindowScroller', () => {
     expect(component.state.height).toEqual(500);
     expect(renderFn).lastCalledWith(
       expect.objectContaining({
-        height: 500,
-      }),
+        height: 500
+      })
     );
   });
 
@@ -152,7 +152,7 @@ describe('WindowScroller', () => {
     simulateWindowScroll({scrollY: 5000});
     expect(document.body.style.pointerEvents).toEqual('none');
     await new Promise(resolve =>
-      setTimeout(resolve, IS_SCROLLING_TIMEOUT + 100),
+      setTimeout(resolve, IS_SCROLLING_TIMEOUT + 100)
     );
     expect(document.body.style.pointerEvents).toEqual('all');
   });
@@ -178,12 +178,12 @@ describe('WindowScroller', () => {
 
       expect(onScroll).toHaveBeenCalledWith({
         scrollLeft: 0,
-        scrollTop: 5000,
+        scrollTop: 5000
       });
 
       simulateWindowScroll({
         scrollX: 2500,
-        scrollY: 5000,
+        scrollY: 5000
       });
 
       // Allow scrolling timeout to complete so that the component computes state
@@ -191,7 +191,7 @@ describe('WindowScroller', () => {
 
       expect(onScroll).toHaveBeenCalledWith({
         scrollLeft: 2500,
-        scrollTop: 5000,
+        scrollTop: 5000
       });
     });
 
@@ -202,8 +202,8 @@ describe('WindowScroller', () => {
       // Initial load of the component should have 0 scrollTop
       expect(renderFn).lastCalledWith(
         expect.objectContaining({
-          scrollTop: 0,
-        }),
+          scrollTop: 0
+        })
       );
 
       simulateWindowScroll({scrollY: 5000});
@@ -215,8 +215,8 @@ describe('WindowScroller', () => {
       expect(component.state.scrollTop).toEqual(componentScrollTop);
       expect(renderFn).lastCalledWith(
         expect.objectContaining({
-          scrollTop: componentScrollTop,
-        }),
+          scrollTop: componentScrollTop
+        })
       );
     });
 
@@ -228,16 +228,16 @@ describe('WindowScroller', () => {
 
       expect(renderFn).lastCalledWith(
         expect.objectContaining({
-          isScrolling: true,
-        }),
+          isScrolling: true
+        })
       );
 
       await new Promise(resolve => setTimeout(resolve, 250));
 
       expect(renderFn).lastCalledWith(
         expect.objectContaining({
-          isScrolling: false,
-        }),
+          isScrolling: false
+        })
       );
     });
 
@@ -246,46 +246,46 @@ describe('WindowScroller', () => {
       render(
         getMarkup({
           scrollingResetTimeInterval: 500,
-          renderFn,
-        }),
+          renderFn
+        })
       );
 
       expect(renderFn).lastCalledWith(
         expect.objectContaining({
-          isScrolling: false,
-        }),
+          isScrolling: false
+        })
       );
 
       simulateWindowScroll({scrollY: 5000});
 
       expect(renderFn).lastCalledWith(
         expect.objectContaining({
-          isScrolling: true,
-        }),
+          isScrolling: true
+        })
       );
 
       await new Promise(resolve => setTimeout(resolve, 100));
 
       expect(renderFn).lastCalledWith(
         expect.objectContaining({
-          isScrolling: true,
-        }),
+          isScrolling: true
+        })
       );
 
       await new Promise(resolve => setTimeout(resolve, 100));
 
       expect(renderFn).lastCalledWith(
         expect.objectContaining({
-          isScrolling: true,
-        }),
+          isScrolling: true
+        })
       );
 
       await new Promise(resolve => setTimeout(resolve, 400));
 
       expect(renderFn).lastCalledWith(
         expect.objectContaining({
-          isScrolling: false,
-        }),
+          isScrolling: false
+        })
       );
     });
   });
@@ -310,8 +310,8 @@ describe('WindowScroller', () => {
       expect(component.state.height).toEqual(500);
       expect(renderFn).lastCalledWith(
         expect.objectContaining({
-          height: 500,
-        }),
+          height: 500
+        })
       );
 
       simulateWindowResize({height: 1000});
@@ -320,8 +320,8 @@ describe('WindowScroller', () => {
       expect(component.state.height).toEqual(1000);
       expect(renderFn).lastCalledWith(
         expect.objectContaining({
-          height: 1000,
-        }),
+          height: 1000
+        })
       );
     });
   });
@@ -335,8 +335,8 @@ describe('WindowScroller', () => {
           headerElements: <div style={{height: 100}} />,
           ref: ref => {
             windowScroller = ref;
-          },
-        }),
+          }
+        })
       );
 
       expect(windowScroller._positionFromTop).toBe(100);
@@ -350,8 +350,8 @@ describe('WindowScroller', () => {
           headerElements: <div id="header" style={{height: 100, width: 150}} />,
           ref: ref => {
             windowScroller = ref;
-          },
-        }),
+          }
+        })
       );
 
       expect(windowScroller._positionFromTop).toBe(100);
@@ -359,7 +359,7 @@ describe('WindowScroller', () => {
 
       mockGetBoundingClientRectForHeader({
         height: 200,
-        width: 300,
+        width: 300
       });
 
       expect(windowScroller._positionFromTop).toBe(100);
@@ -379,8 +379,8 @@ describe('WindowScroller', () => {
           headerElements: <div id="header" style={{height: 100, width: 150}} />,
           ref: ref => {
             windowScroller = ref;
-          },
-        }),
+          }
+        })
       );
 
       expect(windowScroller._positionFromTop).toBe(100);
@@ -388,7 +388,7 @@ describe('WindowScroller', () => {
 
       mockGetBoundingClientRectForHeader({
         height: 200,
-        width: 300,
+        width: 300
       });
 
       windowScroller.updatePosition();
@@ -420,8 +420,8 @@ describe('WindowScroller', () => {
           ref: ref => {
             windowScroller = ref;
           },
-          renderFn,
-        }),
+          renderFn
+        })
       );
 
       renderFn.mock.calls[0][0].onChildScroll({scrollTop: 200});
@@ -454,8 +454,8 @@ describe('WindowScroller', () => {
             windowScroller = ref;
           },
           renderFn,
-          scrollElement: divEl,
-        }),
+          scrollElement: divEl
+        })
       );
 
       renderFn.mock.calls[0][0].onChildScroll({scrollTop: 200});
@@ -471,7 +471,7 @@ describe('WindowScroller', () => {
       renderFn.mock.calls[0][0].onChildScroll({scrollTop: 200});
 
       expect(renderFn).lastCalledWith(
-        expect.objectContaining({scrollTop: 200}),
+        expect.objectContaining({scrollTop: 200})
       );
     });
   });

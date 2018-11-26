@@ -8,13 +8,13 @@ import List from './List';
 import {
   ContentBox,
   ContentBoxHeader,
-  ContentBoxParagraph,
+  ContentBoxParagraph
 } from '../demo/ContentBox';
 import {LabeledInput, InputRow} from '../demo/LabeledInput';
 
 export default class ListExample extends React.PureComponent {
   static contextTypes = {
-    list: PropTypes.instanceOf(Immutable.List).isRequired,
+    list: PropTypes.instanceOf(Immutable.List).isRequired
   };
 
   constructor(props, context) {
@@ -27,7 +27,7 @@ export default class ListExample extends React.PureComponent {
       rowCount: context.list.size,
       scrollToIndex: undefined,
       showScrollingPlaceholder: false,
-      useDynamicRowHeight: false,
+      useDynamicRowHeight: false
     };
 
     this._getRowHeight = this._getRowHeight.bind(this);
@@ -45,7 +45,7 @@ export default class ListExample extends React.PureComponent {
       rowCount,
       scrollToIndex,
       showScrollingPlaceholder,
-      useDynamicRowHeight,
+      useDynamicRowHeight
     } = this.state;
 
     return (
@@ -84,7 +84,7 @@ export default class ListExample extends React.PureComponent {
               type="checkbox"
               onChange={event =>
                 this.setState({
-                  showScrollingPlaceholder: event.target.checked,
+                  showScrollingPlaceholder: event.target.checked
                 })
               }
             />
@@ -111,7 +111,7 @@ export default class ListExample extends React.PureComponent {
             name="listHeight"
             onChange={event =>
               this.setState({
-                listHeight: parseInt(event.target.value, 10) || 1,
+                listHeight: parseInt(event.target.value, 10) || 1
               })
             }
             value={listHeight}
@@ -122,7 +122,7 @@ export default class ListExample extends React.PureComponent {
             name="listRowHeight"
             onChange={event =>
               this.setState({
-                listRowHeight: parseInt(event.target.value, 10) || 1,
+                listRowHeight: parseInt(event.target.value, 10) || 1
               })
             }
             value={listRowHeight}
@@ -132,7 +132,7 @@ export default class ListExample extends React.PureComponent {
             name="overscanRowCount"
             onChange={event =>
               this.setState({
-                overscanRowCount: parseInt(event.target.value, 10) || 0,
+                overscanRowCount: parseInt(event.target.value, 10) || 0
               })
             }
             value={overscanRowCount}
@@ -187,7 +187,7 @@ export default class ListExample extends React.PureComponent {
     const {rowCount} = this.state;
     let scrollToIndex = Math.min(
       rowCount - 1,
-      parseInt(event.target.value, 10),
+      parseInt(event.target.value, 10)
     );
 
     if (isNaN(scrollToIndex)) {
@@ -235,7 +235,7 @@ export default class ListExample extends React.PureComponent {
         <div
           className={styles.letter}
           style={{
-            backgroundColor: datum.color,
+            backgroundColor: datum.color
           }}>
           {datum.name.charAt(0)}
         </div>

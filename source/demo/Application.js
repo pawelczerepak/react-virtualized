@@ -38,7 +38,7 @@ const COMPONENT_EXAMPLES_MAP = {
   '/components/MultiGrid': MultiGridExample,
   '/components/ScrollSync': ScrollSyncExample,
   '/components/Table': TableExample,
-  '/components/WindowScroller': WindowScrollerExample,
+  '/components/WindowScroller': WindowScrollerExample
 };
 
 // HACK Generate arbitrary data for use in example components :)
@@ -49,11 +49,11 @@ export default class Application extends React.PureComponent {
     list: PropTypes.instanceOf(Immutable.List).isRequired,
     customElement: PropTypes.any,
     isScrollingCustomElement: PropTypes.bool.isRequired,
-    setScrollingCustomElement: PropTypes.func,
+    setScrollingCustomElement: PropTypes.func
   };
 
   state = {
-    isScrollingCustomElement: false,
+    isScrollingCustomElement: false
   };
 
   constructor(props) {
@@ -71,7 +71,7 @@ export default class Application extends React.PureComponent {
       list,
       customElement,
       isScrollingCustomElement,
-      setScrollingCustomElement: this.setScrollingCustomElement,
+      setScrollingCustomElement: this.setScrollingCustomElement
     };
   }
 

@@ -10,7 +10,7 @@ export default class DynamicHeightList extends React.PureComponent {
   static propTypes = {
     getClassName: PropTypes.func.isRequired,
     list: PropTypes.instanceOf(Immutable.List).isRequired,
-    width: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired
   };
 
   constructor(props, context) {
@@ -18,7 +18,7 @@ export default class DynamicHeightList extends React.PureComponent {
 
     this._cache = new CellMeasurerCache({
       fixedWidth: true,
-      minHeight: 50,
+      minHeight: 50
     });
 
     this._rowRenderer = this._rowRenderer.bind(this);
@@ -65,7 +65,7 @@ export default class DynamicHeightList extends React.PureComponent {
               onLoad={measure}
               src={source}
               style={{
-                width: imageWidth,
+                width: imageWidth
               }}
             />
           </div>

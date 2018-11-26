@@ -5,7 +5,7 @@ import type {HeaderRowRendererParams} from './types';
 export default function defaultHeaderRowRenderer({
   className,
   columns,
-  style,
+  style
 }: HeaderRowRendererParams) {
   return (
     <div className={className} role="row" style={style}>

@@ -8,7 +8,7 @@ export interface CellMeasureCache {
     rowIndex: number,
     columnIndex: number,
     width: number,
-    height: number,
+    height: number
   ): void;
   getHeight(rowIndex: number, columnIndex?: number): number;
   getWidth(rowIndex: number, columnIndex?: number): number;

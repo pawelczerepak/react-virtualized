@@ -1,9 +1,11 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 exports.default = defaultCellDataGetter;
+
+var _types = require('./types');
 
 /**
  * Default accessor for returning a cell value for a given attribute.

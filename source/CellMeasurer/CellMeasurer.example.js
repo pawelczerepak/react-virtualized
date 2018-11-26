@@ -4,7 +4,7 @@ import * as React from 'react';
 import {
   ContentBox,
   ContentBoxHeader,
-  ContentBoxParagraph,
+  ContentBoxParagraph
 } from '../demo/ContentBox';
 import AutoSizer from '../AutoSizer';
 import cn from 'classnames';
@@ -20,19 +20,19 @@ const demoComponents = [
   DynamicHeightGrid,
   DynamicWidthMultiGrid,
   DynamicHeightList,
-  DynamicHeightTableColumn,
+  DynamicHeightTableColumn
 ];
 
 export default class CellMeasurerExample extends React.PureComponent {
   static contextTypes = {
-    list: PropTypes.instanceOf(Immutable.List).isRequired,
+    list: PropTypes.instanceOf(Immutable.List).isRequired
   };
 
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      currentTab: 0,
+      currentTab: 0
     };
 
     this._onClick = this._onClick.bind(this);
@@ -44,7 +44,7 @@ export default class CellMeasurerExample extends React.PureComponent {
 
     const buttonProps = {
       currentTab,
-      onClick: this._onClick,
+      onClick: this._onClick
     };
 
     const DemoComponent = demoComponents[currentTab];
@@ -102,7 +102,7 @@ export default class CellMeasurerExample extends React.PureComponent {
 
   _onClick(id) {
     this.setState({
-      currentTab: id,
+      currentTab: id
     });
   }
 }
@@ -111,7 +111,7 @@ function getClassName({columnIndex, rowIndex}) {
   const rowClass = rowIndex % 2 === 0 ? styles.evenRow : styles.oddRow;
 
   return cn(rowClass, styles.cell, {
-    [styles.centeredCell]: columnIndex > 2,
+    [styles.centeredCell]: columnIndex > 2
   });
 }
 
@@ -128,7 +128,7 @@ function getContent({index, datum, long = true}) {
 
 function Tab({children, currentTab, id, onClick}) {
   const classNames = cn(styles.Tab, {
-    [styles.ActiveTab]: currentTab === id,
+    [styles.ActiveTab]: currentTab === id
   });
 
   return (

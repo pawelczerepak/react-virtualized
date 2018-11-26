@@ -3,7 +3,7 @@ import SectionManager from '../SectionManager';
 export default function calculateSizeAndPositionData({
   cellCount,
   cellSizeAndPositionGetter,
-  sectionSize,
+  sectionSize
 }) {
   const cellMetadata = [];
   const sectionManager = new SectionManager(sectionSize);
@@ -27,7 +27,7 @@ export default function calculateSizeAndPositionData({
         `Invalid metadata returned for cell ${index}:
         x:${cellMetadatum.x}, y:${cellMetadatum.y}, width:${
           cellMetadatum.width
-        }, height:${cellMetadatum.height}`,
+        }, height:${cellMetadatum.height}`
       );
     }
 
@@ -37,7 +37,7 @@ export default function calculateSizeAndPositionData({
     cellMetadata[index] = cellMetadatum;
     sectionManager.registerCell({
       cellMetadatum,
-      index,
+      index
     });
   }
 
@@ -45,6 +45,6 @@ export default function calculateSizeAndPositionData({
     cellMetadata,
     height,
     sectionManager,
-    width,
+    width
   };
 }

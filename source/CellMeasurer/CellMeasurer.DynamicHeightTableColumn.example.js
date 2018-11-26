@@ -9,12 +9,12 @@ import styles from './CellMeasurer.example.css';
 export default class DynamicHeightTableColumn extends React.PureComponent {
   static propTypes = {
     list: PropTypes.instanceOf(Immutable.List).isRequired,
-    width: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired
   };
 
   _cache = new CellMeasurerCache({
     fixedWidth: true,
-    minHeight: 25,
+    minHeight: 25
   });
 
   _lastRenderedWidth = this.props.width;
@@ -76,7 +76,7 @@ export default class DynamicHeightTableColumn extends React.PureComponent {
         <div
           className={styles.tableColumn}
           style={{
-            whiteSpace: 'normal',
+            whiteSpace: 'normal'
           }}>
           {content}
         </div>

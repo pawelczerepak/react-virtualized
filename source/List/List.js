@@ -8,7 +8,7 @@ import type {
   OverscanIndicesGetter,
   RenderedSection,
   CellRendererParams,
-  Scroll as GridScroll,
+  Scroll as GridScroll
 } from '../Grid';
 import type {RowRenderer, RenderedRows, Scroll} from './types';
 
@@ -93,7 +93,7 @@ type Props = {
   tabIndex?: number,
 
   /** Width of list */
-  width: number,
+  width: number
 };
 
 export default class List extends React.PureComponent<Props> {
@@ -107,7 +107,7 @@ export default class List extends React.PureComponent<Props> {
     overscanRowCount: 10,
     scrollToAlignment: 'auto',
     scrollToIndex: -1,
-    style: {},
+    style: {}
   };
 
   Grid: ?React.ElementRef<typeof Grid>;
@@ -124,7 +124,7 @@ export default class List extends React.PureComponent<Props> {
       const {scrollTop} = this.Grid.getOffsetForCell({
         alignment,
         rowIndex: index,
-        columnIndex: 0,
+        columnIndex: 0
       });
 
       return scrollTop;
@@ -137,7 +137,7 @@ export default class List extends React.PureComponent<Props> {
     if (this.Grid) {
       this.Grid.invalidateCellSizeAfterRender({
         rowIndex,
-        columnIndex,
+        columnIndex
       });
     }
   }
@@ -154,7 +154,7 @@ export default class List extends React.PureComponent<Props> {
     if (this.Grid) {
       this.Grid.recomputeGridSize({
         rowIndex,
-        columnIndex,
+        columnIndex
       });
     }
   }
@@ -164,7 +164,7 @@ export default class List extends React.PureComponent<Props> {
     if (this.Grid) {
       this.Grid.recomputeGridSize({
         rowIndex: index,
-        columnIndex: 0,
+        columnIndex: 0
       });
     }
   }
@@ -181,7 +181,7 @@ export default class List extends React.PureComponent<Props> {
     if (this.Grid) {
       this.Grid.scrollToCell({
         columnIndex: 0,
-        rowIndex: index,
+        rowIndex: index
       });
     }
   }
@@ -214,7 +214,7 @@ export default class List extends React.PureComponent<Props> {
     style,
     isScrolling,
     isVisible,
-    key,
+    key
   }: CellRendererParams) => {
     const {rowRenderer} = this.props;
 
@@ -236,7 +236,7 @@ export default class List extends React.PureComponent<Props> {
       isScrolling,
       isVisible,
       key,
-      parent,
+      parent
     });
   };
 
@@ -254,7 +254,7 @@ export default class List extends React.PureComponent<Props> {
     rowOverscanStartIndex,
     rowOverscanStopIndex,
     rowStartIndex,
-    rowStopIndex,
+    rowStopIndex
   }: RenderedSection) => {
     const {onRowsRendered} = this.props;
 
@@ -262,7 +262,7 @@ export default class List extends React.PureComponent<Props> {
       overscanStartIndex: rowOverscanStartIndex,
       overscanStopIndex: rowOverscanStopIndex,
       startIndex: rowStartIndex,
-      stopIndex: rowStopIndex,
+      stopIndex: rowStopIndex
     });
   };
 }

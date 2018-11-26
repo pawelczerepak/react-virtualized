@@ -7,7 +7,7 @@ import * as React from 'react';
 import {
   ContentBox,
   ContentBoxHeader,
-  ContentBoxParagraph,
+  ContentBoxParagraph
 } from '../demo/ContentBox';
 import {LabeledInput, InputRow} from '../demo/LabeledInput';
 import WindowScroller from './WindowScroller';
@@ -17,23 +17,23 @@ import styles from './WindowScroller.example.css';
 
 type State = {
   scrollToIndex: number,
-  showHeaderText: boolean,
+  showHeaderText: boolean
 };
 
 export default class WindowScrollerExample extends React.PureComponent<
   {},
-  State,
+  State
 > {
   static contextTypes = {
     customElement: PropTypes.any,
     isScrollingCustomElement: PropTypes.bool.isRequired,
     list: PropTypes.instanceOf(Immutable.List).isRequired,
-    setScrollingCustomElement: PropTypes.func,
+    setScrollingCustomElement: PropTypes.func
   };
 
   state = {
     scrollToIndex: -1,
-    showHeaderText: true,
+    showHeaderText: true
   };
 
   _windowScroller: ?WindowScroller;
@@ -126,13 +126,13 @@ export default class WindowScrollerExample extends React.PureComponent<
 
     this.setState(
       {
-        showHeaderText: !showHeaderText,
+        showHeaderText: !showHeaderText
       },
       () => {
         if (this._windowScroller) {
           this._windowScroller.updatePosition();
         }
-      },
+      }
     );
   };
 
@@ -141,7 +141,7 @@ export default class WindowScrollerExample extends React.PureComponent<
     const row = list.get(index);
     const className = cn(styles.row, {
       [styles.rowScrolling]: isScrolling,
-      isVisible: isVisible,
+      isVisible: isVisible
     });
 
     return (
@@ -163,7 +163,7 @@ export default class WindowScrollerExample extends React.PureComponent<
     const {list} = this.context;
     let scrollToIndex = Math.min(
       list.size - 1,
-      parseInt(event.target.value, 10),
+      parseInt(event.target.value, 10)
     );
 
     if (isNaN(scrollToIndex)) {

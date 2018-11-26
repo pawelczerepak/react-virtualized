@@ -2,7 +2,7 @@
 
 import {
   requestAnimationTimeout,
-  cancelAnimationTimeout,
+  cancelAnimationTimeout
 } from '../../utils/requestAnimationTimeout';
 import type WindowScroller from '../WindowScroller.js';
 
@@ -36,13 +36,13 @@ function enablePointerEventsAfterDelay() {
   mountedInstances.forEach(instance => {
     maximumTimeout = Math.max(
       maximumTimeout,
-      instance.props.scrollingResetTimeInterval,
+      instance.props.scrollingResetTimeInterval
     );
   });
 
   disablePointerEventsTimeoutId = requestAnimationTimeout(
     enablePointerEventsAfterDelayCallback,
-    maximumTimeout,
+    maximumTimeout
   );
 }
 
@@ -66,7 +66,7 @@ function onScrollWindow(event) {
 
 export function registerScrollListener(
   component: WindowScroller,
-  element: Element,
+  element: Element
 ) {
   if (
     !mountedInstances.some(instance => instance.props.scrollElement === element)
@@ -78,10 +78,10 @@ export function registerScrollListener(
 
 export function unregisterScrollListener(
   component: WindowScroller,
-  element: Element,
+  element: Element
 ) {
   mountedInstances = mountedInstances.filter(
-    instance => instance !== component,
+    instance => instance !== component
   );
   if (!mountedInstances.length) {
     element.removeEventListener('scroll', onScrollWindow);

@@ -51,13 +51,13 @@ export default class InfiniteLoader extends React.PureComponent {
      * A threshold X means that data will start loading when a user scrolls within X rows.
      * This value defaults to 15.
      */
-    threshold: PropTypes.number.isRequired,
+    threshold: PropTypes.number.isRequired
   };
 
   static defaultProps = {
     minimumBatchSize: 10,
     rowCount: 0,
-    threshold: 15,
+    threshold: 15
   };
 
   constructor(props, context) {
@@ -82,7 +82,7 @@ export default class InfiniteLoader extends React.PureComponent {
 
     return children({
       onRowsRendered: this._onRowsRendered,
-      registerChild: this._registerChild,
+      registerChild: this._registerChild
     });
   }
 
@@ -100,13 +100,13 @@ export default class InfiniteLoader extends React.PureComponent {
               lastRenderedStartIndex: this._lastRenderedStartIndex,
               lastRenderedStopIndex: this._lastRenderedStopIndex,
               startIndex: unloadedRange.startIndex,
-              stopIndex: unloadedRange.stopIndex,
+              stopIndex: unloadedRange.stopIndex
             })
           ) {
             if (this._registeredChild) {
               forceUpdateReactVirtualizedComponent(
                 this._registeredChild,
-                this._lastRenderedStartIndex,
+                this._lastRenderedStartIndex
               );
             }
           }
@@ -130,21 +130,21 @@ export default class InfiniteLoader extends React.PureComponent {
       minimumBatchSize,
       rowCount,
       startIndex: Math.max(0, startIndex - threshold),
-      stopIndex: Math.min(rowCount - 1, stopIndex + threshold),
+      stopIndex: Math.min(rowCount - 1, stopIndex + threshold)
     });
 
     // For memoize comparison
     const squashedUnloadedRanges = unloadedRanges.reduce(
       (reduced, unloadedRange) =>
         reduced.concat([unloadedRange.startIndex, unloadedRange.stopIndex]),
-      [],
+      []
     );
 
     this._loadMoreRowsMemoizer({
       callback: () => {
         this._loadUnloadedRanges(unloadedRanges);
       },
-      indices: {squashedUnloadedRanges},
+      indices: {squashedUnloadedRanges}
     });
   }
 
@@ -160,7 +160,7 @@ export function isRangeVisible({
   lastRenderedStartIndex,
   lastRenderedStopIndex,
   startIndex,
-  stopIndex,
+  stopIndex
 }) {
   return !(
     startIndex > lastRenderedStopIndex || stopIndex < lastRenderedStartIndex
@@ -175,7 +175,7 @@ export function scanForUnloadedRanges({
   minimumBatchSize,
   rowCount,
   startIndex,
-  stopIndex,
+  stopIndex
 }) {
   const unloadedRanges = [];
 
@@ -193,7 +193,7 @@ export function scanForUnloadedRanges({
     } else if (rangeStopIndex !== null) {
       unloadedRanges.push({
         startIndex: rangeStartIndex,
-        stopIndex: rangeStopIndex,
+        stopIndex: rangeStopIndex
       });
 
       rangeStartIndex = rangeStopIndex = null;
@@ -205,7 +205,7 @@ export function scanForUnloadedRanges({
   if (rangeStopIndex !== null) {
     const potentialStopIndex = Math.min(
       Math.max(rangeStopIndex, rangeStartIndex + minimumBatchSize - 1),
-      rowCount - 1,
+      rowCount - 1
     );
 
     for (let index = rangeStopIndex + 1; index <= potentialStopIndex; index++) {
@@ -218,7 +218,7 @@ export function scanForUnloadedRanges({
 
     unloadedRanges.push({
       startIndex: rangeStartIndex,
-      stopIndex: rangeStopIndex,
+      stopIndex: rangeStopIndex
     });
   }
 
@@ -258,7 +258,7 @@ export function scanForUnloadedRanges({
  */
 export function forceUpdateReactVirtualizedComponent(
   component,
-  currentIndex = 0,
+  currentIndex = 0
 ) {
   const recomputeSize =
     typeof component.recomputeGridSize === 'function'

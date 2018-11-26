@@ -1,12 +1,14 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 exports.registerScrollListener = registerScrollListener;
 exports.unregisterScrollListener = unregisterScrollListener;
 
 var _requestAnimationTimeout = require('../../utils/requestAnimationTimeout');
+
+var _WindowScroller = require('../WindowScroller.js');
 
 var mountedInstances = [];
 
@@ -35,7 +37,7 @@ function enablePointerEventsAfterDelayCallback() {
 function enablePointerEventsAfterDelay() {
   if (disablePointerEventsTimeoutId) {
     (0, _requestAnimationTimeout.cancelAnimationTimeout)(
-      disablePointerEventsTimeoutId,
+      disablePointerEventsTimeoutId
     );
   }
 
@@ -43,14 +45,14 @@ function enablePointerEventsAfterDelay() {
   mountedInstances.forEach(function(instance) {
     maximumTimeout = Math.max(
       maximumTimeout,
-      instance.props.scrollingResetTimeInterval,
+      instance.props.scrollingResetTimeInterval
     );
   });
 
   disablePointerEventsTimeoutId = (0,
   _requestAnimationTimeout.requestAnimationTimeout)(
     enablePointerEventsAfterDelayCallback,
-    maximumTimeout,
+    maximumTimeout
   );
 }
 
@@ -91,7 +93,7 @@ function unregisterScrollListener(component, element) {
     element.removeEventListener('scroll', onScrollWindow);
     if (disablePointerEventsTimeoutId) {
       (0, _requestAnimationTimeout.cancelAnimationTimeout)(
-        disablePointerEventsTimeoutId,
+        disablePointerEventsTimeoutId
       );
       enablePointerEventsIfDisabled();
     }

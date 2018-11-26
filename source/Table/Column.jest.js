@@ -7,7 +7,7 @@ import defaultHeaderRenderer from './defaultHeaderRenderer';
 describe('Column', () => {
   const rowData = Immutable.Map({
     foo: 'Foo',
-    bar: 1,
+    bar: 1
   });
 
   describe('defaultCellDataGetter', () => {
@@ -15,14 +15,14 @@ describe('Column', () => {
       expect(
         defaultCellDataGetter({
           dataKey: 'foo',
-          rowData,
-        }),
+          rowData
+        })
       ).toEqual('Foo');
       expect(
         defaultCellDataGetter({
           dataKey: 'bar',
-          rowData,
-        }),
+          rowData
+        })
       ).toEqual(1);
     });
 
@@ -30,8 +30,8 @@ describe('Column', () => {
       expect(
         defaultCellDataGetter({
           dataKey: 'baz',
-          rowData,
-        }),
+          rowData
+        })
       ).toEqual(undefined);
     });
   });
@@ -43,16 +43,16 @@ describe('Column', () => {
           cellData: 'Foo',
           dataKey: 'foo',
           rowData,
-          rowIndex: 0,
-        }),
+          rowIndex: 0
+        })
       ).toEqual('Foo');
       expect(
         defaultCellRenderer({
           cellData: 1,
           dataKey: 'bar',
           rowData,
-          rowIndex: 0,
-        }),
+          rowIndex: 0
+        })
       ).toEqual('1');
     });
 
@@ -62,16 +62,16 @@ describe('Column', () => {
           cellData: null,
           dataKey: 'baz',
           rowData,
-          rowIndex: 0,
-        }),
+          rowIndex: 0
+        })
       ).toEqual('');
       expect(
         defaultCellRenderer({
           cellData: undefined,
           dataKey: 'baz',
           rowData,
-          rowIndex: 0,
-        }),
+          rowIndex: 0
+        })
       ).toEqual('');
     });
   });
@@ -81,16 +81,16 @@ describe('Column', () => {
       expect(
         defaultHeaderRenderer({
           dataKey: 'foo',
-          label: 'squirrel',
-        })[0].props.children,
+          label: 'squirrel'
+        })[0].props.children
       ).toEqual('squirrel');
 
       const label = <div className="rabbit">Rabbit</div>;
       expect(
         defaultHeaderRenderer({
           dataKey: 'bar',
-          label: label,
-        })[0].props.children,
+          label: label
+        })[0].props.children
       ).toEqual(label);
     });
 
@@ -98,14 +98,14 @@ describe('Column', () => {
       expect(
         defaultHeaderRenderer({
           dataKey: 'foo',
-          label: null,
-        })[0].props.children,
+          label: null
+        })[0].props.children
       ).toBeNull();
       expect(
         defaultHeaderRenderer({
           dataKey: 'bar',
-          label: undefined,
-        })[0].props.children,
+          label: undefined
+        })[0].props.children
       ).toBeUndefined();
     });
   });

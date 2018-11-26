@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 exports.default = initCellMetadata;
 /**
@@ -35,7 +35,7 @@ function initCellMetadata(_ref) {
 
     cellMetadata[i] = {
       size: _size,
-      offset: offset,
+      offset: offset
     };
 
     offset += _size;

@@ -17,7 +17,7 @@ export function ContentBoxHeader({text, sourceLink, docsLink}) {
     links.push(
       <a className={styles.Link} href={sourceLink} key="sourceLink">
         Source
-      </a>,
+      </a>
     );
   }
 
@@ -29,7 +29,7 @@ export function ContentBoxHeader({text, sourceLink, docsLink}) {
     links.push(
       <a className={styles.Link} href={docsLink} key="docsLink">
         Docs
-      </a>,
+      </a>
     );
   }
 

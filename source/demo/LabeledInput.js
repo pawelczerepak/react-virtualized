@@ -9,10 +9,10 @@ export function LabeledInput({
   name,
   onChange,
   placeholder,
-  value,
+  value
 }) {
   const labelClassName = cn(styles.Label, {
-    [styles.LabelDisabled]: disabled,
+    [styles.LabelDisabled]: disabled
   });
 
   return (
@@ -38,7 +38,7 @@ LabeledInput.propTypes = {
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
-  value: PropTypes.any,
+  value: PropTypes.any
 };
 
 export function InputRow({children}) {

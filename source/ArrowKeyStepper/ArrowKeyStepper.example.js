@@ -4,7 +4,7 @@ import * as React from 'react';
 import {
   ContentBox,
   ContentBoxHeader,
-  ContentBoxParagraph,
+  ContentBoxParagraph
 } from '../demo/ContentBox';
 import ArrowKeyStepper, {type ScrollIndices} from './';
 import AutoSizer from '../AutoSizer';
@@ -16,18 +16,18 @@ type State = {
   mode: 'edges' | 'cells',
   isClickable: boolean,
   scrollToColumn: number,
-  scrollToRow: number,
+  scrollToRow: number
 };
 
 export default class ArrowKeyStepperExample extends React.PureComponent<
   {},
-  State,
+  State
 > {
   state = {
     mode: 'edges',
     isClickable: true,
     scrollToColumn: 0,
-    scrollToRow: 0,
+    scrollToRow: 0
   };
 
   render() {
@@ -127,7 +127,7 @@ export default class ArrowKeyStepperExample extends React.PureComponent<
                         rowIndex,
                         scrollToColumn,
                         scrollToRow,
-                        style,
+                        style
                       })
                     }
                     rowHeight={this._getRowHeight}
@@ -159,18 +159,18 @@ export default class ArrowKeyStepperExample extends React.PureComponent<
     rowIndex,
     scrollToColumn,
     scrollToRow,
-    style,
+    style
   }: {
     columnIndex: number,
     key: string,
     rowIndex: number,
     scrollToColumn: number,
     scrollToRow: number,
-    style: Object,
+    style: Object
   }) => {
     const className = cn(styles.Cell, {
       [styles.FocusedCell]:
-        columnIndex === scrollToColumn && rowIndex === scrollToRow,
+        columnIndex === scrollToColumn && rowIndex === scrollToRow
     });
 
     return (
@@ -183,7 +183,7 @@ export default class ArrowKeyStepperExample extends React.PureComponent<
           (() =>
             this._selectCell({
               scrollToColumn: columnIndex,
-              scrollToRow: rowIndex,
+              scrollToRow: rowIndex
             }))
         }
         style={style}>
@@ -201,7 +201,7 @@ export default class ArrowKeyStepperExample extends React.PureComponent<
       this.setState({
         isClickable: event.target.checked,
         scrollToColumn: 0,
-        scrollToRow: 0,
+        scrollToRow: 0
       });
     }
   };

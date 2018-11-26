@@ -5,16 +5,16 @@ describe('createMultiSort', () => {
     sort,
     dataKey,
     eventModifier = '',
-    defaultSortDirection = 'ASC',
+    defaultSortDirection = 'ASC'
   ) {
     sort({
       defaultSortDirection,
       event: {
         ctrlKey: eventModifier === 'control',
         metaKey: eventModifier === 'meta',
-        shiftKey: eventModifier === 'shift',
+        shiftKey: eventModifier === 'shift'
       },
-      sortBy: dataKey,
+      sortBy: dataKey
     });
   }
 
@@ -27,8 +27,8 @@ describe('createMultiSort', () => {
       defaultSortBy: ['a', 'b'],
       defaultSortDirection: {
         a: 'ASC',
-        b: 'DESC',
-      },
+        b: 'DESC'
+      }
     });
     expect(multiSort.sortBy).toEqual(['a', 'b']);
     expect(multiSort.sortDirection.a).toBe('ASC');
@@ -37,7 +37,7 @@ describe('createMultiSort', () => {
 
   it('sets the correct default sparse values', () => {
     const multiSort = createMultiSort(jest.fn(), {
-      defaultSortBy: ['a', 'b'],
+      defaultSortBy: ['a', 'b']
     });
     expect(multiSort.sortBy).toEqual(['a', 'b']);
     expect(multiSort.sortDirection.a).toBe('ASC');
@@ -79,7 +79,7 @@ describe('createMultiSort', () => {
 
     it('resets sort-by fields', () => {
       const multiSort = createMultiSort(jest.fn(), {
-        defaultSortBy: ['a', 'b'],
+        defaultSortBy: ['a', 'b']
       });
       expect(multiSort.sortBy).toEqual(['a', 'b']);
 
@@ -92,8 +92,8 @@ describe('createMultiSort', () => {
         defaultSortBy: ['a', 'b'],
         defaultSortDirection: {
           a: 'DESC',
-          b: 'ASC',
-        },
+          b: 'ASC'
+        }
       });
       expect(multiSort.sortBy).toEqual(['a', 'b']);
       expect(multiSort.sortDirection.a).toEqual('DESC');
@@ -175,7 +175,7 @@ describe('createMultiSort', () => {
     describe(`${modifier} click`, () => {
       it('removes a field from the sort by list', () => {
         const multiSort = createMultiSort(jest.fn(), {
-          defaultSortBy: ['a', 'b'],
+          defaultSortBy: ['a', 'b']
         });
         expect(multiSort.sortBy).toEqual(['a', 'b']);
 
@@ -188,7 +188,7 @@ describe('createMultiSort', () => {
 
       it('ignores fields not in the list on control click', () => {
         const multiSort = createMultiSort(jest.fn(), {
-          defaultSortBy: ['a', 'b'],
+          defaultSortBy: ['a', 'b']
         });
         expect(multiSort.sortBy).toEqual(['a', 'b']);
 

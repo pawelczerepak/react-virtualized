@@ -11,7 +11,7 @@ export default class DynamicHeightGrid extends React.PureComponent {
     getClassName: PropTypes.func.isRequired,
     getContent: PropTypes.func.isRequired,
     list: PropTypes.instanceOf(Immutable.List).isRequired,
-    width: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired
   };
 
   constructor(props, context) {
@@ -19,7 +19,7 @@ export default class DynamicHeightGrid extends React.PureComponent {
 
     this._cache = new CellMeasurerCache({
       defaultWidth: 150,
-      fixedWidth: true,
+      fixedWidth: true
     });
 
     this._cellRenderer = this._cellRenderer.bind(this);
@@ -63,7 +63,7 @@ export default class DynamicHeightGrid extends React.PureComponent {
           className={classNames}
           style={{
             ...style,
-            width: 150,
+            width: 150
           }}>
           {content}
         </div>

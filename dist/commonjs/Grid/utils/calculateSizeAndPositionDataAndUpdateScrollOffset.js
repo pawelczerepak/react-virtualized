@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 exports.default = calculateSizeAndPositionDataAndUpdateScrollOffset;
 function calculateSizeAndPositionDataAndUpdateScrollOffset(_ref) {

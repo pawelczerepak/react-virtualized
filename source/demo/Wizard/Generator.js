@@ -8,7 +8,7 @@ export default function Generator({
   doNotVirtualizeColumns,
   hasMultipleColumns,
   hasMultipleRows,
-  nonCheckerboardPattern,
+  nonCheckerboardPattern
 }) {
   if (!hasMultipleColumns && !hasMultipleRows) {
     return "<div>Looks like you don't need react-virtualized.</div>";
@@ -17,7 +17,7 @@ export default function Generator({
   const baseComponent = getBaseComponent({
     doNotVirtualizeColumns,
     hasMultipleColumns,
-    nonCheckerboardPattern,
+    nonCheckerboardPattern
   });
   const useAutoSizer = !collectionHasFixedHeight || !collectionHasFixedWidth;
   const useCellMeasurer =
@@ -66,13 +66,13 @@ export default function Generator({
       collectionHasFixedHeight,
       collectionHasFixedWidth,
       child: component,
-      indentation: useAutoSizer ? 4 : 0,
+      indentation: useAutoSizer ? 4 : 0
     });
   }
 
   if (useAutoSizer) {
     component = getAutoSizer({
-      child: component,
+      child: component
     });
   }
 
@@ -95,7 +95,7 @@ function componentToString({component, indentation = 0}) {
       Object.keys(component.props)
         .sort()
         .map(key => `${spaces}  ${key}={${component.props[key]}}`)
-        .join(`\n`),
+        .join(`\n`)
     );
   }
 
@@ -119,7 +119,7 @@ function componentToString({component, indentation = 0}) {
 function getAutoSizer({
   child,
   collectionHasFixedHeight,
-  collectionHasFixedWidth,
+  collectionHasFixedWidth
 }) {
   const props = {};
 
@@ -142,22 +142,22 @@ function getAutoSizer({
   children.push(
     componentToString({
       component: child,
-      indentation: 4,
-    }),
+      indentation: 4
+    })
   );
   children.push('  )}');
 
   return {
     name: 'AutoSizer',
     props,
-    children: children.join(`\n`),
+    children: children.join(`\n`)
   };
 }
 
 function getBaseComponent({
   doNotVirtualizeColumns,
   hasMultipleColumns,
-  nonCheckerboardPattern,
+  nonCheckerboardPattern
 }) {
   if (nonCheckerboardPattern) {
     return getCollectionMarkup();
@@ -175,7 +175,7 @@ function getCellMeasurer({
   collectionHasFixedHeight,
   collectionHasFixedWidth,
   child,
-  indentation,
+  indentation
 }) {
   const spaces = indentationToSpaces(indentation);
 
@@ -186,7 +186,7 @@ function getCellMeasurer({
   const props = {
     cellRenderer: 'yourCellRenderer', // @TODO pass down?
     columnCount: 'numColumns',
-    rowCount: 'numRows',
+    rowCount: 'numRows'
   };
   let methodSignature;
 
@@ -204,15 +204,15 @@ function getCellMeasurer({
   children.push(
     componentToString({
       component: child,
-      indentation: indentation + 4,
-    }),
+      indentation: indentation + 4
+    })
   );
   children.push(`${spaces}  )}`);
 
   return {
     name: 'CellMeasurer',
     props,
-    children: children.join(`\n`),
+    children: children.join(`\n`)
   };
 }
 
@@ -223,8 +223,8 @@ function getCollectionMarkup() {
       cellCount: 'collection.size',
       cellRenderer: '({ index }) => collection.getIn([index, "name"])',
       cellSizeAndPositionGetter:
-        '({ index, isScrolling  }) => ({ height, width, x, y })',
-    },
+        '({ index, isScrolling  }) => ({ height, width, x, y })'
+    }
   };
 }
 
@@ -233,11 +233,11 @@ function getTableMarkup() {
     name: 'Table',
     props: {
       headerHeight: 30,
-      rowGetter: '({ index }) => collection.get(index)',
+      rowGetter: '({ index }) => collection.get(index)'
     },
     rowCountProp: 'rowCount',
     rowHeightProp: 'rowHeight',
-    children: '<!-- Insert Column children here -->', // @TODO
+    children: '<!-- Insert Column children here -->' // @TODO
   };
 }
 
@@ -246,12 +246,12 @@ function getGridMarkup() {
     name: 'Grid',
     props: {
       cellRenderer:
-        '({ columnIndex, key, rowIndex, style }) => <div key={key} style={style}>...</div>',
+        '({ columnIndex, key, rowIndex, style }) => <div key={key} style={style}>...</div>'
     },
     columnCountProp: 'columnCount',
     columnWidthProp: 'columnWidth',
     rowCountProp: 'rowCount',
-    rowHeightProp: 'rowHeight',
+    rowHeightProp: 'rowHeight'
   };
 }
 
@@ -260,9 +260,9 @@ function getListMarkup() {
     name: 'List',
     props: {
       rowRenderer:
-        '({ index, key, style }) => <div key={key} style={style}>...</div>',
+        '({ index, key, style }) => <div key={key} style={style}>...</div>'
     },
-    rowHeightProp: 'rowHeight',
+    rowHeightProp: 'rowHeight'
   };
 }
 

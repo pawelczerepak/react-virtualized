@@ -18,7 +18,7 @@ describe('List', () => {
   function overscanIndicesGetter({startIndex, stopIndex}) {
     return {
       overscanStartIndex: startIndex,
-      overscanStopIndex: stopIndex,
+      overscanStopIndex: stopIndex
     };
   }
 
@@ -61,8 +61,8 @@ describe('List', () => {
     it('should scroll to the top', () => {
       const instance = render(
         getMarkup({
-          rowHeight: 10,
-        }),
+          rowHeight: 10
+        })
       );
       instance.scrollToPosition(100);
       const rendered = findDOMNode(instance);
@@ -99,9 +99,9 @@ describe('List', () => {
         render(
           getMarkup({
             scrollToAlignment: 'start',
-            scrollToIndex: 49,
-          }),
-        ),
+            scrollToIndex: 49
+          })
+        )
       );
       // 100 items * 10 item height = 1,000 total item height; 10 items can be visible at a time.
       expect(rendered.textContent).toContain('Name 49');
@@ -111,16 +111,16 @@ describe('List', () => {
     it('should scroll to the correct position for :scrollToAlignment "end"', () => {
       render(
         getMarkup({
-          scrollToIndex: 99,
-        }),
+          scrollToIndex: 99
+        })
       );
       const rendered = findDOMNode(
         render(
           getMarkup({
             scrollToAlignment: 'end',
-            scrollToIndex: 49,
-          }),
-        ),
+            scrollToIndex: 49
+          })
+        )
       );
       // 100 items * 10 item height = 1,000 total item height; 10 items can be visible at a time.
       expect(rendered.textContent).toContain('Name 40');
@@ -130,16 +130,16 @@ describe('List', () => {
     it('should scroll to the correct position for :scrollToAlignment "center"', () => {
       render(
         getMarkup({
-          scrollToIndex: 99,
-        }),
+          scrollToIndex: 99
+        })
       );
       const rendered = findDOMNode(
         render(
           getMarkup({
             scrollToAlignment: 'center',
-            scrollToIndex: 49,
-          }),
-        ),
+            scrollToIndex: 49
+          })
+        )
       );
       // 100 items * 10 item height = 1,000 total item height; 11 items can be visible at a time (the first and last item are only partially visible)
       expect(rendered.textContent).toContain('Name 44');
@@ -153,7 +153,7 @@ describe('List', () => {
       expect(rendered.textContent).toContain('Name 50');
       // Making rows taller pushes name off/beyond the scrolled area
       rendered = findDOMNode(
-        render(getMarkup({scrollToIndex: 50, rowHeight: 20})),
+        render(getMarkup({scrollToIndex: 50, rowHeight: 20}))
       );
       expect(rendered.textContent).toContain('Name 50');
     });
@@ -163,7 +163,7 @@ describe('List', () => {
       expect(rendered.textContent).toContain('Name 50');
       // Making the list shorter leaves only room for 1 item
       rendered = findDOMNode(
-        render(getMarkup({scrollToIndex: 50, height: 20})),
+        render(getMarkup({scrollToIndex: 50, height: 20}))
       );
       expect(rendered.textContent).toContain('Name 50');
     });
@@ -179,7 +179,7 @@ describe('List', () => {
       findDOMNode(render(getMarkup({scrollToIndex: 500})));
       findDOMNode(render(getMarkup()));
       const rendered = findDOMNode(
-        render(getMarkup({scrollToIndex: 500, rowCount: 10})),
+        render(getMarkup({scrollToIndex: 500, rowCount: 10}))
       );
       expect(rendered.textContent).toContain('Name 9');
     });
@@ -191,9 +191,9 @@ describe('List', () => {
         render(
           getMarkup({
             noRowsRenderer: () => <div>No rows!</div>,
-            rowCount: 0,
-          }),
-        ),
+            rowCount: 0
+          })
+        )
       );
       expect(rendered.textContent).toEqual('No rows!');
     });
@@ -202,9 +202,9 @@ describe('List', () => {
       let rendered = findDOMNode(
         render(
           getMarkup({
-            rowCount: 0,
-          }),
-        ),
+            rowCount: 0
+          })
+        )
       );
       expect(rendered.textContent).toEqual('');
     });
@@ -215,8 +215,8 @@ describe('List', () => {
       let startIndex, stopIndex;
       render(
         getMarkup({
-          onRowsRendered: params => ({startIndex, stopIndex} = params),
-        }),
+          onRowsRendered: params => ({startIndex, stopIndex} = params)
+        })
       );
       expect(startIndex).toEqual(0);
       expect(stopIndex).toEqual(9);
@@ -258,9 +258,9 @@ describe('List', () => {
         render(
           getMarkup({
             height: 50,
-            onRowsRendered,
-          }),
-        ),
+            onRowsRendered
+          })
+        )
       );
       expect(numCalls).toEqual(2);
       expect(startIndex).toEqual(0);
@@ -272,8 +272,8 @@ describe('List', () => {
       render(
         getMarkup({
           height: 0,
-          onRowsRendered: params => ({startIndex, stopIndex} = params),
-        }),
+          onRowsRendered: params => ({startIndex, stopIndex} = params)
+        })
       );
       expect(startIndex).toEqual(undefined);
       expect(stopIndex).toEqual(undefined);
@@ -286,8 +286,8 @@ describe('List', () => {
       render(
         getMarkup({
           onRowsRendered: params => ({startIndex, stopIndex} = params),
-          scrollTop: 100,
-        }),
+          scrollTop: 100
+        })
       );
       expect(startIndex).toEqual(10);
       expect(stopIndex).toEqual(19);
@@ -299,9 +299,9 @@ describe('List', () => {
       findDOMNode(
         render(
           getMarkup({
-            onRowsRendered: params => ({startIndex, stopIndex} = params),
-          }),
-        ),
+            onRowsRendered: params => ({startIndex, stopIndex} = params)
+          })
+        )
       );
       expect(startIndex).toEqual(0);
       expect(stopIndex).toEqual(9);
@@ -310,9 +310,9 @@ describe('List', () => {
         render(
           getMarkup({
             onRowsRendered: params => ({startIndex, stopIndex} = params),
-            scrollTop: 100,
-          }),
-        ),
+            scrollTop: 100
+          })
+        )
       );
       expect(startIndex).toEqual(10);
       expect(stopIndex).toEqual(19);
@@ -355,8 +355,8 @@ describe('List', () => {
 
       render(
         getMarkup({
-          overscanIndicesGetter: mock,
-        }),
+          overscanIndicesGetter: mock
+        })
       );
       expect(mock.mock.calls[0][0].overscanCellsCount).toEqual(0);
       expect(mock.mock.calls[1][0].overscanCellsCount).toEqual(0);
@@ -369,8 +369,8 @@ describe('List', () => {
       render(
         getMarkup({
           overscanIndicesGetter: mock,
-          overscanRowCount: 10,
-        }),
+          overscanRowCount: 10
+        })
       );
       expect(mock.mock.calls[0][0].overscanCellsCount).toEqual(0);
       expect(mock.mock.calls[1][0].overscanCellsCount).toEqual(10);
@@ -382,15 +382,15 @@ describe('List', () => {
       const onScrollCalls = [];
       render(
         getMarkup({
-          onScroll: params => onScrollCalls.push(params),
-        }),
+          onScroll: params => onScrollCalls.push(params)
+        })
       );
       expect(onScrollCalls).toEqual([
         {
           clientHeight: 100,
           scrollHeight: 1000,
-          scrollTop: 0,
-        },
+          scrollTop: 0
+        }
       ]);
     });
 
@@ -398,19 +398,19 @@ describe('List', () => {
       const onScrollCalls = [];
       const rendered = render(
         getMarkup({
-          onScroll: params => onScrollCalls.push(params),
-        }),
+          onScroll: params => onScrollCalls.push(params)
+        })
       );
       const target = {
         scrollLeft: 0,
-        scrollTop: 100,
+        scrollTop: 100
       };
       rendered.Grid._scrollingContainer = target; // HACK to work around _onScroll target check
       Simulate.scroll(findDOMNode(rendered), {target});
       expect(onScrollCalls[onScrollCalls.length - 1]).toEqual({
         clientHeight: 100,
         scrollHeight: 1000,
-        scrollTop: 100,
+        scrollTop: 100
       });
     });
   });
@@ -423,15 +423,15 @@ describe('List', () => {
           height: 0,
           rowCount: 10,
           rowHeight: () => 20,
-          width: 0,
-        }),
+          width: 0
+        })
       );
       expect(
-        rendered.Grid.state.instanceProps.rowSizeAndPositionManager.getTotalSize(),
+        rendered.Grid.state.instanceProps.rowSizeAndPositionManager.getTotalSize()
       ).toEqual(150);
       rendered.measureAllRows();
       expect(
-        rendered.Grid.state.instanceProps.rowSizeAndPositionManager.getTotalSize(),
+        rendered.Grid.state.instanceProps.rowSizeAndPositionManager.getTotalSize()
       ).toEqual(200);
     });
   });
@@ -446,8 +446,8 @@ describe('List', () => {
       const component = render(
         getMarkup({
           rowHeight,
-          rowCount: 50,
-        }),
+          rowCount: 50
+        })
       );
 
       indices.splice(0);
@@ -495,9 +495,9 @@ describe('List', () => {
       const rendered = findDOMNode(
         render(
           getMarkup({
-            tabIndex: -1,
-          }),
-        ),
+            tabIndex: -1
+          })
+        )
       );
       expect(rendered.tabIndex).toEqual(-1);
     });
@@ -516,9 +516,9 @@ describe('List', () => {
           overscanIndicesGetter: defaultOverscanIndicesGetter,
           overscanRowCount: 1,
           rowHeight: 50,
-          rowRenderer,
-        }),
-      ),
+          rowRenderer
+        })
+      )
     );
     expect(rowRendererCalls[0].isVisible).toEqual(true);
     expect(rowRendererCalls[1].isVisible).toEqual(false);
@@ -554,7 +554,7 @@ describe('List', () => {
     const rendered = findDOMNode(render(getMarkup()));
     expect(
       rendered.querySelector('.ReactVirtualized__Grid__innerScrollContainer')
-        .style.width,
+        .style.width
     ).toEqual('auto');
   });
 });

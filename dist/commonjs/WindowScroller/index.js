@@ -1,7 +1,7 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 exports.IS_SCROLLING_TIMEOUT = exports.WindowScroller = undefined;
 

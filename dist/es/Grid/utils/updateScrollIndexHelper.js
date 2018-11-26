@@ -1,26 +1,11 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
-exports.default = updateScrollIndexHelper;
-
-var _ScalingCellSizeAndPositionManager = require('./ScalingCellSizeAndPositionManager.js');
-
-var _ScalingCellSizeAndPositionManager2 = _interopRequireDefault(
-  _ScalingCellSizeAndPositionManager,
-);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {default: obj};
-}
+import ScalingCellSizeAndPositionManager from './ScalingCellSizeAndPositionManager.js';
 
 /**
  * Helper function that determines when to update scroll offsets to ensure that a scroll-to-index remains visible.
  * This function also ensures that the scroll ofset isn't past the last column/row of cells.
  */
 
-function updateScrollIndexHelper(_ref) {
+export default function updateScrollIndexHelper(_ref) {
   var cellSize = _ref.cellSize,
     cellSizeAndPositionManager = _ref.cellSizeAndPositionManager,
     previousCellsCount = _ref.previousCellsCount,
@@ -69,3 +54,5 @@ function updateScrollIndexHelper(_ref) {
     }
   }
 }
+import {bpfrpt_proptype_Alignment} from '../types';
+import {bpfrpt_proptype_CellSize} from '../types';

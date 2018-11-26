@@ -6,23 +6,23 @@ import * as React from 'react';
 import {
   ContentBox,
   ContentBoxHeader,
-  ContentBoxParagraph,
+  ContentBoxParagraph
 } from '../demo/ContentBox';
 import AutoSizer from './AutoSizer';
 import List, {type RowRendererParams} from '../List';
 import styles from './AutoSizer.example.css';
 
 type State = {
-  hideDescription: boolean,
+  hideDescription: boolean
 };
 
 export default class AutoSizerExample extends React.PureComponent<{}, State> {
   static contextTypes = {
-    list: PropTypes.instanceOf(ImmutableList).isRequired,
+    list: PropTypes.instanceOf(ImmutableList).isRequired
   };
 
   state = {
-    hideDescription: false,
+    hideDescription: false
   };
 
   render() {
@@ -33,7 +33,7 @@ export default class AutoSizerExample extends React.PureComponent<{}, State> {
       <ContentBox
         {...this.props}
         style={{
-          height: 400,
+          height: 400
         }}>
         <ContentBoxHeader
           text="AutoSizer"

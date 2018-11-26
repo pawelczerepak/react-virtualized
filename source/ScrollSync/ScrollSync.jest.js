@@ -9,7 +9,7 @@ function ChildComponent({
   scrollHeight,
   scrollLeft,
   scrollTop,
-  scrollWidth,
+  scrollWidth
 }) {
   return (
     <div>
@@ -33,7 +33,7 @@ describe('ScrollSync', () => {
           scrollHeight,
           scrollLeft,
           scrollTop,
-          scrollWidth,
+          scrollWidth
         }) => (
           <ChildComponent
             clientHeight={clientHeight}
@@ -44,7 +44,7 @@ describe('ScrollSync', () => {
             scrollWidth={scrollWidth}
           />
         )}
-      </ScrollSync>,
+      </ScrollSync>
     );
     expect(findDOMNode(component).textContent).toContain('clientHeight:0');
     expect(findDOMNode(component).textContent).toContain('clientWidth:0');
@@ -62,7 +62,7 @@ describe('ScrollSync', () => {
           onScroll = params.onScroll;
           return <ChildComponent {...params} />;
         }}
-      </ScrollSync>,
+      </ScrollSync>
     );
     onScroll({
       clientHeight: 400,
@@ -70,7 +70,7 @@ describe('ScrollSync', () => {
       scrollHeight: 1000,
       scrollLeft: 50,
       scrollTop: 100,
-      scrollWidth: 500,
+      scrollWidth: 500
     });
     expect(findDOMNode(component).textContent).toContain('clientHeight:400');
     expect(findDOMNode(component).textContent).toContain('clientWidth:200');

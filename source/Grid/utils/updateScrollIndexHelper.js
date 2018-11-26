@@ -44,7 +44,7 @@ type Params = {
   sizeJustIncreasedFromZero: boolean,
 
   // Callback to invoke with an scroll-to-index value
-  updateScrollIndexCallback: (index: number) => void,
+  updateScrollIndexCallback: (index: number) => void
 };
 
 export default function updateScrollIndexHelper({
@@ -60,7 +60,7 @@ export default function updateScrollIndexHelper({
   scrollToIndex,
   size,
   sizeJustIncreasedFromZero,
-  updateScrollIndexCallback,
+  updateScrollIndexCallback
 }: Params) {
   const cellCount = cellSizeAndPositionManager.getCellCount();
   const hasScrollToIndex = scrollToIndex >= 0 && scrollToIndex < cellCount;

@@ -10,7 +10,7 @@ test('should render content with default widths and heights initially', () => {
   const rendered = ReactDOMServer.renderToString(
     <WindowScroller serverHeight={100} serverWidth={200}>
       {({height, width}) => <div>{`height:${height};width:${width}`}</div>}
-    </WindowScroller>,
+    </WindowScroller>
   );
 
   expect(rendered).toContain('height:100');

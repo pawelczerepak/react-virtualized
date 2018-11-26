@@ -4,12 +4,12 @@ import CellSizeAndPositionManager from './CellSizeAndPositionManager';
 // Default cell sizes and offsets for use in shared tests
 export function getCellSizeAndPositionManager({
   cellCount = CELL_SIZES.length,
-  estimatedCellSize = 10,
+  estimatedCellSize = 10
 }) {
   return new CellSizeAndPositionManager({
     cellCount,
     cellSizeGetter: ({index}) => CELL_SIZES[index % CELL_SIZES.length],
-    estimatedCellSize,
+    estimatedCellSize
   });
 }
 
@@ -22,7 +22,7 @@ const CELL_SIZES = [
   30, // 5: 50..70
   20, // 6: 70..100
   10, // 7: 80..110
-  30, //  8: 110..110 (max)
+  30 //  8: 110..110 (max)
 ];
 
 describe('updateScrollIndexHelper', () => {
@@ -38,7 +38,7 @@ describe('updateScrollIndexHelper', () => {
     scrollOffset = 0,
     scrollToAlignment = 'auto',
     scrollToIndex,
-    size = 50,
+    size = 50
   } = {}) {
     cellSizeAndPositionManager =
       cellSizeAndPositionManager || getCellSizeAndPositionManager({cellCount});
@@ -68,7 +68,7 @@ describe('updateScrollIndexHelper', () => {
       scrollToAlignment,
       scrollToIndex,
       size,
-      updateScrollIndexCallback,
+      updateScrollIndexCallback
     });
 
     return updateScrollIndexCallbackCalled;
@@ -83,8 +83,8 @@ describe('updateScrollIndexHelper', () => {
       helper({
         size: 100,
         previousSize: 50,
-        scrollToIndex: -1,
-      }),
+        scrollToIndex: -1
+      })
     ).toEqual(false);
   });
 
@@ -94,8 +94,8 @@ describe('updateScrollIndexHelper', () => {
         cellCount: 100,
         size: 100,
         previousSize: 50,
-        scrollToIndex: 10,
-      }),
+        scrollToIndex: 10
+      })
     ).toEqual(true);
   });
 
@@ -105,8 +105,8 @@ describe('updateScrollIndexHelper', () => {
         cellCount: 100,
         cellSize: 15,
         previousCellSize: 20,
-        scrollToIndex: 10,
-      }),
+        scrollToIndex: 10
+      })
     ).toEqual(true);
   });
 
@@ -115,8 +115,8 @@ describe('updateScrollIndexHelper', () => {
       helper({
         cellCount: 15,
         previousScrollToIndex: 20,
-        scrollToIndex: 10,
-      }),
+        scrollToIndex: 10
+      })
     ).toEqual(true);
   });
 
@@ -124,8 +124,8 @@ describe('updateScrollIndexHelper', () => {
     expect(
       helper({
         previousCellsCount: 100,
-        scrollOffset: 510,
-      }),
+        scrollOffset: 510
+      })
     ).toEqual(true);
   });
 
@@ -134,15 +134,15 @@ describe('updateScrollIndexHelper', () => {
       helper({
         previousSize: 100,
         scrollOffset: 510,
-        size: 50,
-      }),
+        size: 50
+      })
     ).toEqual(true);
   });
 
   it('should not measure rows if :size or :cellCount have been reduced but only use already measured (or estimated) total size', () => {
     const cellSizeAndPositionManager = {
       getCellCount: () => CELL_SIZES.length,
-      getTotalSize: () => 560,
+      getTotalSize: () => 560
     };
 
     expect(
@@ -150,8 +150,8 @@ describe('updateScrollIndexHelper', () => {
         cellSizeAndPositionManager,
         previousSize: 100,
         scrollOffset: 510,
-        size: 50,
-      }),
+        size: 50
+      })
     ).toEqual(false);
   });
 
@@ -159,8 +159,8 @@ describe('updateScrollIndexHelper', () => {
     expect(
       helper({
         cellCount: 100,
-        previousCellsCount: 50,
-      }),
+        previousCellsCount: 50
+      })
     ).toEqual(false);
   });
 
@@ -168,8 +168,8 @@ describe('updateScrollIndexHelper', () => {
     expect(
       helper({
         previousSize: 50,
-        size: 100,
-      }),
+        size: 100
+      })
     ).toEqual(false);
   });
 
@@ -178,8 +178,8 @@ describe('updateScrollIndexHelper', () => {
       helper({
         previousScrollToAlignment: 'start',
         scrollToAlignment: 'end',
-        scrollToIndex: 5,
-      }),
+        scrollToIndex: 5
+      })
     ).toEqual(true);
   });
 
@@ -187,8 +187,8 @@ describe('updateScrollIndexHelper', () => {
     expect(
       helper({
         previousScrollToAlignment: 'start',
-        scrollToAlignment: 'end',
-      }),
+        scrollToAlignment: 'end'
+      })
     ).toEqual(false);
   });
 });

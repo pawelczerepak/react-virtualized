@@ -1,128 +1,18 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
-exports.DEFAULT_SCROLLING_RESET_TIME_INTERVAL = undefined;
-
-var _extends =
-  Object.assign ||
-  function(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-    return target;
-  };
-
-var _createClass = (function() {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-  return function(Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-})();
-
-var _classnames = require('classnames');
-
-var _classnames2 = _interopRequireDefault(_classnames);
-
-var _react = require('react');
-
-var React = _interopRequireWildcard(_react);
-
-var _reactLifecyclesCompat = require('react-lifecycles-compat');
-
-var _PositionCache = require('./PositionCache');
-
-var _PositionCache2 = _interopRequireDefault(_PositionCache);
-
-var _requestAnimationTimeout = require('../utils/requestAnimationTimeout');
-
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  } else {
-    var newObj = {};
-    if (obj != null) {
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key))
-          newObj[key] = obj[key];
-      }
-    }
-    newObj.default = obj;
-    return newObj;
-  }
-}
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {default: obj};
-}
-
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true,
-    });
-  } else {
-    obj[key] = value;
-  }
-  return obj;
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (!self) {
-    throw new ReferenceError(
-      "this hasn't been initialised - super() hasn't been called",
-    );
-  }
-  return call && (typeof call === 'object' || typeof call === 'function')
-    ? call
-    : self;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== 'function' && superClass !== null) {
-    throw new TypeError(
-      'Super expression must either be null or a function, not ' +
-        typeof superClass,
-    );
-  }
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true,
-    },
-  });
-  if (superClass)
-    Object.setPrototypeOf
-      ? Object.setPrototypeOf(subClass, superClass)
-      : (subClass.__proto__ = superClass);
-}
+import _extends from 'babel-runtime/helpers/extends';
+import _defineProperty from 'babel-runtime/helpers/defineProperty';
+import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
+import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
+import _createClass from 'babel-runtime/helpers/createClass';
+import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
+import _inherits from 'babel-runtime/helpers/inherits';
+import cn from 'classnames';
+import * as React from 'react';
+import {polyfill} from 'react-lifecycles-compat';
+import PositionCache from './PositionCache';
+import {
+  requestAnimationTimeout,
+  cancelAnimationTimeout
+} from '../utils/requestAnimationTimeout';
 
 var emptyObject = {};
 
@@ -130,7 +20,7 @@ var emptyObject = {};
  * Specifies the number of miliseconds during which to disable pointer events while a scroll is in progress.
  * This improves performance and makes scrolling smoother.
  */
-var DEFAULT_SCROLLING_RESET_TIME_INTERVAL = (exports.DEFAULT_SCROLLING_RESET_TIME_INTERVAL = 150);
+export var DEFAULT_SCROLLING_RESET_TIME_INTERVAL = 150;
 
 /**
  * This component efficiently displays arbitrarily positioned cells using windowing techniques.
@@ -182,26 +72,27 @@ var Masonry = (function(_React$PureComponent) {
     return (
       (_ret = ((_temp = ((_this = _possibleConstructorReturn(
         this,
-        (_ref = Masonry.__proto__ || Object.getPrototypeOf(Masonry)).call.apply(
+        (_ref =
+          Masonry.__proto__ || _Object$getPrototypeOf(Masonry)).call.apply(
           _ref,
-          [this].concat(args),
-        ),
+          [this].concat(args)
+        )
       )),
       _this)),
       (_this.state = {
         isScrolling: false,
-        scrollTop: 0,
+        scrollTop: 0
       }),
       (_this._invalidateOnUpdateStartIndex = null),
       (_this._invalidateOnUpdateStopIndex = null),
-      (_this._positionCache = new _PositionCache2.default()),
+      (_this._positionCache = new PositionCache()),
       (_this._startIndex = null),
       (_this._startIndexMemoized = null),
       (_this._stopIndex = null),
       (_this._stopIndexMemoized = null),
       (_this._debounceResetIsScrollingCallback = function() {
         _this.setState({
-          isScrolling: false,
+          isScrolling: false
         });
       }),
       (_this._setScrollingContainerRef = function(ref) {
@@ -218,7 +109,7 @@ var Masonry = (function(_React$PureComponent) {
         // We can avoid that by doing some simple bounds checking to ensure that scroll offsets never exceed their bounds.
         var scrollTop = Math.min(
           Math.max(0, _this._getEstimatedTotalHeight() - height),
-          eventScrollTop,
+          eventScrollTop
         );
 
         // On iOS, we can arrive at negative offsets by swiping past the start or end.
@@ -237,7 +128,7 @@ var Masonry = (function(_React$PureComponent) {
         if (_this.state.scrollTop !== scrollTop) {
           _this.setState({
             isScrolling: true,
-            scrollTop: scrollTop,
+            scrollTop: scrollTop
           });
         }
       }),
@@ -252,9 +143,9 @@ var Masonry = (function(_React$PureComponent) {
       {
         key: 'clearCellPositions',
         value: function clearCellPositions() {
-          this._positionCache = new _PositionCache2.default();
+          this._positionCache = new PositionCache();
           this.forceUpdate();
-        },
+        }
 
         // HACK This method signature was intended for Grid
       },
@@ -269,25 +160,25 @@ var Masonry = (function(_React$PureComponent) {
           } else {
             this._invalidateOnUpdateStartIndex = Math.min(
               this._invalidateOnUpdateStartIndex,
-              index,
+              index
             );
             this._invalidateOnUpdateStopIndex = Math.max(
               this._invalidateOnUpdateStopIndex,
-              index,
+              index
             );
           }
-        },
+        }
       },
       {
         key: 'recomputeCellPositions',
         value: function recomputeCellPositions() {
           var stopIndex = this._positionCache.count - 1;
 
-          this._positionCache = new _PositionCache2.default();
+          this._positionCache = new PositionCache();
           this._populatePositionCache(0, stopIndex);
 
           this.forceUpdate();
-        },
+        }
       },
       {
         key: 'componentDidMount',
@@ -295,7 +186,7 @@ var Masonry = (function(_React$PureComponent) {
           this._checkInvalidateOnUpdate();
           this._invokeOnScrollCallback();
           this._invokeOnCellsRenderedCallback();
-        },
+        }
       },
       {
         key: 'componentDidUpdate',
@@ -307,17 +198,15 @@ var Masonry = (function(_React$PureComponent) {
           if (this.props.scrollTop !== prevProps.scrollTop) {
             this._debounceResetIsScrolling();
           }
-        },
+        }
       },
       {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
           if (this._debounceResetIsScrollingId) {
-            (0, _requestAnimationTimeout.cancelAnimationTimeout)(
-              this._debounceResetIsScrollingId,
-            );
+            cancelAnimationTimeout(this._debounceResetIsScrollingId);
           }
-        },
+        }
       },
       {
         key: 'render',
@@ -374,24 +263,24 @@ var Masonry = (function(_React$PureComponent) {
                   key: keyMapper(index),
                   parent: _this2,
                   style: ((_style = {
-                    height: cellMeasurerCache.getHeight(index),
+                    height: cellMeasurerCache.getHeight(index)
                   }),
                   _defineProperty(
                     _style,
                     rowDirection === 'ltr' ? 'left' : 'right',
-                    left,
+                    left
                   ),
                   _defineProperty(_style, 'position', 'absolute'),
                   _defineProperty(_style, 'top', top),
                   _defineProperty(
                     _style,
                     'width',
-                    cellMeasurerCache.getWidth(index),
+                    cellMeasurerCache.getWidth(index)
                   ),
-                  _style),
-                }),
+                  _style)
+                })
               );
-            },
+            }
           );
 
           // We need to measure additional cells for this layout
@@ -405,8 +294,8 @@ var Masonry = (function(_React$PureComponent) {
                 (scrollTop + height + overscanByPixels - shortestColumnSize) /
                   cellMeasurerCache.defaultHeight *
                   width /
-                  cellMeasurerCache.defaultWidth,
-              ),
+                  cellMeasurerCache.defaultWidth
+              )
             );
 
             for (
@@ -423,9 +312,9 @@ var Masonry = (function(_React$PureComponent) {
                   key: keyMapper(_index),
                   parent: this,
                   style: {
-                    width: cellMeasurerCache.getWidth(_index),
-                  },
-                }),
+                    width: cellMeasurerCache.getWidth(_index)
+                  }
+                })
               );
             }
           }
@@ -438,10 +327,7 @@ var Masonry = (function(_React$PureComponent) {
             {
               ref: this._setScrollingContainerRef,
               'aria-label': this.props['aria-label'],
-              className: (0, _classnames2.default)(
-                'ReactVirtualized__Masonry',
-                className,
-              ),
+              className: cn('ReactVirtualized__Masonry', className),
               id: id,
               onScroll: this._onScroll,
               role: role,
@@ -455,11 +341,11 @@ var Masonry = (function(_React$PureComponent) {
                   position: 'relative',
                   width: width,
                   WebkitOverflowScrolling: 'touch',
-                  willChange: 'transform',
+                  willChange: 'transform'
                 },
-                style,
+                style
               ),
-              tabIndex: tabIndex,
+              tabIndex: tabIndex
             },
             React.createElement(
               'div',
@@ -472,13 +358,13 @@ var Masonry = (function(_React$PureComponent) {
                   maxHeight: estimateTotalHeight,
                   overflow: 'hidden',
                   pointerEvents: isScrolling ? 'none' : '',
-                  position: 'relative',
-                },
+                  position: 'relative'
+                }
               },
-              children,
-            ),
+              children
+            )
           );
-        },
+        }
       },
       {
         key: '_checkInvalidateOnUpdate',
@@ -495,7 +381,7 @@ var Masonry = (function(_React$PureComponent) {
 
             this.forceUpdate();
           }
-        },
+        }
       },
       {
         key: '_debounceResetIsScrolling',
@@ -504,17 +390,14 @@ var Masonry = (function(_React$PureComponent) {
             .scrollingResetTimeInterval;
 
           if (this._debounceResetIsScrollingId) {
-            (0, _requestAnimationTimeout.cancelAnimationTimeout)(
-              this._debounceResetIsScrollingId,
-            );
+            cancelAnimationTimeout(this._debounceResetIsScrollingId);
           }
 
-          this._debounceResetIsScrollingId = (0,
-          _requestAnimationTimeout.requestAnimationTimeout)(
+          this._debounceResetIsScrollingId = requestAnimationTimeout(
             this._debounceResetIsScrollingCallback,
-            scrollingResetTimeInterval,
+            scrollingResetTimeInterval
           );
-        },
+        }
       },
       {
         key: '_getEstimatedTotalHeight',
@@ -526,15 +409,15 @@ var Masonry = (function(_React$PureComponent) {
 
           var estimatedColumnCount = Math.max(
             1,
-            Math.floor(width / cellMeasurerCache.defaultWidth),
+            Math.floor(width / cellMeasurerCache.defaultWidth)
           );
 
           return this._positionCache.estimateTotalHeight(
             cellCount,
             estimatedColumnCount,
-            cellMeasurerCache.defaultHeight,
+            cellMeasurerCache.defaultHeight
           );
-        },
+        }
       },
       {
         key: '_invokeOnScrollCallback',
@@ -548,12 +431,12 @@ var Masonry = (function(_React$PureComponent) {
             onScroll({
               clientHeight: height,
               scrollHeight: this._getEstimatedTotalHeight(),
-              scrollTop: scrollTop,
+              scrollTop: scrollTop
             });
 
             this._onScrollMemoized = scrollTop;
           }
-        },
+        }
       },
       {
         key: '_invokeOnCellsRenderedCallback',
@@ -566,13 +449,13 @@ var Masonry = (function(_React$PureComponent) {
 
             _onCellsRendered({
               startIndex: this._startIndex,
-              stopIndex: this._stopIndex,
+              stopIndex: this._stopIndex
             });
 
             this._startIndexMemoized = this._startIndex;
             this._stopIndexMemoized = this._stopIndex;
           }
-        },
+        }
       },
       {
         key: '_populatePositionCache',
@@ -590,11 +473,11 @@ var Masonry = (function(_React$PureComponent) {
               _index2,
               _left,
               _top,
-              cellMeasurerCache.getHeight(_index2),
+              cellMeasurerCache.getHeight(_index2)
             );
           }
-        },
-      },
+        }
+      }
     ],
     [
       {
@@ -606,14 +489,14 @@ var Masonry = (function(_React$PureComponent) {
           ) {
             return {
               isScrolling: true,
-              scrollTop: nextProps.scrollTop,
+              scrollTop: nextProps.scrollTop
             };
           }
 
           return null;
-        },
-      },
-    ],
+        }
+      }
+    ]
   );
 
   return Masonry;
@@ -629,8 +512,71 @@ Masonry.defaultProps = {
   scrollingResetTimeInterval: DEFAULT_SCROLLING_RESET_TIME_INTERVAL,
   style: emptyObject,
   tabIndex: 0,
-  rowDirection: 'ltr',
+  rowDirection: 'ltr'
 };
+Masonry.propTypes =
+  process.env.NODE_ENV === 'production'
+    ? null
+    : {
+        autoHeight: PropTypes.bool.isRequired,
+        cellCount: PropTypes.number.isRequired,
+        cellMeasurerCache: function cellMeasurerCache() {
+          return (typeof CellMeasurerCache === 'function'
+            ? PropTypes.instanceOf(CellMeasurerCache).isRequired
+            : PropTypes.any.isRequired
+          ).apply(this, arguments);
+        },
+        cellPositioner: function cellPositioner() {
+          return (typeof Positioner === 'function'
+            ? PropTypes.instanceOf(Positioner).isRequired
+            : PropTypes.any.isRequired
+          ).apply(this, arguments);
+        },
+        cellRenderer: function cellRenderer() {
+          return (typeof CellRenderer === 'function'
+            ? PropTypes.instanceOf(CellRenderer).isRequired
+            : PropTypes.any.isRequired
+          ).apply(this, arguments);
+        },
+        className: PropTypes.string,
+        height: PropTypes.number.isRequired,
+        id: PropTypes.string,
+        keyMapper: function keyMapper() {
+          return (typeof KeyMapper === 'function'
+            ? PropTypes.instanceOf(KeyMapper).isRequired
+            : PropTypes.any.isRequired
+          ).apply(this, arguments);
+        },
+        onCellsRendered: function onCellsRendered() {
+          return (typeof OnCellsRenderedCallback === 'function'
+            ? PropTypes.instanceOf(OnCellsRenderedCallback)
+            : PropTypes.any
+          ).apply(this, arguments);
+        },
+        onScroll: function onScroll() {
+          return (typeof OnScrollCallback === 'function'
+            ? PropTypes.instanceOf(OnScrollCallback)
+            : PropTypes.any
+          ).apply(this, arguments);
+        },
+        overscanByPixels: PropTypes.number.isRequired,
+        role: PropTypes.string.isRequired,
+        scrollingResetTimeInterval: PropTypes.number.isRequired,
+        style: function style(props, propName, componentName) {
+          if (!Object.prototype.hasOwnProperty.call(props, propName)) {
+            throw new Error(
+              'Prop `' +
+                propName +
+                "` has type 'any' or 'mixed', but was not provided to `" +
+                componentName +
+                '`. Pass undefined or any other value.'
+            );
+          }
+        },
+        tabIndex: PropTypes.number.isRequired,
+        width: PropTypes.number.isRequired,
+        rowDirection: PropTypes.string.isRequired
+      };
 
 function identity(value) {
   return value;
@@ -638,6 +584,23 @@ function identity(value) {
 
 function noop() {}
 
-(0, _reactLifecyclesCompat.polyfill)(Masonry);
+var bpfrpt_proptype_CellMeasurerCache =
+  process.env.NODE_ENV === 'production'
+    ? null
+    : {
+        defaultHeight: PropTypes.number.isRequired,
+        defaultWidth: PropTypes.number.isRequired,
+        getHeight: PropTypes.func.isRequired,
+        getWidth: PropTypes.func.isRequired
+      };
 
-exports.default = Masonry;
+polyfill(Masonry);
+
+export default Masonry;
+
+var bpfrpt_proptype_Positioner =
+  process.env.NODE_ENV === 'production' ? null : PropTypes.func;
+import {bpfrpt_proptype_AnimationTimeoutId} from '../utils/requestAnimationTimeout';
+import PropTypes from 'prop-types';
+export {bpfrpt_proptype_CellMeasurerCache};
+export {bpfrpt_proptype_Positioner};

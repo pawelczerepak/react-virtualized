@@ -1,120 +1,27 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
-exports.IS_SCROLLING_TIMEOUT = undefined;
-
-var _extends =
-  Object.assign ||
-  function(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-    return target;
-  };
-
-var _createClass = (function() {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-  return function(Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-})();
-
-var _react = require('react');
-
-var React = _interopRequireWildcard(_react);
-
-var _reactDom = require('react-dom');
-
-var ReactDOM = _interopRequireWildcard(_reactDom);
-
-var _onScroll = require('./utils/onScroll');
-
-var _dimensions = require('./utils/dimensions');
-
-var _detectElementResize = require('../vendor/detectElementResize');
-
-var _detectElementResize2 = _interopRequireDefault(_detectElementResize);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {default: obj};
-}
-
-function _interopRequireWildcard(obj) {
-  if (obj && obj.__esModule) {
-    return obj;
-  } else {
-    var newObj = {};
-    if (obj != null) {
-      for (var key in obj) {
-        if (Object.prototype.hasOwnProperty.call(obj, key))
-          newObj[key] = obj[key];
-      }
-    }
-    newObj.default = obj;
-    return newObj;
-  }
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
-}
-
-function _possibleConstructorReturn(self, call) {
-  if (!self) {
-    throw new ReferenceError(
-      "this hasn't been initialised - super() hasn't been called",
-    );
-  }
-  return call && (typeof call === 'object' || typeof call === 'function')
-    ? call
-    : self;
-}
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== 'function' && superClass !== null) {
-    throw new TypeError(
-      'Super expression must either be null or a function, not ' +
-        typeof superClass,
-    );
-  }
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true,
-    },
-  });
-  if (superClass)
-    Object.setPrototypeOf
-      ? Object.setPrototypeOf(subClass, superClass)
-      : (subClass.__proto__ = superClass);
-}
+import _extends from 'babel-runtime/helpers/extends';
+import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
+import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
+import _createClass from 'babel-runtime/helpers/createClass';
+import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
+import _inherits from 'babel-runtime/helpers/inherits';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import {
+  registerScrollListener,
+  unregisterScrollListener
+} from './utils/onScroll';
+import {
+  getDimensions,
+  getPositionOffset,
+  getScrollOffset
+} from './utils/dimensions';
+import createDetectElementResize from '../vendor/detectElementResize';
 
 /**
  * Specifies the number of miliseconds during which to disable pointer events while a scroll is in progress.
  * This improves performance and makes scrolling smoother.
  */
-var IS_SCROLLING_TIMEOUT = (exports.IS_SCROLLING_TIMEOUT = 150);
+export var IS_SCROLLING_TIMEOUT = 150;
 
 var getWindow = function getWindow() {
   return typeof window !== 'undefined' ? window : undefined;
@@ -143,10 +50,10 @@ var WindowScroller = (function(_React$PureComponent) {
         this,
         (_ref =
           WindowScroller.__proto__ ||
-          Object.getPrototypeOf(WindowScroller)).call.apply(
+          _Object$getPrototypeOf(WindowScroller)).call.apply(
           _ref,
-          [this].concat(args),
-        ),
+          [this].concat(args)
+        )
       )),
       _this)),
       (_this._window = getWindow()),
@@ -155,17 +62,17 @@ var WindowScroller = (function(_React$PureComponent) {
       (_this._positionFromLeft = 0),
       (_this.state = _extends(
         {},
-        (0, _dimensions.getDimensions)(_this.props.scrollElement, _this.props),
+        getDimensions(_this.props.scrollElement, _this.props),
         {
           isScrolling: false,
           scrollLeft: 0,
-          scrollTop: 0,
-        },
+          scrollTop: 0
+        }
       )),
       (_this._registerChild = function(element) {
         if (element && !(element instanceof Element)) {
           console.warn(
-            'WindowScroller registerChild expects to be passed Element or null',
+            'WindowScroller registerChild expects to be passed Element or null'
           );
         }
         _this._child = element;
@@ -193,7 +100,7 @@ var WindowScroller = (function(_React$PureComponent) {
         } else {
           _this._detectElementResize.addResizeListener(
             element,
-            _this._onResize,
+            _this._onResize
           );
         }
       }),
@@ -203,7 +110,7 @@ var WindowScroller = (function(_React$PureComponent) {
         } else if (element) {
           _this._detectElementResize.removeResizeListener(
             element,
-            _this._onResize,
+            _this._onResize
           );
         }
       }),
@@ -219,31 +126,31 @@ var WindowScroller = (function(_React$PureComponent) {
 
         var scrollElement = _this.props.scrollElement;
         if (scrollElement) {
-          var scrollOffset = (0, _dimensions.getScrollOffset)(scrollElement);
+          var scrollOffset = getScrollOffset(scrollElement);
           var _scrollLeft = Math.max(
             0,
-            scrollOffset.left - _this._positionFromLeft,
+            scrollOffset.left - _this._positionFromLeft
           );
           var _scrollTop = Math.max(
             0,
-            scrollOffset.top - _this._positionFromTop,
+            scrollOffset.top - _this._positionFromTop
           );
 
           _this.setState({
             isScrolling: true,
             scrollLeft: _scrollLeft,
-            scrollTop: _scrollTop,
+            scrollTop: _scrollTop
           });
 
           onScroll({
             scrollLeft: _scrollLeft,
-            scrollTop: _scrollTop,
+            scrollTop: _scrollTop
           });
         }
       }),
       (_this.__resetIsScrolling = function() {
         _this.setState({
-          isScrolling: false,
+          isScrolling: false
         });
       }),
       _temp)),
@@ -266,46 +173,40 @@ var WindowScroller = (function(_React$PureComponent) {
 
         var thisNode = this._child || ReactDOM.findDOMNode(this);
         if (thisNode instanceof Element && scrollElement) {
-          var offset = (0, _dimensions.getPositionOffset)(
-            thisNode,
-            scrollElement,
-          );
+          var offset = getPositionOffset(thisNode, scrollElement);
           this._positionFromTop = offset.top;
           this._positionFromLeft = offset.left;
         }
 
-        var dimensions = (0, _dimensions.getDimensions)(
-          scrollElement,
-          this.props,
-        );
+        var dimensions = getDimensions(scrollElement, this.props);
         if (height !== dimensions.height || width !== dimensions.width) {
           this.setState({
             height: dimensions.height,
-            width: dimensions.width,
+            width: dimensions.width
           });
           onResize({
             height: dimensions.height,
-            width: dimensions.width,
+            width: dimensions.width
           });
         }
-      },
+      }
     },
     {
       key: 'componentDidMount',
       value: function componentDidMount() {
         var scrollElement = this.props.scrollElement;
 
-        this._detectElementResize = (0, _detectElementResize2.default)();
+        this._detectElementResize = createDetectElementResize();
 
         this.updatePosition(scrollElement);
 
         if (scrollElement) {
-          (0, _onScroll.registerScrollListener)(this, scrollElement);
+          registerScrollListener(this, scrollElement);
           this._registerResizeListener(scrollElement);
         }
 
         this._isMounted = true;
-      },
+      }
     },
     {
       key: 'componentDidUpdate',
@@ -320,25 +221,25 @@ var WindowScroller = (function(_React$PureComponent) {
         ) {
           this.updatePosition(scrollElement);
 
-          (0, _onScroll.unregisterScrollListener)(this, prevScrollElement);
-          (0, _onScroll.registerScrollListener)(this, scrollElement);
+          unregisterScrollListener(this, prevScrollElement);
+          registerScrollListener(this, scrollElement);
 
           this._unregisterResizeListener(prevScrollElement);
           this._registerResizeListener(scrollElement);
         }
-      },
+      }
     },
     {
       key: 'componentWillUnmount',
       value: function componentWillUnmount() {
         var scrollElement = this.props.scrollElement;
         if (scrollElement) {
-          (0, _onScroll.unregisterScrollListener)(this, scrollElement);
+          unregisterScrollListener(this, scrollElement);
           this._unregisterResizeListener(scrollElement);
         }
 
         this._isMounted = false;
-      },
+      }
     },
     {
       key: 'render',
@@ -358,14 +259,14 @@ var WindowScroller = (function(_React$PureComponent) {
           isScrolling: isScrolling,
           scrollLeft: scrollLeft,
           scrollTop: scrollTop,
-          width: width,
+          width: width
         });
-      },
+      }
 
       // Referenced by utils/onScroll
 
       // Referenced by utils/onScroll
-    },
+    }
   ]);
 
   return WindowScroller;
@@ -377,6 +278,46 @@ WindowScroller.defaultProps = {
   scrollingResetTimeInterval: IS_SCROLLING_TIMEOUT,
   scrollElement: getWindow(),
   serverHeight: 0,
-  serverWidth: 0,
+  serverWidth: 0
 };
-exports.default = WindowScroller;
+WindowScroller.propTypes =
+  process.env.NODE_ENV === 'production'
+    ? null
+    : {
+        /**
+         * Function responsible for rendering children.
+         * This function should implement the following signature:
+         * ({ height, isScrolling, scrollLeft, scrollTop, width }) => PropTypes.element
+         */
+        children: PropTypes.func.isRequired,
+
+        /** Callback to be invoked on-resize: ({ height, width }) */
+        onResize: PropTypes.func.isRequired,
+
+        /** Callback to be invoked on-scroll: ({ scrollLeft, scrollTop }) */
+        onScroll: PropTypes.func.isRequired,
+
+        /** Element to attach scroll event listeners. Defaults to window. */
+        scrollElement: PropTypes.oneOfType([
+          PropTypes.any,
+          function() {
+            return (typeof Element === 'function'
+              ? PropTypes.instanceOf(Element)
+              : PropTypes.any
+            ).apply(this, arguments);
+          }
+        ]),
+
+        /**
+         * Wait this amount of time after the last scroll event before resetting child `pointer-events`.
+         */
+        scrollingResetTimeInterval: PropTypes.number.isRequired,
+
+        /** Height used for server-side rendering */
+        serverHeight: PropTypes.number.isRequired,
+
+        /** Width used for server-side rendering */
+        serverWidth: PropTypes.number.isRequired
+      };
+export default WindowScroller;
+import PropTypes from 'prop-types';

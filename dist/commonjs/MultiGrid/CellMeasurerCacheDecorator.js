@@ -1,32 +1,21 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 
-var _createClass = (function() {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-  return function(Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-})();
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
 
 var _CellMeasurer = require('../CellMeasurer');
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
 }
 
 /**
@@ -38,14 +27,13 @@ var CellMeasurerCacheDecorator = (function() {
 
     var params =
       arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    _classCallCheck(this, CellMeasurerCacheDecorator);
+    (0, _classCallCheck3.default)(this, CellMeasurerCacheDecorator);
 
     this.columnWidth = function(_ref) {
       var index = _ref.index;
 
       _this._cellMeasurerCache.columnWidth({
-        index: index + _this._columnIndexOffset,
+        index: index + _this._columnIndexOffset
       });
     };
 
@@ -53,7 +41,7 @@ var CellMeasurerCacheDecorator = (function() {
       var index = _ref2.index;
 
       _this._cellMeasurerCache.rowHeight({
-        index: index + _this._rowIndexOffset,
+        index: index + _this._rowIndexOffset
       });
     };
 
@@ -70,33 +58,33 @@ var CellMeasurerCacheDecorator = (function() {
     this._rowIndexOffset = rowIndexOffset;
   }
 
-  _createClass(CellMeasurerCacheDecorator, [
+  (0, _createClass3.default)(CellMeasurerCacheDecorator, [
     {
       key: 'clear',
       value: function clear(rowIndex, columnIndex) {
         this._cellMeasurerCache.clear(
           rowIndex + this._rowIndexOffset,
-          columnIndex + this._columnIndexOffset,
+          columnIndex + this._columnIndexOffset
         );
-      },
+      }
     },
     {
       key: 'clearAll',
       value: function clearAll() {
         this._cellMeasurerCache.clearAll();
-      },
+      }
     },
     {
       key: 'hasFixedHeight',
       value: function hasFixedHeight() {
         return this._cellMeasurerCache.hasFixedHeight();
-      },
+      }
     },
     {
       key: 'hasFixedWidth',
       value: function hasFixedWidth() {
         return this._cellMeasurerCache.hasFixedWidth();
-      },
+      }
     },
     {
       key: 'getHeight',
@@ -106,9 +94,9 @@ var CellMeasurerCacheDecorator = (function() {
 
         return this._cellMeasurerCache.getHeight(
           rowIndex + this._rowIndexOffset,
-          columnIndex + this._columnIndexOffset,
+          columnIndex + this._columnIndexOffset
         );
-      },
+      }
     },
     {
       key: 'getWidth',
@@ -118,9 +106,9 @@ var CellMeasurerCacheDecorator = (function() {
 
         return this._cellMeasurerCache.getWidth(
           rowIndex + this._rowIndexOffset,
-          columnIndex + this._columnIndexOffset,
+          columnIndex + this._columnIndexOffset
         );
-      },
+      }
     },
     {
       key: 'has',
@@ -130,9 +118,9 @@ var CellMeasurerCacheDecorator = (function() {
 
         return this._cellMeasurerCache.has(
           rowIndex + this._rowIndexOffset,
-          columnIndex + this._columnIndexOffset,
+          columnIndex + this._columnIndexOffset
         );
-      },
+      }
     },
     {
       key: 'set',
@@ -141,24 +129,23 @@ var CellMeasurerCacheDecorator = (function() {
           rowIndex + this._rowIndexOffset,
           columnIndex + this._columnIndexOffset,
           width,
-          height,
+          height
         );
-      },
+      }
     },
     {
       key: 'defaultHeight',
       get: function get() {
         return this._cellMeasurerCache.defaultHeight;
-      },
+      }
     },
     {
       key: 'defaultWidth',
       get: function get() {
         return this._cellMeasurerCache.defaultWidth;
-      },
-    },
+      }
+    }
   ]);
-
   return CellMeasurerCacheDecorator;
 })();
 

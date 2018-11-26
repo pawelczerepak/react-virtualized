@@ -8,7 +8,7 @@ describe('calculateSizeAndPositionDataAndUpdateScrollOffset', () => {
     nextCellsCount = 100,
     nextCellSize = 10,
     nextScrollToIndex,
-    scrollToIndex,
+    scrollToIndex
   } = {}) {
     const computeMetadataCallbackCalls = [];
     const updateScrollOffsetForScrollToIndexCalls = [];
@@ -24,19 +24,19 @@ describe('calculateSizeAndPositionDataAndUpdateScrollOffset', () => {
       nextScrollToIndex,
       scrollToIndex,
       updateScrollOffsetForScrollToIndex: params =>
-        updateScrollOffsetForScrollToIndexCalls.push(params),
+        updateScrollOffsetForScrollToIndexCalls.push(params)
     });
 
     return {
       computeMetadataCallbackCalls,
-      updateScrollOffsetForScrollToIndexCalls,
+      updateScrollOffsetForScrollToIndexCalls
     };
   }
 
   it('should call :computeMetadataCallback if :cellCount has changed', () => {
     const {computeMetadataCallbackCalls} = helper({
       cellCount: 100,
-      nextCellsCount: 200,
+      nextCellsCount: 200
     });
     expect(computeMetadataCallbackCalls.length).toEqual(1);
   });
@@ -44,7 +44,7 @@ describe('calculateSizeAndPositionDataAndUpdateScrollOffset', () => {
   it('should call :computeMetadataCallback if numeric :cellSize has changed', () => {
     const {computeMetadataCallbackCalls} = helper({
       cellSize: 10,
-      nextCellSize: 20,
+      nextCellSize: 20
     });
     expect(computeMetadataCallbackCalls.length).toEqual(1);
   });
@@ -52,7 +52,7 @@ describe('calculateSizeAndPositionDataAndUpdateScrollOffset', () => {
   it('should not call :computeMetadataCallback if :cellSize callback has changed', () => {
     const {computeMetadataCallbackCalls} = helper({
       cellSize: () => {},
-      nextCellSize: () => {},
+      nextCellSize: () => {}
     });
     expect(computeMetadataCallbackCalls.length).toEqual(0);
   });
@@ -65,7 +65,7 @@ describe('calculateSizeAndPositionDataAndUpdateScrollOffset', () => {
   it('should not call :updateScrollOffsetForScrollToIndex if :scrollToIndex has also changed', () => {
     const {updateScrollOffsetForScrollToIndexCalls} = helper({
       scrollToIndex: 10,
-      nextScrollToIndex: 20,
+      nextScrollToIndex: 20
     });
     expect(updateScrollOffsetForScrollToIndexCalls.length).toEqual(0);
   });

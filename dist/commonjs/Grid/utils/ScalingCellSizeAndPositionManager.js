@@ -1,52 +1,35 @@
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
-  value: true,
+  value: true
 });
 
-var _createClass = (function() {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-  return function(Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-})();
+var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
+
+var _objectWithoutProperties3 = _interopRequireDefault(
+  _objectWithoutProperties2
+);
+
+var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = require('babel-runtime/helpers/createClass');
+
+var _createClass3 = _interopRequireDefault(_createClass2);
 
 var _CellSizeAndPositionManager = require('./CellSizeAndPositionManager');
 
 var _CellSizeAndPositionManager2 = _interopRequireDefault(
-  _CellSizeAndPositionManager,
+  _CellSizeAndPositionManager
 );
 
 var _maxElementSize = require('./maxElementSize.js');
 
+var _types = require('../types');
+
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
-}
-
-function _objectWithoutProperties(obj, keys) {
-  var target = {};
-  for (var i in obj) {
-    if (keys.indexOf(i) >= 0) continue;
-    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
-    target[i] = obj[i];
-  }
-  return target;
-}
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
 }
 
 /**
@@ -66,49 +49,48 @@ var ScalingCellSizeAndPositionManager = (function() {
         _ref$maxScrollSize === undefined
           ? (0, _maxElementSize.getMaxElementSize)()
           : _ref$maxScrollSize,
-      params = _objectWithoutProperties(_ref, ['maxScrollSize']);
-
-    _classCallCheck(this, ScalingCellSizeAndPositionManager);
+      params = (0, _objectWithoutProperties3.default)(_ref, ['maxScrollSize']);
+    (0, _classCallCheck3.default)(this, ScalingCellSizeAndPositionManager);
 
     // Favor composition over inheritance to simplify IE10 support
     this._cellSizeAndPositionManager = new _CellSizeAndPositionManager2.default(
-      params,
+      params
     );
     this._maxScrollSize = maxScrollSize;
   }
 
-  _createClass(ScalingCellSizeAndPositionManager, [
+  (0, _createClass3.default)(ScalingCellSizeAndPositionManager, [
     {
       key: 'areOffsetsAdjusted',
       value: function areOffsetsAdjusted() {
         return (
           this._cellSizeAndPositionManager.getTotalSize() > this._maxScrollSize
         );
-      },
+      }
     },
     {
       key: 'configure',
       value: function configure(params) {
         this._cellSizeAndPositionManager.configure(params);
-      },
+      }
     },
     {
       key: 'getCellCount',
       value: function getCellCount() {
         return this._cellSizeAndPositionManager.getCellCount();
-      },
+      }
     },
     {
       key: 'getEstimatedCellSize',
       value: function getEstimatedCellSize() {
         return this._cellSizeAndPositionManager.getEstimatedCellSize();
-      },
+      }
     },
     {
       key: 'getLastMeasuredIndex',
       value: function getLastMeasuredIndex() {
         return this._cellSizeAndPositionManager.getLastMeasuredIndex();
-      },
+      }
 
       /**
        * Number of pixels a cell at the given position (offset) should be shifted in order to fit within the scaled container.
@@ -126,23 +108,23 @@ var ScalingCellSizeAndPositionManager = (function() {
         var offsetPercentage = this._getOffsetPercentage({
           containerSize: containerSize,
           offset: offset,
-          totalSize: safeTotalSize,
+          totalSize: safeTotalSize
         });
 
         return Math.round(offsetPercentage * (safeTotalSize - totalSize));
-      },
+      }
     },
     {
       key: 'getSizeAndPositionOfCell',
       value: function getSizeAndPositionOfCell(index) {
         return this._cellSizeAndPositionManager.getSizeAndPositionOfCell(index);
-      },
+      }
     },
     {
       key: 'getSizeAndPositionOfLastMeasuredCell',
       value: function getSizeAndPositionOfLastMeasuredCell() {
         return this._cellSizeAndPositionManager.getSizeAndPositionOfLastMeasuredCell();
-      },
+      }
 
       /** See CellSizeAndPositionManager#getTotalSize */
     },
@@ -151,9 +133,9 @@ var ScalingCellSizeAndPositionManager = (function() {
       value: function getTotalSize() {
         return Math.min(
           this._maxScrollSize,
-          this._cellSizeAndPositionManager.getTotalSize(),
+          this._cellSizeAndPositionManager.getTotalSize()
         );
-      },
+      }
 
       /** See CellSizeAndPositionManager#getUpdatedOffsetForIndex */
     },
@@ -168,21 +150,21 @@ var ScalingCellSizeAndPositionManager = (function() {
 
         currentOffset = this._safeOffsetToOffset({
           containerSize: containerSize,
-          offset: currentOffset,
+          offset: currentOffset
         });
 
         var offset = this._cellSizeAndPositionManager.getUpdatedOffsetForIndex({
           align: align,
           containerSize: containerSize,
           currentOffset: currentOffset,
-          targetIndex: targetIndex,
+          targetIndex: targetIndex
         });
 
         return this._offsetToSafeOffset({
           containerSize: containerSize,
-          offset: offset,
+          offset: offset
         });
-      },
+      }
 
       /** See CellSizeAndPositionManager#getVisibleCellRange */
     },
@@ -194,20 +176,20 @@ var ScalingCellSizeAndPositionManager = (function() {
 
         offset = this._safeOffsetToOffset({
           containerSize: containerSize,
-          offset: offset,
+          offset: offset
         });
 
         return this._cellSizeAndPositionManager.getVisibleCellRange({
           containerSize: containerSize,
-          offset: offset,
+          offset: offset
         });
-      },
+      }
     },
     {
       key: 'resetCell',
       value: function resetCell(index) {
         this._cellSizeAndPositionManager.resetCell(index);
-      },
+      }
     },
     {
       key: '_getOffsetPercentage',
@@ -219,7 +201,7 @@ var ScalingCellSizeAndPositionManager = (function() {
         return totalSize <= containerSize
           ? 0
           : offset / (totalSize - containerSize);
-      },
+      }
     },
     {
       key: '_offsetToSafeOffset',
@@ -236,12 +218,12 @@ var ScalingCellSizeAndPositionManager = (function() {
           var offsetPercentage = this._getOffsetPercentage({
             containerSize: containerSize,
             offset: offset,
-            totalSize: totalSize,
+            totalSize: totalSize
           });
 
           return Math.round(offsetPercentage * (safeTotalSize - containerSize));
         }
-      },
+      }
     },
     {
       key: '_safeOffsetToOffset',
@@ -258,15 +240,14 @@ var ScalingCellSizeAndPositionManager = (function() {
           var offsetPercentage = this._getOffsetPercentage({
             containerSize: containerSize,
             offset: offset,
-            totalSize: safeTotalSize,
+            totalSize: safeTotalSize
           });
 
           return Math.round(offsetPercentage * (totalSize - containerSize));
         }
-      },
-    },
+      }
+    }
   ]);
-
   return ScalingCellSizeAndPositionManager;
 })();
 

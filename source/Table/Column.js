@@ -38,7 +38,7 @@ export default class Column extends React.Component {
     /** Optional direction to be used when clicked the first time */
     defaultSortDirection: PropTypes.oneOf([
       SortDirection.ASC,
-      SortDirection.DESC,
+      SortDirection.DESC
     ]),
 
     /** If sort is enabled for the table at large, disable it for this column */
@@ -78,7 +78,7 @@ export default class Column extends React.Component {
     style: PropTypes.object,
 
     /** Flex basis (width) for this column; This value can grow or shrink based on :flexGrow and :flexShrink properties. */
-    width: PropTypes.number.isRequired,
+    width: PropTypes.number.isRequired
   };
 
   static defaultProps = {
@@ -88,6 +88,6 @@ export default class Column extends React.Component {
     flexGrow: 0,
     flexShrink: 1,
     headerRenderer: defaultHeaderRenderer,
-    style: {},
+    style: {}
   };
 }

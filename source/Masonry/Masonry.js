@@ -5,7 +5,7 @@ import {polyfill} from 'react-lifecycles-compat';
 import PositionCache from './PositionCache';
 import {
   requestAnimationTimeout,
-  cancelAnimationTimeout,
+  cancelAnimationTimeout
 } from '../utils/requestAnimationTimeout';
 
 import type {AnimationTimeoutId} from '../utils/requestAnimationTimeout';
@@ -28,12 +28,12 @@ type Props = {
   style: mixed,
   tabIndex: number,
   width: number,
-  rowDirection: string,
+  rowDirection: string
 };
 
 type State = {
   isScrolling: boolean,
-  scrollTop: number,
+  scrollTop: number
 };
 
 const emptyObject = {};
@@ -83,12 +83,12 @@ class Masonry extends React.PureComponent<Props, State> {
     scrollingResetTimeInterval: DEFAULT_SCROLLING_RESET_TIME_INTERVAL,
     style: emptyObject,
     tabIndex: 0,
-    rowDirection: 'ltr',
+    rowDirection: 'ltr'
   };
 
   state = {
     isScrolling: false,
-    scrollTop: 0,
+    scrollTop: 0
   };
 
   _debounceResetIsScrollingId: AnimationTimeoutId;
@@ -113,11 +113,11 @@ class Masonry extends React.PureComponent<Props, State> {
     } else {
       this._invalidateOnUpdateStartIndex = Math.min(
         this._invalidateOnUpdateStartIndex,
-        index,
+        index
       );
       this._invalidateOnUpdateStopIndex = Math.max(
         this._invalidateOnUpdateStopIndex,
-        index,
+        index
       );
     }
   }
@@ -133,7 +133,7 @@ class Masonry extends React.PureComponent<Props, State> {
 
   static getDerivedStateFromProps(
     nextProps: Props,
-    prevState: State,
+    prevState: State
   ): $Shape<State> {
     if (
       nextProps.scrollTop !== undefined &&
@@ -141,7 +141,7 @@ class Masonry extends React.PureComponent<Props, State> {
     ) {
       return {
         isScrolling: true,
-        scrollTop: nextProps.scrollTop,
+        scrollTop: nextProps.scrollTop
       };
     }
 
@@ -185,7 +185,7 @@ class Masonry extends React.PureComponent<Props, State> {
       style,
       tabIndex,
       width,
-      rowDirection,
+      rowDirection
     } = this.props;
 
     const {isScrolling, scrollTop} = this.state;
@@ -223,11 +223,11 @@ class Masonry extends React.PureComponent<Props, State> {
               [rowDirection === 'ltr' ? 'left' : 'right']: left,
               position: 'absolute',
               top,
-              width: cellMeasurerCache.getWidth(index),
-            },
-          }),
+              width: cellMeasurerCache.getWidth(index)
+            }
+          })
         );
-      },
+      }
     );
 
     // We need to measure additional cells for this layout
@@ -241,8 +241,8 @@ class Masonry extends React.PureComponent<Props, State> {
           (scrollTop + height + overscanByPixels - shortestColumnSize) /
             cellMeasurerCache.defaultHeight *
             width /
-            cellMeasurerCache.defaultWidth,
-        ),
+            cellMeasurerCache.defaultWidth
+        )
       );
 
       for (
@@ -259,9 +259,9 @@ class Masonry extends React.PureComponent<Props, State> {
             key: keyMapper(index),
             parent: this,
             style: {
-              width: cellMeasurerCache.getWidth(index),
-            },
-          }),
+              width: cellMeasurerCache.getWidth(index)
+            }
+          })
         );
       }
     }
@@ -287,7 +287,7 @@ class Masonry extends React.PureComponent<Props, State> {
           width,
           WebkitOverflowScrolling: 'touch',
           willChange: 'transform',
-          ...style,
+          ...style
         }}
         tabIndex={tabIndex}>
         <div
@@ -299,7 +299,7 @@ class Masonry extends React.PureComponent<Props, State> {
             maxHeight: estimateTotalHeight,
             overflow: 'hidden',
             pointerEvents: isScrolling ? 'none' : '',
-            position: 'relative',
+            position: 'relative'
           }}>
           {children}
         </div>
@@ -331,13 +331,13 @@ class Masonry extends React.PureComponent<Props, State> {
 
     this._debounceResetIsScrollingId = requestAnimationTimeout(
       this._debounceResetIsScrollingCallback,
-      scrollingResetTimeInterval,
+      scrollingResetTimeInterval
     );
   }
 
   _debounceResetIsScrollingCallback = () => {
     this.setState({
-      isScrolling: false,
+      isScrolling: false
     });
   };
 
@@ -346,13 +346,13 @@ class Masonry extends React.PureComponent<Props, State> {
 
     const estimatedColumnCount = Math.max(
       1,
-      Math.floor(width / cellMeasurerCache.defaultWidth),
+      Math.floor(width / cellMeasurerCache.defaultWidth)
     );
 
     return this._positionCache.estimateTotalHeight(
       cellCount,
       estimatedColumnCount,
-      cellMeasurerCache.defaultHeight,
+      cellMeasurerCache.defaultHeight
     );
   }
 
@@ -364,7 +364,7 @@ class Masonry extends React.PureComponent<Props, State> {
       onScroll({
         clientHeight: height,
         scrollHeight: this._getEstimatedTotalHeight(),
-        scrollTop,
+        scrollTop
       });
 
       this._onScrollMemoized = scrollTop;
@@ -380,7 +380,7 @@ class Masonry extends React.PureComponent<Props, State> {
 
       onCellsRendered({
         startIndex: this._startIndex,
-        stopIndex: this._stopIndex,
+        stopIndex: this._stopIndex
       });
 
       this._startIndexMemoized = this._startIndex;
@@ -398,7 +398,7 @@ class Masonry extends React.PureComponent<Props, State> {
         index,
         left,
         top,
-        cellMeasurerCache.getHeight(index),
+        cellMeasurerCache.getHeight(index)
       );
     }
   }
@@ -418,7 +418,7 @@ class Masonry extends React.PureComponent<Props, State> {
     // We can avoid that by doing some simple bounds checking to ensure that scroll offsets never exceed their bounds.
     const scrollTop = Math.min(
       Math.max(0, this._getEstimatedTotalHeight() - height),
-      eventScrollTop,
+      eventScrollTop
     );
 
     // On iOS, we can arrive at negative offsets by swiping past the start or end.
@@ -437,7 +437,7 @@ class Masonry extends React.PureComponent<Props, State> {
     if (this.state.scrollTop !== scrollTop) {
       this.setState({
         isScrolling: true,
-        scrollTop,
+        scrollTop
       });
     }
   };
@@ -455,7 +455,7 @@ export type CellMeasurerCache = {
   defaultHeight: number,
   defaultWidth: number,
   getHeight: (index: number) => number,
-  getWidth: (index: number) => number,
+  getWidth: (index: number) => number
 };
 
 type CellRenderer = (params: {|
@@ -463,23 +463,23 @@ type CellRenderer = (params: {|
   isScrolling: boolean,
   key: mixed,
   parent: mixed,
-  style: mixed,
+  style: mixed
 |}) => mixed;
 
 type OnCellsRenderedCallback = (params: {|
   startIndex: number,
-  stopIndex: number,
+  stopIndex: number
 |}) => void;
 
 type OnScrollCallback = (params: {|
   clientHeight: number,
   scrollHeight: number,
-  scrollTop: number,
+  scrollTop: number
 |}) => void;
 
 type Position = {
   left: number,
-  top: number,
+  top: number
 };
 
 polyfill(Masonry);

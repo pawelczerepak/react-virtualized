@@ -1,19 +1,4 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
-exports.default = createWrapper;
-
-var _binarySearchBounds = require('./binarySearchBounds');
-
-var _binarySearchBounds2 = _interopRequireDefault(_binarySearchBounds);
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {default: obj};
-}
-
-var NOT_FOUND = 0; /**
+/**
  * Binary Search Bounds
  * https://github.com/mikolalysenko/interval-tree-1d
  * Mikola Lysenko
@@ -22,6 +7,9 @@ var NOT_FOUND = 0; /**
  * Issue reported here: https://github.com/mikolalysenko/binary-search-bounds/issues/5
  **/
 
+import bounds from './binarySearchBounds';
+
+var NOT_FOUND = 0;
 var SUCCESS = 1;
 var EMPTY = 2;
 
@@ -108,16 +96,8 @@ proto.insert = function(interval) {
       this.right = createIntervalTree([interval]);
     }
   } else {
-    var l = _binarySearchBounds2.default.ge(
-      this.leftPoints,
-      interval,
-      compareBegin,
-    );
-    var r = _binarySearchBounds2.default.ge(
-      this.rightPoints,
-      interval,
-      compareEnd,
-    );
+    var l = bounds.ge(this.leftPoints, interval, compareBegin);
+    var r = bounds.ge(this.rightPoints, interval, compareEnd);
     this.leftPoints.splice(l, 0, interval);
     this.rightPoints.splice(r, 0, interval);
   }
@@ -198,11 +178,7 @@ proto.remove = function(interval) {
       return SUCCESS;
     }
     for (
-      var l = _binarySearchBounds2.default.ge(
-        this.leftPoints,
-        interval,
-        compareBegin,
-      );
+      var l = bounds.ge(this.leftPoints, interval, compareBegin);
       l < this.leftPoints.length;
       ++l
     ) {
@@ -213,11 +189,7 @@ proto.remove = function(interval) {
         this.count -= 1;
         this.leftPoints.splice(l, 1);
         for (
-          var r = _binarySearchBounds2.default.ge(
-            this.rightPoints,
-            interval,
-            compareEnd,
-          );
+          var r = bounds.ge(this.rightPoints, interval, compareEnd);
           r < this.rightPoints.length;
           ++r
         ) {
@@ -362,7 +334,7 @@ function createIntervalTree(intervals) {
     createIntervalTree(leftIntervals),
     createIntervalTree(rightIntervals),
     leftPoints,
-    rightPoints,
+    rightPoints
   );
 }
 
@@ -382,7 +354,7 @@ tproto.insert = function(interval) {
       null,
       null,
       [interval],
-      [interval],
+      [interval]
     );
   }
 };
@@ -416,7 +388,7 @@ Object.defineProperty(tproto, 'count', {
       return this.root.count;
     }
     return 0;
-  },
+  }
 });
 
 Object.defineProperty(tproto, 'intervals', {
@@ -425,10 +397,10 @@ Object.defineProperty(tproto, 'intervals', {
       return this.root.intervals([]);
     }
     return [];
-  },
+  }
 });
 
-function createWrapper(intervals) {
+export default function createWrapper(intervals) {
   if (!intervals || intervals.length === 0) {
     return new IntervalTree(null);
   }

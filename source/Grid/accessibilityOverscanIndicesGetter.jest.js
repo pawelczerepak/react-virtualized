@@ -1,6 +1,6 @@
 import overscanIndicesGetter, {
   SCROLL_DIRECTION_BACKWARD,
-  SCROLL_DIRECTION_FORWARD,
+  SCROLL_DIRECTION_FORWARD
 } from './accessibilityOverscanIndicesGetter';
 
 describe('overscanIndicesGetter', () => {
@@ -9,14 +9,14 @@ describe('overscanIndicesGetter', () => {
     startIndex,
     stopIndex,
     overscanCellsCount,
-    scrollDirection,
+    scrollDirection
   }) {
     return overscanIndicesGetter({
       cellCount,
       overscanCellsCount,
       scrollDirection,
       startIndex,
-      stopIndex,
+      stopIndex
     });
   }
 
@@ -27,11 +27,11 @@ describe('overscanIndicesGetter', () => {
         startIndex: 10,
         stopIndex: 20,
         overscanCellsCount: 0,
-        scrollDirection: SCROLL_DIRECTION_BACKWARD,
-      }),
+        scrollDirection: SCROLL_DIRECTION_BACKWARD
+      })
     ).toEqual({
       overscanStartIndex: 9,
-      overscanStopIndex: 21,
+      overscanStopIndex: 21
     });
 
     expect(
@@ -40,11 +40,11 @@ describe('overscanIndicesGetter', () => {
         startIndex: 10,
         stopIndex: 20,
         overscanCellsCount: 0,
-        scrollDirection: SCROLL_DIRECTION_FORWARD,
-      }),
+        scrollDirection: SCROLL_DIRECTION_FORWARD
+      })
     ).toEqual({
       overscanStartIndex: 9,
-      overscanStopIndex: 21,
+      overscanStopIndex: 21
     });
   });
 
@@ -55,11 +55,11 @@ describe('overscanIndicesGetter', () => {
         startIndex: 20,
         stopIndex: 30,
         overscanCellsCount: 10,
-        scrollDirection: SCROLL_DIRECTION_FORWARD,
-      }),
+        scrollDirection: SCROLL_DIRECTION_FORWARD
+      })
     ).toEqual({
       overscanStartIndex: 19,
-      overscanStopIndex: 40,
+      overscanStopIndex: 40
     });
   });
 
@@ -70,11 +70,11 @@ describe('overscanIndicesGetter', () => {
         startIndex: 20,
         stopIndex: 30,
         overscanCellsCount: 10,
-        scrollDirection: SCROLL_DIRECTION_BACKWARD,
-      }),
+        scrollDirection: SCROLL_DIRECTION_BACKWARD
+      })
     ).toEqual({
       overscanStartIndex: 10,
-      overscanStopIndex: 31,
+      overscanStopIndex: 31
     });
   });
 
@@ -85,11 +85,11 @@ describe('overscanIndicesGetter', () => {
         startIndex: 5,
         stopIndex: 15,
         overscanCellsCount: 10,
-        scrollDirection: SCROLL_DIRECTION_BACKWARD,
-      }),
+        scrollDirection: SCROLL_DIRECTION_BACKWARD
+      })
     ).toEqual({
       overscanStartIndex: 0,
-      overscanStopIndex: 16,
+      overscanStopIndex: 16
     });
   });
 
@@ -100,11 +100,11 @@ describe('overscanIndicesGetter', () => {
         startIndex: 10,
         stopIndex: 20,
         overscanCellsCount: 10,
-        scrollDirection: SCROLL_DIRECTION_FORWARD,
-      }),
+        scrollDirection: SCROLL_DIRECTION_FORWARD
+      })
     ).toEqual({
       overscanStartIndex: 9,
-      overscanStopIndex: 24,
+      overscanStopIndex: 24
     });
   });
 });

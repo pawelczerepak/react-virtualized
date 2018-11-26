@@ -3,7 +3,7 @@ import CellSizeAndPositionManager from './CellSizeAndPositionManager';
 describe('CellSizeAndPositionManager', () => {
   function getCellSizeAndPositionManager({
     cellCount = 100,
-    estimatedCellSize = 15,
+    estimatedCellSize = 15
   } = {}) {
     const cellSizeGetterCalls = [];
     const cellSizeAndPositionManager = new CellSizeAndPositionManager({
@@ -12,12 +12,12 @@ describe('CellSizeAndPositionManager', () => {
         cellSizeGetterCalls.push(index);
         return 10;
       },
-      estimatedCellSize,
+      estimatedCellSize
     });
 
     return {
       cellSizeAndPositionManager,
-      cellSizeGetterCalls,
+      cellSizeGetterCalls
     };
   }
 
@@ -29,7 +29,7 @@ describe('CellSizeAndPositionManager', () => {
 
       cellSizeAndPositionManager.configure({
         cellCount: 20,
-        estimatedCellSize: 30,
+        estimatedCellSize: 30
       });
       expect(cellSizeAndPositionManager.getCellCount()).toEqual(20);
       expect(cellSizeAndPositionManager.getEstimatedCellSize()).toEqual(30);
@@ -46,7 +46,7 @@ describe('CellSizeAndPositionManager', () => {
       const {cellSizeAndPositionManager} = getCellSizeAndPositionManager();
       expect(cellSizeAndPositionManager._findNearestCell(-100)).toEqual(0);
       expect(cellSizeAndPositionManager._findNearestCell(1234567890)).toEqual(
-        99,
+        99
       );
     });
 
@@ -77,33 +77,33 @@ describe('CellSizeAndPositionManager', () => {
     it('should error if an invalid index is specified', () => {
       const {cellSizeAndPositionManager} = getCellSizeAndPositionManager();
       expect(() =>
-        cellSizeAndPositionManager.getSizeAndPositionOfCell(-1),
+        cellSizeAndPositionManager.getSizeAndPositionOfCell(-1)
       ).toThrow();
       expect(() =>
-        cellSizeAndPositionManager.getSizeAndPositionOfCell(100),
+        cellSizeAndPositionManager.getSizeAndPositionOfCell(100)
       ).toThrow();
     });
 
     it('should return the correct size and position information for the requested cell', () => {
       const {cellSizeAndPositionManager} = getCellSizeAndPositionManager();
       expect(
-        cellSizeAndPositionManager.getSizeAndPositionOfCell(0).offset,
+        cellSizeAndPositionManager.getSizeAndPositionOfCell(0).offset
       ).toEqual(0);
       expect(
-        cellSizeAndPositionManager.getSizeAndPositionOfCell(0).size,
+        cellSizeAndPositionManager.getSizeAndPositionOfCell(0).size
       ).toEqual(10);
       expect(
-        cellSizeAndPositionManager.getSizeAndPositionOfCell(1).offset,
+        cellSizeAndPositionManager.getSizeAndPositionOfCell(1).offset
       ).toEqual(10);
       expect(
-        cellSizeAndPositionManager.getSizeAndPositionOfCell(2).offset,
+        cellSizeAndPositionManager.getSizeAndPositionOfCell(2).offset
       ).toEqual(20);
     });
 
     it('should only measure the necessary cells to return the information requested', () => {
       const {
         cellSizeAndPositionManager,
-        cellSizeGetterCalls,
+        cellSizeGetterCalls
       } = getCellSizeAndPositionManager();
       cellSizeAndPositionManager.getSizeAndPositionOfCell(0);
       expect(cellSizeGetterCalls).toEqual([0]);
@@ -112,7 +112,7 @@ describe('CellSizeAndPositionManager', () => {
     it('should just-in-time measure all cells up to the requested cell if no cells have yet been measured', () => {
       const {
         cellSizeAndPositionManager,
-        cellSizeGetterCalls,
+        cellSizeGetterCalls
       } = getCellSizeAndPositionManager();
       cellSizeAndPositionManager.getSizeAndPositionOfCell(5);
       expect(cellSizeGetterCalls).toEqual([0, 1, 2, 3, 4, 5]);
@@ -121,7 +121,7 @@ describe('CellSizeAndPositionManager', () => {
     it('should just-in-time measure cells up to the requested cell if some but not all cells have been measured', () => {
       const {
         cellSizeAndPositionManager,
-        cellSizeGetterCalls,
+        cellSizeGetterCalls
       } = getCellSizeAndPositionManager();
       cellSizeAndPositionManager.getSizeAndPositionOfCell(5);
       cellSizeGetterCalls.splice(0);
@@ -132,7 +132,7 @@ describe('CellSizeAndPositionManager', () => {
     it('should return cached size and position data if cell has already been measured', () => {
       const {
         cellSizeAndPositionManager,
-        cellSizeGetterCalls,
+        cellSizeGetterCalls
       } = getCellSizeAndPositionManager();
       cellSizeAndPositionManager.getSizeAndPositionOfCell(5);
       cellSizeGetterCalls.splice(0);
@@ -145,10 +145,10 @@ describe('CellSizeAndPositionManager', () => {
     it('should return an empty object if no cached cells are present', () => {
       const {cellSizeAndPositionManager} = getCellSizeAndPositionManager();
       expect(
-        cellSizeAndPositionManager.getSizeAndPositionOfLastMeasuredCell(),
+        cellSizeAndPositionManager.getSizeAndPositionOfLastMeasuredCell()
       ).toEqual({
         offset: 0,
-        size: 0,
+        size: 0
       });
     });
 
@@ -156,10 +156,10 @@ describe('CellSizeAndPositionManager', () => {
       const {cellSizeAndPositionManager} = getCellSizeAndPositionManager();
       cellSizeAndPositionManager.getSizeAndPositionOfCell(5);
       expect(
-        cellSizeAndPositionManager.getSizeAndPositionOfLastMeasuredCell(),
+        cellSizeAndPositionManager.getSizeAndPositionOfLastMeasuredCell()
       ).toEqual({
         offset: 50,
-        size: 10,
+        size: 10
       });
     });
   });
@@ -191,19 +191,19 @@ describe('CellSizeAndPositionManager', () => {
       containerSize = 50,
       currentOffset = 0,
       estimatedCellSize = 15,
-      targetIndex = 0,
+      targetIndex = 0
     }) {
       const cellSizeAndPositionManager = new CellSizeAndPositionManager({
         cellCount,
         cellSizeGetter: () => cellSize,
-        estimatedCellSize,
+        estimatedCellSize
       });
 
       return cellSizeAndPositionManager.getUpdatedOffsetForIndex({
         align,
         containerSize,
         currentOffset,
-        targetIndex,
+        targetIndex
       });
     }
 
@@ -211,8 +211,8 @@ describe('CellSizeAndPositionManager', () => {
       expect(
         getUpdatedOffsetForIndexHelper({
           currentOffset: 100,
-          targetIndex: 0,
-        }),
+          targetIndex: 0
+        })
       ).toEqual(0);
     });
 
@@ -220,8 +220,8 @@ describe('CellSizeAndPositionManager', () => {
       expect(
         getUpdatedOffsetForIndexHelper({
           currentOffset: 0,
-          targetIndex: 9,
-        }),
+          targetIndex: 9
+        })
       ).toEqual(50);
     });
 
@@ -229,8 +229,8 @@ describe('CellSizeAndPositionManager', () => {
       expect(
         getUpdatedOffsetForIndexHelper({
           currentOffset: 0,
-          targetIndex: 6,
-        }),
+          targetIndex: 6
+        })
       ).toEqual(20);
     });
 
@@ -238,8 +238,8 @@ describe('CellSizeAndPositionManager', () => {
       expect(
         getUpdatedOffsetForIndexHelper({
           currentOffset: 50,
-          targetIndex: 2,
-        }),
+          targetIndex: 2
+        })
       ).toEqual(20);
     });
 
@@ -247,8 +247,8 @@ describe('CellSizeAndPositionManager', () => {
       expect(
         getUpdatedOffsetForIndexHelper({
           currentOffset: 20,
-          targetIndex: 3,
-        }),
+          targetIndex: 3
+        })
       ).toEqual(20);
     });
 
@@ -257,36 +257,36 @@ describe('CellSizeAndPositionManager', () => {
         getUpdatedOffsetForIndexHelper({
           align: 'auto',
           currentOffset: 0,
-          targetIndex: 5,
-        }),
+          targetIndex: 5
+        })
       ).toEqual(10);
       expect(
         getUpdatedOffsetForIndexHelper({
           align: 'start',
           currentOffset: 0,
-          targetIndex: 5,
-        }),
+          targetIndex: 5
+        })
       ).toEqual(50);
       expect(
         getUpdatedOffsetForIndexHelper({
           align: 'auto',
           currentOffset: 50,
-          targetIndex: 4,
-        }),
+          targetIndex: 4
+        })
       ).toEqual(40);
       expect(
         getUpdatedOffsetForIndexHelper({
           align: 'end',
           currentOffset: 50,
-          targetIndex: 5,
-        }),
+          targetIndex: 5
+        })
       ).toEqual(10);
       expect(
         getUpdatedOffsetForIndexHelper({
           align: 'center',
           currentOffset: 50,
-          targetIndex: 5,
-        }),
+          targetIndex: 5
+        })
       ).toEqual(30);
     });
 
@@ -295,22 +295,22 @@ describe('CellSizeAndPositionManager', () => {
         getUpdatedOffsetForIndexHelper({
           align: 'end',
           currentOffset: 50,
-          targetIndex: 0,
-        }),
+          targetIndex: 0
+        })
       ).toEqual(0);
       expect(
         getUpdatedOffsetForIndexHelper({
           align: 'center',
           currentOffset: 50,
-          targetIndex: 1,
-        }),
+          targetIndex: 1
+        })
       ).toEqual(0);
       expect(
         getUpdatedOffsetForIndexHelper({
           align: 'start',
           currentOffset: 0,
-          targetIndex: 9,
-        }),
+          targetIndex: 9
+        })
       ).toEqual(50);
 
       // TRICKY: We would expect this to be positioned at 50.
@@ -321,8 +321,8 @@ describe('CellSizeAndPositionManager', () => {
         getUpdatedOffsetForIndexHelper({
           align: 'center',
           currentOffset: 0,
-          targetIndex: 8,
-        }),
+          targetIndex: 8
+        })
       ).toEqual(55);
     });
 
@@ -331,8 +331,8 @@ describe('CellSizeAndPositionManager', () => {
         getUpdatedOffsetForIndexHelper({
           containerSize: 0,
           currentOffset: 50,
-          targetIndex: 2,
-        }),
+          targetIndex: 2
+        })
       ).toEqual(0);
     });
   });
@@ -340,11 +340,11 @@ describe('CellSizeAndPositionManager', () => {
   describe('getVisibleCellRange', () => {
     it('should not return any indices if :cellCount is 0', () => {
       const {cellSizeAndPositionManager} = getCellSizeAndPositionManager({
-        cellCount: 0,
+        cellCount: 0
       });
       const {start, stop} = cellSizeAndPositionManager.getVisibleCellRange({
         containerSize: 50,
-        offset: 0,
+        offset: 0
       });
       expect(start).toEqual(undefined);
       expect(stop).toEqual(undefined);
@@ -354,7 +354,7 @@ describe('CellSizeAndPositionManager', () => {
       const {cellSizeAndPositionManager} = getCellSizeAndPositionManager();
       const {start, stop} = cellSizeAndPositionManager.getVisibleCellRange({
         containerSize: 50,
-        offset: 0,
+        offset: 0
       });
       expect(start).toEqual(0);
       expect(stop).toEqual(4);
@@ -364,7 +364,7 @@ describe('CellSizeAndPositionManager', () => {
       const {cellSizeAndPositionManager} = getCellSizeAndPositionManager();
       const {start, stop} = cellSizeAndPositionManager.getVisibleCellRange({
         containerSize: 50,
-        offset: 425,
+        offset: 425
       });
       // 42 and 47 are partially visible
       expect(start).toEqual(42);
@@ -375,7 +375,7 @@ describe('CellSizeAndPositionManager', () => {
       const {cellSizeAndPositionManager} = getCellSizeAndPositionManager();
       const {start, stop} = cellSizeAndPositionManager.getVisibleCellRange({
         containerSize: 50,
-        offset: 950,
+        offset: 950
       });
       expect(start).toEqual(95);
       expect(stop).toEqual(99);
@@ -395,7 +395,7 @@ describe('CellSizeAndPositionManager', () => {
     it('should not clear size and position metadata for cells before the specified index', () => {
       const {
         cellSizeAndPositionManager,
-        cellSizeGetterCalls,
+        cellSizeGetterCalls
       } = getCellSizeAndPositionManager();
       cellSizeAndPositionManager.getSizeAndPositionOfCell(5);
       cellSizeGetterCalls.splice(0);

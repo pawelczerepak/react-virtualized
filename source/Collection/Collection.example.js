@@ -5,7 +5,7 @@ import Immutable from 'immutable';
 import {
   ContentBox,
   ContentBoxHeader,
-  ContentBoxParagraph,
+  ContentBoxParagraph
 } from '../demo/ContentBox';
 import {LabeledInput, InputRow} from '../demo/LabeledInput';
 import AutoSizer from '../AutoSizer';
@@ -19,7 +19,7 @@ const CELL_WIDTH = 75;
 
 export default class CollectionExample extends React.PureComponent {
   static contextTypes = {
-    list: PropTypes.instanceOf(Immutable.List).isRequired,
+    list: PropTypes.instanceOf(Immutable.List).isRequired
   };
 
   constructor(props, context) {
@@ -32,24 +32,24 @@ export default class CollectionExample extends React.PureComponent {
       horizontalOverscanSize: 0,
       scrollToCell: undefined,
       showScrollingPlaceholder: false,
-      verticalOverscanSize: 0,
+      verticalOverscanSize: 0
     };
 
     this._columnYMap = [];
 
     this._cellRenderer = this._cellRenderer.bind(this);
     this._cellSizeAndPositionGetter = this._cellSizeAndPositionGetter.bind(
-      this,
+      this
     );
     this._noContentRenderer = this._noContentRenderer.bind(this);
     this._onCellCountChange = this._onCellCountChange.bind(this);
     this._onHeightChange = this._onHeightChange.bind(this);
     this._onHorizontalOverscanSizeChange = this._onHorizontalOverscanSizeChange.bind(
-      this,
+      this
     );
     this._onScrollToCellChange = this._onScrollToCellChange.bind(this);
     this._onVerticalOverscanSizeChange = this._onVerticalOverscanSizeChange.bind(
-      this,
+      this
     );
   }
 
@@ -60,7 +60,7 @@ export default class CollectionExample extends React.PureComponent {
       horizontalOverscanSize,
       scrollToCell,
       showScrollingPlaceholder,
-      verticalOverscanSize,
+      verticalOverscanSize
     } = this.state;
 
     return (
@@ -86,7 +86,7 @@ export default class CollectionExample extends React.PureComponent {
               type="checkbox"
               onChange={event =>
                 this.setState({
-                  showScrollingPlaceholder: event.target.checked,
+                  showScrollingPlaceholder: event.target.checked
                 })
               }
             />
@@ -183,7 +183,7 @@ export default class CollectionExample extends React.PureComponent {
       height,
       width,
       x,
-      y,
+      y
     };
   }
 
@@ -208,7 +208,7 @@ export default class CollectionExample extends React.PureComponent {
 
     this.setState({
       cellCount,
-      columnCount: this._getColumnCount(cellCount),
+      columnCount: this._getColumnCount(cellCount)
     });
   }
 
@@ -223,7 +223,7 @@ export default class CollectionExample extends React.PureComponent {
 
     let scrollToCell = Math.min(
       cellCount - 1,
-      parseInt(event.target.value, 10),
+      parseInt(event.target.value, 10)
     );
 
     if (isNaN(scrollToCell)) {

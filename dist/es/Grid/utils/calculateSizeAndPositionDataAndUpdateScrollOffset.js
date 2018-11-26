@@ -1,10 +1,6 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
-exports.default = calculateSizeAndPositionDataAndUpdateScrollOffset;
-function calculateSizeAndPositionDataAndUpdateScrollOffset(_ref) {
+export default function calculateSizeAndPositionDataAndUpdateScrollOffset(
+  _ref
+) {
   var cellCount = _ref.cellCount,
     cellSize = _ref.cellSize,
     computeMetadataCallback = _ref.computeMetadataCallback,

@@ -1,8 +1,3 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
 var SortDirection = {
   /**
    * Sort items in ascending order.
@@ -14,7 +9,7 @@ var SortDirection = {
    * Sort items in descending order.
    * This means arranging from the highest value to the lowest (e.g. z-a, 9-0).
    */
-  DESC: 'DESC',
+  DESC: 'DESC'
 };
 
-exports.default = SortDirection;
+export default SortDirection;

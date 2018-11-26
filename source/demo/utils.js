@@ -18,7 +18,7 @@ export function generateRandomList() {
       name: NAMES[i % NAMES.length],
       random,
       randomLong: randoms.join(' '),
-      size: ROW_HEIGHTS[Math.floor(Math.random() * ROW_HEIGHTS.length)],
+      size: ROW_HEIGHTS[Math.floor(Math.random() * ROW_HEIGHTS.length)]
     });
   }
 
@@ -40,7 +40,7 @@ const BADGE_COLORS = [
   '#673ab7',
   '#ffeb3b',
   '#cddc39',
-  '#795548',
+  '#795548'
 ];
 const NAMES = [
   'Peter Brimer',
@@ -142,7 +142,7 @@ const NAMES = [
   'Allene Seto',
   'Margery Caves',
   'Nelly Moudy',
-  'Felix Sailer',
+  'Felix Sailer'
 ];
 const ROW_HEIGHTS = [50, 75, 100];
 
@@ -222,5 +222,5 @@ const loremIpsum = [
   'Nullam a sapien leo.',
   'Praesent cursus semper purus, vitae gravida risus dapibus mattis.',
   'Sed pellentesque nulla lorem, in commodo arcu feugiat sed.',
-  'Phasellus blandit arcu non diam varius ornare.',
+  'Phasellus blandit arcu non diam varius ornare.'
 ];

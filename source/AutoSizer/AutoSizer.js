@@ -5,7 +5,7 @@ import createDetectElementResize from '../vendor/detectElementResize';
 
 type Size = {
   height: number,
-  width: number,
+  width: number
 };
 
 type Props = {
@@ -34,19 +34,19 @@ type Props = {
   onResize: Size => void,
 
   /** Optional inline style */
-  style: ?Object,
+  style: ?Object
 };
 
 type State = {
   height: number,
-  width: number,
+  width: number
 };
 
 type ResizeHandler = (element: HTMLElement, onResize: () => void) => void;
 
 type DetectElementResize = {
   addResizeListener: ResizeHandler,
-  removeResizeListener: ResizeHandler,
+  removeResizeListener: ResizeHandler
 };
 
 export default class AutoSizer extends React.PureComponent<Props, State> {
@@ -54,12 +54,12 @@ export default class AutoSizer extends React.PureComponent<Props, State> {
     onResize: () => {},
     disableHeight: false,
     disableWidth: false,
-    style: {},
+    style: {}
   };
 
   state = {
     height: this.props.defaultHeight || 0,
-    width: this.props.defaultWidth || 0,
+    width: this.props.defaultWidth || 0
   };
 
   _parentNode: ?HTMLElement;
@@ -86,7 +86,7 @@ export default class AutoSizer extends React.PureComponent<Props, State> {
       this._detectElementResize = createDetectElementResize(nonce);
       this._detectElementResize.addResizeListener(
         this._parentNode,
-        this._onResize,
+        this._onResize
       );
 
       this._onResize();
@@ -97,7 +97,7 @@ export default class AutoSizer extends React.PureComponent<Props, State> {
     if (this._detectElementResize && this._parentNode) {
       this._detectElementResize.removeResizeListener(
         this._parentNode,
-        this._onResize,
+        this._onResize
       );
     }
   }
@@ -108,7 +108,7 @@ export default class AutoSizer extends React.PureComponent<Props, State> {
       className,
       disableHeight,
       disableWidth,
-      style,
+      style
     } = this.props;
     const {height, width} = this.state;
 
@@ -147,7 +147,7 @@ export default class AutoSizer extends React.PureComponent<Props, State> {
         ref={this._setRef}
         style={{
           ...outerStyle,
-          ...style,
+          ...style
         }}>
         {children(childParams)}
       </div>
@@ -180,7 +180,7 @@ export default class AutoSizer extends React.PureComponent<Props, State> {
       ) {
         this.setState({
           height: height - paddingTop - paddingBottom,
-          width: width - paddingLeft - paddingRight,
+          width: width - paddingLeft - paddingRight
         });
 
         onResize({height, width});

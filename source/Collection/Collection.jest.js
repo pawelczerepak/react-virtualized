@@ -96,9 +96,9 @@ describe('Collection', () => {
         render(
           getMarkup({
             height: 4,
-            width: 6,
-          }),
-        ),
+            width: 6
+          })
+        )
       );
       expect(rendered.style.overflowX).toEqual('hidden');
     });
@@ -108,9 +108,9 @@ describe('Collection', () => {
         render(
           getMarkup({
             height: 1,
-            width: 6 + scrollbarSize,
-          }),
-        ),
+            width: 6 + scrollbarSize
+          })
+        )
       );
       expect(rendered.style.overflowX).toEqual('hidden');
     });
@@ -119,9 +119,9 @@ describe('Collection', () => {
       const rendered = findDOMNode(
         render(
           getMarkup({
-            width: 1,
-          }),
-        ),
+            width: 1
+          })
+        )
       );
       expect(rendered.style.overflowX).not.toEqual('hidden');
     });
@@ -131,9 +131,9 @@ describe('Collection', () => {
         render(
           getMarkup({
             height: 1,
-            width: 6 + scrollbarSize - 1,
-          }),
-        ),
+            width: 6 + scrollbarSize - 1
+          })
+        )
       );
       expect(rendered.style.overflowX).not.toEqual('hidden');
     });
@@ -143,9 +143,9 @@ describe('Collection', () => {
         render(
           getMarkup({
             height: 4,
-            width: 6,
-          }),
-        ),
+            width: 6
+          })
+        )
       );
       expect(rendered.style.overflowY).toEqual('hidden');
     });
@@ -155,9 +155,9 @@ describe('Collection', () => {
         render(
           getMarkup({
             height: 4 + scrollbarSize,
-            width: 1,
-          }),
-        ),
+            width: 1
+          })
+        )
       );
       expect(rendered.style.overflowY).toEqual('hidden');
     });
@@ -166,9 +166,9 @@ describe('Collection', () => {
       const rendered = findDOMNode(
         render(
           getMarkup({
-            height: 1,
-          }),
-        ),
+            height: 1
+          })
+        )
       );
       expect(rendered.style.overflowY).not.toEqual('hidden');
     });
@@ -178,9 +178,9 @@ describe('Collection', () => {
         render(
           getMarkup({
             height: 4 + scrollbarSize - 1,
-            width: 1,
-          }),
-        ),
+            width: 1
+          })
+        )
       );
       expect(rendered.style.overflowY).not.toEqual('hidden');
     });
@@ -192,11 +192,11 @@ describe('Collection', () => {
             height: 1,
             style: {
               overflowX: 'auto',
-              overflowY: 'auto',
+              overflowY: 'auto'
             },
-            width: 1,
-          }),
-        ),
+            width: 1
+          })
+        )
       );
       expect(rendered.style.overflowX).toEqual('auto');
       expect(rendered.style.overflowY).toEqual('auto');
@@ -206,7 +206,7 @@ describe('Collection', () => {
   describe('autoHeight', () => {
     it('should set the container height to auto to adjust to innerScrollContainer height', () => {
       const props = {
-        autoHeight: true,
+        autoHeight: true
       };
       const rendered = findDOMNode(render(getMarkup(props)));
       expect(rendered.style.height).toEqual('auto');
@@ -219,7 +219,7 @@ describe('Collection', () => {
         height: 500,
         onSectionRendered: params => {
           indices = params.indices;
-        },
+        }
       };
       findDOMNode(render(getMarkup(props)));
       compareArrays(indices, [0, 1, 2, 3, 4, 5]);
@@ -227,13 +227,13 @@ describe('Collection', () => {
 
     it('should have innerScrollContainer height to be equal number of rows * rowHeight', () => {
       const props = {
-        autoHeight: true,
+        autoHeight: true
       };
       const rendered = findDOMNode(render(getMarkup(props)));
       expect(
         rendered.querySelector(
-          '.ReactVirtualized__Collection__innerScrollContainer',
-        ).style.height,
+          '.ReactVirtualized__Collection__innerScrollContainer'
+        ).style.height
       ).toEqual('4px');
     });
   });
@@ -262,8 +262,8 @@ describe('Collection', () => {
         getMarkup({
           scrollToAlignment: 'start',
           scrollToCell: 2,
-          width: SECTION_SIZE,
-        }),
+          width: SECTION_SIZE
+        })
       );
       // Minimum amount of scrolling ("auto") would be 0,0
       expect(collection._collectionView.state.scrollLeft).toEqual(2);
@@ -273,8 +273,8 @@ describe('Collection', () => {
         getMarkup({
           scrollToAlignment: 'end',
           scrollToCell: 2,
-          width: SECTION_SIZE,
-        }),
+          width: SECTION_SIZE
+        })
       );
       // This cell would already by visible by "auto" rules
       expect(collection._collectionView.state.scrollLeft).toEqual(1);
@@ -284,8 +284,8 @@ describe('Collection', () => {
         getMarkup({
           scrollToAlignment: 'center',
           scrollToCell: 4,
-          width: SECTION_SIZE,
-        }),
+          width: SECTION_SIZE
+        })
       );
       // This cell doesn't fit entirely in the viewport but we center it anyway.
       expect(collection._collectionView.state.scrollLeft).toEqual(0.5);
@@ -295,16 +295,16 @@ describe('Collection', () => {
     it('should scroll to a cell just added', () => {
       let collection = render(
         getMarkup({
-          cellCount: 4,
-        }),
+          cellCount: 4
+        })
       );
       expect(collection._collectionView.state.scrollLeft).toEqual(0);
       expect(collection._collectionView.state.scrollTop).toEqual(0);
       collection = render(
         getMarkup({
           cellCount: 8,
-          scrollToCell: 7,
-        }),
+          scrollToCell: 7
+        })
       );
       expect(collection._collectionView.state.scrollLeft).toEqual(1);
       expect(collection._collectionView.state.scrollTop).toEqual(1);
@@ -342,9 +342,9 @@ describe('Collection', () => {
         render(
           getMarkup({
             noContentRenderer: () => <div>No data</div>,
-            cellCount: 0,
-          }),
-        ),
+            cellCount: 0
+          })
+        )
       );
       expect(list.textContent).toEqual('No data');
     });
@@ -353,9 +353,9 @@ describe('Collection', () => {
       let list = findDOMNode(
         render(
           getMarkup({
-            cellCount: 0,
-          }),
-        ),
+            cellCount: 0
+          })
+        )
       );
       expect(list.textContent).toEqual('');
     });
@@ -365,7 +365,7 @@ describe('Collection', () => {
         x: SECTION_SIZE * 3,
         y: SECTION_SIZE * 3,
         width: 1,
-        height: 1,
+        height: 1
       };
 
       function cellSizeAndPositionGetter() {
@@ -377,9 +377,9 @@ describe('Collection', () => {
           getMarkup({
             cellCount: 1,
             cellSizeAndPositionGetter,
-            noContentRenderer: () => <div>No data</div>,
-          }),
-        ),
+            noContentRenderer: () => <div>No data</div>
+          })
+        )
       );
       expect(list.textContent).not.toEqual('No data');
     });
@@ -392,8 +392,8 @@ describe('Collection', () => {
         getMarkup({
           onSectionRendered: params => {
             indices = params.indices;
-          },
-        }),
+          }
+        })
       );
       compareArrays(indices, [0, 1, 2, 3]);
     });
@@ -426,8 +426,8 @@ describe('Collection', () => {
       render(
         getMarkup({
           height: SECTION_SIZE * 2,
-          onSectionRendered,
-        }),
+          onSectionRendered
+        })
       );
       expect(numCalls).toEqual(2);
       compareArrays(indices, [0, 1, 2, 3, 4, 5]);
@@ -435,8 +435,8 @@ describe('Collection', () => {
         getMarkup({
           height: SECTION_SIZE * 2,
           onSectionRendered,
-          width: SECTION_SIZE,
-        }),
+          width: SECTION_SIZE
+        })
       );
       expect(numCalls).toEqual(3);
       expect(indices).toEqual([0, 4]);
@@ -447,8 +447,8 @@ describe('Collection', () => {
       render(
         getMarkup({
           height: 0,
-          onSectionRendered: () => numCalls++,
-        }),
+          onSectionRendered: () => numCalls++
+        })
       );
       expect(numCalls).toEqual(0);
     });
@@ -463,8 +463,8 @@ describe('Collection', () => {
             indices = params.indices;
           },
           scrollLeft: 2,
-          scrollTop: 2,
-        }),
+          scrollTop: 2
+        })
       );
       compareArrays(indices, [3, 4, 5, 7, 8, 9]);
     });
@@ -475,8 +475,8 @@ describe('Collection', () => {
         getMarkup({
           onSectionRendered: params => {
             indices = params.indices;
-          },
-        }),
+          }
+        })
       );
       compareArrays(indices, [0, 1, 2, 3]);
       render(
@@ -485,8 +485,8 @@ describe('Collection', () => {
             indices = params.indices;
           },
           scrollLeft: 2,
-          scrollTop: 2,
-        }),
+          scrollTop: 2
+        })
       );
       compareArrays(indices, [3, 4, 5, 7, 8, 9]);
     });
@@ -522,8 +522,8 @@ describe('Collection', () => {
         getMarkup({
           onScroll: params => onScrollCalls.push(params),
           scrollLeft: 2,
-          scrollTop: 1,
-        }),
+          scrollTop: 1
+        })
       );
       expect(onScrollCalls).toEqual([
         {
@@ -532,8 +532,8 @@ describe('Collection', () => {
           scrollHeight: 4,
           scrollLeft: 2,
           scrollTop: 1,
-          scrollWidth: 6,
-        },
+          scrollWidth: 6
+        }
       ]);
     });
 
@@ -541,13 +541,13 @@ describe('Collection', () => {
       const onScrollCalls = [];
       const collection = render(
         getMarkup({
-          onScroll: params => onScrollCalls.push(params),
-        }),
+          onScroll: params => onScrollCalls.push(params)
+        })
       );
       simulateScroll({
         collection,
         scrollLeft: 1,
-        scrollTop: 0,
+        scrollTop: 0
       });
       expect(onScrollCalls.length).toEqual(2);
       expect(onScrollCalls[1]).toEqual({
@@ -556,7 +556,7 @@ describe('Collection', () => {
         scrollHeight: 4,
         scrollLeft: 1,
         scrollTop: 0,
-        scrollWidth: 6,
+        scrollWidth: 6
       });
     });
 
@@ -564,13 +564,13 @@ describe('Collection', () => {
       const onScrollCalls = [];
       const collection = render(
         getMarkup({
-          onScroll: params => onScrollCalls.push(params),
-        }),
+          onScroll: params => onScrollCalls.push(params)
+        })
       );
       simulateScroll({
         collection,
         scrollLeft: 0,
-        scrollTop: 2,
+        scrollTop: 2
       });
       expect(onScrollCalls.length).toEqual(2);
       expect(onScrollCalls[1]).toEqual({
@@ -579,7 +579,7 @@ describe('Collection', () => {
         scrollHeight: 4,
         scrollLeft: 0,
         scrollTop: 2,
-        scrollWidth: 6,
+        scrollWidth: 6
       });
     });
 
@@ -587,13 +587,13 @@ describe('Collection', () => {
       const onScrollCalls = [];
       const collection = render(
         getMarkup({
-          onScroll: params => onScrollCalls.push(params),
-        }),
+          onScroll: params => onScrollCalls.push(params)
+        })
       );
       simulateScroll({
         collection,
         scrollLeft: -1,
-        scrollTop: -1,
+        scrollTop: -1
       });
       expect(onScrollCalls.length).toEqual(1);
       expect(onScrollCalls[0].scrollLeft).toEqual(0);
@@ -619,14 +619,14 @@ describe('Collection', () => {
               cellGroupRendererCalled++;
 
               return [<div key="0">Fake content</div>];
-            },
-          }),
-        ),
+            }
+          })
+        )
       );
       expect(cellGroupRendererCalled).toEqual(1);
       expect(cellGroupRendererParams.cellRenderer).toEqual(cellRenderer);
       expect(typeof cellGroupRendererParams.cellSizeAndPositionGetter).toEqual(
-        'function',
+        'function'
       );
       compareArrays(cellGroupRendererParams.indices, [0, 1, 2, 3]);
     });
@@ -641,8 +641,8 @@ describe('Collection', () => {
 
     const collection = render(
       getMarkup({
-        cellRenderer,
-      }),
+        cellRenderer
+      })
     );
 
     expect(cellRendererCalls[0]).toEqual(false);
@@ -673,8 +673,8 @@ describe('Collection', () => {
           scrollLeft: 2,
           scrollTop: 2,
           width: 1,
-          verticalOverscanSize: 1,
-        }),
+          verticalOverscanSize: 1
+        })
       );
       compareArrays(indices, [0, 2, 3, 4, 5, 6, 7, 9]);
     });
@@ -692,8 +692,8 @@ describe('Collection', () => {
           scrollLeft: 0,
           scrollTop: 0,
           width: 1,
-          verticalOverscanSize: 2,
-        }),
+          verticalOverscanSize: 2
+        })
       );
       compareArrays(indices, [0, 4]);
     });
@@ -711,8 +711,8 @@ describe('Collection', () => {
           scrollLeft: 5,
           scrollTop: 2,
           width: 1,
-          verticalOverscanSize: 2,
-        }),
+          verticalOverscanSize: 2
+        })
       );
       compareArrays(indices, [6, 7, 8, 9]);
     });
@@ -729,13 +729,13 @@ describe('Collection', () => {
       const props = {
         cellRenderer,
         scrollLeft: 0,
-        scrollTop: 0,
+        scrollTop: 0
       };
 
       findDOMNode(render(getMarkup(props)));
       expect(cellRendererCalls.length).toEqual(4);
       cellRendererCalls.forEach(call =>
-        expect(call.isScrolling).toEqual(false),
+        expect(call.isScrolling).toEqual(false)
       );
 
       cellRendererCalls.splice(0);
@@ -743,12 +743,12 @@ describe('Collection', () => {
       render(
         getMarkup({
           ...props,
-          foo: 'bar', // Force re-render
-        }),
+          foo: 'bar' // Force re-render
+        })
       );
       expect(cellRendererCalls.length).toEqual(4);
       cellRendererCalls.forEach(call =>
-        expect(call.isScrolling).toEqual(false),
+        expect(call.isScrolling).toEqual(false)
       );
     });
 
@@ -762,13 +762,13 @@ describe('Collection', () => {
       const props = {
         cellRenderer,
         scrollLeft: 0,
-        scrollTop: 0,
+        scrollTop: 0
       };
 
       const collection = render(getMarkup(props));
       expect(cellRendererCalls.length).toEqual(4);
       cellRendererCalls.forEach(call =>
-        expect(call.isScrolling).toEqual(false),
+        expect(call.isScrolling).toEqual(false)
       );
 
       // Scroll a little bit; newly-rendered cells will be cached.
@@ -782,8 +782,8 @@ describe('Collection', () => {
         getMarkup({
           ...props,
           scrollLeft: 1,
-          scrollTop: 3,
-        }),
+          scrollTop: 3
+        })
       );
       expect(cellRendererCalls.length).toEqual(3);
       cellRendererCalls.forEach(call => expect(call.isScrolling).toEqual(true));
@@ -799,7 +799,7 @@ describe('Collection', () => {
       const props = {
         cellRenderer,
         scrollLeft: 0,
-        scrollTop: 0,
+        scrollTop: 0
       };
 
       const collection = render(getMarkup(props));
@@ -813,8 +813,8 @@ describe('Collection', () => {
       render(
         getMarkup({
           ...props,
-          scrollTop: 1,
-        }),
+          scrollTop: 1
+        })
       );
       expect(cellRendererCalls.length).not.toEqual(0);
 

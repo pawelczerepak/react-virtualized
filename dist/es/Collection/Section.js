@@ -1,31 +1,5 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
-
-var _createClass = (function() {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-  return function(Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-})();
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
-}
+import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
+import _createClass from 'babel-runtime/helpers/createClass';
 
 /**
  * A section of the Window.
@@ -63,7 +37,7 @@ var Section = (function() {
           this._indexMap[index] = true;
           this._indices.push(index);
         }
-      },
+      }
 
       /** Get all cell indices that have been added to this section. */
     },
@@ -71,7 +45,7 @@ var Section = (function() {
       key: 'getCellIndices',
       value: function getCellIndices() {
         return this._indices;
-      },
+      }
 
       /** Intended for debugger/test purposes only */
     },
@@ -79,11 +53,13 @@ var Section = (function() {
       key: 'toString',
       value: function toString() {
         return this.x + ',' + this.y + ' ' + this.width + 'x' + this.height;
-      },
-    },
+      }
+    }
   ]);
 
   return Section;
 })();
 
-exports.default = Section;
+export default Section;
+import {bpfrpt_proptype_Index} from './types';
+import {bpfrpt_proptype_SizeAndPositionInfo} from './types';

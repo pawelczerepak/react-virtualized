@@ -1,33 +1,6 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true,
-});
-
-var _createClass = (function() {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-  return function(Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-})();
-
-var _CellMeasurer = require('../CellMeasurer');
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError('Cannot call a class as a function');
-  }
-}
+import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
+import _createClass from 'babel-runtime/helpers/createClass';
+import {CellMeasurerCache} from '../CellMeasurer';
 
 /**
  * Caches measurements for a given cell.
@@ -45,7 +18,7 @@ var CellMeasurerCacheDecorator = (function() {
       var index = _ref.index;
 
       _this._cellMeasurerCache.columnWidth({
-        index: index + _this._columnIndexOffset,
+        index: index + _this._columnIndexOffset
       });
     };
 
@@ -53,7 +26,7 @@ var CellMeasurerCacheDecorator = (function() {
       var index = _ref2.index;
 
       _this._cellMeasurerCache.rowHeight({
-        index: index + _this._rowIndexOffset,
+        index: index + _this._rowIndexOffset
       });
     };
 
@@ -76,27 +49,27 @@ var CellMeasurerCacheDecorator = (function() {
       value: function clear(rowIndex, columnIndex) {
         this._cellMeasurerCache.clear(
           rowIndex + this._rowIndexOffset,
-          columnIndex + this._columnIndexOffset,
+          columnIndex + this._columnIndexOffset
         );
-      },
+      }
     },
     {
       key: 'clearAll',
       value: function clearAll() {
         this._cellMeasurerCache.clearAll();
-      },
+      }
     },
     {
       key: 'hasFixedHeight',
       value: function hasFixedHeight() {
         return this._cellMeasurerCache.hasFixedHeight();
-      },
+      }
     },
     {
       key: 'hasFixedWidth',
       value: function hasFixedWidth() {
         return this._cellMeasurerCache.hasFixedWidth();
-      },
+      }
     },
     {
       key: 'getHeight',
@@ -106,9 +79,9 @@ var CellMeasurerCacheDecorator = (function() {
 
         return this._cellMeasurerCache.getHeight(
           rowIndex + this._rowIndexOffset,
-          columnIndex + this._columnIndexOffset,
+          columnIndex + this._columnIndexOffset
         );
-      },
+      }
     },
     {
       key: 'getWidth',
@@ -118,9 +91,9 @@ var CellMeasurerCacheDecorator = (function() {
 
         return this._cellMeasurerCache.getWidth(
           rowIndex + this._rowIndexOffset,
-          columnIndex + this._columnIndexOffset,
+          columnIndex + this._columnIndexOffset
         );
-      },
+      }
     },
     {
       key: 'has',
@@ -130,9 +103,9 @@ var CellMeasurerCacheDecorator = (function() {
 
         return this._cellMeasurerCache.has(
           rowIndex + this._rowIndexOffset,
-          columnIndex + this._columnIndexOffset,
+          columnIndex + this._columnIndexOffset
         );
-      },
+      }
     },
     {
       key: 'set',
@@ -141,25 +114,25 @@ var CellMeasurerCacheDecorator = (function() {
           rowIndex + this._rowIndexOffset,
           columnIndex + this._columnIndexOffset,
           width,
-          height,
+          height
         );
-      },
+      }
     },
     {
       key: 'defaultHeight',
       get: function get() {
         return this._cellMeasurerCache.defaultHeight;
-      },
+      }
     },
     {
       key: 'defaultWidth',
       get: function get() {
         return this._cellMeasurerCache.defaultWidth;
-      },
-    },
+      }
+    }
   ]);
 
   return CellMeasurerCacheDecorator;
 })();
 
-exports.default = CellMeasurerCacheDecorator;
+export default CellMeasurerCacheDecorator;

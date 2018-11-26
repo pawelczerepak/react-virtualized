@@ -10,13 +10,13 @@ export const TYPES = {
   DOCUMENTATION: 'DOCUMENTATION',
   ISSUES: 'ISSUES',
   SOURCE: 'SOURCE',
-  WIZARD: 'WIZARD',
+  WIZARD: 'WIZARD'
 };
 
 Icon.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string,
-  type: PropTypes.oneOf(Object.keys(TYPES)).isRequired,
+  type: PropTypes.oneOf(Object.keys(TYPES)).isRequired
 };
 
 export default function Icon({className, title, type}) {
