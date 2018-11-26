@@ -1,8 +1,15 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+exports.default = defaultCellRenderer;
+
 /**
  * Default cell renderer that displays an attribute as a simple string
  * You should override the column's cellRenderer if your data is some other type of object.
  */
-export default function defaultCellRenderer(_ref) {
+function defaultCellRenderer(_ref) {
   var cellData = _ref.cellData;
 
   if (cellData == null) {
@@ -11,4 +18,3 @@ export default function defaultCellRenderer(_ref) {
     return String(cellData);
   }
 }
-import {bpfrpt_proptype_CellRendererParams} from './types';

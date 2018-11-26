@@ -5,8 +5,6 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports.default = defaultCellRangeRenderer;
 
-var _types = require('./types');
-
 /**
  * Default implementation of cellRangeRenderer used by Grid.
  * This renderer supports cell-caching while the user is scrolling.

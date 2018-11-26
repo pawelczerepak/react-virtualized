@@ -1,4 +1,10 @@
-export default function createCellPositioner(_ref) {
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+exports.default = createCellPositioner;
+function createCellPositioner(_ref) {
   var cellMeasurerCache = _ref.cellMeasurerCache,
     columnCount = _ref.columnCount,
     columnWidth = _ref.columnWidth,
@@ -51,5 +57,3 @@ export default function createCellPositioner(_ref) {
 
   return cellPositioner;
 }
-import {bpfrpt_proptype_CellMeasurerCache} from './Masonry';
-import {bpfrpt_proptype_Positioner} from './Masonry';

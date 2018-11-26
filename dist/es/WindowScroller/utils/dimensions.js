@@ -1,3 +1,12 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+exports.getDimensions = getDimensions;
+exports.getPositionOffset = getPositionOffset;
+exports.getScrollOffset = getScrollOffset;
+
 /**
  * Gets the dimensions of the element, accounting for API differences between
  * `window` and other DOM elements.
@@ -13,7 +22,7 @@ var getBoundingBox = function getBoundingBox(element) {
   return element.getBoundingClientRect();
 };
 
-export function getDimensions(scrollElement, props) {
+function getDimensions(scrollElement, props) {
   if (!scrollElement) {
     return {
       height: props.serverHeight,
@@ -39,7 +48,7 @@ export function getDimensions(scrollElement, props) {
  * Handles edge-case where a user is navigating back (history) from an already-scrolled page.
  * In this case the body’s top or left position will be a negative number and this element’s top or left will be increased (by that amount).
  */
-export function getPositionOffset(element, container) {
+function getPositionOffset(element, container) {
   if (isWindow(container) && document.documentElement) {
     var containerElement = document.documentElement;
     var elementRect = getBoundingBox(element);
@@ -63,7 +72,7 @@ export function getPositionOffset(element, container) {
  * Gets the vertical and horizontal scroll amount of the element, accounting for IE compatibility
  * and API differences between `window` and other DOM elements.
  */
-export function getScrollOffset(element) {
+function getScrollOffset(element) {
   if (isWindow(element) && document.documentElement) {
     return {
       top:

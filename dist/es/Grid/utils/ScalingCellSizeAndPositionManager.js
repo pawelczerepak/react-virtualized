@@ -1,10 +1,57 @@
-import _objectWithoutProperties from 'babel-runtime/helpers/objectWithoutProperties';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
+'use strict';
 
-import CellSizeAndPositionManager from './CellSizeAndPositionManager';
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
 
-import {getMaxElementSize} from './maxElementSize.js';
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})();
+
+var _CellSizeAndPositionManager = require('./CellSizeAndPositionManager');
+
+var _CellSizeAndPositionManager2 = _interopRequireDefault(
+  _CellSizeAndPositionManager,
+);
+
+var _maxElementSize = require('./maxElementSize.js');
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
+}
+
+function _objectWithoutProperties(obj, keys) {
+  var target = {};
+  for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;
+    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+    target[i] = obj[i];
+  }
+  return target;
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
+
+/**
+ * Extends CellSizeAndPositionManager and adds scaling behavior for lists that are too large to fit within a browser's native limits.
+ */
 
 /**
  * Browsers have scroll offset limitations (eg Chrome stops scrolling at ~33.5M pixels where as Edge tops out at ~1.5M pixels).
@@ -12,22 +59,21 @@ import {getMaxElementSize} from './maxElementSize.js';
  * This util picks a lower ceiling for max size and artificially adjusts positions within to make it transparent for users.
  */
 
-/**
- * Extends CellSizeAndPositionManager and adds scaling behavior for lists that are too large to fit within a browser's native limits.
- */
 var ScalingCellSizeAndPositionManager = (function() {
   function ScalingCellSizeAndPositionManager(_ref) {
     var _ref$maxScrollSize = _ref.maxScrollSize,
       maxScrollSize =
         _ref$maxScrollSize === undefined
-          ? getMaxElementSize()
+          ? (0, _maxElementSize.getMaxElementSize)()
           : _ref$maxScrollSize,
       params = _objectWithoutProperties(_ref, ['maxScrollSize']);
 
     _classCallCheck(this, ScalingCellSizeAndPositionManager);
 
     // Favor composition over inheritance to simplify IE10 support
-    this._cellSizeAndPositionManager = new CellSizeAndPositionManager(params);
+    this._cellSizeAndPositionManager = new _CellSizeAndPositionManager2.default(
+      params,
+    );
     this._maxScrollSize = maxScrollSize;
   }
 
@@ -224,7 +270,4 @@ var ScalingCellSizeAndPositionManager = (function() {
   return ScalingCellSizeAndPositionManager;
 })();
 
-export default ScalingCellSizeAndPositionManager;
-import {bpfrpt_proptype_Alignment} from '../types';
-import {bpfrpt_proptype_CellSizeGetter} from '../types';
-import {bpfrpt_proptype_VisibleCellRange} from '../types';
+exports.default = ScalingCellSizeAndPositionManager;

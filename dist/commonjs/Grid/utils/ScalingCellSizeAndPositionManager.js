@@ -4,19 +4,22 @@ Object.defineProperty(exports, '__esModule', {
   value: true,
 });
 
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(
-  _objectWithoutProperties2,
-);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})();
 
 var _CellSizeAndPositionManager = require('./CellSizeAndPositionManager');
 
@@ -26,10 +29,24 @@ var _CellSizeAndPositionManager2 = _interopRequireDefault(
 
 var _maxElementSize = require('./maxElementSize.js');
 
-var _types = require('../types');
-
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
+}
+
+function _objectWithoutProperties(obj, keys) {
+  var target = {};
+  for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;
+    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+    target[i] = obj[i];
+  }
+  return target;
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
 }
 
 /**
@@ -49,8 +66,9 @@ var ScalingCellSizeAndPositionManager = (function() {
         _ref$maxScrollSize === undefined
           ? (0, _maxElementSize.getMaxElementSize)()
           : _ref$maxScrollSize,
-      params = (0, _objectWithoutProperties3.default)(_ref, ['maxScrollSize']);
-    (0, _classCallCheck3.default)(this, ScalingCellSizeAndPositionManager);
+      params = _objectWithoutProperties(_ref, ['maxScrollSize']);
+
+    _classCallCheck(this, ScalingCellSizeAndPositionManager);
 
     // Favor composition over inheritance to simplify IE10 support
     this._cellSizeAndPositionManager = new _CellSizeAndPositionManager2.default(
@@ -59,7 +77,7 @@ var ScalingCellSizeAndPositionManager = (function() {
     this._maxScrollSize = maxScrollSize;
   }
 
-  (0, _createClass3.default)(ScalingCellSizeAndPositionManager, [
+  _createClass(ScalingCellSizeAndPositionManager, [
     {
       key: 'areOffsetsAdjusted',
       value: function areOffsetsAdjusted() {
@@ -248,6 +266,7 @@ var ScalingCellSizeAndPositionManager = (function() {
       },
     },
   ]);
+
   return ScalingCellSizeAndPositionManager;
 })();
 

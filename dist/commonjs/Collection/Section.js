@@ -4,18 +4,27 @@ Object.defineProperty(exports, '__esModule', {
   value: true,
 });
 
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})();
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _types = require('./types');
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {default: obj};
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
 }
 
 /**
@@ -30,7 +39,8 @@ var Section = (function() {
       width = _ref.width,
       x = _ref.x,
       y = _ref.y;
-    (0, _classCallCheck3.default)(this, Section);
+
+    _classCallCheck(this, Section);
 
     this.height = height;
     this.width = width;
@@ -43,7 +53,7 @@ var Section = (function() {
 
   /** Add a cell to this section. */
 
-  (0, _createClass3.default)(Section, [
+  _createClass(Section, [
     {
       key: 'addCellIndex',
       value: function addCellIndex(_ref2) {
@@ -72,6 +82,7 @@ var Section = (function() {
       },
     },
   ]);
+
   return Section;
 })();
 

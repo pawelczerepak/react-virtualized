@@ -1,9 +1,16 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+exports.default = defaultCellRangeRenderer;
+
 /**
  * Default implementation of cellRangeRenderer used by Grid.
  * This renderer supports cell-caching while the user is scrolling.
  */
 
-export default function defaultCellRangeRenderer(_ref) {
+function defaultCellRangeRenderer(_ref) {
   var cellCache = _ref.cellCache,
     cellRenderer = _ref.cellRenderer,
     columnSizeAndPositionManager = _ref.columnSizeAndPositionManager,
@@ -165,4 +172,3 @@ function warnAboutMissingStyle(parent, renderedCell) {
     }
   }
 }
-import {bpfrpt_proptype_CellRangeRendererParams} from './types';

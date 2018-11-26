@@ -1,3 +1,8 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
 var SortDirection = {
   /**
    * Sort items in ascending order.
@@ -12,4 +17,4 @@ var SortDirection = {
   DESC: 'DESC',
 };
 
-export default SortDirection;
+exports.default = SortDirection;

@@ -1,12 +1,25 @@
-import SectionManager from '../SectionManager';
+'use strict';
 
-export default function calculateSizeAndPositionData(_ref) {
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+exports.default = calculateSizeAndPositionData;
+
+var _SectionManager = require('../SectionManager');
+
+var _SectionManager2 = _interopRequireDefault(_SectionManager);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
+}
+
+function calculateSizeAndPositionData(_ref) {
   var cellCount = _ref.cellCount,
     cellSizeAndPositionGetter = _ref.cellSizeAndPositionGetter,
     sectionSize = _ref.sectionSize;
 
   var cellMetadata = [];
-  var sectionManager = new SectionManager(sectionSize);
+  var sectionManager = new _SectionManager2.default(sectionSize);
   var height = 0;
   var width = 0;
 

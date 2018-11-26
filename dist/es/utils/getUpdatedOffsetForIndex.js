@@ -1,3 +1,9 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+exports.default = getUpdatedOffsetForIndex;
 /**
  * Determines a new offset that ensures a certain cell is visible, given the current offset.
  * If the cell is already visible then the current offset will be returned.
@@ -10,7 +16,7 @@
  * @param currentOffset Container's current (x or y) offset
  * @return Offset to use to ensure the specified cell is visible
  */
-export default function getUpdatedOffsetForIndex(_ref) {
+function getUpdatedOffsetForIndex(_ref) {
   var _ref$align = _ref.align,
     align = _ref$align === undefined ? 'auto' : _ref$align,
     cellOffset = _ref.cellOffset,

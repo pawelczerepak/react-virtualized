@@ -3,20 +3,28 @@
 Object.defineProperty(exports, '__esModule', {
   value: true,
 });
-exports.DEFAULT_WIDTH = exports.DEFAULT_HEIGHT = undefined;
 
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})();
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _types = require('./types');
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {default: obj};
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
 }
 
 var DEFAULT_HEIGHT = (exports.DEFAULT_HEIGHT = 30);
@@ -35,7 +43,9 @@ var CellMeasurerCache = (function() {
 
     var params =
       arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    (0, _classCallCheck3.default)(this, CellMeasurerCache);
+
+    _classCallCheck(this, CellMeasurerCache);
+
     this._cellHeightCache = {};
     this._cellWidthCache = {};
     this._columnWidthCache = {};
@@ -111,7 +121,7 @@ var CellMeasurerCache = (function() {
     }
   }
 
-  (0, _createClass3.default)(CellMeasurerCache, [
+  _createClass(CellMeasurerCache, [
     {
       key: 'clear',
       value: function clear(rowIndex) {
@@ -251,6 +261,7 @@ var CellMeasurerCache = (function() {
       },
     },
   ]);
+
   return CellMeasurerCache;
 })();
 

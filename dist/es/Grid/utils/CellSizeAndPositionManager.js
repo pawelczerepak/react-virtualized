@@ -1,5 +1,31 @@
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})();
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
 
 /**
  * Just-in-time calculates and caches size and position information for a collection of cells.
@@ -334,7 +360,4 @@ var CellSizeAndPositionManager = (function() {
   return CellSizeAndPositionManager;
 })();
 
-export default CellSizeAndPositionManager;
-import {bpfrpt_proptype_Alignment} from '../types';
-import {bpfrpt_proptype_CellSizeGetter} from '../types';
-import {bpfrpt_proptype_VisibleCellRange} from '../types';
+exports.default = CellSizeAndPositionManager;

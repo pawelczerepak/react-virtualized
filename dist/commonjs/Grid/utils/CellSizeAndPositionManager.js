@@ -4,18 +4,27 @@ Object.defineProperty(exports, '__esModule', {
   value: true,
 });
 
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})();
 
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _types = require('../types');
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {default: obj};
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
 }
 
 /**
@@ -31,7 +40,9 @@ var CellSizeAndPositionManager = (function() {
     var cellCount = _ref.cellCount,
       cellSizeGetter = _ref.cellSizeGetter,
       estimatedCellSize = _ref.estimatedCellSize;
-    (0, _classCallCheck3.default)(this, CellSizeAndPositionManager);
+
+    _classCallCheck(this, CellSizeAndPositionManager);
+
     this._cellSizeAndPositionData = {};
     this._lastMeasuredIndex = -1;
     this._lastBatchedIndex = -1;
@@ -43,7 +54,7 @@ var CellSizeAndPositionManager = (function() {
 
   // Measurements for cells up to this index can be trusted; cells afterward should be estimated.
 
-  (0, _createClass3.default)(CellSizeAndPositionManager, [
+  _createClass(CellSizeAndPositionManager, [
     {
       key: 'areOffsetsAdjusted',
       value: function areOffsetsAdjusted() {
@@ -345,6 +356,7 @@ var CellSizeAndPositionManager = (function() {
       },
     },
   ]);
+
   return CellSizeAndPositionManager;
 })();
 

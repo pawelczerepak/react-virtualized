@@ -3,37 +3,38 @@
 Object.defineProperty(exports, '__esModule', {
   value: true,
 });
-exports.bpfrpt_proptype_Positioner = exports.bpfrpt_proptype_CellMeasurerCache = exports.DEFAULT_SCROLLING_RESET_TIME_INTERVAL = undefined;
+exports.DEFAULT_SCROLLING_RESET_TIME_INTERVAL = undefined;
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _extends =
+  Object.assign ||
+  function(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
 
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _defineProperty2 = require('babel-runtime/helpers/defineProperty');
-
-var _defineProperty3 = _interopRequireDefault(_defineProperty2);
-
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(
-  _possibleConstructorReturn2,
-);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})();
 
 var _classnames = require('classnames');
 
@@ -50,10 +51,6 @@ var _PositionCache = require('./PositionCache');
 var _PositionCache2 = _interopRequireDefault(_PositionCache);
 
 var _requestAnimationTimeout = require('../utils/requestAnimationTimeout');
-
-var _propTypes = require('prop-types');
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireWildcard(obj) {
   if (obj && obj.__esModule) {
@@ -75,13 +72,64 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }
 
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true,
+    });
+  } else {
+    obj[key] = value;
+  }
+  return obj;
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError(
+      "this hasn't been initialised - super() hasn't been called",
+    );
+  }
+  return call && (typeof call === 'object' || typeof call === 'function')
+    ? call
+    : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== 'function' && superClass !== null) {
+    throw new TypeError(
+      'Super expression must either be null or a function, not ' +
+        typeof superClass,
+    );
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true,
+    },
+  });
+  if (superClass)
+    Object.setPrototypeOf
+      ? Object.setPrototypeOf(subClass, superClass)
+      : (subClass.__proto__ = superClass);
+}
+
 var emptyObject = {};
 
 /**
  * Specifies the number of miliseconds during which to disable pointer events while a scroll is in progress.
  * This improves performance and makes scrolling smoother.
  */
-
 var DEFAULT_SCROLLING_RESET_TIME_INTERVAL = (exports.DEFAULT_SCROLLING_RESET_TIME_INTERVAL = 150);
 
 /**
@@ -114,14 +162,14 @@ var DEFAULT_SCROLLING_RESET_TIME_INTERVAL = (exports.DEFAULT_SCROLLING_RESET_TIM
  */
 
 var Masonry = (function(_React$PureComponent) {
-  (0, _inherits3.default)(Masonry, _React$PureComponent);
+  _inherits(Masonry, _React$PureComponent);
 
   function Masonry() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    (0, _classCallCheck3.default)(this, Masonry);
+    _classCallCheck(this, Masonry);
 
     for (
       var _len = arguments.length, args = Array(_len), _key = 0;
@@ -132,11 +180,9 @@ var Masonry = (function(_React$PureComponent) {
     }
 
     return (
-      (_ret = ((_temp = ((_this = (0, _possibleConstructorReturn3.default)(
+      (_ret = ((_temp = ((_this = _possibleConstructorReturn(
         this,
-        (_ref =
-          Masonry.__proto__ ||
-          (0, _getPrototypeOf2.default)(Masonry)).call.apply(
+        (_ref = Masonry.__proto__ || Object.getPrototypeOf(Masonry)).call.apply(
           _ref,
           [this].concat(args),
         ),
@@ -196,11 +242,11 @@ var Masonry = (function(_React$PureComponent) {
         }
       }),
       _temp)),
-      (0, _possibleConstructorReturn3.default)(_this, _ret)
+      _possibleConstructorReturn(_this, _ret)
     );
   }
 
-  (0, _createClass3.default)(
+  _createClass(
     Masonry,
     [
       {
@@ -330,14 +376,14 @@ var Masonry = (function(_React$PureComponent) {
                   style: ((_style = {
                     height: cellMeasurerCache.getHeight(index),
                   }),
-                  (0, _defineProperty3.default)(
+                  _defineProperty(
                     _style,
                     rowDirection === 'ltr' ? 'left' : 'right',
                     left,
                   ),
-                  (0, _defineProperty3.default)(_style, 'position', 'absolute'),
-                  (0, _defineProperty3.default)(_style, 'top', top),
-                  (0, _defineProperty3.default)(
+                  _defineProperty(_style, 'position', 'absolute'),
+                  _defineProperty(_style, 'top', top),
+                  _defineProperty(
                     _style,
                     'width',
                     cellMeasurerCache.getWidth(index),
@@ -399,7 +445,7 @@ var Masonry = (function(_React$PureComponent) {
               id: id,
               onScroll: this._onScroll,
               role: role,
-              style: (0, _extends3.default)(
+              style: _extends(
                 {
                   boxSizing: 'border-box',
                   direction: 'ltr',
@@ -569,6 +615,7 @@ var Masonry = (function(_React$PureComponent) {
       },
     ],
   );
+
   return Masonry;
 })(React.PureComponent);
 
@@ -584,69 +631,6 @@ Masonry.defaultProps = {
   tabIndex: 0,
   rowDirection: 'ltr',
 };
-Masonry.propTypes =
-  process.env.NODE_ENV === 'production'
-    ? null
-    : {
-        autoHeight: _propTypes2.default.bool.isRequired,
-        cellCount: _propTypes2.default.number.isRequired,
-        cellMeasurerCache: function cellMeasurerCache() {
-          return (typeof CellMeasurerCache === 'function'
-            ? _propTypes2.default.instanceOf(CellMeasurerCache).isRequired
-            : _propTypes2.default.any.isRequired
-          ).apply(this, arguments);
-        },
-        cellPositioner: function cellPositioner() {
-          return (typeof Positioner === 'function'
-            ? _propTypes2.default.instanceOf(Positioner).isRequired
-            : _propTypes2.default.any.isRequired
-          ).apply(this, arguments);
-        },
-        cellRenderer: function cellRenderer() {
-          return (typeof CellRenderer === 'function'
-            ? _propTypes2.default.instanceOf(CellRenderer).isRequired
-            : _propTypes2.default.any.isRequired
-          ).apply(this, arguments);
-        },
-        className: _propTypes2.default.string,
-        height: _propTypes2.default.number.isRequired,
-        id: _propTypes2.default.string,
-        keyMapper: function keyMapper() {
-          return (typeof KeyMapper === 'function'
-            ? _propTypes2.default.instanceOf(KeyMapper).isRequired
-            : _propTypes2.default.any.isRequired
-          ).apply(this, arguments);
-        },
-        onCellsRendered: function onCellsRendered() {
-          return (typeof OnCellsRenderedCallback === 'function'
-            ? _propTypes2.default.instanceOf(OnCellsRenderedCallback)
-            : _propTypes2.default.any
-          ).apply(this, arguments);
-        },
-        onScroll: function onScroll() {
-          return (typeof OnScrollCallback === 'function'
-            ? _propTypes2.default.instanceOf(OnScrollCallback)
-            : _propTypes2.default.any
-          ).apply(this, arguments);
-        },
-        overscanByPixels: _propTypes2.default.number.isRequired,
-        role: _propTypes2.default.string.isRequired,
-        scrollingResetTimeInterval: _propTypes2.default.number.isRequired,
-        style: function style(props, propName, componentName) {
-          if (!Object.prototype.hasOwnProperty.call(props, propName)) {
-            throw new Error(
-              'Prop `' +
-                propName +
-                "` has type 'any' or 'mixed', but was not provided to `" +
-                componentName +
-                '`. Pass undefined or any other value.',
-            );
-          }
-        },
-        tabIndex: _propTypes2.default.number.isRequired,
-        width: _propTypes2.default.number.isRequired,
-        rowDirection: _propTypes2.default.string.isRequired,
-      };
 
 function identity(value) {
   return value;
@@ -654,20 +638,6 @@ function identity(value) {
 
 function noop() {}
 
-var bpfrpt_proptype_CellMeasurerCache =
-  process.env.NODE_ENV === 'production'
-    ? null
-    : {
-        defaultHeight: _propTypes2.default.number.isRequired,
-        defaultWidth: _propTypes2.default.number.isRequired,
-        getHeight: _propTypes2.default.func.isRequired,
-        getWidth: _propTypes2.default.func.isRequired,
-      };
-
 (0, _reactLifecyclesCompat.polyfill)(Masonry);
 
 exports.default = Masonry;
-var bpfrpt_proptype_Positioner =
-  process.env.NODE_ENV === 'production' ? null : _propTypes2.default.func;
-exports.bpfrpt_proptype_CellMeasurerCache = bpfrpt_proptype_CellMeasurerCache;
-exports.bpfrpt_proptype_Positioner = bpfrpt_proptype_Positioner;

@@ -4,17 +4,62 @@ Object.defineProperty(exports, '__esModule', {
   value: true,
 });
 
-var _slicedToArray2 = require('babel-runtime/helpers/slicedToArray');
+var _slicedToArray = (function() {
+  function sliceIterator(arr, i) {
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = undefined;
+    try {
+      for (
+        var _i = arr[Symbol.iterator](), _s;
+        !(_n = (_s = _i.next()).done);
+        _n = true
+      ) {
+        _arr.push(_s.value);
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i['return']) _i['return']();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+    return _arr;
+  }
+  return function(arr, i) {
+    if (Array.isArray(arr)) {
+      return arr;
+    } else if (Symbol.iterator in Object(arr)) {
+      return sliceIterator(arr, i);
+    } else {
+      throw new TypeError(
+        'Invalid attempt to destructure non-iterable instance',
+      );
+    }
+  };
+})();
 
-var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})();
 
 var _intervalTree = require('../vendor/intervalTree');
 
@@ -24,12 +69,19 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }
 
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
+
 // Position cache requirements:
 //   O(log(n)) lookup of cells to render for a given viewport size
 //   O(1) lookup of shortest measured column (so we know when to enter phase 1)
 var PositionCache = (function() {
   function PositionCache() {
-    (0, _classCallCheck3.default)(this, PositionCache);
+    _classCallCheck(this, PositionCache);
+
     this._columnSizeMap = {};
     this._intervalTree = (0, _intervalTree2.default)();
     this._leftMap = {};
@@ -40,7 +92,7 @@ var PositionCache = (function() {
 
   // Maps cell index to x coordinates for quick lookup.
 
-  (0, _createClass3.default)(PositionCache, [
+  _createClass(PositionCache, [
     {
       key: 'estimateTotalHeight',
       value: function estimateTotalHeight(
@@ -66,7 +118,7 @@ var PositionCache = (function() {
           scrollTop,
           scrollTop + clientHeight,
           function(_ref) {
-            var _ref2 = (0, _slicedToArray3.default)(_ref, 3),
+            var _ref2 = _slicedToArray(_ref, 3),
               top = _ref2[0],
               _ = _ref2[1],
               index = _ref2[2];
@@ -128,6 +180,7 @@ var PositionCache = (function() {
       },
     },
   ]);
+
   return PositionCache;
 })();
 

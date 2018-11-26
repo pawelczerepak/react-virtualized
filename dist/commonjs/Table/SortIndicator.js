@@ -67,12 +67,9 @@ function SortIndicator(_ref) {
   );
 }
 
-SortIndicator.propTypes =
-  process.env.NODE_ENV !== 'production'
-    ? {
-        sortDirection: _propTypes2.default.oneOf([
-          _SortDirection2.default.ASC,
-          _SortDirection2.default.DESC,
-        ]),
-      }
-    : {};
+SortIndicator.propTypes = {
+  sortDirection: _propTypes2.default.oneOf([
+    _SortDirection2.default.ASC,
+    _SortDirection2.default.DESC,
+  ]),
+};

@@ -1,16 +1,17 @@
-import _Promise from 'babel-runtime/core-js/promise';
-import {caf, raf} from './animationFrame';
+'use strict';
 
-var bpfrpt_proptype_AnimationTimeoutId =
-  process.env.NODE_ENV === 'production'
-    ? null
-    : {
-        id: PropTypes.number.isRequired,
-      };
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+exports.requestAnimationTimeout = exports.cancelAnimationTimeout = undefined;
 
-export var cancelAnimationTimeout = function cancelAnimationTimeout(frame) {
-  return caf(frame.id);
-};
+var _animationFrame = require('./animationFrame');
+
+var cancelAnimationTimeout = (exports.cancelAnimationTimeout = function cancelAnimationTimeout(
+  frame,
+) {
+  return (0, _animationFrame.caf)(frame.id);
+});
 
 /**
  * Recursively calls requestAnimationFrame until a specified delay has been met or exceeded.
@@ -18,13 +19,14 @@ export var cancelAnimationTimeout = function cancelAnimationTimeout(frame) {
  *
  * Credit: Joe Lambert (https://gist.github.com/joelambert/1002116#file-requesttimeout-js)
  */
-export var requestAnimationTimeout = function requestAnimationTimeout(
+
+var requestAnimationTimeout = (exports.requestAnimationTimeout = function requestAnimationTimeout(
   callback,
   delay,
 ) {
   var start = void 0;
   // wait for end of processing current event handler, because event handler may be long
-  _Promise.resolve().then(function() {
+  Promise.resolve().then(function() {
     start = Date.now();
   });
 
@@ -32,15 +34,13 @@ export var requestAnimationTimeout = function requestAnimationTimeout(
     if (Date.now() - start >= delay) {
       callback.call();
     } else {
-      frame.id = raf(timeout);
+      frame.id = (0, _animationFrame.raf)(timeout);
     }
   };
 
   var frame = {
-    id: raf(timeout),
+    id: (0, _animationFrame.raf)(timeout),
   };
 
   return frame;
-};
-import PropTypes from 'prop-types';
-export {bpfrpt_proptype_AnimationTimeoutId};
+});

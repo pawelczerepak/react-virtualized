@@ -4,31 +4,36 @@ Object.defineProperty(exports, '__esModule', {
   value: true,
 });
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _extends =
+  Object.assign ||
+  function(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
 
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(
-  _possibleConstructorReturn2,
-);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})();
 
 var _classnames = require('classnames');
 
@@ -72,6 +77,44 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }
 
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError(
+      "this hasn't been initialised - super() hasn't been called",
+    );
+  }
+  return call && (typeof call === 'object' || typeof call === 'function')
+    ? call
+    : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== 'function' && superClass !== null) {
+    throw new TypeError(
+      'Super expression must either be null or a function, not ' +
+        typeof superClass,
+    );
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true,
+    },
+  });
+  if (superClass)
+    Object.setPrototypeOf
+      ? Object.setPrototypeOf(subClass, superClass)
+      : (subClass.__proto__ = superClass);
+}
+
 // @TODO Merge Collection and CollectionView
 
 /**
@@ -95,13 +138,13 @@ var SCROLL_POSITION_CHANGE_REASONS = {
  */
 
 var CollectionView = (function(_React$PureComponent) {
-  (0, _inherits3.default)(CollectionView, _React$PureComponent);
+  _inherits(CollectionView, _React$PureComponent);
 
   // Invokes callbacks only when their values have changed.
   function CollectionView() {
     var _ref;
 
-    (0, _classCallCheck3.default)(this, CollectionView);
+    _classCallCheck(this, CollectionView);
 
     for (
       var _len = arguments.length, args = Array(_len), _key = 0;
@@ -113,11 +156,11 @@ var CollectionView = (function(_React$PureComponent) {
 
     // If this component is being rendered server-side, getScrollbarSize() will return undefined.
     // We handle this case in componentDidMount()
-    var _this = (0, _possibleConstructorReturn3.default)(
+    var _this = _possibleConstructorReturn(
       this,
       (_ref =
         CollectionView.__proto__ ||
-        (0, _getPrototypeOf2.default)(CollectionView)).call.apply(
+        Object.getPrototypeOf(CollectionView)).call.apply(
         _ref,
         [this].concat(args),
       ),
@@ -268,7 +311,7 @@ var CollectionView = (function(_React$PureComponent) {
    * Since cell positions are calculated by callbacks, the collection view has no way of detecting when the underlying data has changed.
    */
 
-  (0, _createClass3.default)(
+  _createClass(
     CollectionView,
     [
       {
@@ -495,7 +538,7 @@ var CollectionView = (function(_React$PureComponent) {
               id: id,
               onScroll: this._onScroll,
               role: 'grid',
-              style: (0, _extends3.default)({}, collectionStyle, style),
+              style: _extends({}, collectionStyle, style),
               tabIndex: 0,
             },
             cellCount > 0 &&
@@ -644,9 +687,113 @@ var CollectionView = (function(_React$PureComponent) {
       },
     ],
   );
+
   return CollectionView;
 })(React.PureComponent);
 
+CollectionView.propTypes = {
+  'aria-label': _propTypes2.default.string,
+
+  /**
+   * Removes fixed height from the scrollingContainer so that the total height
+   * of rows can stretch the window. Intended for use with WindowScroller
+   */
+  autoHeight: _propTypes2.default.bool,
+
+  /**
+   * Number of cells in collection.
+   */
+  cellCount: _propTypes2.default.number.isRequired,
+
+  /**
+   * Calculates cell sizes and positions and manages rendering the appropriate cells given a specified window.
+   */
+  cellLayoutManager: _propTypes2.default.object.isRequired,
+
+  /**
+   * Optional custom CSS class name to attach to root Collection element.
+   */
+  className: _propTypes2.default.string,
+
+  /**
+   * Height of Collection; this property determines the number of visible (vs virtualized) rows.
+   */
+  height: _propTypes2.default.number.isRequired,
+
+  /**
+   * Optional custom id to attach to root Collection element.
+   */
+  id: _propTypes2.default.string,
+
+  /**
+   * Enables the `Collection` to horiontally "overscan" its content similar to how `Grid` does.
+   * This can reduce flicker around the edges when a user scrolls quickly.
+   */
+  horizontalOverscanSize: _propTypes2.default.number.isRequired,
+
+  isScrollingChange: _propTypes2.default.func,
+
+  /**
+   * Optional renderer to be used in place of rows when either :rowCount or :cellCount is 0.
+   */
+  noContentRenderer: _propTypes2.default.func.isRequired,
+
+  /**
+   * Callback invoked whenever the scroll offset changes within the inner scrollable region.
+   * This callback can be used to sync scrolling between lists, tables, or grids.
+   * ({ clientHeight, clientWidth, scrollHeight, scrollLeft, scrollTop, scrollWidth }): void
+   */
+  onScroll: _propTypes2.default.func.isRequired,
+
+  /**
+   * Callback invoked with information about the section of the Collection that was just rendered.
+   * This callback is passed a named :indices parameter which is an Array of the most recently rendered section indices.
+   */
+  onSectionRendered: _propTypes2.default.func.isRequired,
+
+  /**
+   * Horizontal offset.
+   */
+  scrollLeft: _propTypes2.default.number,
+
+  /**
+   * Controls scroll-to-cell behavior of the Grid.
+   * The default ("auto") scrolls the least amount possible to ensure that the specified cell is fully visible.
+   * Use "start" to align cells to the top/left of the Grid and "end" to align bottom/right.
+   */
+  scrollToAlignment: _propTypes2.default.oneOf([
+    'auto',
+    'end',
+    'start',
+    'center',
+  ]).isRequired,
+
+  /**
+   * Cell index to ensure visible (by forcefully scrolling if necessary).
+   */
+  scrollToCell: _propTypes2.default.number.isRequired,
+
+  /**
+   * Vertical offset.
+   */
+  scrollTop: _propTypes2.default.number,
+
+  /**
+   * Optional custom inline style to attach to root Collection element.
+   */
+  style: _propTypes2.default.object,
+
+  /**
+   * Enables the `Collection` to vertically "overscan" its content similar to how `Grid` does.
+   * This can reduce flicker around the edges when a user scrolls quickly.
+   */
+  verticalOverscanSize: _propTypes2.default.number.isRequired,
+
+  /**
+   * Width of Collection; this property determines the number of visible (vs virtualized) columns.
+   */
+  width: _propTypes2.default.number.isRequired,
+};
 CollectionView.defaultProps = {
   'aria-label': 'grid',
   horizontalOverscanSize: 0,
@@ -664,112 +811,6 @@ CollectionView.defaultProps = {
   style: {},
   verticalOverscanSize: 0,
 };
-CollectionView.propTypes =
-  process.env.NODE_ENV !== 'production'
-    ? {
-        'aria-label': _propTypes2.default.string,
-
-        /**
-         * Removes fixed height from the scrollingContainer so that the total height
-         * of rows can stretch the window. Intended for use with WindowScroller
-         */
-        autoHeight: _propTypes2.default.bool,
-
-        /**
-         * Number of cells in collection.
-         */
-        cellCount: _propTypes2.default.number.isRequired,
-
-        /**
-         * Calculates cell sizes and positions and manages rendering the appropriate cells given a specified window.
-         */
-        cellLayoutManager: _propTypes2.default.object.isRequired,
-
-        /**
-         * Optional custom CSS class name to attach to root Collection element.
-         */
-        className: _propTypes2.default.string,
-
-        /**
-         * Height of Collection; this property determines the number of visible (vs virtualized) rows.
-         */
-        height: _propTypes2.default.number.isRequired,
-
-        /**
-         * Optional custom id to attach to root Collection element.
-         */
-        id: _propTypes2.default.string,
-
-        /**
-         * Enables the `Collection` to horiontally "overscan" its content similar to how `Grid` does.
-         * This can reduce flicker around the edges when a user scrolls quickly.
-         */
-        horizontalOverscanSize: _propTypes2.default.number.isRequired,
-
-        isScrollingChange: _propTypes2.default.func,
-
-        /**
-         * Optional renderer to be used in place of rows when either :rowCount or :cellCount is 0.
-         */
-        noContentRenderer: _propTypes2.default.func.isRequired,
-
-        /**
-         * Callback invoked whenever the scroll offset changes within the inner scrollable region.
-         * This callback can be used to sync scrolling between lists, tables, or grids.
-         * ({ clientHeight, clientWidth, scrollHeight, scrollLeft, scrollTop, scrollWidth }): void
-         */
-        onScroll: _propTypes2.default.func.isRequired,
-
-        /**
-         * Callback invoked with information about the section of the Collection that was just rendered.
-         * This callback is passed a named :indices parameter which is an Array of the most recently rendered section indices.
-         */
-        onSectionRendered: _propTypes2.default.func.isRequired,
-
-        /**
-         * Horizontal offset.
-         */
-        scrollLeft: _propTypes2.default.number,
-
-        /**
-         * Controls scroll-to-cell behavior of the Grid.
-         * The default ("auto") scrolls the least amount possible to ensure that the specified cell is fully visible.
-         * Use "start" to align cells to the top/left of the Grid and "end" to align bottom/right.
-         */
-        scrollToAlignment: _propTypes2.default.oneOf([
-          'auto',
-          'end',
-          'start',
-          'center',
-        ]).isRequired,
-
-        /**
-         * Cell index to ensure visible (by forcefully scrolling if necessary).
-         */
-        scrollToCell: _propTypes2.default.number.isRequired,
-
-        /**
-         * Vertical offset.
-         */
-        scrollTop: _propTypes2.default.number,
-
-        /**
-         * Optional custom inline style to attach to root Collection element.
-         */
-        style: _propTypes2.default.object,
-
-        /**
-         * Enables the `Collection` to vertically "overscan" its content similar to how `Grid` does.
-         * This can reduce flicker around the edges when a user scrolls quickly.
-         */
-        verticalOverscanSize: _propTypes2.default.number.isRequired,
-
-        /**
-         * Width of Collection; this property determines the number of visible (vs virtualized) columns.
-         */
-        width: _propTypes2.default.number.isRequired,
-      }
-    : {};
 
 (0, _reactLifecyclesCompat.polyfill)(CollectionView);
 

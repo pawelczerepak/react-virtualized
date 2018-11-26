@@ -8,8 +8,6 @@ exports.unregisterScrollListener = unregisterScrollListener;
 
 var _requestAnimationTimeout = require('../../utils/requestAnimationTimeout');
 
-var _WindowScroller = require('../WindowScroller.js');
-
 var mountedInstances = [];
 
 var originalBodyPointerEvents = null;

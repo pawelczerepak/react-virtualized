@@ -4,37 +4,36 @@ Object.defineProperty(exports, '__esModule', {
   value: true,
 });
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _extends =
+  Object.assign ||
+  function(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
 
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _objectWithoutProperties2 = require('babel-runtime/helpers/objectWithoutProperties');
-
-var _objectWithoutProperties3 = _interopRequireDefault(
-  _objectWithoutProperties2,
-);
-
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(
-  _possibleConstructorReturn2,
-);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})();
 
 var _propTypes = require('prop-types');
 
@@ -60,8 +59,6 @@ var _getUpdatedOffsetForIndex2 = _interopRequireDefault(
   _getUpdatedOffsetForIndex,
 );
 
-var _types = require('./types');
-
 function _interopRequireWildcard(obj) {
   if (obj && obj.__esModule) {
     return obj;
@@ -82,19 +79,67 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }
 
+function _objectWithoutProperties(obj, keys) {
+  var target = {};
+  for (var i in obj) {
+    if (keys.indexOf(i) >= 0) continue;
+    if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+    target[i] = obj[i];
+  }
+  return target;
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError(
+      "this hasn't been initialised - super() hasn't been called",
+    );
+  }
+  return call && (typeof call === 'object' || typeof call === 'function')
+    ? call
+    : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== 'function' && superClass !== null) {
+    throw new TypeError(
+      'Super expression must either be null or a function, not ' +
+        typeof superClass,
+    );
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true,
+    },
+  });
+  if (superClass)
+    Object.setPrototypeOf
+      ? Object.setPrototypeOf(subClass, superClass)
+      : (subClass.__proto__ = superClass);
+}
+
 /**
  * Renders scattered or non-linear data.
  * Unlike Grid, which renders checkerboard data, Collection can render arbitrarily positioned- even overlapping- data.
  */
 var Collection = (function(_React$PureComponent) {
-  (0, _inherits3.default)(Collection, _React$PureComponent);
+  _inherits(Collection, _React$PureComponent);
 
   function Collection(props, context) {
-    (0, _classCallCheck3.default)(this, Collection);
+    _classCallCheck(this, Collection);
 
-    var _this = (0, _possibleConstructorReturn3.default)(
+    var _this = _possibleConstructorReturn(
       this,
-      (Collection.__proto__ || (0, _getPrototypeOf2.default)(Collection)).call(
+      (Collection.__proto__ || Object.getPrototypeOf(Collection)).call(
         this,
         props,
         context,
@@ -112,7 +157,7 @@ var Collection = (function(_React$PureComponent) {
     return _this;
   }
 
-  (0, _createClass3.default)(Collection, [
+  _createClass(Collection, [
     {
       key: 'forceUpdate',
       value: function forceUpdate() {
@@ -135,11 +180,11 @@ var Collection = (function(_React$PureComponent) {
     {
       key: 'render',
       value: function render() {
-        var props = (0, _objectWithoutProperties3.default)(this.props, []);
+        var props = _objectWithoutProperties(this.props, []);
 
         return React.createElement(
           _CollectionView2.default,
-          (0, _extends3.default)(
+          _extends(
             {
               cellLayoutManager: this,
               isScrollingChange: this._isScrollingChange,
@@ -284,52 +329,50 @@ var Collection = (function(_React$PureComponent) {
       },
     },
   ]);
+
   return Collection;
 })(React.PureComponent);
 
+Collection.propTypes = {
+  'aria-label': _propTypes2.default.string,
+
+  /**
+   * Number of cells in Collection.
+   */
+  cellCount: _propTypes2.default.number.isRequired,
+
+  /**
+   * Responsible for rendering a group of cells given their indices.
+   * Should implement the following interface: ({
+   *   cellSizeAndPositionGetter:Function,
+   *   indices: Array<number>,
+   *   cellRenderer: Function
+   * }): Array<PropTypes.node>
+   */
+  cellGroupRenderer: _propTypes2.default.func.isRequired,
+
+  /**
+   * Responsible for rendering a cell given an row and column index.
+   * Should implement the following interface: ({ index: number, key: string, style: object }): PropTypes.element
+   */
+  cellRenderer: _propTypes2.default.func.isRequired,
+
+  /**
+   * Callback responsible for returning size and offset/position information for a given cell (index).
+   * ({ index: number }): { height: number, width: number, x: number, y: number }
+   */
+  cellSizeAndPositionGetter: _propTypes2.default.func.isRequired,
+
+  /**
+   * Optionally override the size of the sections a Collection's cells are split into.
+   */
+  sectionSize: _propTypes2.default.number,
+};
 Collection.defaultProps = {
   'aria-label': 'grid',
   cellGroupRenderer: defaultCellGroupRenderer,
 };
 exports.default = Collection;
-Collection.propTypes =
-  process.env.NODE_ENV !== 'production'
-    ? {
-        'aria-label': _propTypes2.default.string,
-
-        /**
-         * Number of cells in Collection.
-         */
-        cellCount: _propTypes2.default.number.isRequired,
-
-        /**
-         * Responsible for rendering a group of cells given their indices.
-         * Should implement the following interface: ({
-         *   cellSizeAndPositionGetter:Function,
-         *   indices: Array<number>,
-         *   cellRenderer: Function
-         * }): Array<PropTypes.node>
-         */
-        cellGroupRenderer: _propTypes2.default.func.isRequired,
-
-        /**
-         * Responsible for rendering a cell given an row and column index.
-         * Should implement the following interface: ({ index: number, key: string, style: object }): PropTypes.element
-         */
-        cellRenderer: _propTypes2.default.func.isRequired,
-
-        /**
-         * Callback responsible for returning size and offset/position information for a given cell (index).
-         * ({ index: number }): { height: number, width: number, x: number, y: number }
-         */
-        cellSizeAndPositionGetter: _propTypes2.default.func.isRequired,
-
-        /**
-         * Optionally override the size of the sections a Collection's cells are split into.
-         */
-        sectionSize: _propTypes2.default.number,
-      }
-    : {};
 
 function defaultCellGroupRenderer(_ref4) {
   var cellCache = _ref4.cellCache,

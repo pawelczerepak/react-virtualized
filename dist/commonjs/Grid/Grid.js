@@ -5,35 +5,36 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports.DEFAULT_SCROLLING_RESET_TIME_INTERVAL = undefined;
 
-var _assign = require('babel-runtime/core-js/object/assign');
+var _extends =
+  Object.assign ||
+  function(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
 
-var _assign2 = _interopRequireDefault(_assign);
-
-var _extends2 = require('babel-runtime/helpers/extends');
-
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(
-  _possibleConstructorReturn2,
-);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})();
 
 var _react = require('react');
 
@@ -85,11 +86,9 @@ var _reactLifecyclesCompat = require('react-lifecycles-compat');
 
 var _requestAnimationTimeout = require('../utils/requestAnimationTimeout');
 
-var _types = require('./types');
-
-var _propTypes = require('prop-types');
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
+}
 
 function _interopRequireWildcard(obj) {
   if (obj && obj.__esModule) {
@@ -107,8 +106,42 @@ function _interopRequireWildcard(obj) {
   }
 }
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {default: obj};
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError(
+      "this hasn't been initialised - super() hasn't been called",
+    );
+  }
+  return call && (typeof call === 'object' || typeof call === 'function')
+    ? call
+    : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== 'function' && superClass !== null) {
+    throw new TypeError(
+      'Super expression must either be null or a function, not ' +
+        typeof superClass,
+    );
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true,
+    },
+  });
+  if (superClass)
+    Object.setPrototypeOf
+      ? Object.setPrototypeOf(subClass, superClass)
+      : (subClass.__proto__ = superClass);
 }
 
 /**
@@ -121,7 +154,6 @@ var DEFAULT_SCROLLING_RESET_TIME_INTERVAL = (exports.DEFAULT_SCROLLING_RESET_TIM
  * Controls whether the Grid updates the DOM element's scrollLeft/scrollTop based on the current state or just observes it.
  * This prevents Grid from interrupting mouse-wheel animations (see issue #2).
  */
-
 var SCROLL_POSITION_CHANGE_REASONS = {
   OBSERVED: 'observed',
   REQUESTED: 'requested',
@@ -136,15 +168,15 @@ var renderNull = function renderNull() {
  * Row heights and column widths must be known ahead of time and specified as properties.
  */
 var Grid = (function(_React$PureComponent) {
-  (0, _inherits3.default)(Grid, _React$PureComponent);
+  _inherits(Grid, _React$PureComponent);
 
   // Invokes onSectionRendered callback only when start/stop row or column indices change
   function Grid(props) {
-    (0, _classCallCheck3.default)(this, Grid);
+    _classCallCheck(this, Grid);
 
-    var _this = (0, _possibleConstructorReturn3.default)(
+    var _this = _possibleConstructorReturn(
       this,
-      (Grid.__proto__ || (0, _getPrototypeOf2.default)(Grid)).call(this, props),
+      (Grid.__proto__ || Object.getPrototypeOf(Grid)).call(this, props),
     );
 
     _this._onGridRenderedMemoizer = (0, _createCallbackMemoizer2.default)();
@@ -269,7 +301,7 @@ var Grid = (function(_React$PureComponent) {
    * Gets offsets for a given cell and alignment.
    */
 
-  (0, _createClass3.default)(
+  _createClass(
     Grid,
     [
       {
@@ -295,7 +327,7 @@ var Grid = (function(_React$PureComponent) {
                 ? this.props.scrollToRow
                 : _ref$rowIndex;
 
-          var offsetProps = (0, _extends3.default)({}, this.props, {
+          var offsetProps = _extends({}, this.props, {
             scrollToAlignment: alignment,
             scrollToColumn: columnIndex,
             scrollToRow: rowIndex,
@@ -540,7 +572,7 @@ var Grid = (function(_React$PureComponent) {
           // This can cause a funky scroll offset because of the vertical scrollbar width.
           if (columnCount > 1 && columnIndex !== undefined) {
             this._updateScrollLeftForScrollToColumn(
-              (0, _extends3.default)({}, props, {
+              _extends({}, props, {
                 scrollToColumn: columnIndex,
               }),
             );
@@ -548,7 +580,7 @@ var Grid = (function(_React$PureComponent) {
 
           if (rowIndex !== undefined) {
             this._updateScrollTopForScrollToRow(
-              (0, _extends3.default)({}, props, {
+              _extends({}, props, {
                 scrollToRow: rowIndex,
               }),
             );
@@ -581,7 +613,7 @@ var Grid = (function(_React$PureComponent) {
           // In that event we need to remeasure.
           if (!instanceProps.scrollbarSizeMeasured) {
             this.setState(function(prevState) {
-              var stateUpdate = (0, _extends3.default)({}, prevState, {
+              var stateUpdate = _extends({}, prevState, {
                 needToResetStyleCache: false,
               });
               stateUpdate.instanceProps.scrollbarSize = getScrollbarSize();
@@ -891,7 +923,7 @@ var Grid = (function(_React$PureComponent) {
 
           return React.createElement(
             'div',
-            (0, _extends3.default)(
+            _extends(
               {
                 ref: this._setScrollingContainerRef,
               },
@@ -906,7 +938,7 @@ var Grid = (function(_React$PureComponent) {
                 id: id,
                 onScroll: this._onScroll,
                 role: role,
-                style: (0, _extends3.default)({}, gridStyle, style),
+                style: _extends({}, gridStyle, style),
                 tabIndex: tabIndex,
               },
             ),
@@ -916,7 +948,7 @@ var Grid = (function(_React$PureComponent) {
                 {
                   className: 'ReactVirtualized__Grid__innerScrollContainer',
                   role: containerRole,
-                  style: (0, _extends3.default)(
+                  style: _extends(
                     {
                       width: autoContainerWidth ? 'auto' : totalColumnsWidth,
                       height: totalRowsHeight,
@@ -1395,7 +1427,7 @@ var Grid = (function(_React$PureComponent) {
             (nextProps.scrollTop !== prevState.scrollTop &&
               nextProps.scrollToRow < 0)
           ) {
-            (0, _assign2.default)(
+            Object.assign(
               newState,
               Grid._getScrollToPositionStateUpdate({
                 prevState: prevState,
@@ -1444,7 +1476,7 @@ var Grid = (function(_React$PureComponent) {
             nextProps.isScrolling === false &&
             instanceProps.prevIsScrolling === true
           ) {
-            (0, _assign2.default)(newState, {
+            Object.assign(newState, {
               isScrolling: false,
             });
           }
@@ -1520,7 +1552,7 @@ var Grid = (function(_React$PureComponent) {
 
           newState.instanceProps = instanceProps;
 
-          return (0, _extends3.default)({}, newState, maybeStateA, maybeStateB);
+          return _extends({}, newState, maybeStateA, maybeStateB);
         },
       },
       {
@@ -1719,6 +1751,7 @@ var Grid = (function(_React$PureComponent) {
       },
     ],
   );
+
   return Grid;
 })(React.PureComponent);
 
@@ -1750,234 +1783,6 @@ Grid.defaultProps = {
   tabIndex: 0,
   isScrollingOptOut: false,
 };
-Grid.propTypes =
-  process.env.NODE_ENV === 'production'
-    ? null
-    : {
-        'aria-label': _propTypes2.default.string.isRequired,
-        'aria-readonly': _propTypes2.default.bool,
-
-        /**
-         * Set the width of the inner scrollable container to 'auto'.
-         * This is useful for single-column Grids to ensure that the column doesn't extend below a vertical scrollbar.
-         */
-        autoContainerWidth: _propTypes2.default.bool.isRequired,
-
-        /**
-         * Removes fixed height from the scrollingContainer so that the total height of rows can stretch the window.
-         * Intended for use with WindowScroller
-         */
-        autoHeight: _propTypes2.default.bool.isRequired,
-
-        /**
-         * Removes fixed width from the scrollingContainer so that the total width of rows can stretch the window.
-         * Intended for use with WindowScroller
-         */
-        autoWidth: _propTypes2.default.bool.isRequired,
-
-        /** Responsible for rendering a cell given an row and column index.  */
-        cellRenderer: function cellRenderer() {
-          return (typeof _types.bpfrpt_proptype_CellRenderer === 'function'
-            ? _types.bpfrpt_proptype_CellRenderer.isRequired
-              ? _types.bpfrpt_proptype_CellRenderer.isRequired
-              : _types.bpfrpt_proptype_CellRenderer
-            : _propTypes2.default.shape(_types.bpfrpt_proptype_CellRenderer)
-                .isRequired
-          ).apply(this, arguments);
-        },
-
-        /** Responsible for rendering a group of cells given their index ranges.  */
-        cellRangeRenderer: function cellRangeRenderer() {
-          return (typeof _types.bpfrpt_proptype_CellRangeRenderer === 'function'
-            ? _types.bpfrpt_proptype_CellRangeRenderer.isRequired
-              ? _types.bpfrpt_proptype_CellRangeRenderer.isRequired
-              : _types.bpfrpt_proptype_CellRangeRenderer
-            : _propTypes2.default.shape(
-                _types.bpfrpt_proptype_CellRangeRenderer,
-              ).isRequired
-          ).apply(this, arguments);
-        },
-
-        /** Optional custom CSS class name to attach to root Grid element.  */
-        className: _propTypes2.default.string,
-
-        /** Number of columns in grid.  */
-        columnCount: _propTypes2.default.number.isRequired,
-
-        /** Either a fixed column width (number) or a function that returns the width of a column given its index.  */
-        columnWidth: function columnWidth() {
-          return (typeof _types.bpfrpt_proptype_CellSize === 'function'
-            ? _types.bpfrpt_proptype_CellSize.isRequired
-              ? _types.bpfrpt_proptype_CellSize.isRequired
-              : _types.bpfrpt_proptype_CellSize
-            : _propTypes2.default.shape(_types.bpfrpt_proptype_CellSize)
-                .isRequired
-          ).apply(this, arguments);
-        },
-
-        /** Unfiltered props for the Grid container. */
-        containerProps: _propTypes2.default.object,
-
-        /** ARIA role for the cell-container.  */
-        containerRole: _propTypes2.default.string.isRequired,
-
-        /** Optional inline style applied to inner cell-container */
-        containerStyle: _propTypes2.default.object.isRequired,
-
-        /**
-         * If CellMeasurer is used to measure this Grid's children, this should be a pointer to its CellMeasurerCache.
-         * A shared CellMeasurerCache reference enables Grid and CellMeasurer to share measurement data.
-         */
-        deferredMeasurementCache: _propTypes2.default.object,
-
-        /**
-         * Used to estimate the total width of a Grid before all of its columns have actually been measured.
-         * The estimated total width is adjusted as columns are rendered.
-         */
-        estimatedColumnSize: _propTypes2.default.number.isRequired,
-
-        /**
-         * Used to estimate the total height of a Grid before all of its rows have actually been measured.
-         * The estimated total height is adjusted as rows are rendered.
-         */
-        estimatedRowSize: _propTypes2.default.number.isRequired,
-
-        /** Exposed for testing purposes only.  */
-        getScrollbarSize: _propTypes2.default.func.isRequired,
-
-        /** Height of Grid; this property determines the number of visible (vs virtualized) rows.  */
-        height: _propTypes2.default.number.isRequired,
-
-        /** Optional custom id to attach to root Grid element.  */
-        id: _propTypes2.default.string,
-
-        /**
-         * Override internal is-scrolling state tracking.
-         * This property is primarily intended for use with the WindowScroller component.
-         */
-        isScrolling: _propTypes2.default.bool,
-
-        /**
-         * Opt-out of isScrolling param passed to cellRangeRenderer.
-         * To avoid the extra render when scroll stops.
-         */
-        isScrollingOptOut: _propTypes2.default.bool.isRequired,
-
-        /** Optional renderer to be used in place of rows when either :rowCount or :columnCount is 0.  */
-        noContentRenderer: function noContentRenderer() {
-          return (typeof _types.bpfrpt_proptype_NoContentRenderer === 'function'
-            ? _types.bpfrpt_proptype_NoContentRenderer.isRequired
-              ? _types.bpfrpt_proptype_NoContentRenderer.isRequired
-              : _types.bpfrpt_proptype_NoContentRenderer
-            : _propTypes2.default.shape(
-                _types.bpfrpt_proptype_NoContentRenderer,
-              ).isRequired
-          ).apply(this, arguments);
-        },
-
-        /**
-         * Callback invoked whenever the scroll offset changes within the inner scrollable region.
-         * This callback can be used to sync scrolling between lists, tables, or grids.
-         */
-        onScroll: _propTypes2.default.func.isRequired,
-
-        /**
-         * Called whenever a horizontal or vertical scrollbar is added or removed.
-         * This prop is not intended for end-user use;
-         * It is used by MultiGrid to support fixed-row/fixed-column scroll syncing.
-         */
-        onScrollbarPresenceChange: _propTypes2.default.func.isRequired,
-
-        /** Callback invoked with information about the section of the Grid that was just rendered.  */
-        onSectionRendered: _propTypes2.default.func.isRequired,
-
-        /**
-         * Number of columns to render before/after the visible section of the grid.
-         * These columns can help for smoother scrolling on touch devices or browsers that send scroll events infrequently.
-         */
-        overscanColumnCount: _propTypes2.default.number.isRequired,
-
-        /**
-         * Calculates the number of cells to overscan before and after a specified range.
-         * This function ensures that overscanning doesn't exceed the available cells.
-         */
-        overscanIndicesGetter: function overscanIndicesGetter() {
-          return (typeof _types.bpfrpt_proptype_OverscanIndicesGetter ===
-          'function'
-            ? _types.bpfrpt_proptype_OverscanIndicesGetter.isRequired
-              ? _types.bpfrpt_proptype_OverscanIndicesGetter.isRequired
-              : _types.bpfrpt_proptype_OverscanIndicesGetter
-            : _propTypes2.default.shape(
-                _types.bpfrpt_proptype_OverscanIndicesGetter,
-              ).isRequired
-          ).apply(this, arguments);
-        },
-
-        /**
-         * Number of rows to render above/below the visible section of the grid.
-         * These rows can help for smoother scrolling on touch devices or browsers that send scroll events infrequently.
-         */
-        overscanRowCount: _propTypes2.default.number.isRequired,
-
-        /** ARIA role for the grid element.  */
-        role: _propTypes2.default.string.isRequired,
-
-        /**
-         * Either a fixed row height (number) or a function that returns the height of a row given its index.
-         * Should implement the following interface: ({ index: number }): number
-         */
-        rowHeight: function rowHeight() {
-          return (typeof _types.bpfrpt_proptype_CellSize === 'function'
-            ? _types.bpfrpt_proptype_CellSize.isRequired
-              ? _types.bpfrpt_proptype_CellSize.isRequired
-              : _types.bpfrpt_proptype_CellSize
-            : _propTypes2.default.shape(_types.bpfrpt_proptype_CellSize)
-                .isRequired
-          ).apply(this, arguments);
-        },
-
-        /** Number of rows in grid.  */
-        rowCount: _propTypes2.default.number.isRequired,
-
-        /** Wait this amount of time after the last scroll event before resetting Grid `pointer-events`. */
-        scrollingResetTimeInterval: _propTypes2.default.number.isRequired,
-
-        /** Horizontal offset. */
-        scrollLeft: _propTypes2.default.number,
-
-        /**
-         * Controls scroll-to-cell behavior of the Grid.
-         * The default ("auto") scrolls the least amount possible to ensure that the specified cell is fully visible.
-         * Use "start" to align cells to the top/left of the Grid and "end" to align bottom/right.
-         */
-        scrollToAlignment: function scrollToAlignment() {
-          return (typeof _types.bpfrpt_proptype_Alignment === 'function'
-            ? _types.bpfrpt_proptype_Alignment.isRequired
-              ? _types.bpfrpt_proptype_Alignment.isRequired
-              : _types.bpfrpt_proptype_Alignment
-            : _propTypes2.default.shape(_types.bpfrpt_proptype_Alignment)
-                .isRequired
-          ).apply(this, arguments);
-        },
-
-        /** Column index to ensure visible (by forcefully scrolling if necessary) */
-        scrollToColumn: _propTypes2.default.number.isRequired,
-
-        /** Vertical offset. */
-        scrollTop: _propTypes2.default.number,
-
-        /** Row index to ensure visible (by forcefully scrolling if necessary) */
-        scrollToRow: _propTypes2.default.number.isRequired,
-
-        /** Optional inline style */
-        style: _propTypes2.default.object.isRequired,
-
-        /** Tab index for focus */
-        tabIndex: _propTypes2.default.number,
-
-        /** Width of Grid; this property determines the number of visible (vs virtualized) columns.  */
-        width: _propTypes2.default.number.isRequired,
-      };
 
 (0, _reactLifecyclesCompat.polyfill)(Grid);
 exports.default = Grid;

@@ -5,31 +5,36 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports.IS_SCROLLING_TIMEOUT = undefined;
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _extends =
+  Object.assign ||
+  function(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
 
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(
-  _possibleConstructorReturn2,
-);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})();
 
 var _react = require('react');
 
@@ -47,9 +52,9 @@ var _detectElementResize = require('../vendor/detectElementResize');
 
 var _detectElementResize2 = _interopRequireDefault(_detectElementResize);
 
-var _propTypes = require('prop-types');
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
+}
 
 function _interopRequireWildcard(obj) {
   if (obj && obj.__esModule) {
@@ -67,8 +72,42 @@ function _interopRequireWildcard(obj) {
   }
 }
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {default: obj};
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError(
+      "this hasn't been initialised - super() hasn't been called",
+    );
+  }
+  return call && (typeof call === 'object' || typeof call === 'function')
+    ? call
+    : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== 'function' && superClass !== null) {
+    throw new TypeError(
+      'Super expression must either be null or a function, not ' +
+        typeof superClass,
+    );
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true,
+    },
+  });
+  if (superClass)
+    Object.setPrototypeOf
+      ? Object.setPrototypeOf(subClass, superClass)
+      : (subClass.__proto__ = superClass);
 }
 
 /**
@@ -82,14 +121,14 @@ var getWindow = function getWindow() {
 };
 
 var WindowScroller = (function(_React$PureComponent) {
-  (0, _inherits3.default)(WindowScroller, _React$PureComponent);
+  _inherits(WindowScroller, _React$PureComponent);
 
   function WindowScroller() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    (0, _classCallCheck3.default)(this, WindowScroller);
+    _classCallCheck(this, WindowScroller);
 
     for (
       var _len = arguments.length, args = Array(_len), _key = 0;
@@ -100,11 +139,11 @@ var WindowScroller = (function(_React$PureComponent) {
     }
 
     return (
-      (_ret = ((_temp = ((_this = (0, _possibleConstructorReturn3.default)(
+      (_ret = ((_temp = ((_this = _possibleConstructorReturn(
         this,
         (_ref =
           WindowScroller.__proto__ ||
-          (0, _getPrototypeOf2.default)(WindowScroller)).call.apply(
+          Object.getPrototypeOf(WindowScroller)).call.apply(
           _ref,
           [this].concat(args),
         ),
@@ -114,7 +153,7 @@ var WindowScroller = (function(_React$PureComponent) {
       (_this._isMounted = false),
       (_this._positionFromTop = 0),
       (_this._positionFromLeft = 0),
-      (_this.state = (0, _extends3.default)(
+      (_this.state = _extends(
         {},
         (0, _dimensions.getDimensions)(_this.props.scrollElement, _this.props),
         {
@@ -208,11 +247,11 @@ var WindowScroller = (function(_React$PureComponent) {
         });
       }),
       _temp)),
-      (0, _possibleConstructorReturn3.default)(_this, _ret)
+      _possibleConstructorReturn(_this, _ret)
     );
   }
 
-  (0, _createClass3.default)(WindowScroller, [
+  _createClass(WindowScroller, [
     {
       key: 'updatePosition',
       value: function updatePosition() {
@@ -328,6 +367,7 @@ var WindowScroller = (function(_React$PureComponent) {
       // Referenced by utils/onScroll
     },
   ]);
+
   return WindowScroller;
 })(React.PureComponent);
 
@@ -339,43 +379,4 @@ WindowScroller.defaultProps = {
   serverHeight: 0,
   serverWidth: 0,
 };
-WindowScroller.propTypes =
-  process.env.NODE_ENV === 'production'
-    ? null
-    : {
-        /**
-         * Function responsible for rendering children.
-         * This function should implement the following signature:
-         * ({ height, isScrolling, scrollLeft, scrollTop, width }) => PropTypes.element
-         */
-        children: _propTypes2.default.func.isRequired,
-
-        /** Callback to be invoked on-resize: ({ height, width }) */
-        onResize: _propTypes2.default.func.isRequired,
-
-        /** Callback to be invoked on-scroll: ({ scrollLeft, scrollTop }) */
-        onScroll: _propTypes2.default.func.isRequired,
-
-        /** Element to attach scroll event listeners. Defaults to window. */
-        scrollElement: _propTypes2.default.oneOfType([
-          _propTypes2.default.any,
-          function() {
-            return (typeof Element === 'function'
-              ? _propTypes2.default.instanceOf(Element)
-              : _propTypes2.default.any
-            ).apply(this, arguments);
-          },
-        ]),
-
-        /**
-         * Wait this amount of time after the last scroll event before resetting child `pointer-events`.
-         */
-        scrollingResetTimeInterval: _propTypes2.default.number.isRequired,
-
-        /** Height used for server-side rendering */
-        serverHeight: _propTypes2.default.number.isRequired,
-
-        /** Width used for server-side rendering */
-        serverWidth: _propTypes2.default.number.isRequired,
-      };
 exports.default = WindowScroller;

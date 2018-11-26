@@ -1,7 +1,20 @@
-import initCellMetadata from './initCellMetadata';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+exports.getCellMetadata = getCellMetadata;
+
+var _initCellMetadata = require('./initCellMetadata');
+
+var _initCellMetadata2 = _interopRequireDefault(_initCellMetadata);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
+}
 
 // Default cell sizes and offsets for use in below tests
-export function getCellMetadata() {
+function getCellMetadata() {
   var cellSizes = [
     10, // 0: 0..0 (min)
     20, // 1: 0..10
@@ -13,7 +26,7 @@ export function getCellMetadata() {
     10, // 7: 80..110
     30,
   ];
-  return initCellMetadata({
+  return (0, _initCellMetadata2.default)({
     cellCount: cellSizes.length,
     size: function size(_ref) {
       var index = _ref.index;

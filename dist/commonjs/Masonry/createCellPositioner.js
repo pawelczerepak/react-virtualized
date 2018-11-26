@@ -4,9 +4,6 @@ Object.defineProperty(exports, '__esModule', {
   value: true,
 });
 exports.default = createCellPositioner;
-
-var _Masonry = require('./Masonry');
-
 function createCellPositioner(_ref) {
   var cellMeasurerCache = _ref.cellMeasurerCache,
     columnCount = _ref.columnCount,

@@ -1,3 +1,9 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+exports.default = createDetectElementResize;
 /**
  * Detect Element Resize.
  * https://github.com/sdecima/javascript-detect-element-resize
@@ -10,7 +16,7 @@
  * 4) Add nonce for style element.
  **/
 
-export default function createDetectElementResize(nonce) {
+function createDetectElementResize(nonce) {
   // Check `document` and `window` in case of server-side rendering
   var _window;
   if (typeof window !== 'undefined') {

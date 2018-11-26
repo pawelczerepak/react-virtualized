@@ -1,9 +1,15 @@
-import {
-  requestAnimationTimeout,
-  cancelAnimationTimeout,
-} from '../../utils/requestAnimationTimeout';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+exports.registerScrollListener = registerScrollListener;
+exports.unregisterScrollListener = unregisterScrollListener;
+
+var _requestAnimationTimeout = require('../../utils/requestAnimationTimeout');
 
 var mountedInstances = [];
+
 var originalBodyPointerEvents = null;
 var disablePointerEventsTimeoutId = null;
 
@@ -28,7 +34,9 @@ function enablePointerEventsAfterDelayCallback() {
 
 function enablePointerEventsAfterDelay() {
   if (disablePointerEventsTimeoutId) {
-    cancelAnimationTimeout(disablePointerEventsTimeoutId);
+    (0, _requestAnimationTimeout.cancelAnimationTimeout)(
+      disablePointerEventsTimeoutId,
+    );
   }
 
   var maximumTimeout = 0;
@@ -39,7 +47,8 @@ function enablePointerEventsAfterDelay() {
     );
   });
 
-  disablePointerEventsTimeoutId = requestAnimationTimeout(
+  disablePointerEventsTimeoutId = (0,
+  _requestAnimationTimeout.requestAnimationTimeout)(
     enablePointerEventsAfterDelayCallback,
     maximumTimeout,
   );
@@ -63,7 +72,7 @@ function onScrollWindow(event) {
   });
 }
 
-export function registerScrollListener(component, element) {
+function registerScrollListener(component, element) {
   if (
     !mountedInstances.some(function(instance) {
       return instance.props.scrollElement === element;
@@ -74,16 +83,17 @@ export function registerScrollListener(component, element) {
   mountedInstances.push(component);
 }
 
-export function unregisterScrollListener(component, element) {
+function unregisterScrollListener(component, element) {
   mountedInstances = mountedInstances.filter(function(instance) {
     return instance !== component;
   });
   if (!mountedInstances.length) {
     element.removeEventListener('scroll', onScrollWindow);
     if (disablePointerEventsTimeoutId) {
-      cancelAnimationTimeout(disablePointerEventsTimeoutId);
+      (0, _requestAnimationTimeout.cancelAnimationTimeout)(
+        disablePointerEventsTimeoutId,
+      );
       enablePointerEventsIfDisabled();
     }
   }
 }
-import {bpfrpt_proptype_WindowScroller} from '../WindowScroller.js';

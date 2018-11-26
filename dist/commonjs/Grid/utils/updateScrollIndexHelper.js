@@ -11,8 +11,6 @@ var _ScalingCellSizeAndPositionManager2 = _interopRequireDefault(
   _ScalingCellSizeAndPositionManager,
 );
 
-var _types = require('../types');
-
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }

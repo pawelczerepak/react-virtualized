@@ -1,12 +1,43 @@
-import _Object$keys from 'babel-runtime/core-js/object/keys';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-/**
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})(); /**
  * Window Sections are used to group nearby cells.
  * This enables us to more quickly determine which cells to display in a given region of the Window.
  *
  */
-import Section from './Section';
+
+var _Section = require('./Section');
+
+var _Section2 = _interopRequireDefault(_Section);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
 
 var SECTION_SIZE = 100;
 
@@ -55,7 +86,7 @@ var SectionManager = (function() {
         );
 
         // Object keys are strings; this function returns numbers
-        return _Object$keys(indices).map(function(index) {
+        return Object.keys(indices).map(function(index) {
           return indices[index];
         });
       },
@@ -100,7 +131,7 @@ var SectionManager = (function() {
             var key = sectionX + '.' + sectionY;
 
             if (!this._sections[key]) {
-              this._sections[key] = new Section({
+              this._sections[key] = new _Section2.default({
                 height: this._sectionSize,
                 width: this._sectionSize,
                 x: sectionX * this._sectionSize,
@@ -120,7 +151,7 @@ var SectionManager = (function() {
     {
       key: 'getTotalSectionCount',
       value: function getTotalSectionCount() {
-        return _Object$keys(this._sections).length;
+        return Object.keys(this._sections).length;
       },
 
       /** Intended for debugger/test purposes only */
@@ -130,7 +161,7 @@ var SectionManager = (function() {
       value: function toString() {
         var _this = this;
 
-        return _Object$keys(this._sections).map(function(index) {
+        return Object.keys(this._sections).map(function(index) {
           return _this._sections[index].toString();
         });
       },
@@ -155,6 +186,4 @@ var SectionManager = (function() {
   return SectionManager;
 })();
 
-export default SectionManager;
-import {bpfrpt_proptype_Index} from './types';
-import {bpfrpt_proptype_SizeAndPositionInfo} from './types';
+exports.default = SectionManager;

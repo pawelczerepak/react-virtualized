@@ -1,16 +1,24 @@
-export var SCROLL_DIRECTION_BACKWARD = -1;
+'use strict';
 
-export var SCROLL_DIRECTION_FORWARD = 1;
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+exports.default = defaultOverscanIndicesGetter;
+var SCROLL_DIRECTION_BACKWARD = (exports.SCROLL_DIRECTION_BACKWARD = -1);
 
-export var SCROLL_DIRECTION_HORIZONTAL = 'horizontal';
-export var SCROLL_DIRECTION_VERTICAL = 'vertical';
+var SCROLL_DIRECTION_FORWARD = (exports.SCROLL_DIRECTION_FORWARD = 1);
+
+var SCROLL_DIRECTION_HORIZONTAL = (exports.SCROLL_DIRECTION_HORIZONTAL =
+  'horizontal');
+var SCROLL_DIRECTION_VERTICAL = (exports.SCROLL_DIRECTION_VERTICAL =
+  'vertical');
 
 /**
  * Calculates the number of cells to overscan before and after a specified range.
  * This function ensures that overscanning doesn't exceed the available cells.
  */
 
-export default function defaultOverscanIndicesGetter(_ref) {
+function defaultOverscanIndicesGetter(_ref) {
   var cellCount = _ref.cellCount,
     overscanCellsCount = _ref.overscanCellsCount,
     scrollDirection = _ref.scrollDirection,
@@ -32,5 +40,3 @@ export default function defaultOverscanIndicesGetter(_ref) {
     };
   }
 }
-import {bpfrpt_proptype_OverscanIndicesGetterParams} from './types';
-import {bpfrpt_proptype_OverscanIndices} from './types';

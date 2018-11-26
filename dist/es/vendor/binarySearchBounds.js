@@ -1,3 +1,8 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
 /**
  * Binary Search Bounds
  * https://github.com/mikolalysenko/binary-search-bounds
@@ -245,7 +250,7 @@ function dispatchBsearchEQ(a, y, c, l, h) {
   }
 }
 
-export default {
+exports.default = {
   ge: dispatchBsearchGE,
   gt: dispatchBsearchGT,
   lt: dispatchBsearchLT,

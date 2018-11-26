@@ -13,12 +13,6 @@ var _SortIndicator = require('./SortIndicator');
 
 var _SortIndicator2 = _interopRequireDefault(_SortIndicator);
 
-var _types = require('./types');
-
-var _propTypes = require('prop-types');
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
 function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }
@@ -72,9 +66,3 @@ function defaultHeaderRenderer(_ref) {
 
   return children;
 }
-defaultHeaderRenderer.propTypes =
-  process.env.NODE_ENV === 'production'
-    ? null
-    : _types.bpfrpt_proptype_HeaderRendererParams === _propTypes2.default.any
-      ? {}
-      : _types.bpfrpt_proptype_HeaderRendererParams;

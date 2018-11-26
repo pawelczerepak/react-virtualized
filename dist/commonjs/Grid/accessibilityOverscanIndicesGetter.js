@@ -3,11 +3,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true,
 });
-exports.SCROLL_DIRECTION_VERTICAL = exports.SCROLL_DIRECTION_HORIZONTAL = exports.SCROLL_DIRECTION_FORWARD = exports.SCROLL_DIRECTION_BACKWARD = undefined;
 exports.default = defaultOverscanIndicesGetter;
-
-var _types = require('./types');
-
 var SCROLL_DIRECTION_BACKWARD = (exports.SCROLL_DIRECTION_BACKWARD = -1);
 
 var SCROLL_DIRECTION_FORWARD = (exports.SCROLL_DIRECTION_FORWARD = 1);

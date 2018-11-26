@@ -5,8 +5,6 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports.default = defaultCellDataGetter;
 
-var _types = require('./types');
-
 /**
  * Default accessor for returning a cell value for a given attribute.
  * This function expects to operate on either a vanilla Object or an Immutable Map.

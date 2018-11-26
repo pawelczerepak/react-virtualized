@@ -1,10 +1,49 @@
-import _extends from 'babel-runtime/helpers/extends';
-import * as React from 'react';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+
+var _extends =
+  Object.assign ||
+  function(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
+
+exports.default = defaultRowRenderer;
+
+var _react = require('react');
+
+var React = _interopRequireWildcard(_react);
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};
+    if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key))
+          newObj[key] = obj[key];
+      }
+    }
+    newObj.default = obj;
+    return newObj;
+  }
+}
 
 /**
  * Default row renderer for Table.
  */
-export default function defaultRowRenderer(_ref) {
+function defaultRowRenderer(_ref) {
   var className = _ref.className,
     columns = _ref.columns,
     index = _ref.index,
@@ -67,11 +106,3 @@ export default function defaultRowRenderer(_ref) {
     columns,
   );
 }
-defaultRowRenderer.propTypes =
-  process.env.NODE_ENV === 'production'
-    ? null
-    : bpfrpt_proptype_RowRendererParams === PropTypes.any
-      ? {}
-      : bpfrpt_proptype_RowRendererParams;
-import {bpfrpt_proptype_RowRendererParams} from './types';
-import PropTypes from 'prop-types';

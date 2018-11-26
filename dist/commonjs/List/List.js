@@ -4,37 +4,36 @@ Object.defineProperty(exports, '__esModule', {
   value: true,
 });
 
-var _extends2 = require('babel-runtime/helpers/extends');
+var _extends =
+  Object.assign ||
+  function(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
 
-var _extends3 = _interopRequireDefault(_extends2);
-
-var _getOwnPropertyDescriptor = require('babel-runtime/core-js/object/get-own-property-descriptor');
-
-var _getOwnPropertyDescriptor2 = _interopRequireDefault(
-  _getOwnPropertyDescriptor,
-);
-
-var _getPrototypeOf = require('babel-runtime/core-js/object/get-prototype-of');
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = require('babel-runtime/helpers/classCallCheck');
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = require('babel-runtime/helpers/createClass');
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = require('babel-runtime/helpers/possibleConstructorReturn');
-
-var _possibleConstructorReturn3 = _interopRequireDefault(
-  _possibleConstructorReturn2,
-);
-
-var _inherits2 = require('babel-runtime/helpers/inherits');
-
-var _inherits3 = _interopRequireDefault(_inherits2);
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})();
 
 var _Grid = require('../Grid');
 
@@ -47,12 +46,6 @@ var React = _interopRequireWildcard(_react);
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
-
-var _types = require('./types');
-
-var _propTypes = require('prop-types');
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
 
 function _interopRequireWildcard(obj) {
   if (obj && obj.__esModule) {
@@ -74,6 +67,44 @@ function _interopRequireDefault(obj) {
   return obj && obj.__esModule ? obj : {default: obj};
 }
 
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError(
+      "this hasn't been initialised - super() hasn't been called",
+    );
+  }
+  return call && (typeof call === 'object' || typeof call === 'function')
+    ? call
+    : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== 'function' && superClass !== null) {
+    throw new TypeError(
+      'Super expression must either be null or a function, not ' +
+        typeof superClass,
+    );
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true,
+    },
+  });
+  if (superClass)
+    Object.setPrototypeOf
+      ? Object.setPrototypeOf(subClass, superClass)
+      : (subClass.__proto__ = superClass);
+}
+
 /**
  * It is inefficient to create and manage a large list of DOM elements within a scrolling container
  * if only a few of those elements are visible. The primary purpose of this component is to improve
@@ -84,14 +115,14 @@ function _interopRequireDefault(obj) {
  */
 
 var List = (function(_React$PureComponent) {
-  (0, _inherits3.default)(List, _React$PureComponent);
+  _inherits(List, _React$PureComponent);
 
   function List() {
     var _ref;
 
     var _temp, _this, _ret;
 
-    (0, _classCallCheck3.default)(this, List);
+    _classCallCheck(this, List);
 
     for (
       var _len = arguments.length, args = Array(_len), _key = 0;
@@ -102,10 +133,9 @@ var List = (function(_React$PureComponent) {
     }
 
     return (
-      (_ret = ((_temp = ((_this = (0, _possibleConstructorReturn3.default)(
+      (_ret = ((_temp = ((_this = _possibleConstructorReturn(
         this,
-        (_ref =
-          List.__proto__ || (0, _getPrototypeOf2.default)(List)).call.apply(
+        (_ref = List.__proto__ || Object.getPrototypeOf(List)).call.apply(
           _ref,
           [this].concat(args),
         ),
@@ -126,7 +156,7 @@ var List = (function(_React$PureComponent) {
         // Check to make sure we can still modify the style before proceeding.
         // https://github.com/facebook/react/commit/977357765b44af8ff0cfea327866861073095c12#commitcomment-20648713
 
-        var _Object$getOwnPropert = (0, _getOwnPropertyDescriptor2.default)(
+        var _Object$getOwnPropert = Object.getOwnPropertyDescriptor(
             style,
             'width',
           ),
@@ -177,11 +207,11 @@ var List = (function(_React$PureComponent) {
         });
       }),
       _temp)),
-      (0, _possibleConstructorReturn3.default)(_this, _ret)
+      _possibleConstructorReturn(_this, _ret)
     );
   }
 
-  (0, _createClass3.default)(List, [
+  _createClass(List, [
     {
       key: 'forceUpdateGrid',
       value: function forceUpdateGrid() {
@@ -320,7 +350,7 @@ var List = (function(_React$PureComponent) {
 
         return React.createElement(
           _Grid2.default,
-          (0, _extends3.default)({}, this.props, {
+          _extends({}, this.props, {
             autoContainerWidth: true,
             cellRenderer: this._cellRenderer,
             className: classNames,
@@ -336,6 +366,7 @@ var List = (function(_React$PureComponent) {
       },
     },
   ]);
+
   return List;
 })(React.PureComponent);
 
@@ -353,119 +384,4 @@ List.defaultProps = {
   scrollToIndex: -1,
   style: {},
 };
-List.propTypes =
-  process.env.NODE_ENV === 'production'
-    ? null
-    : {
-        'aria-label': _propTypes2.default.string,
-
-        /**
-         * Removes fixed height from the scrollingContainer so that the total height
-         * of rows can stretch the window. Intended for use with WindowScroller
-         */
-        autoHeight: _propTypes2.default.bool.isRequired,
-
-        /** Optional CSS class name */
-        className: _propTypes2.default.string,
-
-        /**
-         * Used to estimate the total height of a List before all of its rows have actually been measured.
-         * The estimated total height is adjusted as rows are rendered.
-         */
-        estimatedRowSize: _propTypes2.default.number.isRequired,
-
-        /** Height constraint for list (determines how many actual rows are rendered) */
-        height: _propTypes2.default.number.isRequired,
-
-        /** Optional renderer to be used in place of rows when rowCount is 0 */
-        noRowsRenderer: function noRowsRenderer() {
-          return (typeof _Grid.bpfrpt_proptype_NoContentRenderer === 'function'
-            ? _Grid.bpfrpt_proptype_NoContentRenderer.isRequired
-              ? _Grid.bpfrpt_proptype_NoContentRenderer.isRequired
-              : _Grid.bpfrpt_proptype_NoContentRenderer
-            : _propTypes2.default.shape(_Grid.bpfrpt_proptype_NoContentRenderer)
-                .isRequired
-          ).apply(this, arguments);
-        },
-
-        /** Callback invoked with information about the slice of rows that were just rendered.  */
-
-        onRowsRendered: _propTypes2.default.func.isRequired,
-
-        /**
-         * Callback invoked whenever the scroll offset changes within the inner scrollable region.
-         * This callback can be used to sync scrolling between lists, tables, or grids.
-         */
-        onScroll: _propTypes2.default.func.isRequired,
-
-        /** See Grid#overscanIndicesGetter */
-        overscanIndicesGetter: function overscanIndicesGetter() {
-          return (typeof _Grid.bpfrpt_proptype_OverscanIndicesGetter ===
-          'function'
-            ? _Grid.bpfrpt_proptype_OverscanIndicesGetter.isRequired
-              ? _Grid.bpfrpt_proptype_OverscanIndicesGetter.isRequired
-              : _Grid.bpfrpt_proptype_OverscanIndicesGetter
-            : _propTypes2.default.shape(
-                _Grid.bpfrpt_proptype_OverscanIndicesGetter,
-              ).isRequired
-          ).apply(this, arguments);
-        },
-
-        /**
-         * Number of rows to render above/below the visible bounds of the list.
-         * These rows can help for smoother scrolling on touch devices.
-         */
-        overscanRowCount: _propTypes2.default.number.isRequired,
-
-        /** Either a fixed row height (number) or a function that returns the height of a row given its index.  */
-        rowHeight: function rowHeight() {
-          return (typeof _Grid.bpfrpt_proptype_CellSize === 'function'
-            ? _Grid.bpfrpt_proptype_CellSize.isRequired
-              ? _Grid.bpfrpt_proptype_CellSize.isRequired
-              : _Grid.bpfrpt_proptype_CellSize
-            : _propTypes2.default.shape(_Grid.bpfrpt_proptype_CellSize)
-                .isRequired
-          ).apply(this, arguments);
-        },
-
-        /** Responsible for rendering a row given an index; ({ index: number }): node */
-        rowRenderer: function rowRenderer() {
-          return (typeof _types.bpfrpt_proptype_RowRenderer === 'function'
-            ? _types.bpfrpt_proptype_RowRenderer.isRequired
-              ? _types.bpfrpt_proptype_RowRenderer.isRequired
-              : _types.bpfrpt_proptype_RowRenderer
-            : _propTypes2.default.shape(_types.bpfrpt_proptype_RowRenderer)
-                .isRequired
-          ).apply(this, arguments);
-        },
-
-        /** Number of rows in list. */
-        rowCount: _propTypes2.default.number.isRequired,
-
-        /** See Grid#scrollToAlignment */
-        scrollToAlignment: function scrollToAlignment() {
-          return (typeof _Grid.bpfrpt_proptype_Alignment === 'function'
-            ? _Grid.bpfrpt_proptype_Alignment.isRequired
-              ? _Grid.bpfrpt_proptype_Alignment.isRequired
-              : _Grid.bpfrpt_proptype_Alignment
-            : _propTypes2.default.shape(_Grid.bpfrpt_proptype_Alignment)
-                .isRequired
-          ).apply(this, arguments);
-        },
-
-        /** Row index to ensure visible (by forcefully scrolling if necessary) */
-        scrollToIndex: _propTypes2.default.number.isRequired,
-
-        /** Vertical offset. */
-        scrollTop: _propTypes2.default.number,
-
-        /** Optional inline style */
-        style: _propTypes2.default.object.isRequired,
-
-        /** Tab index for focus */
-        tabIndex: _propTypes2.default.number,
-
-        /** Width of list */
-        width: _propTypes2.default.number.isRequired,
-      };
 exports.default = List;

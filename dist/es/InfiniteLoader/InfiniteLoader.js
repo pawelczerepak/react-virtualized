@@ -1,18 +1,105 @@
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import createCallbackMemoizer from '../utils/createCallbackMemoizer';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
+
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})();
+
+exports.isRangeVisible = isRangeVisible;
+exports.scanForUnloadedRanges = scanForUnloadedRanges;
+exports.forceUpdateReactVirtualizedComponent = forceUpdateReactVirtualizedComponent;
+
+var _react = require('react');
+
+var React = _interopRequireWildcard(_react);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _createCallbackMemoizer = require('../utils/createCallbackMemoizer');
+
+var _createCallbackMemoizer2 = _interopRequireDefault(_createCallbackMemoizer);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
+}
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};
+    if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key))
+          newObj[key] = obj[key];
+      }
+    }
+    newObj.default = obj;
+    return newObj;
+  }
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError(
+      "this hasn't been initialised - super() hasn't been called",
+    );
+  }
+  return call && (typeof call === 'object' || typeof call === 'function')
+    ? call
+    : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== 'function' && superClass !== null) {
+    throw new TypeError(
+      'Super expression must either be null or a function, not ' +
+        typeof superClass,
+    );
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true,
+    },
+  });
+  if (superClass)
+    Object.setPrototypeOf
+      ? Object.setPrototypeOf(subClass, superClass)
+      : (subClass.__proto__ = superClass);
+}
 
 /**
  * Higher-order component that manages lazy-loading for "infinite" data.
  * This component decorates a virtual component and just-in-time prefetches rows as a user scrolls.
  * It is intended as a convenience component; fork it if you'd like finer-grained control over data-loading.
  */
-
 var InfiniteLoader = (function(_React$PureComponent) {
   _inherits(InfiniteLoader, _React$PureComponent);
 
@@ -21,14 +108,14 @@ var InfiniteLoader = (function(_React$PureComponent) {
 
     var _this = _possibleConstructorReturn(
       this,
-      (InfiniteLoader.__proto__ || _Object$getPrototypeOf(InfiniteLoader)).call(
+      (InfiniteLoader.__proto__ || Object.getPrototypeOf(InfiniteLoader)).call(
         this,
         props,
         context,
       ),
     );
 
-    _this._loadMoreRowsMemoizer = createCallbackMemoizer();
+    _this._loadMoreRowsMemoizer = (0, _createCallbackMemoizer2.default)();
 
     _this._onRowsRendered = _this._onRowsRendered.bind(_this);
     _this._registerChild = _this._registerChild.bind(_this);
@@ -39,7 +126,7 @@ var InfiniteLoader = (function(_React$PureComponent) {
     {
       key: 'resetLoadMoreRowsCache',
       value: function resetLoadMoreRowsCache(autoReload) {
-        this._loadMoreRowsMemoizer = createCallbackMemoizer();
+        this._loadMoreRowsMemoizer = (0, _createCallbackMemoizer2.default)();
 
         if (autoReload) {
           this._doStuff(
@@ -159,60 +246,57 @@ var InfiniteLoader = (function(_React$PureComponent) {
  * Determines if the specified start/stop range is visible based on the most recently rendered range.
  */
 
+InfiniteLoader.propTypes = {
+  /**
+   * Function responsible for rendering a virtualized component.
+   * This function should implement the following signature:
+   * ({ onRowsRendered, registerChild }) => PropTypes.element
+   *
+   * The specified :onRowsRendered function should be passed through to the child's :onRowsRendered property.
+   * The :registerChild callback should be set as the virtualized component's :ref.
+   */
+  children: _propTypes2.default.func.isRequired,
+
+  /**
+   * Function responsible for tracking the loaded state of each row.
+   * It should implement the following signature: ({ index: number }): boolean
+   */
+  isRowLoaded: _propTypes2.default.func.isRequired,
+
+  /**
+   * Callback to be invoked when more rows must be loaded.
+   * It should implement the following signature: ({ startIndex, stopIndex }): Promise
+   * The returned Promise should be resolved once row data has finished loading.
+   * It will be used to determine when to refresh the list with the newly-loaded data.
+   * This callback may be called multiple times in reaction to a single scroll event.
+   */
+  loadMoreRows: _propTypes2.default.func.isRequired,
+
+  /**
+   * Minimum number of rows to be loaded at a time.
+   * This property can be used to batch requests to reduce HTTP requests.
+   */
+  minimumBatchSize: _propTypes2.default.number.isRequired,
+
+  /**
+   * Number of rows in list; can be arbitrary high number if actual number is unknown.
+   */
+  rowCount: _propTypes2.default.number.isRequired,
+
+  /**
+   * Threshold at which to pre-fetch data.
+   * A threshold X means that data will start loading when a user scrolls within X rows.
+   * This value defaults to 15.
+   */
+  threshold: _propTypes2.default.number.isRequired,
+};
 InfiniteLoader.defaultProps = {
   minimumBatchSize: 10,
   rowCount: 0,
   threshold: 15,
 };
-export default InfiniteLoader;
-InfiniteLoader.propTypes =
-  process.env.NODE_ENV !== 'production'
-    ? {
-        /**
-         * Function responsible for rendering a virtualized component.
-         * This function should implement the following signature:
-         * ({ onRowsRendered, registerChild }) => PropTypes.element
-         *
-         * The specified :onRowsRendered function should be passed through to the child's :onRowsRendered property.
-         * The :registerChild callback should be set as the virtualized component's :ref.
-         */
-        children: PropTypes.func.isRequired,
-
-        /**
-         * Function responsible for tracking the loaded state of each row.
-         * It should implement the following signature: ({ index: number }): boolean
-         */
-        isRowLoaded: PropTypes.func.isRequired,
-
-        /**
-         * Callback to be invoked when more rows must be loaded.
-         * It should implement the following signature: ({ startIndex, stopIndex }): Promise
-         * The returned Promise should be resolved once row data has finished loading.
-         * It will be used to determine when to refresh the list with the newly-loaded data.
-         * This callback may be called multiple times in reaction to a single scroll event.
-         */
-        loadMoreRows: PropTypes.func.isRequired,
-
-        /**
-         * Minimum number of rows to be loaded at a time.
-         * This property can be used to batch requests to reduce HTTP requests.
-         */
-        minimumBatchSize: PropTypes.number.isRequired,
-
-        /**
-         * Number of rows in list; can be arbitrary high number if actual number is unknown.
-         */
-        rowCount: PropTypes.number.isRequired,
-
-        /**
-         * Threshold at which to pre-fetch data.
-         * A threshold X means that data will start loading when a user scrolls within X rows.
-         * This value defaults to 15.
-         */
-        threshold: PropTypes.number.isRequired,
-      }
-    : {};
-export function isRangeVisible(_ref2) {
+exports.default = InfiniteLoader;
+function isRangeVisible(_ref2) {
   var lastRenderedStartIndex = _ref2.lastRenderedStartIndex,
     lastRenderedStopIndex = _ref2.lastRenderedStopIndex,
     startIndex = _ref2.startIndex,
@@ -226,7 +310,7 @@ export function isRangeVisible(_ref2) {
 /**
  * Returns all of the ranges within a larger range that contain unloaded rows.
  */
-export function scanForUnloadedRanges(_ref3) {
+function scanForUnloadedRanges(_ref3) {
   var isRowLoaded = _ref3.isRowLoaded,
     minimumBatchSize = _ref3.minimumBatchSize,
     rowCount = _ref3.rowCount,
@@ -316,7 +400,7 @@ export function scanForUnloadedRanges(_ref3) {
  * So it's important to invalidate that cache by recalculating sizes
  * before forcing a rerender.
  */
-export function forceUpdateReactVirtualizedComponent(component) {
+function forceUpdateReactVirtualizedComponent(component) {
   var currentIndex =
     arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 

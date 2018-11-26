@@ -3,17 +3,7 @@
 Object.defineProperty(exports, '__esModule', {
   value: true,
 });
-
-var _keys = require('babel-runtime/core-js/object/keys');
-
-var _keys2 = _interopRequireDefault(_keys);
-
 exports.default = createMultiSort;
-
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : {default: obj};
-}
-
 function createMultiSort(sortCallback) {
   var _ref =
       arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
@@ -62,7 +52,7 @@ function createMultiSort(sortCallback) {
       sortBy.push(dataKey);
 
       // Clear sortDirection object of all non-selected keys
-      var sortDirectionKeys = (0, _keys2.default)(sortDirection);
+      var sortDirectionKeys = Object.keys(sortDirection);
       sortDirectionKeys.forEach(function(key) {
         if (key !== dataKey) delete sortDirection[key];
       });

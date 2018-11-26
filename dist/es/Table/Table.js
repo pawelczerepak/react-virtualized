@@ -1,27 +1,138 @@
-import _extends from 'babel-runtime/helpers/extends';
-import _Object$getPrototypeOf from 'babel-runtime/core-js/object/get-prototype-of';
-import _classCallCheck from 'babel-runtime/helpers/classCallCheck';
-import _createClass from 'babel-runtime/helpers/createClass';
-import _possibleConstructorReturn from 'babel-runtime/helpers/possibleConstructorReturn';
-import _inherits from 'babel-runtime/helpers/inherits';
+'use strict';
 
-import cn from 'classnames';
+Object.defineProperty(exports, '__esModule', {
+  value: true,
+});
 
-import Column from './Column';
-import PropTypes from 'prop-types';
-import * as React from 'react';
-import {findDOMNode} from 'react-dom';
-import Grid, {accessibilityOverscanIndicesGetter} from '../Grid';
+var _extends =
+  Object.assign ||
+  function(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+    return target;
+  };
 
-import defaultRowRenderer from './defaultRowRenderer';
-import defaultHeaderRowRenderer from './defaultHeaderRowRenderer';
-import SortDirection from './SortDirection';
+var _createClass = (function() {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ('value' in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+  return function(Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+})();
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Column = require('./Column');
+
+var _Column2 = _interopRequireDefault(_Column);
+
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _react = require('react');
+
+var React = _interopRequireWildcard(_react);
+
+var _reactDom = require('react-dom');
+
+var _Grid2 = require('../Grid');
+
+var _Grid3 = _interopRequireDefault(_Grid2);
+
+var _defaultRowRenderer = require('./defaultRowRenderer');
+
+var _defaultRowRenderer2 = _interopRequireDefault(_defaultRowRenderer);
+
+var _defaultHeaderRowRenderer = require('./defaultHeaderRowRenderer');
+
+var _defaultHeaderRowRenderer2 = _interopRequireDefault(
+  _defaultHeaderRowRenderer,
+);
+
+var _SortDirection = require('./SortDirection');
+
+var _SortDirection2 = _interopRequireDefault(_SortDirection);
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};
+    if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key))
+          newObj[key] = obj[key];
+      }
+    }
+    newObj.default = obj;
+    return newObj;
+  }
+}
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {default: obj};
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError('Cannot call a class as a function');
+  }
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (!self) {
+    throw new ReferenceError(
+      "this hasn't been initialised - super() hasn't been called",
+    );
+  }
+  return call && (typeof call === 'object' || typeof call === 'function')
+    ? call
+    : self;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== 'function' && superClass !== null) {
+    throw new TypeError(
+      'Super expression must either be null or a function, not ' +
+        typeof superClass,
+    );
+  }
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true,
+    },
+  });
+  if (superClass)
+    Object.setPrototypeOf
+      ? Object.setPrototypeOf(subClass, superClass)
+      : (subClass.__proto__ = superClass);
+}
 
 /**
  * Table component with fixed headers and virtualized rows for improved performance with large data sets.
  * This component expects explicit width, height, and padding parameters.
  */
-
 var Table = (function(_React$PureComponent) {
   _inherits(Table, _React$PureComponent);
 
@@ -30,7 +141,7 @@ var Table = (function(_React$PureComponent) {
 
     var _this = _possibleConstructorReturn(
       this,
-      (Table.__proto__ || _Object$getPrototypeOf(Table)).call(this, props),
+      (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, props),
     );
 
     _this.state = {
@@ -235,14 +346,20 @@ var Table = (function(_React$PureComponent) {
             'aria-labelledby': this.props['aria-labelledby'],
             'aria-colcount': React.Children.toArray(children).length,
             'aria-rowcount': this.props.rowCount,
-            className: cn('ReactVirtualized__Table', className),
+            className: (0, _classnames2.default)(
+              'ReactVirtualized__Table',
+              className,
+            ),
             id: id,
             role: 'grid',
             style: style,
           },
           !disableHeader &&
             headerRowRenderer({
-              className: cn('ReactVirtualized__Table__headerRow', rowClass),
+              className: (0, _classnames2.default)(
+                'ReactVirtualized__Table__headerRow',
+                rowClass,
+              ),
               columns: this._getHeaderColumns(),
               style: _extends(
                 {
@@ -255,10 +372,13 @@ var Table = (function(_React$PureComponent) {
               ),
             }),
           React.createElement(
-            Grid,
+            _Grid3.default,
             _extends({}, this.props, {
               autoContainerWidth: true,
-              className: cn('ReactVirtualized__Table__Grid', gridClassName),
+              className: (0, _classnames2.default)(
+                'ReactVirtualized__Table__Grid',
+                gridClassName,
+              ),
               cellRenderer: this._createRow,
               columnWidth: width,
               columnCount: 1,
@@ -334,7 +454,10 @@ var Table = (function(_React$PureComponent) {
           {
             'aria-colindex': columnIndex + 1,
             'aria-describedby': id,
-            className: cn('ReactVirtualized__Table__rowColumn', className),
+            className: (0, _classnames2.default)(
+              'ReactVirtualized__Table__rowColumn',
+              className,
+            ),
             key: 'Row' + rowIndex + '-' + 'Col' + columnIndex,
             onClick: onClick,
             role: 'gridcell',
@@ -368,7 +491,7 @@ var Table = (function(_React$PureComponent) {
 
         var sortEnabled = !disableSort && sort;
 
-        var classNames = cn(
+        var classNames = (0, _classnames2.default)(
           'ReactVirtualized__Table__headerColumn',
           headerClassName,
           column.props.headerClassName,
@@ -404,9 +527,9 @@ var Table = (function(_React$PureComponent) {
           // Otherwise, invert the direction of the sort.
           var newSortDirection = isFirstTimeSort
             ? defaultSortDirection
-            : sortDirection === SortDirection.DESC
-              ? SortDirection.ASC
-              : SortDirection.DESC;
+            : sortDirection === _SortDirection2.default.DESC
+              ? _SortDirection2.default.ASC
+              : _SortDirection2.default.DESC;
 
           var onClick = function onClick(event) {
             sortEnabled &&
@@ -439,7 +562,9 @@ var Table = (function(_React$PureComponent) {
 
         if (sortBy === dataKey) {
           headerAriaSort =
-            sortDirection === SortDirection.ASC ? 'ascending' : 'descending';
+            sortDirection === _SortDirection2.default.ASC
+              ? 'ascending'
+              : 'descending';
         }
 
         // Avoid using object-spread syntax with multiple objects here,
@@ -509,7 +634,10 @@ var Table = (function(_React$PureComponent) {
           });
         });
 
-        var className = cn('ReactVirtualized__Table__row', rowClass);
+        var className = (0, _classnames2.default)(
+          'ReactVirtualized__Table__row',
+          rowClass,
+        );
         var flattenedStyle = _extends(
           {},
           style,
@@ -642,7 +770,7 @@ var Table = (function(_React$PureComponent) {
       key: '_setScrollbarWidth',
       value: function _setScrollbarWidth() {
         if (this.Grid) {
-          var _Grid = findDOMNode(this.Grid);
+          var _Grid = (0, _reactDom.findDOMNode)(this.Grid);
           var clientWidth = _Grid.clientWidth || 0;
           var offsetWidth = _Grid.offsetWidth || 0;
           var scrollbarWidth = offsetWidth - clientWidth;
@@ -656,6 +784,237 @@ var Table = (function(_React$PureComponent) {
   return Table;
 })(React.PureComponent);
 
+Table.propTypes = {
+  /** This is just set on the grid top element. */
+  'aria-label': _propTypes2.default.string,
+
+  /** This is just set on the grid top element. */
+  'aria-labelledby': _propTypes2.default.string,
+
+  /**
+   * Removes fixed height from the scrollingContainer so that the total height
+   * of rows can stretch the window. Intended for use with WindowScroller
+   */
+  autoHeight: _propTypes2.default.bool,
+
+  /** One or more Columns describing the data displayed in this row */
+  children: function children(props) {
+    var children = React.Children.toArray(props.children);
+    for (var i = 0; i < children.length; i++) {
+      var childType = children[i].type;
+      if (
+        childType !== _Column2.default &&
+        !(childType.prototype instanceof _Column2.default)
+      ) {
+        return new Error('Table only accepts children of type Column');
+      }
+    }
+  },
+
+  /** Optional CSS class name */
+  className: _propTypes2.default.string,
+
+  /** Disable rendering the header at all */
+  disableHeader: _propTypes2.default.bool,
+
+  /**
+   * Used to estimate the total height of a Table before all of its rows have actually been measured.
+   * The estimated total height is adjusted as rows are rendered.
+   */
+  estimatedRowSize: _propTypes2.default.number.isRequired,
+
+  /** Optional custom CSS class name to attach to inner Grid element. */
+  gridClassName: _propTypes2.default.string,
+
+  /** Optional inline style to attach to inner Grid element. */
+  gridStyle: _propTypes2.default.object,
+
+  /** Optional CSS class to apply to all column headers */
+  headerClassName: _propTypes2.default.string,
+
+  /** Fixed height of header row */
+  headerHeight: _propTypes2.default.number.isRequired,
+
+  /**
+   * Responsible for rendering a table row given an array of columns:
+   * Should implement the following interface: ({
+   *   className: string,
+   *   columns: any[],
+   *   style: any
+   * }): PropTypes.node
+   */
+  headerRowRenderer: _propTypes2.default.func,
+
+  /** Optional custom inline style to attach to table header columns. */
+  headerStyle: _propTypes2.default.object,
+
+  /** Fixed/available height for out DOM element */
+  height: _propTypes2.default.number.isRequired,
+
+  /** Optional id */
+  id: _propTypes2.default.string,
+
+  /** Optional renderer to be used in place of table body rows when rowCount is 0 */
+  noRowsRenderer: _propTypes2.default.func,
+
+  /**
+   * Optional callback when a column is clicked.
+   * ({ columnData: any, dataKey: string }): void
+   */
+  onColumnClick: _propTypes2.default.func,
+
+  /**
+   * Optional callback when a column's header is clicked.
+   * ({ columnData: any, dataKey: string }): void
+   */
+  onHeaderClick: _propTypes2.default.func,
+
+  /**
+   * Callback invoked when a user clicks on a table row.
+   * ({ index: number }): void
+   */
+  onRowClick: _propTypes2.default.func,
+
+  /**
+   * Callback invoked when a user double-clicks on a table row.
+   * ({ index: number }): void
+   */
+  onRowDoubleClick: _propTypes2.default.func,
+
+  /**
+   * Callback invoked when the mouse leaves a table row.
+   * ({ index: number }): void
+   */
+  onRowMouseOut: _propTypes2.default.func,
+
+  /**
+   * Callback invoked when a user moves the mouse over a table row.
+   * ({ index: number }): void
+   */
+  onRowMouseOver: _propTypes2.default.func,
+
+  /**
+   * Callback invoked when a user right-clicks on a table row.
+   * ({ index: number }): void
+   */
+  onRowRightClick: _propTypes2.default.func,
+
+  /**
+   * Callback invoked with information about the slice of rows that were just rendered.
+   * ({ startIndex, stopIndex }): void
+   */
+  onRowsRendered: _propTypes2.default.func,
+
+  /**
+   * Callback invoked whenever the scroll offset changes within the inner scrollable region.
+   * This callback can be used to sync scrolling between lists, tables, or grids.
+   * ({ clientHeight, scrollHeight, scrollTop }): void
+   */
+  onScroll: _propTypes2.default.func.isRequired,
+
+  /** See Grid#overscanIndicesGetter */
+  overscanIndicesGetter: _propTypes2.default.func.isRequired,
+
+  /**
+   * Number of rows to render above/below the visible bounds of the list.
+   * These rows can help for smoother scrolling on touch devices.
+   */
+  overscanRowCount: _propTypes2.default.number.isRequired,
+
+  /**
+   * Optional CSS class to apply to all table rows (including the header row).
+   * This property can be a CSS class name (string) or a function that returns a class name.
+   * If a function is provided its signature should be: ({ index: number }): string
+   */
+  rowClassName: _propTypes2.default.oneOfType([
+    _propTypes2.default.string,
+    _propTypes2.default.func,
+  ]),
+
+  /**
+   * Callback responsible for returning a data row given an index.
+   * ({ index: number }): any
+   */
+  rowGetter: _propTypes2.default.func.isRequired,
+
+  /**
+   * Either a fixed row height (number) or a function that returns the height of a row given its index.
+   * ({ index: number }): number
+   */
+  rowHeight: _propTypes2.default.oneOfType([
+    _propTypes2.default.number,
+    _propTypes2.default.func,
+  ]).isRequired,
+
+  /** Number of rows in table. */
+  rowCount: _propTypes2.default.number.isRequired,
+
+  /**
+   * Responsible for rendering a table row given an array of columns:
+   * Should implement the following interface: ({
+   *   className: string,
+   *   columns: Array,
+   *   index: number,
+   *   isScrolling: boolean,
+   *   onRowClick: ?Function,
+   *   onRowDoubleClick: ?Function,
+   *   onRowMouseOver: ?Function,
+   *   onRowMouseOut: ?Function,
+   *   rowData: any,
+   *   style: any
+   * }): PropTypes.node
+   */
+  rowRenderer: _propTypes2.default.func,
+
+  /** Optional custom inline style to attach to table rows. */
+  rowStyle: _propTypes2.default.oneOfType([
+    _propTypes2.default.object,
+    _propTypes2.default.func,
+  ]).isRequired,
+
+  /** See Grid#scrollToAlignment */
+  scrollToAlignment: _propTypes2.default.oneOf([
+    'auto',
+    'end',
+    'start',
+    'center',
+  ]).isRequired,
+
+  /** Row index to ensure visible (by forcefully scrolling if necessary) */
+  scrollToIndex: _propTypes2.default.number.isRequired,
+
+  /** Vertical offset. */
+  scrollTop: _propTypes2.default.number,
+
+  /**
+   * Sort function to be called if a sortable header is clicked.
+   * Should implement the following interface: ({
+   *   defaultSortDirection: 'ASC' | 'DESC',
+   *   event: MouseEvent,
+   *   sortBy: string,
+   *   sortDirection: SortDirection
+   * }): void
+   */
+  sort: _propTypes2.default.func,
+
+  /** Table data is currently sorted by this :dataKey (if it is sorted at all) */
+  sortBy: _propTypes2.default.string,
+
+  /** Table data is currently sorted in this direction (if it is sorted at all) */
+  sortDirection: _propTypes2.default.oneOf([
+    _SortDirection2.default.ASC,
+    _SortDirection2.default.DESC,
+  ]),
+
+  /** Optional inline style */
+  style: _propTypes2.default.object,
+
+  /** Tab index for focus */
+  tabIndex: _propTypes2.default.number,
+
+  /** Width of list */
+  width: _propTypes2.default.number.isRequired,
+};
 Table.defaultProps = {
   disableHeader: false,
   estimatedRowSize: 30,
@@ -670,234 +1029,13 @@ Table.defaultProps = {
   onScroll: function onScroll() {
     return null;
   },
-  overscanIndicesGetter: accessibilityOverscanIndicesGetter,
+  overscanIndicesGetter: _Grid2.accessibilityOverscanIndicesGetter,
   overscanRowCount: 10,
-  rowRenderer: defaultRowRenderer,
-  headerRowRenderer: defaultHeaderRowRenderer,
+  rowRenderer: _defaultRowRenderer2.default,
+  headerRowRenderer: _defaultHeaderRowRenderer2.default,
   rowStyle: {},
   scrollToAlignment: 'auto',
   scrollToIndex: -1,
   style: {},
 };
-export default Table;
-Table.propTypes =
-  process.env.NODE_ENV !== 'production'
-    ? {
-        /** This is just set on the grid top element. */
-        'aria-label': PropTypes.string,
-
-        /** This is just set on the grid top element. */
-        'aria-labelledby': PropTypes.string,
-
-        /**
-         * Removes fixed height from the scrollingContainer so that the total height
-         * of rows can stretch the window. Intended for use with WindowScroller
-         */
-        autoHeight: PropTypes.bool,
-
-        /** One or more Columns describing the data displayed in this row */
-        children: function children(props) {
-          var children = React.Children.toArray(props.children);
-          for (var i = 0; i < children.length; i++) {
-            var childType = children[i].type;
-            if (
-              childType !== Column &&
-              !(childType.prototype instanceof Column)
-            ) {
-              return new Error('Table only accepts children of type Column');
-            }
-          }
-        },
-
-        /** Optional CSS class name */
-        className: PropTypes.string,
-
-        /** Disable rendering the header at all */
-        disableHeader: PropTypes.bool,
-
-        /**
-         * Used to estimate the total height of a Table before all of its rows have actually been measured.
-         * The estimated total height is adjusted as rows are rendered.
-         */
-        estimatedRowSize: PropTypes.number.isRequired,
-
-        /** Optional custom CSS class name to attach to inner Grid element. */
-        gridClassName: PropTypes.string,
-
-        /** Optional inline style to attach to inner Grid element. */
-        gridStyle: PropTypes.object,
-
-        /** Optional CSS class to apply to all column headers */
-        headerClassName: PropTypes.string,
-
-        /** Fixed height of header row */
-        headerHeight: PropTypes.number.isRequired,
-
-        /**
-         * Responsible for rendering a table row given an array of columns:
-         * Should implement the following interface: ({
-         *   className: string,
-         *   columns: any[],
-         *   style: any
-         * }): PropTypes.node
-         */
-        headerRowRenderer: PropTypes.func,
-
-        /** Optional custom inline style to attach to table header columns. */
-        headerStyle: PropTypes.object,
-
-        /** Fixed/available height for out DOM element */
-        height: PropTypes.number.isRequired,
-
-        /** Optional id */
-        id: PropTypes.string,
-
-        /** Optional renderer to be used in place of table body rows when rowCount is 0 */
-        noRowsRenderer: PropTypes.func,
-
-        /**
-         * Optional callback when a column is clicked.
-         * ({ columnData: any, dataKey: string }): void
-         */
-        onColumnClick: PropTypes.func,
-
-        /**
-         * Optional callback when a column's header is clicked.
-         * ({ columnData: any, dataKey: string }): void
-         */
-        onHeaderClick: PropTypes.func,
-
-        /**
-         * Callback invoked when a user clicks on a table row.
-         * ({ index: number }): void
-         */
-        onRowClick: PropTypes.func,
-
-        /**
-         * Callback invoked when a user double-clicks on a table row.
-         * ({ index: number }): void
-         */
-        onRowDoubleClick: PropTypes.func,
-
-        /**
-         * Callback invoked when the mouse leaves a table row.
-         * ({ index: number }): void
-         */
-        onRowMouseOut: PropTypes.func,
-
-        /**
-         * Callback invoked when a user moves the mouse over a table row.
-         * ({ index: number }): void
-         */
-        onRowMouseOver: PropTypes.func,
-
-        /**
-         * Callback invoked when a user right-clicks on a table row.
-         * ({ index: number }): void
-         */
-        onRowRightClick: PropTypes.func,
-
-        /**
-         * Callback invoked with information about the slice of rows that were just rendered.
-         * ({ startIndex, stopIndex }): void
-         */
-        onRowsRendered: PropTypes.func,
-
-        /**
-         * Callback invoked whenever the scroll offset changes within the inner scrollable region.
-         * This callback can be used to sync scrolling between lists, tables, or grids.
-         * ({ clientHeight, scrollHeight, scrollTop }): void
-         */
-        onScroll: PropTypes.func.isRequired,
-
-        /** See Grid#overscanIndicesGetter */
-        overscanIndicesGetter: PropTypes.func.isRequired,
-
-        /**
-         * Number of rows to render above/below the visible bounds of the list.
-         * These rows can help for smoother scrolling on touch devices.
-         */
-        overscanRowCount: PropTypes.number.isRequired,
-
-        /**
-         * Optional CSS class to apply to all table rows (including the header row).
-         * This property can be a CSS class name (string) or a function that returns a class name.
-         * If a function is provided its signature should be: ({ index: number }): string
-         */
-        rowClassName: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
-
-        /**
-         * Callback responsible for returning a data row given an index.
-         * ({ index: number }): any
-         */
-        rowGetter: PropTypes.func.isRequired,
-
-        /**
-         * Either a fixed row height (number) or a function that returns the height of a row given its index.
-         * ({ index: number }): number
-         */
-        rowHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.func])
-          .isRequired,
-
-        /** Number of rows in table. */
-        rowCount: PropTypes.number.isRequired,
-
-        /**
-         * Responsible for rendering a table row given an array of columns:
-         * Should implement the following interface: ({
-         *   className: string,
-         *   columns: Array,
-         *   index: number,
-         *   isScrolling: boolean,
-         *   onRowClick: ?Function,
-         *   onRowDoubleClick: ?Function,
-         *   onRowMouseOver: ?Function,
-         *   onRowMouseOut: ?Function,
-         *   rowData: any,
-         *   style: any
-         * }): PropTypes.node
-         */
-        rowRenderer: PropTypes.func,
-
-        /** Optional custom inline style to attach to table rows. */
-        rowStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.func])
-          .isRequired,
-
-        /** See Grid#scrollToAlignment */
-        scrollToAlignment: PropTypes.oneOf(['auto', 'end', 'start', 'center'])
-          .isRequired,
-
-        /** Row index to ensure visible (by forcefully scrolling if necessary) */
-        scrollToIndex: PropTypes.number.isRequired,
-
-        /** Vertical offset. */
-        scrollTop: PropTypes.number,
-
-        /**
-         * Sort function to be called if a sortable header is clicked.
-         * Should implement the following interface: ({
-         *   defaultSortDirection: 'ASC' | 'DESC',
-         *   event: MouseEvent,
-         *   sortBy: string,
-         *   sortDirection: SortDirection
-         * }): void
-         */
-        sort: PropTypes.func,
-
-        /** Table data is currently sorted by this :dataKey (if it is sorted at all) */
-        sortBy: PropTypes.string,
-
-        /** Table data is currently sorted in this direction (if it is sorted at all) */
-        sortDirection: PropTypes.oneOf([SortDirection.ASC, SortDirection.DESC]),
-
-        /** Optional inline style */
-        style: PropTypes.object,
-
-        /** Tab index for focus */
-        tabIndex: PropTypes.number,
-
-        /** Width of list */
-        width: PropTypes.number.isRequired,
-      }
-    : {};
-import {bpfrpt_proptype_CellPosition} from '../Grid';
+exports.default = Table;
